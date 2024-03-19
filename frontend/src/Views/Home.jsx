@@ -1,12 +1,13 @@
-import React from "react";
+import { Header } from "../components/Header/Header";
+import { NavBar } from "../components/Nav Bar/NavBar";
 
 const Home = () => {
-  return (
-    <div>
-      <div>Home</div>;
-      {/* <button></button> */}
-    </div>
-  );
+
+  return <div>
+    <Header/>
+    <NavBar/>
+  </div>;
+ 
 };
 
 export default Home;
