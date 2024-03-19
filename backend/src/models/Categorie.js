@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (dataBase) => {
   dataBase.define(
-    "User",
+    "Categorie",
     {
       id: {
         type: DataTypes.INTEGER,
@@ -10,11 +10,6 @@ module.exports = (dataBase) => {
         primaryKey: true,
       },
       name: {
-        type: DataTypes.STRING,
-        unique: true,
-        allowNull: false,
-      },
-      email: {
         type: DataTypes.STRING,
         unique: true,
         allowNull: false,
