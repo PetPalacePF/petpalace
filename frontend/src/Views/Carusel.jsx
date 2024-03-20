@@ -28,11 +28,11 @@ export const Carusel = () => {
             count = (count + 1) % images.length;
             setCurrentIndex(count);
             imgRef.current.classList.add("fade-anim");
-        }, 6000)
+        }, 10000)
     }
 
     return (
-        <div className='container my-5'>
+        <div className='container'>
             <div ref={imgRef} className='overflow-hidden relative'>
                 <div className='flex transition ease-out duration-400'>
                     <img src={images[currentIndex]} className="w-1920px h-680px" />
