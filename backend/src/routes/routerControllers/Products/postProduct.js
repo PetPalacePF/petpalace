@@ -1,10 +1,12 @@
 const createProduct = require("../../../controllers/Products/createProduct");
 
 const postProduct = async (req, res) => {
-  const { brand, name, img, description, priece, stock, rating, categories } =
+  const { brand, name, img, description, price
+, stock, rating, categories } =
     req.body;
 
-  const product = { brand, name, img, description, priece, stock, rating };
+  const product = { brand, name, img, description, price
+, stock, rating };
 
   try {
     const newProduct = await createProduct({ product, categories });
