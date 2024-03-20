@@ -1,10 +1,18 @@
 const formattedProducts = (products) => {
   return products.map((product) => {
-    const { id, brand, name, img, description, price
-, stock, rating, Categories } =
-      product;
+    const {
+      id,
+      brand,
+      name,
+      img,
+      description,
+      price,
+      stock,
+      rating,
+      Categories,
+    } = product;
 
-    const categories = Categories.map((categorie) => categorie.name);
+    const categories = Categories.map((category) => category.name);
 
     return {
       id,
@@ -12,8 +20,7 @@ const formattedProducts = (products) => {
       name,
       img,
       description,
-      price
-,
+      price,
       stock,
       rating,
       categories,
