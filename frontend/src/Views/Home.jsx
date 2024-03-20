@@ -2,6 +2,7 @@ import Cards from "../components/Cards/Cards";
 import { Header } from "../components/Header/Header";
 import { NavBar } from "../components/Nav Bar/NavBar";
 import { Carusel } from "./Carusel";
+import { Epigraph } from "./Epigraph";
 
 const Home = () => {
 
@@ -14,12 +15,22 @@ const Home = () => {
         <NavBar />
       </div>
       <div>
-        <h1>Carrousel</h1>
         <Carusel />
       </div>
       <div>
-        <h1>Most Recent</h1>
-        <Cards />
+        <Epigraph />
+      </div>
+      <div className="bg-pink pb-20">
+        <div className="px-20 relative">
+          <hr className="absolute w-[100px] border-black" />
+          <h1 className="relative text-4l font-bold">Most Recent</h1>
+          <Cards />
+        </div>
+        <div className="px-20 relative mt-10">
+          <hr className="absolute w-[100px] border-black" />
+          <h1 className="relative text-4l font-bold">Top highlights</h1>
+          <Cards />
+        </div>
       </div>
     </div>
   )
