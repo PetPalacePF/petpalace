@@ -2,21 +2,39 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (dataBase) => {
   dataBase.define(
-    "User",
+    "Product",
     {
       id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
       },
+      brand: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       name: {
         type: DataTypes.STRING,
         unique: true,
         allowNull: false,
       },
-      email: {
+      img: {
         type: DataTypes.STRING,
-        unique: true,
+      },
+      description: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
+      priece: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      stock: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      rating: {
+        type: DataTypes.FLOAT,
         allowNull: false,
       },
     },

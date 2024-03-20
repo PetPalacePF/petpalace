@@ -1,6 +1,12 @@
-const app = require("./src/app");
-const database = require("./src/db");
-const {PORT} = require("./src/config");
+const server = require("./src/server");
+const { dataBase } = require("./src/db.js");
+const PORT = 5000;
 
-database();
-app.listen(PORT);
+dataBase
+  .sync({ force: true })
+  .then(() => {
+    server.listen(PORT, () => {
+      console.log(`Server listening on port ${PORT}`);
+    });
+  })
+  .catch((error) => console.error(error));
