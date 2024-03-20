@@ -25,8 +25,7 @@ module.exports = (dataBase) => {
         type: DataTypes.TEXT,
         allowNull: false,
       },
-      price
-: {
+      price: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
