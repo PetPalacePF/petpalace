@@ -1,6 +1,12 @@
+const findAllOrders = require("../../../controllers/Orders/findAllOrders");
+const formattedOrders = require("../../../utils/formatted/formattedOrders");
+
+
 const getOrders = async (req, res) => {
   try {
-    return res.send("PETPALACE - TEST ORDERS '/orders'");
+    const orders = await findAllOrders();
+    const test = formattedOrders(orders) ;
+    return res.status(200).json({ orders: test });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

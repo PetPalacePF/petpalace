@@ -33,6 +33,10 @@ module.exports = (dataBase) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
+      rating: {
+        type: DataTypes.FLOAT,
+        allowNull: false,
+      },
     },
     {
       timestamps: false,

@@ -1,6 +1,12 @@
+const findAllCategories = require("../../../controllers/Categories/findAllCategories");
+const formattedCategories = require("../../../utils/formatted/formattedCategories");
+
+
+
 const getCategories = async (req, res) => {
   try {
-    return res.send("PETPALACE - TEST CATEGORIES '/categories'");
+    const categories = await findAllCategories();
+    return res.status(200).json({ categories: formattedCategories(categories) });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
