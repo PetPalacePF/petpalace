@@ -10,16 +10,18 @@ import Orders from './Orders.jsx'
 // * Components
 import AdminNavbar from '../../components/Admin/AdminNavbar'
 
-const AdminPanel = () => {
+const AdminPanel = ({allCategories}) => {
   return (
-    <div className="flex gap-4">
+    <div className="flex">
         <AdminNavbar />
-        <Routes>
-            <Route path='/' element={<Dashboard/>} />
-            <Route path='/categories' element={<Categories/>} />
-            <Route path='/products' element={<Products/>} />
-            <Route path='/orders' element={<Orders/>} />
-        </Routes>
+        <div className="w-full p-6">
+          <Routes>
+              <Route path='/' element={<Dashboard/>} />
+              <Route path='/categories' element={<Categories allCategories={allCategories} />} />
+              <Route path='/products' element={<Products/>} />
+              <Route path='/orders' element={<Orders/>} />
+          </Routes>
+        </div>
     </div>
   )
 }
