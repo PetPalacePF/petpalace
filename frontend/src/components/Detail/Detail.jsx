@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Header } from "../Header/Header";
+import { NavBar } from "../Nav Bar/NavBar";
 
 const Detail = () => {
   const { id } = useParams();
@@ -21,33 +23,38 @@ const Detail = () => {
   }, [id]);
 
   return (
-    <div>
+    <div className="container mx-auto">
       <div>
-        <div>
+        <Header />
+      </div>
+      <div>
+        <NavBar />
+      </div>
+      <div className="m-5 p-5 border rounded">
+        {product.img && (
+          <img
+            src={product.img}
+            alt={product.name}
+            className="mb-4 w-full rounded-lg"
+          />
+        )}
+        <div className="mb-4">
+          <h1 className="text-xl font-bold mb-2">{product.name}</h1>
           <div>
-            {/* {product.img && <img src={product.img} alt={product.name} />}{" "} */}
-            <h1>Product Detail</h1>
-            <div>
-              <h1>Name: {product.name}</h1>
-            </div>
-            <div>
-              <h2>Brand:</h2>
-              <p>{product.marca}</p>
-            </div>
+            <h2 className="text-lg font-semibold">Brand:</h2>
+            <p>{product.marca}</p>
           </div>
           <div>
-            <div>
-              <h2>Price:</h2>
-              <p>{product.precio}</p>
-            </div>
-            <div>
-              <h2>Description:</h2>
-              <p>{product.descripcion}</p>
-            </div>
-            <div>
-              <h2>Rating:</h2>
-              <p>{product.rating}</p>
-            </div>
+            <h2 className="text-lg font-semibold">Price:</h2>
+            <p>{product.precio}</p>
+          </div>
+          <div>
+            <h2 className="text-lg font-semibold">Rating:</h2>
+            <p>{product.rating}</p>
+          </div>
+          <div>
+            <h2 className="text-lg font-semibold">Description:</h2>
+            <p>{product.descripcion}</p>
           </div>
         </div>
       </div>
