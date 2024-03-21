@@ -1,3 +1,5 @@
+const PRODUCTS_JSON = require('../../dbProducts.json')
+
 const { Product, Category } = require("../../db");
 
 // const { Op } = require("sequelize");
@@ -21,7 +23,7 @@ const findAllProducts = async (query) => {
     },
   });
 
-  return products;
+  return PRODUCTS_JSON;
 };
 
 module.exports = findAllProducts;
