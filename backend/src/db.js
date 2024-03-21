@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { DB_USER, DB_PASSWORD, HOST, PORT, DB_NAME } = process.env;
+const { DB_USER, DB_PASSWORD, HOST, PORT, DB_NAME } = require('./config');
 const { Sequelize } = require("sequelize");
 const AdminModel = require("./models/Admin");
 const CategoryModel = require("./models/Category");

@@ -1,8 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Header } from "../Header/Header";
-import { NavBar } from "../Nav Bar/NavBar";
 
 const Detail = () => {
   const { id } = useParams();
@@ -24,12 +22,6 @@ const Detail = () => {
 
   return (
     <div className="container mx-auto">
-      <div>
-        <Header />
-      </div>
-      <div>
-        <NavBar />
-      </div>
       <div className="m-5 p-5 border rounded">
         {product.img && (
           <img
