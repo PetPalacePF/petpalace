@@ -1,5 +1,6 @@
 require("dotenv").config();
-const { DB_USER, DB_PASSWORD, HOST, PORT, DB_NAME } = process.env;
+// const { DB_USER, DB_PASSWORD, HOST, PORT, DB_NAME } = process.env;
+const { DB_DEPLOY } = process.env;
 const { Sequelize } = require("sequelize");
 const AdminModel = require("./models/Admin");
 const CategoryModel = require("./models/Category");
@@ -9,13 +10,20 @@ const PurchaseModel = require("./models/Purchase");
 const UserModel = require("./models/User");
 
 //? CONNECTION
-const dataBase = new Sequelize(
-  `postgres://${DB_USER}:${DB_PASSWORD}@${HOST}:${PORT}/${DB_NAME}`,
-  {
-    logging: false,
-    native: false,
-  }
-);
+// const dataBase = new Sequelize(
+//   `postgres://${DB_USER}:${DB_PASSWORD}@${HOST}:${PORT}/${DB_NAME}`,
+//   {
+//     logging: false,
+//     native: false,
+//   }
+// );
+
+const dataBase = new Sequelize(DB_DEPLOY, {
+  logging: false, 
+  native: false, 
+});
+
+
 
 //* MODELS
 AdminModel(dataBase);
