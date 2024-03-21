@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-export const Card = () => {
+export const Card = ({ product }) => {
   return (
     <NavLink to="/detail">
       <div className="h-[400px] w-[300px] flex-shrink-0 cursor-pointer">
@@ -12,7 +12,7 @@ export const Card = () => {
         <div className="px-4 flex gap-4">
           <div className="flex flex-col w-full">
             <h3 className="text-lg font-bold text-slate-700 leading-7 whitespace-normal">
-              Product Name
+              {/* {product.name} */} Name
             </h3>
             <div className="flex gap-2">
               <p className="text-sm text-slate-800 font-bold">Price</p>
@@ -24,3 +24,12 @@ export const Card = () => {
     </NavLink>
   );
 };
+
+{
+  /* <img src={product.image} alt={product.name} />
+<div>
+  <h3>{product.name}</h3>
+  <p>Price: ${product.price}</p>
+  <p>Category: {product.category}</p>
+</div> */
+}

@@ -4,7 +4,6 @@ import Carousel from "../components/Home/Carusel/Carousel";
 import { Epigraph } from "./Epigraph";
 
 const Home = () => {
-
   return (
     <div>
       <div>
@@ -16,19 +15,18 @@ const Home = () => {
       <div className="bg-pink">
         <div className="px-20 relative">
           <hr className="absolute w-[100px] border-black" />
-          <h1 className="relative text-4l font-bold">Most Recent</h1>
+          <h1 className="relative text-4l font-bold">Top Rated</h1>
           <Cards />
         </div>
         <div className="px-20 relative mt-10">
           <hr className="absolute w-[100px] border-black" />
-          <h1 className="relative text-4l font-bold">Top highlights</h1>
+          <h1 className="relative text-4l font-bold">More Products</h1>
           <Cards />
         </div>
-        <Footer/>
+        <Footer />
       </div>
     </div>
-  )
-
+  );
 };
 
 export default Home;
