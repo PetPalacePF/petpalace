@@ -2,80 +2,62 @@ import { NavLink } from "react-router-dom";
 
 export const NavBar = () => {
     return (
-        <nav>
-            <NavLink
-                to="/"
-                className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "active" : ""
-                }
-            >
-                HOME
-            </NavLink>
-            <NavLink
-                to="/categories"
-                className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "active" : ""
-                }
-            >
-                CATEGORIES
-            </NavLink>
-            <NavLink
-                to="/services"
-                className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "active" : ""
-                }
-            >
-                
-                SERVICES
-            </NavLink>
-            <NavLink
-                to="/cats"
-                className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "active" : ""
-                }
-            >
-                CATS
-            </NavLink>
-            <NavLink
-                to="/dogs"
-                className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "active" : ""
-                }
-            >
-                DOGS
-            </NavLink>
-            <NavLink
-                to="/shop"
-                className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "active" : ""
-                }
-            >
-                SHOP
-            </NavLink>
-            <NavLink
-                to="/aboutUs"
-                className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "active" : ""
-                }
-            >
-                ABOUT US
-            </NavLink>
-            <NavLink
-                to="/contact"
-                className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "active" : ""
-                }
-            >
-                CONTACT
-            </NavLink>
-            <NavLink
-                to="/singIn"
-                className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "active" : ""
-                }
-            >
-                SING IN
-            </NavLink>
-        </nav>
-    )
-}
+        <div className="flex justify-center mt-[-20px]">
+            <nav className="bg-white p-4 border shadow-lg rounded-lg">
+                <NavLink
+                    to="/"
+                    className="text-black mr-4 hover:text-gray-300"
+                    activeClassName="font-bold"
+                >
+                    HOME
+                </NavLink>
+                <button className="text-black mr-4 hover:text-gray-300">
+                    CATEGORIES
+                </button>
+                <NavLink
+                    to="/services"
+                    className="text-black mr-4 hover:text-gray-300"
+                    activeClassName="font-bold"
+                >
+                    SERVICES
+                </NavLink>
+                <NavLink
+                    to="/cats"
+                    className="text-black mr-4 hover:text-gray-300"
+                    activeClassName="font-bold"
+                >
+                    CATS
+                </NavLink>
+                <NavLink
+                    to="/dogs"
+                    className="text-black mr-4 hover:text-gray-300"
+                    activeClassName="font-bold"
+                >
+                    DOGS
+                </NavLink>
+                <NavLink
+                    to="/shop"
+                    className="text-black mr-4 hover:text-gray-300"
+                    activeClassName="font-bold"
+                >
+                    SHOP
+                </NavLink>
+                <NavLink
+                    to="/aboutUs"
+                    className="text-black mr-4 hover:text-gray-300"
+                    activeClassName="font-bold"
+                >
+                    ABOUT US
+                </NavLink>
+                <NavLink
+                    to="/contact"
+                    className="text-black mr-4 hover:text-gray-300"
+                    activeClassName="font-bold"
+                >
+                    CONTACT
+                </NavLink>
+                <button className="text-black hover:text-gray-300"> LOGOUT </button>
+            </nav>
+        </div>
+    );
+};
