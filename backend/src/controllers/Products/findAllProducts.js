@@ -1,4 +1,4 @@
-const { Product, Categorie } = require("../../db");
+const { Product, Category } = require("../../db");
 
 // const { Op } = require("sequelize");
 
@@ -13,7 +13,7 @@ const findAllProducts = async (query) => {
   const products = await Product.findAll({
     // where: whereClause,
     include: {
-      model: Categorie,
+      model: Category,
       attributes: ["name"],
       through: {
         attributes: [],

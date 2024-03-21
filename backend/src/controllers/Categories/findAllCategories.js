@@ -1,9 +1,9 @@
-const { Categorie, Product  } = require("../../db");
+const { Category, Product  } = require("../../db");
 
 
 const findAllCategories = async (query) => {
 
-  const categories = await Categorie.findAll({
+  const categories = await Category.findAll({
     include: {
       model: Product,
       attributes: ["name"],

@@ -9,7 +9,7 @@ export const NavBar = () => {
                     isPending ? "pending" : isActive ? "active" : ""
                 }
             >
-                HOME
+                HOME 
             </NavLink>
             <NavLink
                 to="/categories"
@@ -17,7 +17,7 @@ export const NavBar = () => {
                     isPending ? "pending" : isActive ? "active" : ""
                 }
             >
-                CATEGORIES
+                CATEGORIES 
             </NavLink>
             <NavLink
                 to="/services"
@@ -26,7 +26,7 @@ export const NavBar = () => {
                 }
             >
                 
-                SERVICES
+                SERVICES 
             </NavLink>
             <NavLink
                 to="/cats"
@@ -34,7 +34,7 @@ export const NavBar = () => {
                     isPending ? "pending" : isActive ? "active" : ""
                 }
             >
-                CATS
+                CATS 
             </NavLink>
             <NavLink
                 to="/dogs"
@@ -42,7 +42,7 @@ export const NavBar = () => {
                     isPending ? "pending" : isActive ? "active" : ""
                 }
             >
-                DOGS
+                DOGS 
             </NavLink>
             <NavLink
                 to="/shop"
@@ -50,15 +50,15 @@ export const NavBar = () => {
                     isPending ? "pending" : isActive ? "active" : ""
                 }
             >
-                SHOP
+                SHOP 
             </NavLink>
             <NavLink
-                to="/aboutUs"
+                to="/about"
                 className={({ isActive, isPending }) =>
                     isPending ? "pending" : isActive ? "active" : ""
                 }
             >
-                ABOUT US
+                ABOUT US 
             </NavLink>
             <NavLink
                 to="/contact"
@@ -66,7 +66,7 @@ export const NavBar = () => {
                     isPending ? "pending" : isActive ? "active" : ""
                 }
             >
-                CONTACT
+                CONTACT 
             </NavLink>
             <NavLink
                 to="/singIn"
@@ -74,7 +74,7 @@ export const NavBar = () => {
                     isPending ? "pending" : isActive ? "active" : ""
                 }
             >
-                SING IN
+                SIGN IN
             </NavLink>
         </nav>
     )
