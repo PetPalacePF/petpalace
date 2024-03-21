@@ -1,8 +1,16 @@
 import React from "react";
+import { Header } from "../components/Header/Header";
+import { NavBar } from "../components/Nav Bar/NavBar";
 
 const About = () => {
   return (
     <div>
+      <div>
+        <Header />
+      </div>
+      <div>
+        <NavBar />
+      </div>
       <div>
         <h1>About Us</h1>
         <p></p>
