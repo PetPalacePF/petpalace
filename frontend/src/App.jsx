@@ -19,18 +19,33 @@ import getCategories from './utils/getCategories.js'
 function App() {
 
   const [ allCategories, setAllCategories ] = useState({
-    all: [],
-    // byId: {},
-    // loading: false,
+    allIds: [],
+    byId: {},
+    loading: false,
     error: ''
   })
 
   useEffect(() => {
 
     const get = async () => {
+      setAllCategories({...allCategories, loading:true})
       const data = await getCategories()
+      setAllCategories({...allCategories, loading:false})
+
       if(data.message) return setAllCategories({...allCategories, error:data.message})
-      setAllCategories({...allCategories, all:data.categories})
+
+      const allIds = data.categories.map(category => category.id)
+      const byId = data.categories.reduce((acc, category) => {
+        acc[category.id] = category
+        return acc
+      }, {})
+
+      setAllCategories({
+        allIds,
+        byId,
+        loading: false,
+        error: ''
+      })
     }
 
     get()
@@ -39,11 +54,7 @@ function App() {
 
   return (
     <>
-    <button
-      onClick={() => console.log(allCategories)}
-    >a</button>
       <Routes>
-        
         <Route path='/*' element={<>
           <Header />
           <Routes>
@@ -53,7 +64,7 @@ function App() {
           </Routes>
         </>}/>
 
-        <Route path='/admin/*' element={<AdminPanel />} />
+        <Route path='/admin/*' element={<AdminPanel allCategories={allCategories} />} />
       </Routes>
     </>
   );
