@@ -1,23 +1,15 @@
 import Cards from "../components/Cards/Cards";
 import { Footer } from "../components/Footer/Footer";
-import { Header } from "../components/Header/Header";
-import { NavBar } from "../components/Nav Bar/NavBar";
-import { Carusel } from "./Carusel";
+// import { Carusel } from "../components/Home/Carusel/Carusel";
 import { Epigraph } from "./Epigraph";
 
 const Home = () => {
 
   return (
     <div>
-      <div>
-        <Header />
-      </div>
-      <div>
-        <NavBar />
-      </div>
-      <div>
+      {/* <div>
         <Carusel />
-      </div>
+      </div> */}
       <div>
         <Epigraph />
       </div>
