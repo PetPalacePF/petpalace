@@ -32,7 +32,7 @@ const AdminCategories = ({allCategories}) => {
 
       </div>
 
-      {/* <CreateForm /> */}
+      <CreateForm />
 
       <Categories allCategories={allCategories} />
 
