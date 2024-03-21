@@ -1,6 +1,6 @@
 const formattedCategories = (categories) => {
-  return categories.map((categorie) => {
-    const { id, name, Products } = categorie;
+  return categories.map((category) => {
+    const { id, name, Products } = category;
 
     const products = Products.map((product) => product.name);
 
