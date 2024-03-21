@@ -43,7 +43,7 @@ export const NavBar = () => {
                     SHOP
                 </NavLink>
                 <NavLink
-                    to="/aboutUs"
+                    to="/about"
                     className="text-black mr-4 hover:text-gray-300"
                     activeClassName="font-bold"
                 >
