@@ -1,8 +1,8 @@
 import { NavLink } from "react-router-dom";
 
-export const NavBar = () => {
+export const NavBar = ( ) => {
     return (
-        <div className="absolute top-[80px] left-0 right-0 flex justify-center">
+        <div className="absolute top-[55px] left-0 right-0 flex justify-center z-10">
             <nav className="bg-white p-4 border shadow-lg rounded-lg">
                 <NavLink
                     to="/"

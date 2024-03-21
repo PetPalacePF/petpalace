@@ -24,7 +24,7 @@ const Home = () => {
           <h1 className="relative text-4l font-bold">Top highlights</h1>
           <Cards />
         </div>
-        <Footer/>
+        <Footer />
       </div>
     </div>
   )
