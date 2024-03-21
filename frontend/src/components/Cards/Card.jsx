@@ -12,7 +12,7 @@ export const Card = () => {
         <div className="px-4 flex gap-4">
           <div className="flex flex-col w-full">
             <h3 className="text-lg font-bold text-slate-700 leading-7 whitespace-normal">
-              Product Name
+              Product Namejjps
             </h3>
             <div className="flex gap-2">
               <p className="text-sm text-slate-800 font-bold">Price</p>
