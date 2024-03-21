@@ -39,9 +39,6 @@ function App() {
 
   return (
     <>
-    <button
-      onClick={() => console.log(allCategories)}
-    >a</button>
       <Routes>
         
         <Route path='/*' element={<>
