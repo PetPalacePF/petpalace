@@ -24,7 +24,7 @@ export const NavBar = ({ allCategories }) => {
                     value={selectedCategory}
                     onChange={(e) => handleCategoryChange(e.target.value)}
                 >
-                    <option className="text-gray-500" value="">CATEGORIES</option>
+                    <option className="text-gray-500">CATEGORIES</option>
                     {allCategories.allIds.map((categoryId) => (
                         <option
                             key={categoryId}
