@@ -3,11 +3,19 @@
 export const Epigraph = () => {
     return (
         <div className="bg-purple-300 p-3 mb-10">
-            <div className="flex flex-row justify-between px-20 align-center m-2">
-                <p className="text-4l font-bold text-white">Choose how to pay</p>
-                <p className="text-4l font-bold text-white">Free withdrawal</p>
-                <p className="text-4l font-bold text-white">Assured Purchase</p>
-                <p className="text-4l font-bold text-white">Home Delivery</p>
+            <div className="flex flex-wrap justify-between items-center px-4 sm:px-8 md:px-12 lg:px-20 xl:px-24">
+                <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-2xl font-bold text-white mb-2 sm:mb-0 flex-grow sm:flex-shrink-0 sm:flex-basis">
+                    Choose how to pay
+                </p>
+                <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-2xl font-bold text-white mb-2 sm:mb-0 flex-grow sm:flex-shrink-0 sm:flex-basis">
+                    Free withdrawal
+                </p>
+                <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-2xl font-bold text-white mb-2 sm:mb-0 flex-grow sm:flex-shrink-0 sm:flex-basis">
+                    Assured Purchase
+                </p>
+                <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-2xl font-bold text-white mb-2 sm:mb-0 flex-grow sm:flex-shrink-0 sm:flex-basis">
+                    Home Delivery
+                </p>
             </div>
         </div>
     )

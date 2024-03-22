@@ -1,0 +1,31 @@
+{
+  "categories": [
+    {
+      "name": "Cat food"
+    },
+    {
+      "name": "Dog Bones"
+    },
+    {
+      "name": "Dog food"
+    },
+    {
+      "name": "Fish food"
+    },
+    {
+      "name": "Fish tanks"
+    },
+    {
+      "name": "Pet beds"
+    },
+    {
+      "name": "Pet bath products"
+    },
+    {
+      "name": "Pet houses"
+    },
+    {
+      "name": "Pet toys"
+    }
+  ]
+}

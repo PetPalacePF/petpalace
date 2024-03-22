@@ -1,8 +1,8 @@
 import { NavLink } from "react-router-dom";
 
-export const NavBar = () => {
+export const NavBar = ( ) => {
     return (
-        <div className="flex justify-center mt-[-20px]">
+        <div className="absolute top-[55px] left-0 right-0 flex justify-center z-10">
             <nav className="bg-white p-4 border shadow-lg rounded-lg">
                 <NavLink
                     to="/"
@@ -43,7 +43,7 @@ export const NavBar = () => {
                     SHOP
                 </NavLink>
                 <NavLink
-                    to="/aboutUs"
+                    to="/about"
                     className="text-black mr-4 hover:text-gray-300"
                     activeClassName="font-bold"
                 >

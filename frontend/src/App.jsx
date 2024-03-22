@@ -1,17 +1,70 @@
-import { Route, Routes, NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+
+import { Route, Routes } from "react-router-dom";
+
+// * Routes
 import Home from "./Views/Home";
-import Products from "./Views/Admin/Products";
 import About from "./Views/About";
-import Detail from "./components/Detail/Detail";
+import Detail from "./Views/Detail";
+
+// * Components
+import Header  from "./components/Header/Header";
+
+// * Admin panel
+import AdminPanel from "./Views/Admin/AdminPanel";
+
+// * Utils
+import getCategories from './utils/getCategories.js'
 
 function App() {
+
+  const [ allCategories, setAllCategories ] = useState({
+    allIds: [],
+    byId: {},
+    loading: false,
+    error: ''
+  })
+
+  useEffect(() => {
+
+    const get = async () => {
+      setAllCategories({...allCategories, loading:true})
+      const data = await getCategories()
+      setAllCategories({...allCategories, loading:false})
+
+      if(data.message) return setAllCategories({...allCategories, error:data.message})
+
+      const allIds = data.categories.map(category => category.id)
+      const byId = data.categories.reduce((acc, category) => {
+        acc[category.id] = category
+        return acc
+      }, {})
+
+      setAllCategories({
+        allIds,
+        byId,
+        loading: false,
+        error: ''
+      })
+    }
+
+    get()
+
+  }, [])
+
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/admin/products" element={<Products />}></Route>
-        <Route path="/about" element={<About />}></Route>
-        <Route path="/detail" element={<Detail />}></Route>
+        <Route path='/*' element={<>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+            <Route path="/about" element={<About />}></Route>
+            <Route path="/detail" element={<Detail />}></Route>
+          </Routes>
+        </>}/>
+
+        <Route path='/admin/*' element={<AdminPanel allCategories={allCategories} />} />
       </Routes>
     </>
   );
