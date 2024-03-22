@@ -2,7 +2,8 @@ const express = require("express");
 const getCategories = require("./routerControllers/Categories/getCategories");
 const getCategoryById = require("./routerControllers/Categories/getCategoryById");
 const postCategories = require("./routerControllers/Categories/postCategories");
-const deleteCategory = require("./routerControllers/Categories/deleteCategory")
+const putCategories = require("./routerControllers/Categories/putCategories");
+const deleteCategory = require("./routerControllers/Categories/deleteCategory");
 const routerCategories = express.Router();
 
 //? GET "/categories"
@@ -11,6 +12,9 @@ routerCategories.get("/:id", getCategoryById);
 
 //? POST "/categories"
 routerCategories.post("/", postCategories);
+
+//? PUT "/categories"
+routerCategories.put("/:id", putCategories);
 
 //? DELETE "/categories"
 routerCategories.delete("/:id", deleteCategory)
