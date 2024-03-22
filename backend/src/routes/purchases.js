@@ -14,7 +14,7 @@ routerPurchases.get("/:id", getPurchaseById);
 routerPurchases.post("/", postPurchase);
 
 //? PUT "/purchases"
-routerPurchases.put("/:id", putPurchase);
+// routerPurchases.put("/:id", putPurchase);
 
 //? DELETE "/purchases"
 routerPurchases.delete("/:id", deletePurchase);
