@@ -1,6 +1,7 @@
 const express = require("express");
 const getOrders = require("./routerControllers/Orders/getOrders");
 const postOrder = require("./routerControllers/Orders/postOrder");
+const deleteOrder = require("./routerControllers/Orders/deleteOrder")
 const routerOrders = express.Router();
 
 //? GET "/orders"
@@ -10,4 +11,6 @@ routerOrders.get("/", getOrders);
 //? POST "/orders"
 routerOrders.post("/", postOrder);
 
+//? DELETE "/orders"
+routerOrders.delete("/:id", deleteOrder)
 module.exports = routerOrders;
