@@ -9,6 +9,7 @@ const formattedProducts = (products) => {
       price,
       stock,
       rating,
+      enabled,
       Categories,
     } = product;
 
@@ -23,6 +24,7 @@ const formattedProducts = (products) => {
       price,
       stock,
       rating,
+      enabled,
       categories,
     };
   });
