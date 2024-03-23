@@ -13,6 +13,7 @@ const findAllPurchases = async () => {
           attributes: ["id", "name", "email"], 
         }
       ], 
+      order: [['id', 'ASC']]
     });
 
     return purchases;
