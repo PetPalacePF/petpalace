@@ -4,7 +4,7 @@
     "Brand": "Pedigree",
     "Name": "Dog food (Adult)",
     "Description": "Pedigree 21kg bag of food for adult dogs",
-    "Price": "70$",
+    "Price": "70",
     "Stock": 25,
     "Rating": 4.8,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710971255/Producto1_g7atm9.webp"
@@ -14,9 +14,9 @@
     "Brand": "Pedigree",
     "Name": "Dog food(Puppy)",
     "Description": "Pedigree 21kg bag of food for puppy dogs",
-    "Price": "75$",
+    "Price": "75",
     "Stock": 40,
-    "Rating": 5.0,
+    "Rating": 4.0,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710972461/Producto2_x7s91k.webp"
   },
   {
@@ -24,9 +24,9 @@
     "Brand": "Pedigree",
     "Name": "Dog food (Senior)",
     "Description": "Pedigree 21kg food bag for older adults",
-    "Price": "40$",
+    "Price": "40",
     "Stock": 61,
-    "Rating": 5.0,
+    "Rating": 4.1,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710973193/Producto3_f9mp1x.webp"
   },
   {
@@ -34,7 +34,7 @@
     "Brand": "Dog Chow",
     "Name": "Dog food (small breed)",
     "Description": "Dog Chow 21kg food bag for adults of small breeds",
-    "Price": "75$",
+    "Price": "75",
     "Stock": 32,
     "Rating": 4.9,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710973550/Producto4_o8fh7l.webp"
@@ -44,7 +44,7 @@
     "Brand": "Dog Chow",
     "Name": "Dog food (medium and large breeds)",
     "Description": "Dog Chow 21kg food bag for adults of medium and large breeds",
-    "Price": "70$",
+    "Price": "70",
     "Stock": 53,
     "Rating": 4.7,
     "image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710973642/Producto5_idisvh.webp"
@@ -54,7 +54,7 @@
     "Brand": "Dog Chow",
     "Name": "Dog food (all breeds)",
     "Description": "Dog Chow food bag of 21 kg for older adults of all breeds",
-    "Price": "78$",
+    "Price": "78",
     "Stock": 41,
     "Rating": 4.8,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710973744/Producto6_cfeigy.webp"
@@ -64,7 +64,7 @@
     "Brand": "Whiskas",
     "Name": "Cat food (chicken flavor)",
     "Description": "Whiskas chicken flavor 10 kg food bag",
-    "Price": "52$",
+    "Price": "52",
     "Stock": 75,
     "Rating": 4.9,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710973903/Producto7_lecdwp.jpg"
@@ -74,7 +74,7 @@
     "Brand": "Whiskas",
     "Name": "Cat food (meat flavor)",
     "Description": "Whiskas meat flavor 10kg food bag",
-    "Price": "55$",
+    "Price": "55",
     "Stock": 75,
     "Rating": 4.8,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710973993/Producto8_kfuex9.jpg"
@@ -84,7 +84,7 @@
     "Brand": "BioFresh",
     "Name": "Cat food (kittens)",
     "Description": "Biofresh 1.5 kg bag of food for kittens",
-    "Price": "30$",
+    "Price": "30",
     "Stock": 34,
     "Rating": 5.0,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710974162/Producto9_ldu1mj.webp"
@@ -94,7 +94,7 @@
     "Brand": "BioFresh",
     "Name": "Cat food (neutered cats)",
     "Description": "Biofresh 1.5 kg bag of food for neutered cats",
-    "Price": "25$",
+    "Price": "25",
     "Stock": 320,
     "Rating": 4.9,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710974296/Producto10_yjod9q.webp"
@@ -104,7 +104,7 @@
     "Brand": "BioFresh",
     "Name": "Cat food (adult cats)",
     "Description": "Biofresh 1.5kg bag of food for adult cats",
-    "Price": "27$",
+    "Price": "27",
     "Stock": 44,
     "Rating": 4.9,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710974381/Producto11_wrbm4j.webp"
@@ -114,7 +114,7 @@
     "Brand": "Sera",
     "Name": "Turtle food",
     "Description": "220 gr food pot for sea turtles",
-    "Price": "30$",
+    "Price": "30",
     "Stock": 14,
     "Rating": 5.0,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710974470/Producto12_nbeqad.webp"
@@ -133,7 +133,7 @@
     "Brand": "Tropical",
     "Name": "Fish food (carp)",
     "Description": "1.3kg food bag for carp fish, KOI carp and goldfish",
-    "Price": "6$",
+    "Price": "6",
     "Stock": 11,
     "Rating": 4.7,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710976380/Producto14_d8hsqq.webp"
@@ -143,7 +143,7 @@
     "Brand": "Plospan",
     "Name": "Rodent food",
     "Description": "2.5 kg bag of hay food for rodents such as rabbits, hamsters, among others",
-    "Price": "15$",
+    "Price": "15",
     "Stock": 12,
     "Rating": 4.8,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710976452/Producto15_qro8bn.webp"
@@ -153,7 +153,7 @@
     "Brand": "Home Colection",
     "Name": "Medium Dog House",
     "Description": "High resistance plastic house for medium-sized dogs",
-    "Price": "78$",
+    "Price": "78",
     "Stock": 22,
     "Rating": 4.6,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710976532/Producto16_bcsdz1.webp"
@@ -163,7 +163,7 @@
     "Brand": "Todoregalosuy",
     "Name": "Large Dog House",
     "Description": "Durable and resistant plastic house for medium and large breed dogs",
-    "Price": "145$",
+    "Price": "145",
     "Stock": 30,
     "Rating": 4.8,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710976701/Producto17_hs971k.webp"
@@ -173,7 +173,7 @@
     "Brand": "Toptecnouy",
     "Name": "Small Pet Bed",
     "Description": "A 40 x 50 cm polyester bed for pets such as dogs, cats, among others",
-    "Price": "8$",
+    "Price": "8",
     "Stock": 2100,
     "Rating": 3.8,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710977161/Producto18_nv8xqp.webp"
@@ -183,7 +183,7 @@
     "Brand": "Atrix",
     "Name": "Medium Pet Bed",
     "Description": "A round 60 cm polar fleece bed for pets such as dogs, cats, among others",
-    "Price": "24$",
+    "Price": "24",
     "Stock": 10,
     "Rating": 3.8,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710977617/Producto19_q0e9yd.webp"
@@ -193,7 +193,7 @@
     "Brand": "Acuaworld",
     "Name": "Small Fish Tank",
     "Description": "A 30cm tall x 50cm long x 27cm wide glass fish tank capable of holding up to 37 liters of water",
-    "Price": "73$",
+    "Price": "73",
     "Stock": 8,
     "Rating": 4.1,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710977801/Producto20_gzf7lq.webp"
@@ -203,7 +203,7 @@
     "Brand": "Acuarium",
     "Name": "Acrylic Fish Tank",
     "Description": "A 53cm tall x 60cm long x 33.5cm wide acrylic fish tank capable of holding up to 90 liters of water",
-    "Price": "200$",
+    "Price": "200",
     "Stock": 5,
     "Rating": 4.0,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710977942/Producto21_qsjp9t.webp"
@@ -213,7 +213,7 @@
     "Brand": "Denucio",
     "Name": "Large Bone",
     "Description": "Large white digestible bone made of high-quality leather",
-    "Price": "8$",
+    "Price": "8",
     "Stock": 1207,
     "Rating": 4.5,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710978059/Producto22_h1lojx.webp"
@@ -223,7 +223,7 @@
     "Brand": "Denucio",
     "Name": "Small Bone",
     "Description": "Small white digestible bone made of high-quality leather",
-    "Price": "4$",
+    "Price": "4",
     "Stock": 1213,
     "Rating": 4.5,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710978156/Producto23_zfekri.webp"
@@ -233,7 +233,7 @@
     "Brand": "LCM",
     "Name": "Solid Dog Bone",
     "Description": "A black, highly durable and resistant rubber bone for dogs",
-    "Price": "9$",
+    "Price": "9",
     "Stock": 22,
     "Rating": 4.2,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710978530/Producto26_gcti54.webp"
@@ -243,7 +243,7 @@
     "Brand": "Domninal",
     "Name": "Flea and Tick Shampoo",
     "Description": "A bottle of Domninal flea and tick shampoo for dogs and cats",
-    "Price": "8$",
+    "Price": "8",
     "Stock": 462,
     "Rating": 4.9,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710978286/Producto24_br8ydq.webp"
@@ -253,7 +253,7 @@
     "Brand": "Murano",
     "Name": "2-in-1 Shampoo",
     "Description": "A bottle of 2-in-1 shampoo that cleans and conditions the fur of dogs and cats",
-    "Price": "6$",
+    "Price": "6",
     "Stock": 80,
     "Rating": 5.0,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710978403/Producto25_a7fksj.webp"
@@ -263,7 +263,7 @@
     "Brand": "LCM",
     "Name": "Spiked Dog Ball",
     "Description": "A black spiked ball made of natural rubber for dogs",
-    "Price": "4$",
+    "Price": "4",
     "Stock": 14,
     "Rating": 4.0,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710978594/Producto27_rn43kd.webp"
@@ -273,7 +273,7 @@
     "Brand": "LCM",
     "Name": "Solid Dog Ball",
     "Description": "A black, highly durable and resistant rubber ball for dogs",
-    "Price": "15$",
+    "Price": "15",
     "Stock": 24,
     "Rating": 4.7,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710978652/Producto28_onbtxc.webp"
@@ -283,7 +283,7 @@
     "Brand": "Mundo peludo",
     "Name": "Rope with 2 Balls",
     "Description": "High-quality 25cm x 6.5cm cotton rope with two balls on the sides for dogs",
-    "Price": "7$",
+    "Price": "7",
     "Stock": 4,
     "Rating": 4.8,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710971158/producto28.jpg"
@@ -293,7 +293,7 @@
     "Brand": "Pet Brush",
     "Name": "Massaging Brush",
     "Description": "Massaging brush for all types of fur and breeds for dogs and cats",
-    "Price": "8$",
+    "Price": "8",
     "Stock": 141,
     "Rating": 4.6,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710972839/producto29.jpg"
@@ -303,7 +303,7 @@
     "Brand": "Toptecnouy",
     "Name": "Lint Roller",
     "Description": "Roller/brush for removing pet hair, especially recommended for cats",
-    "Price": "4$",
+    "Price": "4",
     "Stock": 203,
     "Rating": 4.1,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710973136/producto30.jpg"
@@ -313,7 +313,7 @@
     "Brand": "Ropo",
     "Name": "De-shedding Comb",
     "Description": "A professional de-shedding comb for pets with maximum safety, for dogs and cats",
-    "Price": "22$",
+    "Price": "22",
     "Stock": 67,
     "Rating": 4.8,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710973864/producto31.jpg"
@@ -323,7 +323,7 @@
     "Brand": "Peon",
     "Name": "Grooved Horseshoe",
     "Description": "Heavy grooved horseshoe model for horses by Peon",
-    "Price": "9$",
+    "Price": "9",
     "Stock": 59,
     "Rating": 3.9,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710974346/producto32.webp"
@@ -333,7 +333,7 @@
     "Brand": "Peon",
     "Name": "Polo Horseshoe",
     "Description": "Polo model horseshoe for horses by Peon",
-    "Price": "7$",
+    "Price": "7",
     "Stock": 37,
     "Rating": 3.9,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710974935/producto33.webp"
@@ -343,7 +343,7 @@
     "Brand": "Ero",
     "Name": "Water Fountain",
     "Description": "Water fountain measuring 20cm long x 20cm wide x 20cm high for pets, dogs, and cats",
-    "Price": "15$",
+    "Price": "15",
     "Stock": 59,
     "Rating": 4.7,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710975038/producto34.jpg"
@@ -353,7 +353,7 @@
     "Brand": "Universo hobby",
     "Name": "Food Bowl (M)",
     "Description": "Metal food bowl model M for pets, dogs, and cats",
-    "Price": "3$",
+    "Price": "3",
     "Stock": 8,
     "Rating": 4.9,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710975143/producto35y36.webp"
@@ -363,7 +363,7 @@
     "Brand": "Universo hobby",
     "Name": "Food Bowl (XL)",
     "Description": "Metal food bowl model XL for pets, dogs, and cats",
-    "Price": "5$",
+    "Price": "5",
     "Stock": 45,
     "Rating": 4.9,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710975143/producto35y36.webp"
@@ -373,7 +373,7 @@
     "Brand": "Mundo peludo",
     "Name": "Double Food Bowl",
     "Description": "Two ceramic food bowls elevated by a bamboo wood stand",
-    "Price": "36$",
+    "Price": "36",
     "Stock": 5,
     "Rating": 5.0,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710976620/producto37.webp"
@@ -383,7 +383,7 @@
     "Brand": "Mundo peludo",
     "Name": "Food Bowl",
     "Description": "A ceramic food bowl elevated by a bamboo wood stand",
-    "Price": "21$",
+    "Price": "21",
     "Stock": 8,
     "Rating": 5.0,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710976713/producto38.webp"
@@ -393,7 +393,7 @@
     "Brand": "Silverled",
     "Name": "LED Lights for Aquarium",
     "Description": "Multicolored submersible LED lights measuring 29cm for illuminating or decorating an aquarium",
-    "Price": "36$",
+    "Price": "36",
     "Stock": 10,
     "Rating": 4.5,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710977617/producto39.webp"
@@ -403,7 +403,7 @@
     "Brand": "Jeneca",
     "Name": "LED Aquarium Light",
     "Description": "LED light lamp model SC-20, 110 volts, approximately 20cm long for an aquarium, recommended for aquariums 30cm long and 30cm wide",
-    "Price": "18$",
+    "Price": "18",
     "Stock": 34,
     "Rating": 3.7,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710978052/producto40.webp"
@@ -413,7 +413,7 @@
     "Brand": "Flexi",
     "Name": "Retractable Leash (S)",
     "Description": "Flexi retractable leash size S with a maximum support for dogs up to 15kg",
-    "Price": "29$",
+    "Price": "29",
     "Stock": 99,
     "Rating": 5.0,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710978432/producto41.jpg"
@@ -423,7 +423,7 @@
     "Brand": "Flexi",
     "Name": "Retractable Leash (M)",
     "Description": "Flexi retractable leash size M with a maximum support for dogs up to 20kg",
-    "Price": "37$",
+    "Price": "37",
     "Stock": 23,
     "Rating": 4.9,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710978465/producto42.webp"
@@ -433,7 +433,7 @@
     "Brand": "Flexi",
     "Name": "Retractable Leash (L)",
     "Description": "Flexi retractable leash size L with a maximum support for dogs up to 50kg",
-    "Price": "48$",
+    "Price": "48",
     "Stock": 22,
     "Rating": 4.8,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710978502/producto43.webp"
@@ -443,7 +443,7 @@
     "Brand": "Zeedog",
     "Name": "Dog Leash",
     "Description": "Zeedog dog leash 120cm long",
-    "Price": "32$",
+    "Price": "32",
     "Stock": 101,
     "Rating": 4.7,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710979213/producto44_al0hpm.webp"
@@ -453,7 +453,7 @@
     "Brand": "Huellilovepetstore",
     "Name": "Waterproof Jacket",
     "Description": "Super warm and comfortable waterproof jacket for cats and dogs",
-    "Price": "26$",
+    "Price": "26",
     "Stock": 20,
     "Rating": 5.0,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710979398/producto45_xlgunf.webp"
@@ -463,7 +463,7 @@
     "Brand": "Import Carlina",
     "Name": "Waterproof Coat (M)",
     "Description": "Coat for small and medium pets size M",
-    "Price": "37$",
+    "Price": "37",
     "Stock": 4,
     "Rating": 5.0,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710979831/producto46_fcrkq3.jpg"
@@ -473,7 +473,7 @@
     "Brand": "Import Carlina",
     "Name": "Waterproof Coat (L)",
     "Description": "Coat for small and medium pets size L",
-    "Price": "37$",
+    "Price": "37",
     "Stock": 3,
     "Rating": 5.0,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710979917/producto_47_bjpzqr.jpg"
@@ -483,7 +483,7 @@
     "Brand": "Import Carlina",
     "Name": "Waterproof Coat (4XL)",
     "Description": "Coat for pets size 4XL",
-    "Price": "37$",
+    "Price": "37",
     "Stock": 11,
     "Rating": 4.9,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710979956/producto48_q1qz7v.jpg"
@@ -493,7 +493,7 @@
     "Brand": "Mejor amigo",
     "Name": "Hamster Cage",
     "Description": "A cage measuring 46cm long x 31cm wide x 31cm high for hamsters and hedgehogs, includes wheel, feeder, water bottle, and house on the top with slide",
-    "Price": "75$",
+    "Price": "75",
     "Stock": 15,
     "Rating": 5.0,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710980213/producto49_nbedxv.webp"
@@ -503,7 +503,7 @@
     "Brand": "Yiwu",
     "Name": "Complete Cage",
     "Description": "A cage measuring 36cm long x 27cm wide x 41cm high for hamsters, includes feeder, water bottle, wheel, house, and slide, has 2 levels",
-    "Price": "63$",
+    "Price": "63",
     "Stock": 3,
     "Rating": 5.0,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710980380/producto50_bh5sjl.webp"
@@ -513,7 +513,7 @@
     "Brand": "Lili mascotas",
     "Name": "Toilet (Litter Box)",
     "Description": "Closed toilet with door and scoop for cats",
-    "Price": "31$",
+    "Price": "31",
     "Stock": 55,
     "Rating": 4.7,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710980640/producto51_a0xctv.webp"
@@ -523,7 +523,7 @@
     "Brand": "Polymer",
     "Name": "Sanitary Tray Kit",
     "Description": "Sanitary kit for cats, includes litter box, 2 plates, and scoop",
-    "Price": "7$",
+    "Price": "7",
     "Stock": 57,
     "Rating": 4.8,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710980743/producto52_hjymfv.webp"
@@ -533,7 +533,7 @@
     "Brand": "Easy clean",
     "Name": "Clumping Litter",
     "Description": "8kg clumping litter bag for cats",
-    "Price": "25$",
+    "Price": "25",
     "Stock": 120,
     "Rating": 4.9,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710980865/producto53_y7nusm.webp"
@@ -543,7 +543,7 @@
     "Brand": "Pipicat",
     "Name": "Clumping Sanitary Sand",
     "Description": "24kg clumping sanitary sand bag Pipicat for cats",
-    "Price": "23$",
+    "Price": "23",
     "Stock": 512,
     "Rating": 4.1,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710981019/producto54_lfupyv.webp"
@@ -553,7 +553,7 @@
     "Brand": "Mercado lider importaciones",
     "Name": "Tower Scratcher",
     "Description": "A scratcher made into a tower measuring 50cm wide x 138cm high x 35cm long with 3 floors for cats, includes toys and bed",
-    "Price": "72$",
+    "Price": "72",
     "Stock": 2,
     "Rating": 4.3,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710981212/producto55_wkffbp.webp"
@@ -563,7 +563,7 @@
     "Brand": "Mundo peludo",
     "Name": "Round Scratcher",
     "Description": "A round scratcher made of corrugated cardboard for cats",
-    "Price": "6$",
+    "Price": "6",
     "Stock": 11,
     "Rating": 4.9,
     "Image": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710983476/producto56_spuqw9.jpg"
