@@ -1,31 +1,22 @@
-const { Order, User } = require("../../db");
+const findOrderbyId = require("../../controllers/Orders/findOrderbyId");
 
-const updateOrder = async (orderId, products, newUserId) => {
-    try {
-    const order = await Order.findByPk(orderId);
-    if (!order) {
-    console.log("Orden no encontrada");
-    return null; 
-    }
+const modifyOrder = async (id, products) => {
+  try {
+    let updatedOrder = await findOrderbyId(id);
 
-    if (newUserId) {
-    const newUser = await User.findByPk(newUserId);
-    if (!newUser) {
-        console.log("No se ha asignado un nuevo usuario");
-        return null; 
-    }
-    await order.setUser(newUser);
-    }
+    updatedOrder
+      ? updatedOrder.dataValues.PurchaseId === null
+        ? (await updatedOrder.setProducts(products),
+          (updatedOrder = (await findOrderbyId(id)).dataValues))
+        : (updatedOrder = {
+            message: `La Orden ${id} ya fue finalizada no se puede modificar, esta asignada a la Compra ${updatedOrder.dataValues.PurchaseId}`,
+          })
+      : (updatedOrder = { message: `Orden ${id} no encontrada` });
 
-    await order.removeProducts(await order.getProducts());
-
-    await order.addProducts(products);
-
-    return order;
-} catch (error) {
-    console.error("Error al actualizar la orden:", error.message);
-    throw error; 
-}
+    return updatedOrder;
+  } catch (error) {
+    console.log(`Error al actualizar la orden ${id}: `, error.message);
+  }
 };
 
-module.exports = updateOrder;
+module.exports = modifyOrder;

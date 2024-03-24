@@ -14,7 +14,7 @@ routerUsers.get("/:id", getUserById);
 routerUsers.post("/", postUser);
 
 //? PUT "/users"
-routerUsers.put("/:id", putUser);
+routerUsers.put("/", putUser);
 
 //? DELETE "/users"
 routerUsers.delete("/:id", deleteUser);

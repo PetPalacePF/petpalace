@@ -9,7 +9,8 @@ const createProduct = async ({ product, categories }) => {
     const productCompleted = { ...newProduct.dataValues, categories };
     return productCompleted;
   } catch (error) {
-    console.error("Error al crear la orden:", error.message);
+    console.log("error: ", error.message);
+    return {message: error.message};
   }
 };
 

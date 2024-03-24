@@ -1,27 +1,48 @@
 const { Product, Category } = require("../../db");
+const findProductbyId = require("../../controllers/Products/findProductbyId");
 
-const updateProduct = async (productId, { product, categories }) => {
-try {
-    const existingProduct = await Product.findByPk(productId);
-    
-    if (!existingProduct) {
-    console.log("Producto no encontrado");
-    return null;
-}
 
-    await existingProduct.update(product);
-    await existingProduct.removeCategories(await existingProduct.getCategories());
+const modifyProduct = async (
+  id,
+  brand,
+  name,
+  img,
+  description,
+  price,
+  stock,
+  rating,
+  enabled,
+  categories
+) => {
+  try {
+    let updatedProduct = await Product.update(
+      {
+        brand,
+        name,
+        img,
+        description,
+        price,
+        stock,
+        rating,
+        enabled,
+      },
+      { where: { id: id } }
+    );
 
-    if (categories && categories.length > 0) {
-        const categorias = await Category.findAll({ where: { id: categories } });
-        await existingProduct.addCategories(categorias);
+    if (updatedProduct[0] === 0) {
+      return { message: `Producto ${id} no encontrado` };
     }
+    updatedProduct = await Product.findByPk(id);
+    // Actualiza las categorías asociadas al producto
+    await updatedProduct.setCategories(categories);
 
-    return existingProduct;
-} catch (error) {
+    // Obtiene el producto actualizado con las categorías
+    updatedProduct = await findProductbyId(id);
+    return updatedProduct.dataValues;
+  } catch (error) {
     console.error("Error al actualizar el producto:", error.message);
-    throw error; 
-}
+    throw error;
+  }
 };
 
-module.exports = updateProduct;
+module.exports = modifyProduct;

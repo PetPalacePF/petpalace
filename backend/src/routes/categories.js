@@ -14,7 +14,7 @@ routerCategories.get("/:id", getCategoryById);
 routerCategories.post("/", postCategories);
 
 //? PUT "/categories"
-routerCategories.put("/:id", putCategories);
+routerCategories.put("/", putCategories);
 
 //? DELETE "/categories"
 routerCategories.delete("/:id", deleteCategory)
