@@ -7,12 +7,7 @@ const routerProducts = require("./products");
 const routerPurchases = require("./purchases");
 const routerUsers = require("./users");
 
-
 //? RUTAS
-router.get("/", (req, res) => {
-    res.send("TEST LANDING '/'");
-  });
-  
 router.use("/admin", routerAdmin);
 router.use("/categories", routerCategories);
 router.use("/orders", routerOrders);

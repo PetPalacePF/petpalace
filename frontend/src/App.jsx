@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { Route, Routes, NavLink } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 // * Routes
 import Home from "./Views/Home";

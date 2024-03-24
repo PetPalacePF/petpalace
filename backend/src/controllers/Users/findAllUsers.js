@@ -13,6 +13,7 @@ const findAllUsers = async () => {
           attributes: ["id"],
         },
       ],
+      order: [['id', 'ASC']]
     });
 
     return users;

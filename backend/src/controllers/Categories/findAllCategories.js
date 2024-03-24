@@ -11,6 +11,7 @@ const findAllCategories = async (query) => {
         attributes: [],
       },
     },
+    order: [['id', 'ASC']]
   });
 
   return categories;
