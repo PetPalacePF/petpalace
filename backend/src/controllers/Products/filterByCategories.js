@@ -2,6 +2,7 @@ const { Product, Category } = require("../../db");
 
 const filterByCategories = async (query) => {
 console.log(query);
+
   // • Copia de findAllProducts •
   //   const products = await Product.findAll({
   //     include: {

@@ -21,10 +21,10 @@ const getProducts = async (req, res) => {
       : (products = formattedProducts (await findAllProducts()));
     if (products.length === 0) {
       await createBulkProducts();
-      products = await findAllProducts();
+      products = formattedProducts (await findAllProducts());
     }
 
-    // FilterByQueryCategories (Jose / Tomi)
+    // FilterByQueryCategories (Tomi)
     filterCategories.length > 0 &&
       (products = await filterByCategories(filterCategories)); // Recibe un array de id de Categorias [1, 2, 3, ...]
 
