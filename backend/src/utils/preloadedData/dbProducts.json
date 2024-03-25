@@ -8,7 +8,7 @@
       "stock": 25,
       "rating": 4.8,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710971255/Producto1_g7atm9.webp",
-      "categories": [1]
+      "categories": [4]
     },
     {
       "brand": "Pedigree",
@@ -18,7 +18,7 @@
       "stock": 40,
       "rating": 5.0,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710972461/Producto2_x7s91k.webp",
-      "categories": [1]
+      "categories": [4]
     },
     {
       "brand": "Pedigree",
@@ -28,7 +28,7 @@
       "stock": 61,
       "rating": 5.0,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710973193/Producto3_f9mp1x.webp",
-      "categories": [1]
+      "categories": [4]
     },
     {
       "brand": "Dog Chow",
@@ -38,7 +38,7 @@
       "stock": 32,
       "rating": 4.9,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710973550/Producto4_o8fh7l.webp",
-      "categories": [1]
+      "categories": [4]
     },
     {
       "brand": "Dog Chow",
@@ -48,7 +48,7 @@
       "stock": 53,
       "rating": 4.7,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710973642/Producto5_idisvh.webp",
-      "categories": [1]
+      "categories": [4]
     },
     {
       "brand": "Dog Chow",
@@ -58,7 +58,7 @@
       "stock": 41,
       "rating": 4.8,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710973744/Producto6_cfeigy.webp",
-      "categories": [1]
+      "categories": [4]
     },
     {
       "brand": "Whiskas",
@@ -68,7 +68,7 @@
       "stock": 75,
       "rating": 4.9,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710973903/Producto7_lecdwp.jpg",
-      "categories": [1]
+      "categories": [4]
     },
     {
       "brand": "Whiskas",
@@ -78,7 +78,7 @@
       "stock": 75,
       "rating": 4.8,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710973993/Producto8_kfuex9.jpg",
-      "categories": [1]
+      "categories": [4]
     },
     {
       "brand": "BioFresh",
@@ -88,7 +88,7 @@
       "stock": 34,
       "rating": 5.0,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710974162/Producto9_ldu1mj.webp",
-      "categories": [1]
+      "categories": [4]
     },
     {
       "brand": "BioFresh",
@@ -98,7 +98,7 @@
       "stock": 320,
       "rating": 4.9,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710974296/Producto10_yjod9q.webp",
-      "categories": [1]
+      "categories": [4]
     },
     {
       "brand": "BioFresh",
@@ -108,7 +108,7 @@
       "stock": 44,
       "rating": 4.9,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710974381/Producto11_wrbm4j.webp",
-      "categories": [1]
+      "categories": [4]
     },
     {
       "brand": "Sera",
@@ -118,7 +118,7 @@
       "stock": 14,
       "rating": 5.0,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710974470/Producto12_nbeqad.webp",
-      "categories": [1]
+      "categories": [4]
     },
     {
       "brand": "Acuaworld",
@@ -128,7 +128,7 @@
       "stock": 18,
       "rating": 4.5,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710974612/Producto13_bqccii.jpg",
-      "categories": [1]
+      "categories": [4]
     },
     {
       "brand": "Tropical",
@@ -138,7 +138,7 @@
       "stock": 11,
       "rating": 4.7,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710976380/Producto14_d8hsqq.webp",
-      "categories": [1]
+      "categories": [4]
     },
     {
       "brand": "Plospan",
@@ -148,7 +148,7 @@
       "stock": 12,
       "rating": 4.8,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710976452/Producto15_qro8bn.webp",
-      "categories": [1]
+      "categories": [4]
     },
     {
       "brand": "Home Colection",
@@ -158,7 +158,7 @@
       "stock": 22,
       "rating": 4.6,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710976532/Producto16_bcsdz1.webp",
-      "categories": [2]
+      "categories": [8]
     },
     {
       "brand": "Todoregalosuy",
@@ -168,7 +168,7 @@
       "stock": 30,
       "rating": 4.8,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710976701/Producto17_hs971k.webp",
-      "categories": [2]
+      "categories": [8]
     },
     {
       "brand": "Toptecnouy",
@@ -178,7 +178,7 @@
       "stock": 2100,
       "rating": 3.8,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710977161/Producto18_nv8xqp.webp",
-      "categories": [3]
+      "categories": [7]
     },
     {
       "brand": "Atrix",
@@ -188,7 +188,7 @@
       "stock": 10,
       "rating": 3.8,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710977617/Producto19_q0e9yd.webp",
-      "categories": [3]
+      "categories": [7]
     },
     {
       "brand": "Acuaworld",
@@ -198,7 +198,7 @@
       "stock": 8,
       "rating": 4.1,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710977801/Producto20_gzf7lq.webp",
-      "categories": [4]
+      "categories": [8]
     },
     {
       "brand": "Acuarium",
@@ -208,7 +208,7 @@
       "stock": 5,
       "rating": 4.0,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710977942/Producto21_qsjp9t.webp",
-      "categories": [4]
+      "categories": [8]
     },
     {
       "brand": "Denucio",
@@ -218,7 +218,7 @@
       "stock": 1207,
       "rating": 4.5,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710978059/Producto22_h1lojx.webp",
-      "categories": [5]
+      "categories": [4]
     },
     {
       "brand": "Denucio",
@@ -228,7 +228,7 @@
       "stock": 1213,
       "rating": 4.5,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710978156/Producto23_zfekri.webp",
-      "categories": [5]
+      "categories": [4]
     },
     {
       "brand": "LCM",
@@ -238,7 +238,7 @@
       "stock": 22,
       "rating": 4.2,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710978530/Producto26_gcti54.webp",
-      "categories": [5]
+      "categories": [4]
     },
     {
       "brand": "Domninal",
@@ -268,7 +268,7 @@
       "stock": 14,
       "rating": 4.0,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710978594/Producto27_rn43kd.webp",
-      "categories": [7]
+      "categories": [9]
     },
     {
       "brand": "LCM",
@@ -278,7 +278,7 @@
       "stock": 24,
       "rating": 4.7,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710978652/Producto28_onbtxc.webp",
-      "categories": [7]
+      "categories": [9]
     },
     {
       "brand": "Mundo peludo",
@@ -288,7 +288,7 @@
       "stock": 4,
       "rating": 4.8,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710971158/producto28.jpg",
-      "categories": [7]
+      "categories": [9]
     },
     {
       "brand": "Pet Brush",
@@ -298,7 +298,7 @@
       "stock": 141,
       "rating": 4.6,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710972839/producto29.jpg",
-      "categories": [8]
+      "categories": [1]
     },
     {
       "brand": "Toptecnouy",
@@ -308,7 +308,7 @@
       "stock": 203,
       "rating": 4.1,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710973136/producto30.jpg",
-      "categories": [8]
+      "categories": [1]
     },
     {
       "brand": "Ropo",
@@ -318,7 +318,7 @@
       "stock": 67,
       "rating": 4.8,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710973864/producto31.jpg",
-      "categories": [8]
+      "categories": [1]
     },
     {
       "brand": "Peon",
@@ -328,7 +328,7 @@
       "stock": 59,
       "rating": 3.9,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710974346/producto32.webp",
-      "categories": [8]
+      "categories": [1]
     },
     {
       "brand": "Peon",
@@ -338,7 +338,7 @@
       "stock": 37,
       "rating": 3.9,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710974935/producto33.webp",
-      "categories": [8]
+      "categories": [1]
     },
     {
       "brand": "Ero",
@@ -348,7 +348,7 @@
       "stock": 59,
       "rating": 4.7,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710975038/producto34.jpg",
-      "categories": [8]
+      "categories": [2]
     },
     {
       "brand": "Universo hobby",
@@ -358,7 +358,7 @@
       "stock": 8,
       "rating": 4.9,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710975143/producto35y36.webp",
-      "categories": [8]
+      "categories": [2]
     },
     {
       "brand": "Universo hobby",
@@ -368,7 +368,7 @@
       "stock": 45,
       "rating": 4.9,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710975143/producto35y36.webp",
-      "categories": [8]
+      "categories": [2]
     },
     {
       "brand": "Mundo peludo",
@@ -378,7 +378,7 @@
       "stock": 5,
       "rating": 5.0,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710976620/producto37.webp",
-      "categories": [8]
+      "categories": [2]
     },
     {
       "brand": "Mundo peludo",
@@ -388,7 +388,7 @@
       "stock": 8,
       "rating": 5.0,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710976713/producto38.webp",
-      "categories": [8]
+      "categories": [2]
     },
     {
       "brand": "Silverled",
@@ -398,7 +398,7 @@
       "stock": 10,
       "rating": 4.5,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710977617/producto39.webp",
-      "categories": [8]
+      "categories": [1]
     },
     {
       "brand": "Jeneca",
@@ -408,7 +408,7 @@
       "stock": 34,
       "rating": 3.7,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710978052/producto40.webp",
-      "categories": [8]
+      "categories": [1]
     },
     {
       "brand": "Flexi",
@@ -418,7 +418,7 @@
       "stock": 99,
       "rating": 5.0,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710978432/producto41.jpg",
-      "categories": [8]
+      "categories": [5]
     },
     {
       "brand": "Flexi",
@@ -428,7 +428,7 @@
       "stock": 23,
       "rating": 4.9,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710978465/producto42.webp",
-      "categories": [8]
+      "categories": [5]
     },
     {
       "brand": "Flexi",
@@ -438,7 +438,7 @@
       "stock": 22,
       "rating": 4.8,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710978502/producto43.webp",
-      "categories": [8]
+      "categories": [5]
     },
     {
       "brand": "Zeedog",
@@ -448,7 +448,7 @@
       "stock": 101,
       "rating": 4.7,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710979213/producto44_al0hpm.webp",
-      "categories": [8]
+      "categories": [5]
     },
     {
       "brand": "Huellilovepetstore",
@@ -458,7 +458,7 @@
       "stock": 20,
       "rating": 5.0,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710979398/producto45_xlgunf.webp",
-      "categories": [8]
+      "categories": [3]
     },
     {
       "brand": "Import Carlina",
@@ -468,7 +468,7 @@
       "stock": 4,
       "rating": 5.0,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710979831/producto46_fcrkq3.jpg",
-      "categories": [8]
+      "categories": [3]
     },
     {
       "brand": "Import Carlina",
@@ -478,7 +478,7 @@
       "stock": 3,
       "rating": 5.0,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710979917/producto_47_bjpzqr.jpg",
-      "categories": [8]
+      "categories": [3]
     },
     {
       "brand": "Import Carlina",
@@ -488,7 +488,7 @@
       "stock": 11,
       "rating": 4.9,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710979956/producto48_q1qz7v.jpg",
-      "categories": [8]
+      "categories": [3]
     },
     {
       "brand": "Mejor amigo",
@@ -518,7 +518,7 @@
       "stock": 55,
       "rating": 4.7,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710980640/producto51_a0xctv.webp",
-      "categories": [8]
+      "categories": [10]
     },
     {
       "brand": "Polymer",
@@ -528,7 +528,7 @@
       "stock": 57,
       "rating": 4.8,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710980743/producto52_hjymfv.webp",
-      "categories": [8]
+      "categories": [10]
     },
     {
       "brand": "Easy clean",
@@ -538,7 +538,7 @@
       "stock": 120,
       "rating": 4.9,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710980865/producto53_y7nusm.webp",
-      "categories": [8]
+      "categories": [10]
     },
     {
       "brand": "Pipicat",
@@ -548,7 +548,7 @@
       "stock": 512,
       "rating": 4.1,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710981019/producto54_lfupyv.webp",
-      "categories": [8]
+      "categories": [10]
     },
     {
       "brand": "Mercado lider importaciones",
@@ -558,7 +558,7 @@
       "stock": 2,
       "rating": 4.3,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710981212/producto55_wkffbp.webp",
-      "categories": [8]
+      "categories": [9]
     },
     {
       "brand": "Mundo peludo",
@@ -568,7 +568,7 @@
       "stock": 11,
       "rating": 4.9,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710983476/producto56_spuqw9.jpg",
-      "categories": [8]
+      "categories": [9]
     }
   ]
 }

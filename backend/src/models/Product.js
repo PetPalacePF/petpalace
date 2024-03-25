@@ -37,6 +37,10 @@ module.exports = (dataBase) => {
         type: DataTypes.FLOAT,
         allowNull: false,
       },
+      enabled: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true, // Establecer el valor predeterminado como true
+      },
     },
     {
       timestamps: false,
