@@ -1,6 +1,6 @@
 const { Product, Category } = require("../../db");
 
-const filterByCategories = async (query, id) => {
+const filterByCategories = async (id) => {
   
     const products = await Product.findAll({
         include: {
