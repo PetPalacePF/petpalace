@@ -53,19 +53,14 @@ function App() {
   return (
     <>
       <Routes>
-        <Route
-          path="/*"
-          element={
-            <>
-              <Header />
-              <Routes>
-                <Route path="/" element={<Home />}></Route>
-                <Route path="/about" element={<About />}></Route>
-                <Route path="/detail/:Id" element={<Detail />}></Route>
-              </Routes>
-            </>
-          }
-        />
+        <Route path='/*' element={<>
+          <Header allCategories={allCategories} />
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+            <Route path="/about" element={<About />}></Route>
+            <Route path="/detail" element={<Detail />}></Route>
+          </Routes>
+        </>}/>
 
         <Route
           path="/admin/*"
