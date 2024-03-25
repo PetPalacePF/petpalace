@@ -1,6 +1,8 @@
+/* eslint-disable react/prop-types */
 import { NavLink } from "react-router-dom";
 
 export const Card = ({ product }) => {
+  console.log("estos son los Productos");
   return (
     <NavLink to={`/detail/${product.Id}`}>
       <div className="h-[400px] w-[300px] flex-shrink-0 cursor-pointer">
