@@ -1,22 +1,19 @@
 const { Product, Category } = require("../../db");
 
-const filterByCategories = async (query) => {
-console.log(query);
-
-  // • Copia de findAllProducts •
-  //   const products = await Product.findAll({
-  //     include: {
-  //       model: Category,
-  //       attributes: ["name"],
-  //       through: {
-  //         attributes: [],
-  //       },
-  //     },
-  //     order: [['id', 'ASC']]
-  //   });
+const filterByCategories = async (query, id) => {
   
-  const products = { name: `Test filterByCategories - query =  ${query}`}
-  return products;
+    const products = await Product.findAll({
+        include: {
+          model: Category,
+          attributes: ["name"],
+          where: {"id": id},
+          through: {
+          attributes: [],
+        },
+    },
+      order: [['id', 'ASC']]
+    });
+  return products
 };
 
 module.exports = filterByCategories;
