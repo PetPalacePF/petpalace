@@ -14,3 +14,4 @@ const Cards = ({ products }) => {
     </div>
   );
 };
+
