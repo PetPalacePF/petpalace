@@ -1,17 +1,14 @@
 const { Product, Category } = require("../../db");
+const findByQueryBrand_or_Name = require("./product_utils/findByQueryBrand_or_Name");
+const filterByCategories = require("./product_utils/filterByCategories");
 
-// const { Op } = require("sequelize");
+const findAllProducts = async (queryInputs) => {
 
-const findAllProducts = async (query) => {
-  // let whereClause = {};
-  // if (query) {
-  //   whereClause.nombre = {
-  //     [Op.iLike]: `%${query}%`,
-  //   };
-  // }
+  const whereClause_brand_or_Name = await findByQueryBrand_or_Name(queryInputs);
+  const whereClause_categories = await filterByCategories(queryInputs);
 
   const products = await Product.findAll({
-    // where: whereClause,
+    where: whereClause_brand_or_Name,
     include: {
       model: Category,
       attributes: ["name"],
@@ -23,7 +20,8 @@ const findAllProducts = async (query) => {
     order: [["id", "ASC"]],
   });
 
-  return PRODUCTS_JSON;
+
+  return products;
 };
 
 module.exports = findAllProducts;
