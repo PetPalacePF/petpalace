@@ -4,7 +4,6 @@ const filterByCategories = async (queryInputs) => {
     const { filterCategories } = queryInputs;
     whereClause = { id: filterCategories };
   }
-  console.log();
   return whereClause;
 };
 
