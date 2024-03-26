@@ -1,11 +1,8 @@
-const createBulkProducts = require("../../../controllers/Products/createBulkProducts");
 const findAllProducts = require("../../../controllers/Products/findAllProducts");
+const filterByCategories = require("../../../controllers/Products/filterByCategories");
 const filterByPrice = require("../../../controllers/Products/filterByPrice");
+const createBulkProducts = require("../../../controllers/Products/createBulkProducts");
 const formattedProducts = require("../../../utils/formatted/formattedProducts");
-const SortByQueryBrand = require("../../../controllers/Products/product_utils/SortByQueryBrand");
-const SortByQueryName = require("../../../controllers/Products/product_utils/SortByQueryName");
-const SortByQueryPrice = require("../../../controllers/Products/product_utils/SortByQueryPrice");
-const SortByQueryRating = require("../../../controllers/Products/product_utils/SortByQueryRating");
 
 const getProducts = async (req, res) => {
   const {
@@ -14,23 +11,8 @@ const getProducts = async (req, res) => {
     pageSize = 15,
     filterCategories = [],
     filterPrice = [],
-    sortName = "",
-    sortBrand = "",
-    sortPrice = "",
-    sortRating = "",
   } = req.query;
 
-  const queryInputs = {
-    brand_or_name,
-    page,
-    pageSize,
-    filterCategories,
-    filterPrice,
-    sortName,
-    sortBrand,
-    sortPrice,
-    sortRating,
-  };
   let products;
 
   try {

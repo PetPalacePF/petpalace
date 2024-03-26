@@ -1,0 +1,19 @@
+const formattedProducts = require("../../../utils/formatted/formattedProducts");
+
+const getAllProducts_QueryName = async (query) => {
+  let products = await findAllProducts(query);
+  if (products.length === 0) {
+    if (query) {
+      return res.status(404).json({
+        message: `No se ha encontrado ningún Producto que coincida con la palabra '${query}'`,
+      });
+    } else {
+      await createBulkProducts();
+      products = await findAllProducts();
+    }
+  }
+  products = formattedProducts(products);
+  return products;
+};
+
+module.exports = getAllProducts_QueryName;

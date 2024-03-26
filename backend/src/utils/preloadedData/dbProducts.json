@@ -268,7 +268,7 @@
       "stock": 14,
       "rating": 4.0,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710978594/Producto27_rn43kd.webp",
-      "categories": [10]
+      "categories": [9]
     },
     {
       "brand": "LCM",
@@ -278,7 +278,7 @@
       "stock": 24,
       "rating": 4.7,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710978652/Producto28_onbtxc.webp",
-      "categories": [10]
+      "categories": [9]
     },
     {
       "brand": "Mundo peludo",
@@ -288,7 +288,7 @@
       "stock": 4,
       "rating": 4.8,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710971158/producto28.jpg",
-      "categories": [10]
+      "categories": [9]
     },
     {
       "brand": "Pet Brush",
@@ -518,7 +518,7 @@
       "stock": 55,
       "rating": 4.7,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710980640/producto51_a0xctv.webp",
-      "categories": [9]
+      "categories": [10]
     },
     {
       "brand": "Polymer",
@@ -528,7 +528,7 @@
       "stock": 57,
       "rating": 4.8,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710980743/producto52_hjymfv.webp",
-      "categories": [9]
+      "categories": [10]
     },
     {
       "brand": "Easy clean",
@@ -538,7 +538,7 @@
       "stock": 120,
       "rating": 4.9,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710980865/producto53_y7nusm.webp",
-      "categories": [9]
+      "categories": [10]
     },
     {
       "brand": "Pipicat",
@@ -548,7 +548,7 @@
       "stock": 512,
       "rating": 4.1,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710981019/producto54_lfupyv.webp",
-      "categories": [9]
+      "categories": [10]
     },
     {
       "brand": "Mercado lider importaciones",
@@ -558,7 +558,7 @@
       "stock": 2,
       "rating": 4.3,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710981212/producto55_wkffbp.webp",
-      "categories": [10]
+      "categories": [9]
     },
     {
       "brand": "Mundo peludo",
@@ -568,7 +568,7 @@
       "stock": 11,
       "rating": 4.9,
       "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710983476/producto56_spuqw9.jpg",
-      "categories": [10]
+      "categories": [9]
     }
   ]
 }

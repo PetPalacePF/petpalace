@@ -7,7 +7,7 @@ export const NavBar = ( ) => {
                 <NavLink
                     to="/"
                     className="text-black mr-4 hover:text-gray-300"
-                    activeClassName="font-bold"
+                    activeclassname="font-bold"
                 >
                     HOME
                 </NavLink>
@@ -17,42 +17,42 @@ export const NavBar = ( ) => {
                 <NavLink
                     to="/services"
                     className="text-black mr-4 hover:text-gray-300"
-                    activeClassName="font-bold"
+                    activeclassname="font-bold"
                 >
                     SERVICES
                 </NavLink>
                 <NavLink
                     to="/cats"
                     className="text-black mr-4 hover:text-gray-300"
-                    activeClassName="font-bold"
+                    activeclassname="font-bold"
                 >
                     CATS
                 </NavLink>
                 <NavLink
                     to="/dogs"
                     className="text-black mr-4 hover:text-gray-300"
-                    activeClassName="font-bold"
+                    activeclassname="font-bold"
                 >
                     DOGS
                 </NavLink>
                 <NavLink
                     to="/shop"
                     className="text-black mr-4 hover:text-gray-300"
-                    activeClassName="font-bold"
+                    activeclassname="font-bold"
                 >
                     SHOP
                 </NavLink>
                 <NavLink
                     to="/about"
                     className="text-black mr-4 hover:text-gray-300"
-                    activeClassName="font-bold"
+                    activeclassname="font-bold"
                 >
                     ABOUT US
                 </NavLink>
                 <NavLink
                     to="/contact"
                     className="text-black mr-4 hover:text-gray-300"
-                    activeClassName="font-bold"
+                    activeclassname="font-bold"
                 >
                     CONTACT
                 </NavLink>
