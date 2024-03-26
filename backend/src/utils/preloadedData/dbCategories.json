@@ -32,38 +32,3 @@
     }
   ]
 }
-
-{
-  "categories": [
-    {
-      "name": "Accessories"
-    },
-    {
-      "name": "Bowls"
-    },
-    {
-      "name": "Clothes"
-    },
-    {
-      "name": "Food"
-    },
-    {
-      "name": "Leashes"
-    },
-    {
-      "name": "Pet bath"
-    },
-    {
-      "name": "Pet beds"
-    },
-    {
-      "name": "Pet houses"
-    },
-    {
-      "name": "Pet Toilets"
-    },
-    {
-      "name": "Pet toys"
-    }
-  ]
-}
