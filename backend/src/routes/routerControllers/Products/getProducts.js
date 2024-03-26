@@ -1,11 +1,8 @@
-const createBulkProducts = require("../../../controllers/Products/createBulkProducts");
 const findAllProducts = require("../../../controllers/Products/findAllProducts");
+const filterByCategories = require("../../../controllers/Products/filterByCategories");
 const filterByPrice = require("../../../controllers/Products/filterByPrice");
+const createBulkProducts = require("../../../controllers/Products/createBulkProducts");
 const formattedProducts = require("../../../utils/formatted/formattedProducts");
-const SortByQueryBrand = require("../../../controllers/Products/product_utils/SortByQueryBrand");
-const SortByQueryName = require("../../../controllers/Products/product_utils/SortByQueryName");
-const SortByQueryPrice = require("../../../controllers/Products/product_utils/SortByQueryPrice");
-const SortByQueryRating = require("../../../controllers/Products/product_utils/SortByQueryRating");
 
 const getProducts = async (req, res) => {
   const {
@@ -14,30 +11,15 @@ const getProducts = async (req, res) => {
     pageSize = 15,
     filterCategories = [],
     filterPrice = [],
-    sortName = "",
-    sortBrand = "",
-    sortPrice = "",
-    sortRating = "",
   } = req.query;
 
-  const queryInputs = {
-    brand_or_name,
-    page,
-    pageSize,
-    filterCategories,
-    filterPrice,
-    sortName,
-    sortBrand,
-    sortPrice,
-    sortRating,
-  };
   let products;
 
   try {
     // ByQueryName
-    if (brand_or_name !== "" || filterCategories.length > 0) {
-      products = formattedProducts(await findAllProducts(queryInputs));
-      if (brand_or_name !== "" && products.length === 0) {
+    if (brand_or_name !== "") {
+      products = formattedProducts(await findAllProducts(brand_or_name));
+      if (products.length === 0) {
         return res.status(404).json({
           message: `No se ha encontrado ningun Producto que coincida con la palabra '${brand_or_name}'`,
         });
@@ -50,28 +32,12 @@ const getProducts = async (req, res) => {
       }
     }
 
-    // FilterByQueryPrice (Jose)
+    // FilterByQueryCategories (Tomi)
+    filterCategories.length > 0 &&
+      (products = await filterByCategories(filterCategories)); // Recibe un array de id de Categorias [1, 2, 3, ...]
+
+    // FilterByQueryPrice (Jose / Tomi)
     filterPrice.length > 0 && (products = await filterByPrice(filterPrice)); // Recibe un array con dos valores [valorA, ValorB]
-
-    // SortByQueryName (Jose)
-    sortName !== "" &&
-      (products = await SortByQueryName(sortName));
-
-
-    // SortByQueryBrand (Jose)
-    sortBrand !== "" &&
-      (products = await SortByQueryBrand(sortBrand));
-
-
-    // SortByQueryPrice (Tomi)
-    sortPrice !== "" &&
-      (products = await SortByQueryPrice(sortPrice));
-
-
-    // SortByQueryRating (Tomi)
-    sortRating !== "" &&
-      (products = await SortByQueryRating(sortRating));
-
 
     //* CORRECCION DE FORMATO JSON POR DEFAULT
     // products = formattedProducts(products);
