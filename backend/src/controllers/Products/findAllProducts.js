@@ -1,28 +1,24 @@
 const { Product, Category } = require("../../db");
+const filterByCategories = require("./product_utils/filterByCategories");
+const filterByPrice = require("./product_utils/filterByPrice");
+const findByQueryBrand_or_Name = require("./product_utils/findByQueryBrand_or_Name");
 const { Op } = require("sequelize");
 
-const findAllProducts = async (query) => {
+const findAllProducts = async (queryInputs) => {
   let whereClause = {};
-  if (query && query !== "") {
-    whereClause[Op.or] = [
-      {
-        name: {
-          [Op.iLike]: `%${query}%`,
-        },
-      },
-      {
-        brand: {
-          [Op.iLike]: `%${query}%`,
-        },
-      },
-    ];
+  let includeClause = {};
+
+  if (queryInputs) {
+    whereClause = await findByQueryBrand_or_Name(queryInputs);
+    includeClause = await filterByCategories(queryInputs);
   }
-  
+
   const products = await Product.findAll({
     where: whereClause,
     include: {
       model: Category,
       attributes: ["name"],
+      where: includeClause,
       through: {
         attributes: [],
       },
