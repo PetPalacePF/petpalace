@@ -1,21 +1,34 @@
 const { Product, Category } = require("../../../db");
 
 const SortByQueryPrice = async (query) => {
-console.log(query);
-  // • Copia de findAllProducts •
-  //   const products = await Product.findAll({
-  //     include: {
-  //       model: Category,
-  //       attributes: ["name"],
-  //       through: {
-  //         attributes: [],
-  //       },
-  //     },
-  //     order: [['id', 'ASC']]
-  //   });
-  
-  const products = { name: `Test SortByQueryPrice - query =  ${query}`}
-  return products;
+    let products;
+
+    if (query==="ASC") {
+        products = await Product.findAll({
+            include: {
+                model: Category,
+                attributes: ["name"],
+                through: {
+                    attributes: [],
+                },
+            },
+            order: [['price', 'ASC']] 
+        });
+    } else if(query==="DESC") {
+        products = await Product.findAll({
+            include: {
+                model: Category,
+                attributes: ["name"],
+                through: {
+                    attributes: [],
+                },
+            },
+            order: [['price', 'DESC']] 
+        });
+    }
+
+    return products;
 };
 
 module.exports = SortByQueryPrice;
+
