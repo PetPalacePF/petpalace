@@ -12,11 +12,9 @@ const { FRONTEND_URL } = require("./config.js");
 //*MIDDLEWARES
 server.use(morgan("dev"));
 server.use(express.json());
-server.use(
-  cors({
-    origin: "http://127.0.0.1:5173",
-  })
-);
+server.use(cors({
+    origin: FRONTEND_URL
+}));
 
 // RUTAS
 server.use(router);
