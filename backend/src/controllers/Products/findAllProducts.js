@@ -15,7 +15,6 @@ const findAllProducts = async (queryInputs) => {
 
   const products = await Product.findAll({
     where: whereClause,
-    where: whereClause,
     include: {
       model: Category,
       attributes: ["name"],

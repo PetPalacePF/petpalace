@@ -1,6 +1,6 @@
 const { Product, Category } = require("../../../db");
 
-const SortByQueryRating = async (query) => {
+const SortByQueryName = async (query) => {
 console.log(query);
   // • Copia de findAllProducts •
   //   const products = await Product.findAll({
@@ -14,8 +14,8 @@ console.log(query);
   //     order: [['id', 'ASC']]
   //   });
   
-  const products = { name: `Test SortByQueryRating - query =  ${query}`}
+  const products = { name: `Test SortByQueryName - query =  ${query}`}
   return products;
 };
 
-module.exports = SortByQueryRating;
+module.exports = SortByQueryName;
