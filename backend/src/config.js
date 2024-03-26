@@ -1,7 +1,17 @@
-require("dotenv").config();
+require('dotenv').config()
 
-const DB_HOST = process.env.DB_HOST || "mongodb://localhost:27017/petpalace";
-const FRONTEND_URL = process.env.FRONTEND_URL || "http://127.0.0.1:5173";
-const PORT = process.env.PORT || 5000;
+const FRONTEND_URL  = process.env.FRONTEND_URL || 'http://localhost:5173'
+const DB_USER       = process.env.DB_USER || 'postgres'
+const DB_PASSWORD   = process.env.DB_PASSWORD || 'postgres'
+const HOST          = process.env.HOST || 'localhost'
+const PORT          = process.env.PORT || 5432 
+const DB_NAME       = process.env.DB_NAME || 'pet_palace'
 
-module.exports = { DB_HOST, FRONTEND_URL, PORT };
+module.exports = {
+    FRONTEND_URL,
+    DB_USER,
+    DB_PASSWORD,
+    HOST,
+    PORT,
+    DB_NAME
+}
