@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { SearchBar } from "../Search Bar/SearchBar";
 import { NavBar } from "../Nav Bar/NavBar";
 
-const Header = () => {
+const Header = ({ allCategories }) => {
   return (
     <>
       <div className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
@@ -12,7 +12,7 @@ const Header = () => {
               <Link to="/cart" className="ml-4">🛒MY CART</Link>
           </div>
       </div>
-      <NavBar/>
+      <NavBar allCategories={allCategories} />
     </>
   )
 }

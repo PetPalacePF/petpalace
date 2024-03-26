@@ -16,6 +16,41 @@
       "name": "Leashes"
     },
     {
+      "name": "Pet bath products"
+    },
+    {
+      "name": "Pet beds"
+    },
+    {
+      "name": "Pet houses"
+    },
+    {
+      "name": "Pet toys"
+    },
+    {
+      "name": "Toilet (Litter Box)"
+    }
+  ]
+}
+
+{
+  "categories": [
+    {
+      "name": "Accessories"
+    },
+    {
+      "name": "Bowls"
+    },
+    {
+      "name": "Clothes"
+    },
+    {
+      "name": "Food"
+    },
+    {
+      "name": "Leashes"
+    },
+    {
       "name": "Pet bath"
     },
     {
