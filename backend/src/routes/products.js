@@ -14,7 +14,7 @@ routerProducts.get("/:id", getProductById);
 routerProducts.post("/", postProduct);
 
 //? PUT "/products"
-routerProducts.put("/:id", putProduct);
+routerProducts.put("/", putProduct);
 
 //? DELETE "/products"
 routerProducts.delete("/:id", deleteProducts);

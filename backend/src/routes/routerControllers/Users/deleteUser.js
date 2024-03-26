@@ -1,19 +1,18 @@
-const removeUser = require("../../../controllers/Users/removeUser")
-
+const removeUser = require("../../../controllers/Users/removeUser");
 
 const deleteUser = async (req, res) => {
-    try {
-        
-        const {id} = req.params
-         
-       await  removeUser(id)
-       
-       res.status(200).json({message: "Usuario eliminado correctamente"})
+  try {
+    const { id } = req.params;
 
-    } catch (error) {
-        
-        res.status(500).json({error: error.message})
-    }
-}
+    userDeleted = await removeUser(id);
+    userDeleted
+      ? (message = `Usuario '${id}' eliminado correctamente`)
+      : (message = `No existe un Usuario con el id '${id}' para eliminar`);
 
-module.exports = deleteUser
+    res.status(200).json({ message: message });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+module.exports = deleteUser;

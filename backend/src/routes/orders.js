@@ -14,7 +14,7 @@ routerOrders.get("/:id", getOrderById);
 routerOrders.post("/", postOrder);
 
 //? PUT "/orders"
-routerOrders.put("/:id", putOrder);
+routerOrders.put("/", putOrder);
 
 //? DELETE "/orders"
 routerOrders.delete("/:id", deleteOrder);

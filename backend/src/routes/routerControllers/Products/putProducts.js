@@ -1,18 +1,39 @@
 const modifyProduct = require("../../../controllers/Products/modifyProduct");
+// const formattedProducts = require("../../../utils/formatted/formattedProducts");
 
 const putProduct = async (req, res) => {
-const {id ,brand, name, img, description, price
-, stock, rating, categories } = req.body;
+  const {
+    id,
+    brand,
+    name,
+    img,
+    description,
+    price,
+    stock,
+    rating,
+    enabled,
+    categories,
+  } = req.body;
 
-const product = {id ,brand, name, img, description, price
-, stock, rating };
-
-try {
-    const updatedProduct = await modifyProduct({ product, categories });
-    res.status(201).json(updatedProduct);
-} catch (error) {
+  try {
+    const updatedProduct = await modifyProduct(
+      id,
+      brand,
+      name,
+      img,
+      description,
+      price,
+      stock,
+      rating,
+      enabled,
+      categories
+    );
+    updatedProduct.hasOwnProperty("name")
+      ? res.status(201).json({ updatedProduct: updatedProduct })
+      : res.status(404).json({ message: updatedProduct.message });
+  } catch (error) {
     res.status(500).json({ error: error.message });
-}
+  }
 };
 
 module.exports = putProduct;

@@ -1,31 +1,34 @@
 {
   "categories": [
     {
-      "name": "Cat food"
+      "name": "Accessories"
     },
     {
-      "name": "Dog Bones"
+      "name": "Bowls"
     },
     {
-      "name": "Dog food"
+      "name": "Clothes"
     },
     {
-      "name": "Fish food"
+      "name": "Food"
     },
     {
-      "name": "Fish tanks"
-    },
-    {
-      "name": "Pet beds"
+      "name": "Leashes"
     },
     {
       "name": "Pet bath products"
+    },
+    {
+      "name": "Pet beds"
     },
     {
       "name": "Pet houses"
     },
     {
       "name": "Pet toys"
+    },
+    {
+      "name": "Toilet (Litter Box)"
     }
   ]
 }
