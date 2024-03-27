@@ -2,7 +2,7 @@ const findAllPurchases = require("../../../controllers/Purchases/findAllPurchase
 const formattedPurchases = require("../../../utils/formatted/formattedPurchases");
 
 const getPurchases = async (req, res) => {
-  const { sortPurchases } = req.query;
+  const { sortPurchases="ASC" } = req.query;
 
   try {
     let purchases;
