@@ -18,5 +18,5 @@ server.use(cors({
 
 // RUTAS
 server.use(router);
-
+//TEST
 module.exports = server;
