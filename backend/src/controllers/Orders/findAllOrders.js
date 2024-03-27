@@ -20,6 +20,7 @@ const findAllOrders = async (query) => {
           attributes: ["id"], 
         },
       ],
+      order: [['id', 'ASC']]
     });
 
     return orders;
