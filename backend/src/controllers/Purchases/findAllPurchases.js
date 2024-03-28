@@ -16,38 +16,9 @@ let purchases;
           attributes: ["id", "name", "email"], 
         }
       ], 
-      order: [['id', 'ASC']]
+      order: [['id', query]]
     });
 
-    if(query==="ASC") {
-      purchases = await Purchase.findAll({
-        include: [
-          {
-            model: Order,
-            attributes: ['id'], 
-          },
-          {
-            model: User, 
-            attributes: ["id", "name", "email"], 
-          }
-        ], 
-        order: [['id', 'ASC']]
-      });
-    }else if(query==="DESC") {
-      purchases = await Purchase.findAll({
-        include: [
-          {
-            model: Order,
-            attributes: ['id'], 
-          },
-          {
-            model: User, 
-            attributes: ["id", "name", "email"], 
-          }
-        ], 
-        order: [['id', 'DESC']]
-      });
-    }
 
     return purchases;
   } catch (error) {
