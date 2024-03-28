@@ -8,7 +8,7 @@ const Detail = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/products/id/${id}`)
+      .get(`http://localhost:5000/products/${id}`)
       .then(({ data }) => {
         if (data.name) {
           setProduct(data);

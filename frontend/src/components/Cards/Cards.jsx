@@ -9,7 +9,7 @@ export default function Cards() {
     getAllProducts(setProducts);
   }, []);
 
-  console.log(products);
+  // console.log(products);
 
   const displayedProducts = products.slice(0, 4);
 
