@@ -5,12 +5,14 @@ import { Contact } from "./Contact";
 export const Footer = () => {
     return (
         <footer className="bg-black py-10 text-white text-lg w-full">
-            <div className="container mx-auto flex flex-col items-center justify-center md:flex-wrap md:items-center md:justify-between">
-                <div className="mb-5 text-center">
-                    <Link to='/' className="text-white">🐾PET PALACE</Link>
-                </div>
-                <div className="mb-5 text-center">
-                    <p>¡Haz que la cola de tu peludo amigo nunca deje de moverse!</p>
+            <div className="container mx-auto">
+                <div className="flex justify-between items-center">
+                    <div className="pb-4">
+                        <Link to='/' className="text-white">🐾PET PALACE</Link>
+                    </div>
+                    <div>
+                        <p className="m-0 pb-4">¡Keep your furry friend´s tail wagging non-stop!!</p>
+                    </div>
                 </div>
             </div>
             <hr className="border-white my-4" />

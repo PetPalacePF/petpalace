@@ -1,8 +1,11 @@
+
 const { Purchase, Order, User } = require("../../db");
 
-const findAllPurchases = async () => {
+const findAllPurchases = async (query) => {
+let purchases;
+
   try {
-    const purchases = await Purchase.findAll({
+    purchases = await Purchase.findAll({
       include: [
         {
           model: Order,
@@ -13,8 +16,9 @@ const findAllPurchases = async () => {
           attributes: ["id", "name", "email"], 
         }
       ], 
-      order: [['id', 'ASC']]
+      order: [['id', query]]
     });
+
 
     return purchases;
   } catch (error) {
