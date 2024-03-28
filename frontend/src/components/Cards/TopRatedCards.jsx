@@ -8,15 +8,11 @@ const TopRatedCards = () => {
     const fetchTopRatedProducts = async () => {
       try {
         // Fetch top rated products from your API or database
-        const response = await fetch("http://localhost:5000/products");
+        const response = await fetch("http://localhost:5000/products?sortRating=DESC");
         const data = await response.json();
-        
-        // Sort the products based on their rating in descending order
-        const sortedProducts = data.products.sort((a, b) => b.rating - a.rating);
-        console.log("this is sorted ",sortedProducts);
 
         // Select the top 4 rated products
-        const topRatedProducts = sortedProducts.slice(0, 4);
+        const topRatedProducts = data.slice(0, 4);
 
         setTopRatedProducts(topRatedProducts);
       } catch (error) {
