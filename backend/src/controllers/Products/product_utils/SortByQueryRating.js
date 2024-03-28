@@ -1,34 +1,25 @@
-
 const { Product, Category } = require("../../../db");
 
-const SortByQueryRating = async (query) => {
-    let products;
+const SortByQueryRating = async (sortRating) => {
+  let products;
 
-    if (query==="DESC") {
-        products = await Product.findAll({
-            include: {
-                model: Category,
-                attributes: ["name"],
-                through: {
-                    attributes: [],
-                },
-            },
-            order: [['rating', 'DESC']] 
-        });
-    } else if(query==="ASC") {
-        products = await Product.findAll({
-            include: {
-                model: Category,
-                attributes: ["name"],
-                through: {
-                    attributes: [],
-                },
-            },
-            order: [['rating', 'ASC']] 
-        });
-    }
+  if (
+    sortRating.toUpperCase() === "ASC" ||
+    sortRating.toUpperCase() === "DESC"
+  ) {
+    products = await Product.findAll({
+      include: {
+        model: Category,
+        attributes: ["name"],
+        through: {
+          attributes: [],
+        },
+      },
+      order: [["rating", sortRating]],
+    });
+  }
 
-    return products;
+  return products;
 };
 
 module.exports = SortByQueryRating;
