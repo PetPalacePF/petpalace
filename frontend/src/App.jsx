@@ -16,6 +16,7 @@ import AdminPanel from "./Views/Admin/AdminPanel";
 
 // * Utils
 import getCategories from './utils/getCategories.js'
+import { Shop } from "./components/Shop/Shop.jsx";
 
 function App() {
 
@@ -62,6 +63,7 @@ function App() {
             <Route path="/" element={<Home />}></Route>
             <Route path="/about" element={<About />}></Route>
             <Route path="/detail" element={<Detail />}></Route>
+            <Route path="/shop" element={<Shop />}></Route>
           </Routes>
         </>}/>
 
