@@ -3,15 +3,16 @@
 import { useEffect, useState } from "react"
 import { getAllProducts } from "../../utils/getAllProducts"
 import { Card } from "../Cards/Card"
-import getCategories from "../../utils/getCategories"
 
-export const Shop = () => {
+export const Shop = ({ allCategories }) => {
+
+  console.log("Desde shop ",allCategories);
   const [products, setProducts] = useState([])
-  const [categories, setCategories] = useState([])
+  // const [categories, setCategories] = useState([])
 
   useEffect(() => {
     getAllProducts(setProducts)
-    getCategories(setCategories)
+    //   getCategories(setCategories)
   }, [])
 
   return (
