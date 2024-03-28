@@ -12,7 +12,8 @@ export const SearchBar = () => {
         try {
             setLoading(true);
             setError(null);
-            const response = await axios.get(`/api/products?q=${search}`);
+            const response = await axios.get(`http://localhost:5000/products?brand_or_name=${search}`);
+            console.log(response.data)
             setSearchResults(response.data);
         } catch (error) {
             setError("Error searching for products:", error);
@@ -29,7 +30,8 @@ export const SearchBar = () => {
         try {
             setLoading(true);
             setError(null);
-            const response = await axios.get(`/api/products?q=${newSearch}`);
+            const response = await axios.get(`http://localhost:5000/products?brand_or_name=${search}`);
+            console.log(response.data)
             setSearchResults(response.data);
         } catch (error) {
             setError("Error searching for products:", error);
