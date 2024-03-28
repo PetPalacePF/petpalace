@@ -1,18 +1,21 @@
 const { Product, Category } = require("../../db");
 const filterByCategories = require("./product_utils/filterByCategories");
-const filterByPrice = require("./product_utils/filterByPrice");
-const findByQueryBrand_or_Name = require("./product_utils/findByQueryBrand_or_Name");
+const findByQuery = require("./product_utils/findByQuery");
+const SortByQuery = require("./product_utils/SortByQuery");
 const { Op } = require("sequelize");
 
 const findAllProducts = async (queryInputs) => {
   let whereClause = {};
   let includeClause = {};
+  let orderClause = [["id", "ASC"]];
 
   if (queryInputs) {
-    whereClause = await findByQueryBrand_or_Name(queryInputs);
+    whereClause = await findByQuery(queryInputs);
     includeClause = await filterByCategories(queryInputs);
+    orderClause = await SortByQuery(queryInputs);
+    orderClause.length === 0 && (orderClause = [["id", "ASC"]]);
   }
-
+  
   const products = await Product.findAll({
     where: whereClause,
     include: {
@@ -23,7 +26,7 @@ const findAllProducts = async (queryInputs) => {
         attributes: [],
       },
     },
-    order: [["id", "ASC"]],
+    order: orderClause,
   });
 
   return products;

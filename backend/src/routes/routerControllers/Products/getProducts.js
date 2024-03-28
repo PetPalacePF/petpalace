@@ -1,11 +1,11 @@
 const createBulkProducts = require("../../../controllers/Products/createBulkProducts");
 const findAllProducts = require("../../../controllers/Products/findAllProducts");
-const filterByPrice = require("../../../controllers/Products/filterByPrice");
 const formattedProducts = require("../../../utils/formatted/formattedProducts");
 const SortByQueryBrand = require("../../../controllers/Products/product_utils/SortByQueryBrand");
 const SortByQueryName = require("../../../controllers/Products/product_utils/SortByQueryName");
-const SortByQueryPrice = require("../../../controllers/Products/product_utils/SortByQueryPrice");
+const SortByQueryPrice = require("../../../controllers/Products/product_utils/SortByQuery");
 const SortByQueryRating = require("../../../controllers/Products/product_utils/SortByQueryRating");
+const notFoundValidator = require("../../../utils/validators/notFoundValidator");
 
 const getProducts = async (req, res) => {
   const {
@@ -34,28 +34,22 @@ const getProducts = async (req, res) => {
   let products;
 
   try {
-    // ByQueryName
-    if (brand_or_name !== "" || filterCategories.length > 0 || filterPrice.length > 0) {
+    // findAllProducts(queryInputs)
+    if (
+      brand_or_name !== "" ||
+      filterCategories.length > 0 ||
+      filterPrice.length > 0 ||
+      sortPrice !== "" ||
+      sortRating !== ""
+    ) {
       products = formattedProducts(await findAllProducts(queryInputs));
-      if (brand_or_name !== "" && products.length === 0) {
-        return res.status(404).json({
-          message: `No se ha encontrado ningun Producto que coincida con la palabra '${brand_or_name}'`,
-          brand_or_name: brand_or_name
-        });
-      }
-      if (filterCategories.length > 0 && products.length === 0) {
-        return res.status(404).json({
-          message: `No se ha encontrado ninguna Categoria que coincida con los siguientes id: '${filterCategories}'`,
-          filterCategories : filterCategories
-        });
-      }
-      if (filterPrice.length > 0 && products.length === 0) {
-        return res.status(404).json({
-          message: `No se ha encontrado ningun precio que coincida entre los siguientes valores: '${filterPrice}'`,
-          filterPrice: filterPrice
-        });
+
+      if (products.length === 0) {
+        const notFound_Products = await notFoundValidator(queryInputs);
+        return res.status(404).json({ notFound_Products: notFound_Products });
       }
     } else {
+      // findAllProducts()
       products = formattedProducts(await findAllProducts());
       if (products.length === 0) {
         await createBulkProducts();
@@ -63,32 +57,22 @@ const getProducts = async (req, res) => {
       }
     }
 
-
-
     // SortByQueryName (Jose)
-    sortName !== "" &&
-      (products = await SortByQueryName(sortName));
-
+    sortName !== "" && (products = await SortByQueryName(sortName));
 
     // SortByQueryBrand (Jose)
-    sortBrand !== "" &&
-      (products = await SortByQueryBrand(sortBrand));
-
+    sortBrand !== "" && (products = await SortByQueryBrand(sortBrand));
 
     // SortByQueryPrice (Tomi)
-    sortPrice !== "" &&
-      (products = await SortByQueryPrice(sortPrice));
-
+    // (sortPrice !== "" || sortRating !== "" ) && (products = await SortByQueryPrice(queryInputs));
 
     // SortByQueryRating (Tomi)
-    sortRating !== "" &&
-      (products = await SortByQueryRating(sortRating));
-
+    // sortRating !== "" && (products = await SortByQueryRating(sortRating));
 
     //* CORRECCION DE FORMATO JSON POR DEFAULT
     // products = formattedProducts(products);
 
-    return res.status(200).json({ products: products });
+    return res.status(200).json(products);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
