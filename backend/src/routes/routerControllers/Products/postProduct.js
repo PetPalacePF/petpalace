@@ -34,7 +34,7 @@ const postProduct = async (req, res) => {
   try {
     const newProduct = await createProduct({ product, categories });
     newProduct.hasOwnProperty("name")
-      ? res.status(201).json({ newProduct: newProduct })
+      ? res.status(201).json(newProduct)
       : res.status(404).json({ message: newProduct.message });
   } catch (error) {
     res.status(500).json({ error: error.message });

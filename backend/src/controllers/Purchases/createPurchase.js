@@ -11,7 +11,7 @@ const createPurchase = async (orders, userId) => {
       await newPurchase.setUser(user);
     } else {
       return (newPurchase = {
-        message: `No se pudo crear la Compra. Usuario ${userId} no encontrado`,
+        message: `No se pudo crear la Compra. Usuario ${userId} no encontrado.`,
       });
     }
 

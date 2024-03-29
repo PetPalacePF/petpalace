@@ -8,7 +8,7 @@ const getCategoryById = async (req, res) => {
   try {
     const category = await findCategorybyId(id);
     return category
-    ?  res.status(200).json({ category: formattedCategory(category) })
+    ?  res.status(200).json(formattedCategory(category))
     :  res.status(400).send(`No existe una categoría con id: ${id}`);
   } catch (error) {
     res.status(500).json({ error: error.message });
