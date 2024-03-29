@@ -9,7 +9,7 @@ const deleteUser = async (req, res) => {
       ? (message = `Usuario '${id}' eliminado correctamente`)
       : (message = `No existe un Usuario con el id '${id}' para eliminar`);
 
-    res.status(200).json({ message: message });
+    res.status(200).send(message);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

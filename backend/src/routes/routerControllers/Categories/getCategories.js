@@ -9,7 +9,7 @@ const getCategories = async (req, res) => {
       await createBulkCategories()
       categories = await findAllCategories();
     };
-    return res.status(200).json({ categories: formattedCategories(categories) });
+    return res.status(200).json(formattedCategories(categories));
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

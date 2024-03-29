@@ -9,7 +9,7 @@ const deleteOrder = async (req, res) => {
       ? (message = `Orden '${id}' eliminada correctamente`)
       : (message = `No existe una Orden con el id '${id}' para eliminar`);
 
-    res.status(200).json({ message: message });
+    res.status(200).send(message);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

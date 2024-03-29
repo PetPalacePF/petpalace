@@ -11,7 +11,7 @@ const deleteCategory = async (req, res) => {
         (status = 200)
       : (message = `No existe una Categoria con el id '${id}' para eliminar`) &&
         (status = 404);
-    res.status(status).json({ message: message });
+    res.status(status).send(message);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

@@ -9,7 +9,7 @@ const deletePurchase = async (req, res) => {
     ? message = `Compra '${id}' eliminada correctamente`
     : message = `No existe una Compra con el '${id}' para eliminar`
 
-    res.status(200).json({ message: message});
+    res.status(200).send(message);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
