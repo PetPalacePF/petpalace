@@ -4,7 +4,7 @@ const modifyUser = async (id, name, email) => {
   try {
     let updatedUser = await User.update({ name, email }, { where: { id: id } });
     if (updatedUser[0] === 0) {
-      return { message: `Usuario ${id} no encontrado` };
+      return { message: `Usuario '${id}' no encontrado` };
     }
     updatedUser = await User.findByPk(id);
     return updatedUser.dataValues;

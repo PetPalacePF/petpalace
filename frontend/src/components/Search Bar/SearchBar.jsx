@@ -1,43 +1,22 @@
 import { useState } from "react";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { getProductsByNameOrBrand, getProductsByNameOrBrandOnchange } from "../../utils/getProductsByNameOrBrand";
 
-export const SearchBar = () => {
+export const SearchBar = ({ setProducts }) => {
     const [search, setSearch] = useState("");
     const [searchResults, setSearchResults] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
-
-    const handleSubmit = async (event) => {
+    const navigate = useNavigate();
+    const handleSubmit = (event) => {
         event.preventDefault();
-        try {
-            setLoading(true);
-            setError(null);
-            const response = await axios.get(`http://localhost:5000/products?brand_or_name=${search}`);
-            console.log(response.data)
-            setSearchResults(response.data);
-        } catch (error) {
-            setError("Error searching for products:", error);
-        } finally {
-            setLoading(false);
-        }
-        setSearch('');
+        getProductsByNameOrBrand({ search, setLoading, setError, navigate, setProducts });
+        setSearch("");
     };
 
-    const onChange = async (event) => {
-        const newSearch = event.target.value;
-        setSearch(newSearch);
-
-        try {
-            setLoading(true);
-            setError(null);
-            const response = await axios.get(`http://localhost:5000/products?brand_or_name=${search}`);
-            console.log(response.data)
-            setSearchResults(response.data);
-        } catch (error) {
-            setError("Error searching for products:", error);
-        } finally {
-            setLoading(false);
-        }
+    const onChange = (event) => {
+        setSearch(event.target.value);
+        getProductsByNameOrBrandOnchange({ setLoading, setError, navigate, setProducts, searchResults, search });
     };
 
     return (
@@ -50,14 +29,9 @@ export const SearchBar = () => {
                     onChange={onChange}
                 />
                 <button type="submit" disabled={loading}>🔍</button>
+
             </form>
-            {loading && <p>Loading...</p>}
-            {error && <p>{error}</p>}
-            <ul>
-                {Array.isArray(searchResults) && searchResults.map((product, index) => (
-                    <li key={index}>{product.name}</li>
-                ))}
-            </ul>
+            {/* <SearchResults searchResults={searchResults} loading={loading} error={error} /> */}
         </div>
     )
 }

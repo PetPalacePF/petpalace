@@ -9,7 +9,7 @@ import About from "./Views/About";
 import Detail from "./Views/Detail";
 
 // * Components
-import Header  from "./components/Header/Header";
+import Header from "./components/Header/Header";
 
 // * Admin panel
 import AdminPanel from "./Views/Admin/AdminPanel";
@@ -20,7 +20,9 @@ import { Shop } from "./components/Shop/Shop.jsx";
 
 function App() {
 
-  const [ allCategories, setAllCategories ] = useState({
+  const [products, setProducts] = useState([])
+
+  const [allCategories, setAllCategories] = useState({
     allIds: [],
     byId: {},
     loading: false,
@@ -30,11 +32,11 @@ function App() {
   useEffect(() => {
 
     const get = async () => {
-      setAllCategories({...allCategories, loading:true})
+      setAllCategories({ ...allCategories, loading: true })
       const data = await getCategories()
-      setAllCategories({...allCategories, loading:false})
+      setAllCategories({ ...allCategories, loading: false })
 
-      if(data.message) return setAllCategories({...allCategories, error:data.message})
+      if (data.message) return setAllCategories({ ...allCategories, error: data.message })
 
       const allIds = data.categories.map(category => category.id)
       const byId = data.categories.reduce((acc, category) => {
@@ -58,14 +60,14 @@ function App() {
     <>
       <Routes>
         <Route path='/*' element={<>
-          <Header allCategories={allCategories}/>
+          <Header allCategories={allCategories} setProducts={setProducts} />
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/about" element={<About />}></Route>
             <Route path="/detail/:id" element={<Detail />}></Route>
-            <Route path="/shop" element={<Shop />}></Route>
+            <Route path="/shop" element={<Shop setProducts={setProducts} products={products} />}></Route>
           </Routes>
-        </>}/>
+        </>} />
 
         <Route path='/admin/*' element={<AdminPanel allCategories={allCategories} />} />
       </Routes>

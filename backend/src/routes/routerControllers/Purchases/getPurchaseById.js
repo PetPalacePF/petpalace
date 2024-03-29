@@ -8,7 +8,7 @@ const getPurchaseById = async (req, res) => {
   try {
     const purchase = await findPurchasebyId(id);
     return purchase
-    ?  res.status(200).json({ purchase: formattedPurchase(purchase) })
+    ?  res.status(200).json(formattedPurchase(purchase))
     :  res.status(400).send(`No existe la compra con id: ${id}`);
   } catch (error) {
     res.status(500).json({ error: error.message });

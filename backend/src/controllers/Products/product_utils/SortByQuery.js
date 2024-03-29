@@ -1,9 +1,19 @@
 const { Product, Category } = require("../../../db");
 
 const SortByQuery = async (queryInputs) => {
-  const { sortPrice, sortRating } = queryInputs;
+  const { sortBrand, sortName, sortPrice, sortRating } = queryInputs;
 
   let orderClause = [];
+
+  if (sortBrand !== "") {
+    const brandClause = ['brand', sortBrand];
+    orderClause.push(brandClause);
+  }
+
+  if (sortName !== "") {
+    const nameClause = ['name', sortName];
+    orderClause.push(nameClause);
+  }
 
   if (sortPrice !== "") {
     const priceClause = ['price', sortPrice];
