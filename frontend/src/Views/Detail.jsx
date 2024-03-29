@@ -10,8 +10,7 @@ const Detail = () => {
     axios
       .get(`http://localhost:5000/products/${id}`)
       .then(({ data }) => {
-        console.log("Product Data:", data);
-        setProduct(data.product); // Update state with the nested product data
+        setProduct(data);
       })
       .catch((error) => {
         console.error("Error fetching product:", error);
@@ -50,7 +49,7 @@ const Detail = () => {
           <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-2">
             Add to Cart
           </button>
-          <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+          <button className="bg-violetahome hover:bg-violetamain text-white font-bold py-2 px-4 rounded">
             Buy Now
           </button>
         </div>
