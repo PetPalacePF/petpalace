@@ -17,13 +17,13 @@ const Home = () => {
       <div className="bg-pink">
         <div className="px-20 relative">
           <hr className="absolute w-[100px] border-black" />
-          <h1 className="relative text-4l font-bold">Most Recent</h1>
-          <Cards />
+          <h1 className="relative text-4l font-bold">Top Rated</h1>
+          <TopRatedCards />
         </div>
         <div className="px-20 relative mt-10">
           <hr className="absolute w-[100px] border-black" />
-          <h1 className="relative text-4l font-bold">Top highlights</h1>
-          <TopRatedCards />
+          <h1 className="relative text-4l font-bold">Popular Picks</h1>
+          <Cards />
         </div>
         <Footer />
       </div>
