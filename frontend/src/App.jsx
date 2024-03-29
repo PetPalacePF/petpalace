@@ -38,8 +38,8 @@ function App() {
 
       if (data.message) return setAllCategories({ ...allCategories, error: data.message })
 
-      const allIds = data.categories.map(category => category.id)
-      const byId = data.categories.reduce((acc, category) => {
+      const allIds = data.map(category => category.id)
+      const byId = data.reduce((acc, category) => {
         acc[category.id] = category
         return acc
       }, {})
