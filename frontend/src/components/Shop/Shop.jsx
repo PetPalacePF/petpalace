@@ -1,12 +1,10 @@
-// import React from 'react'
 
 import { useEffect, useState } from "react"
 import { getAllProducts } from "../../utils/getAllProducts"
 import { Card } from "../Cards/Card"
 import getCategories from "../../utils/getCategories"
 
-export const Shop = () => {
-  const [products, setProducts] = useState([])
+export const Shop = ({ setProducts, products }) => {
   const [categories, setCategories] = useState([])
 
   useEffect(() => {
@@ -26,6 +24,8 @@ export const Shop = () => {
           ))}
         </div>
       </div>
+      {/* <SearchResults searchResults={searchResults} loading={loading} error={error} /> */}
+
       <div className="mt-20 flex flex-wrap justify-center">
         {products?.map((product) => (
           <div key={product.id} className="w-full md:w-1/3 p-2">
