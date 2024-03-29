@@ -2,7 +2,7 @@ const notFoundValidator = (queryInputs) => {
   const { filterOrders, filterUsers, sortId } = queryInputs;
 
   if (filterOrders.length > 0 && filterUsers.length > 0) {
-    return `No existen resultados para esa combinacion de filtros`;
+    return `No existen resultados para esa combinación de valores en los filtros`;
   }
 
   if (filterOrders.length > 0) {

@@ -1,6 +1,6 @@
 const { Op } = require("sequelize");
 
-const findByQuery = async (queryInputs) => {
+const findByQuery = (queryInputs) => {
   const { brand_or_name, filterPrice } = queryInputs;
   let whereClause = {};
 

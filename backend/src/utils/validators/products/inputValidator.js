@@ -1,10 +1,19 @@
-const sortInputValidator = (queryInputs) => {
-  const { sortBrand, sortName, sortPrice, sortRating } = queryInputs;
+const inputValidator = (queryInputs) => {
+  const { filterPrice, sortBrand, sortId, sortName, sortPrice, sortRating } =
+    queryInputs;
 
   const query = {
     error: false,
     message: "",
   };
+
+  if (!(filterPrice instanceof Array)) {
+    query.error = true;
+    query.message = `Debe ingresar dos valores para utilizar el filtrado por precios`;
+  } else if (filterPrice.length > 2) {
+    query.error = true;
+    query.message = `Debe ingresar únicamente dos valores para utilizar el filtrado por precios.`;
+  }
 
   if (
     sortBrand !== "" &&
@@ -13,6 +22,15 @@ const sortInputValidator = (queryInputs) => {
   ) {
     query.error = true;
     query.message = `Los únicos valores válidos para ordenar los productos por marca son 'ASC' o 'DESC'. Se ha ingresado como valor: '${sortBrand}'`;
+  }
+
+  if (
+    sortId !== "" &&
+    sortId.toUpperCase() !== "ASC" &&
+    sortId.toUpperCase() !== "DESC"
+  ) {
+    query.error = true;
+    query.message = `Los únicos valores válidos para ordenar los productos por id son 'ASC' o 'DESC'. Se ha ingresado como valor: '${sortBrand}'`;
   }
 
   if (
@@ -44,4 +62,4 @@ const sortInputValidator = (queryInputs) => {
   return query;
 };
 
-module.exports = sortInputValidator;
+module.exports = inputValidator;
