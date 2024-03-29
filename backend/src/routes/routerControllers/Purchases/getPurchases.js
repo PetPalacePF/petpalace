@@ -2,7 +2,7 @@ const findAllPurchases = require("../../../controllers/Purchases/findAllPurchase
 const formattedPurchases = require("../../../utils/formatted/formattedPurchases");
 const activeInputsValidator = require("../../../utils/validators/purchases/activeInputsValidator");
 const notFoundValidator = require("../../../utils/validators/purchases/notFoundValidator");
-const sortInputValidator = require("../../../utils/validators/purchases/sortInputValidator");
+const inputValidator = require("../../../utils/validators/purchases/inputValidator");
 
 const getPurchases = async (req, res) => {
   const { filterOrders = [], filterUsers = [], sortId = "" } = req.query;
@@ -10,7 +10,7 @@ const getPurchases = async (req, res) => {
   const emptyTable = `No se ha encontrado ninguna Compra registrada en la base de datos`;
   let purchases;
 
-  const queryError = sortInputValidator(queryInputs);
+  const queryError = inputValidator(queryInputs);
   if (queryError.error) {
     return res.status(404).send(queryError.message);
   }

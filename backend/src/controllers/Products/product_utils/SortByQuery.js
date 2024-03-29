@@ -1,13 +1,20 @@
-const { Product, Category } = require("../../../db");
 
-const SortByQuery = async (queryInputs) => {
-  const { sortBrand, sortName, sortPrice, sortRating } = queryInputs;
+const SortByQuery = (queryInputs) => {
+  const { sortBrand, sortId, sortName, sortPrice, sortRating } = queryInputs;
+
+  console.log(sortId);
+
 
   let orderClause = [];
 
   if (sortBrand !== "") {
     const brandClause = ['brand', sortBrand];
     orderClause.push(brandClause);
+  }
+
+  if (sortId !== "") {
+    const idClause = ['id', sortId];
+    orderClause.push(idClause);
   }
 
   if (sortName !== "") {
@@ -24,20 +31,6 @@ const SortByQuery = async (queryInputs) => {
     const ratingClause = ['rating', sortRating];
     orderClause.push(ratingClause);
   }
-
-  //   if (sortPrice.toUpperCase() === "ASC" || sortPrice.toUpperCase() === "DESC") {
-//   products = await Product.findAll({
-//     include: {
-//       model: Category,
-//       attributes: ["name"],
-//       through: {
-//         attributes: [],
-//       },
-//     },
-//     order: orderClause
-//   });
-
-  //   }
 
   return orderClause;
 };

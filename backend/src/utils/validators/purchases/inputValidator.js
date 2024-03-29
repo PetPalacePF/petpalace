@@ -1,4 +1,4 @@
-const sortInputValidator = (queryInputs) => {
+const inputValidator = (queryInputs) => {
   const { sortId } = queryInputs;
 
   const query = {
@@ -17,4 +17,4 @@ const sortInputValidator = (queryInputs) => {
   return query;
 };
 
-module.exports = sortInputValidator;
+module.exports = inputValidator;

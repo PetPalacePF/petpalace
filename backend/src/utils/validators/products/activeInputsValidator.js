@@ -5,8 +5,9 @@ const activeInputsValidator = (queryInputs) => {
     pageSize,
     filterCategories,
     filterPrice,
-    sortName,
     sortBrand,
+    sortId,
+    sortName,
     sortPrice,
     sortRating,
   } = queryInputs;
@@ -18,6 +19,7 @@ const activeInputsValidator = (queryInputs) => {
     filterCategories.length > 0 ||
     filterPrice.length > 0 ||
     sortBrand !== "" ||
+    sortId !== "" ||
     sortName !== "" ||
     sortPrice !== "" ||
     sortRating !== ""

@@ -3,7 +3,7 @@ const findAllProducts = require("../../../controllers/Products/findAllProducts")
 const formattedProducts = require("../../../utils/formatted/formattedProducts");
 const activeInputsValidator = require("../../../utils/validators/products/activeInputsValidator");
 const notFoundValidator = require("../../../utils/validators/products/notFoundValidator");
-const sortInputValidator = require("../../../utils/validators/products/sortInputValidator");
+const inputValidator = require("../../../utils/validators/products/inputValidator");
 
 const getProducts = async (req, res) => {
   const {
@@ -12,8 +12,9 @@ const getProducts = async (req, res) => {
     pageSize = 15,
     filterCategories = [],
     filterPrice = [],
-    sortName = "",
     sortBrand = "",
+    sortId = "",
+    sortName = "",
     sortPrice = "",
     sortRating = "",
   } = req.query;
@@ -25,12 +26,13 @@ const getProducts = async (req, res) => {
     filterCategories,
     filterPrice,
     sortBrand,
+    sortId,
     sortName,
     sortPrice,
     sortRating,
   };
 
-  const queryError = sortInputValidator(queryInputs);
+  const queryError = inputValidator(queryInputs);
   if (queryError.error) {
     return res.status(404).send(queryError.message);
   }
