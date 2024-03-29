@@ -6,7 +6,7 @@ const notFoundValidator = (queryInputs) => {
   }
 
   if (filterOrders.length > 0) {
-    return `No se ha encontrado ninguna Compra que contenga una Orden con los siguientes id: '${filterUsers}'`;
+    return `No se ha encontrado ninguna Compra que contenga una Orden con los siguientes id: '${filterOrders}'`;
   }
   
   if (filterUsers.length > 0) {
