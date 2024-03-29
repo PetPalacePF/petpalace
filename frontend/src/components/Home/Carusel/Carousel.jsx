@@ -2,9 +2,9 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react'
 
-import img1 from "../../../../public/Carousel_1.jpg"
-import img2 from "../../../../public/Carousel_2.jpg"
-import img3 from "../../../../public/Carousel_3.jpeg"
+import img1 from "/Carousel_1.jpg"
+import img2 from "/Carousel_2.jpg"
+import img3 from "/Carousel_3.jpeg"
 
 function Carousel() {
 
