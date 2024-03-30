@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState, useMemo } from "react";
-import { getAllProducts } from "../../utils/getAllProducts";
+import { useEffect, useState } from "react";
+import { getFilteredProducts } from "../../utils/getAllProducts";
 import { Card } from "../Cards/Card";
 
 export const Shop = ({
@@ -15,34 +15,14 @@ export const Shop = ({
   const [priceRange, setPriceRange] = useState([0, 1000]);
 
   useEffect(() => {
-    getAllProducts(setProducts);
-  }, [setProducts]);
+    getFilteredProducts(setProducts, filterCategories, sortRating, priceRange);
+  }, [setProducts, filterCategories, sortRating, priceRange]);
 
-  const sortProducts = (products, sortRating) => {
-    if (sortRating === "highest") {
-      return [...products].sort((a, b) => b.rating - a.rating);
-    } else if (sortRating === "lowest") {
-      return [...products].sort((a, b) => a.rating - b.rating);
-    }
-    return products;
-  };
+  console.log(filterCategories)
 
   const handleSortChange = (e) => {
     setSortRating(e.target.value);
   };
-
-  const filterProducts = useMemo(() => {
-    return products.filter((product) => {
-      const priceInRange =
-        product.price >= priceRange[0] && product.price <= priceRange[1];
-      // ESTO NO FUNCIONA CORRECTAMENTE RESOLVER
-      // const categoryMatch = filterCategories.includes(product.id) || filterCategories.length === 0;
-      // console.log(categoryMatch)
-      // return priceInRange && categoryMatch;
-      return priceInRange;
-    });
-    // }, [products, priceRange, filterCategories]);
-  }, [products, priceRange]);
 
   const handlePriceRangeChange = (newRange) => {
     setPriceRange(newRange);
@@ -55,7 +35,6 @@ export const Shop = ({
       setFilterCategories([...filterCategories, id]);
     }
   };
-
   return (
     <div className="flex flex-row">
       <div className="bg-violetahome text-white font-bold flex flex-col gap-4 h-fixed p-6 w-[200px]">
@@ -81,8 +60,8 @@ export const Shop = ({
             onChange={handleSortChange}
           >
             <option value="">None</option>
-            <option value="highest">Highest Rating</option>
-            <option value="lowest">Lowest Rating</option>
+            <option value="ASC">Highest Rating</option>
+            <option value="DESC">Lowest Rating</option>
           </select>
         </div>
         <div className="w-full mb-4">
@@ -114,7 +93,7 @@ export const Shop = ({
       </div>
 
       <div className="mt-20 flex flex-wrap justify-center">
-        {sortProducts(filterProducts, sortRating).map((product) => (
+        {products.map((product) => (
           <div key={product.id} className="w-full md:w-1/3 p-2">
             <Card product={product} />
           </div>
