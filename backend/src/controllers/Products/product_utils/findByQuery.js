@@ -1,7 +1,7 @@
-const { Op } = require("sequelize");
+const { Op, literal } = require("sequelize");
 
 const findByQuery = (queryInputs) => {
-  const { brand_or_name, filterPrice } = queryInputs;
+  const { brand_or_name, filterBrands, filterPrice } = queryInputs;
   let whereClause = {};
 
   // FIND BY QUERY BRAND OR NAME
@@ -20,6 +20,24 @@ const findByQuery = (queryInputs) => {
     ];
   }
 
+  // FILTER BY QUERY BRAND
+  if (filterBrands instanceof Array && filterBrands.length > 0) {
+    const lowerCaseBrandsToCheck = filterBrands.map((brand) =>
+      brand.toLowerCase()
+    );
+    whereClause = {
+      ...whereClause,
+      brand: literal(
+        `LOWER("brand") IN ('${lowerCaseBrandsToCheck.join("', '")}')`
+      ),
+    };
+  } else if (filterBrands !== "") {
+    whereClause = {
+      ...whereClause,
+      brand: literal(`LOWER("brand") = LOWER('${filterBrands}')`),
+    };
+  }
+
   // FILTER BY QUERY PRICE
   if (filterPrice instanceof Array && filterPrice.length === 2) {
     const prices = filterPrice.map((price) => parseInt(price.trim()));
@@ -27,6 +45,7 @@ const findByQuery = (queryInputs) => {
       [Op.between]: [prices[0], prices[1]],
     };
   }
+  console.log(whereClause);
 
   return whereClause;
 };

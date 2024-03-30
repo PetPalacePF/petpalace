@@ -3,6 +3,7 @@ const activeInputsValidator = (queryInputs) => {
     brand_or_name,
     page,
     pageSize,
+    filterBrands,
     filterCategories,
     filterPrice,
     sortBrand,
@@ -16,6 +17,7 @@ const activeInputsValidator = (queryInputs) => {
 
   if (
     brand_or_name !== "" ||
+    filterBrands.length > 0 ||
     filterCategories.length > 0 ||
     filterPrice.length > 0 ||
     sortBrand !== "" ||
