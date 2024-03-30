@@ -21,7 +21,9 @@ import { Shop } from "./components/Shop/Shop.jsx";
 function App() {
 
   const [products, setProducts] = useState([])
-
+  const [filterCategories, setFilterCategories] = useState([])
+  const [filterPrice, setFilterPrice] = useState([])
+  const [sortRating, setSortRating] = useState("");
   const [allCategories, setAllCategories] = useState({
     allIds: [],
     byId: {},
@@ -65,7 +67,17 @@ function App() {
             <Route path="/" element={<Home />}></Route>
             <Route path="/about" element={<About />}></Route>
             <Route path="/detail/:id" element={<Detail />}></Route>
-            <Route path="/shop" element={<Shop setProducts={setProducts} products={products} />}></Route>
+            <Route path="/shop" element={<Shop
+              setProducts={setProducts}
+              products={products}
+              allCategories={allCategories}
+              filterCategories={filterCategories}
+              setFilterCategories={setFilterCategories}
+              filterPrice={filterPrice}
+              setFilterPrice={setFilterPrice}
+              sortRating={sortRating}
+              setSortRating={setSortRating}
+            />}></Route>
           </Routes>
         </>} />
 

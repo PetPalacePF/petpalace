@@ -5,6 +5,7 @@ import { getProductsByNameOrBrand, getProductsByNameOrBrandOnchange } from "../.
 export const SearchBar = ({ setProducts }) => {
     const [search, setSearch] = useState("");
     const [searchResults, setSearchResults] = useState([]);
+    //PASAR ESTADOS ERROR Y CARGANDO AL APP PARA HACERLO GLOBAL
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
@@ -31,7 +32,6 @@ export const SearchBar = ({ setProducts }) => {
                 <button type="submit" disabled={loading}>🔍</button>
 
             </form>
-            {/* <SearchResults searchResults={searchResults} loading={loading} error={error} /> */}
         </div>
     )
 }
