@@ -1,20 +1,20 @@
 import { useNavigate } from "react-router-dom";
-import { getProductsByNameOrBrand, } from "../../utils/getProductsByNameOrBrand";
+import { getFilteredProducts } from "../../utils/getAllProducts";
 
 // eslint-disable-next-line react/prop-types
 export const SearchBar = ({ setProducts, search, setSearch }) => {
     const navigate = useNavigate();
     const handleSubmit = (event) => {
         event.preventDefault();
-        getProductsByNameOrBrand({ search, navigate, setProducts });
+        getFilteredProducts({ search, setProducts })
         setSearch("");
     };
 
     const onChange = (event) => {
         setSearch(event.target.value);
-        getProductsByNameOrBrand({ search, navigate, setProducts, });
+        getFilteredProducts({ search, setProducts })
+        navigate('/shop')
     };
-
     return (
         <div>
             <form onSubmit={handleSubmit}>
@@ -25,7 +25,6 @@ export const SearchBar = ({ setProducts, search, setSearch }) => {
                     onChange={onChange}
                 />
                 <button type="submit">🔍</button>
-
             </form>
         </div>
     )
