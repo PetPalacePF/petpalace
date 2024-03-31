@@ -1,23 +1,18 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getProductsByNameOrBrand, getProductsByNameOrBrandOnchange } from "../../utils/getProductsByNameOrBrand";
+import { getProductsByNameOrBrand, } from "../../utils/getProductsByNameOrBrand";
 
-export const SearchBar = ({ setProducts }) => {
-    const [search, setSearch] = useState("");
-    const [searchResults, setSearchResults] = useState([]);
-    //PASAR ESTADOS ERROR Y CARGANDO AL APP PARA HACERLO GLOBAL
-    const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(false);
+// eslint-disable-next-line react/prop-types
+export const SearchBar = ({ setProducts, search, setSearch }) => {
     const navigate = useNavigate();
     const handleSubmit = (event) => {
         event.preventDefault();
-        getProductsByNameOrBrand({ search, setLoading, setError, navigate, setProducts });
+        getProductsByNameOrBrand({ search, navigate, setProducts });
         setSearch("");
     };
 
     const onChange = (event) => {
         setSearch(event.target.value);
-        getProductsByNameOrBrandOnchange({ setLoading, setError, navigate, setProducts, searchResults, search });
+        getProductsByNameOrBrand({ search, navigate, setProducts, });
     };
 
     return (
@@ -29,7 +24,7 @@ export const SearchBar = ({ setProducts }) => {
                     value={search}
                     onChange={onChange}
                 />
-                <button type="submit" disabled={loading}>🔍</button>
+                <button type="submit">🔍</button>
 
             </form>
         </div>

@@ -44,7 +44,7 @@ export const Shop = ({
             <option
               key={id}
               value={id}
-              className={`text-black hover:bg-gray-100 ${filterCategories.includes(id) ? 'bg-gray-100' : ''}`}
+              className={`text-black cursor-pointer hover:bg-gray-100 ${filterCategories.includes(id) ? 'bg-gray-100' : ''}`}
               onClick={() => handleCategoryChange(id)}
             >
               {allCategories.byId[id].name}
