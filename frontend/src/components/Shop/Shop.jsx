@@ -11,14 +11,13 @@ export const Shop = ({
   setFilterCategories,
   sortRating,
   setSortRating,
+  search
 }) => {
   const [priceRange, setPriceRange] = useState([0, 1000]);
 
   useEffect(() => {
-    getFilteredProducts(setProducts, filterCategories, sortRating, priceRange);
-  }, [setProducts, filterCategories, sortRating, priceRange]);
-
-  console.log(filterCategories)
+    getFilteredProducts(setProducts, filterCategories, sortRating, priceRange, search);
+  }, [setProducts, filterCategories, sortRating, priceRange, search]);
 
   const handleSortChange = (e) => {
     setSortRating(e.target.value);
