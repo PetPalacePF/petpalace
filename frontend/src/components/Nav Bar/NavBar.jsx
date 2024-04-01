@@ -5,12 +5,6 @@ import { NavLink, Link } from "react-router-dom";
 export const NavBar = ({ allCategories }) => {
 
     const [ selectingCategory, setSelectingCategory ] = useState(false)
-    const [ selectedCategory, setSelectedCategory ] = useState('');
-
-
-    const handleCategoryChange = (categoryId) => {
-        setSelectedCategory(categoryId);
-    };
 
     return (
         <div className="absolute top-[55px] left-0 right-0 flex justify-center z-10">
@@ -22,23 +16,6 @@ export const NavBar = ({ allCategories }) => {
                 >
                     HOME
                 </NavLink>
-                {/* <select
-
-                    className="text-black hover:text-gray-300 bg-white rounded-lg px-3 py-1 focus:outline-none"
-                    value={selectedCategory || ''}
-                    onChange={(e) => handleCategoryChange(e.target.value)}
-                >
-                    <option className="text-gray-500">CATEGORIES</option>
-                    {allCategories.allIds.map((categoryId) => (
-                        <option
-                            key={categoryId}
-                            value={categoryId}
-                            className="text-black hover:bg-gray-100"
-                        >
-                            {allCategories.byId[categoryId].name}
-                        </option>
-                    ))}
-                </select> */}
                 <div className="relative">
                     <div onClick={() => setSelectingCategory(!selectingCategory)}>
                         <p className="uppercase cursor-pointer">Categories</p>
