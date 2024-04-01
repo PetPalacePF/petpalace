@@ -7,7 +7,7 @@
       "price": "70",
       "stock": 25,
       "rating": 4.8,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710971255/Producto1_g7atm9.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710971255/Producto1_g7atm9.webp",
       "categories": [4]
     },
     {
@@ -17,7 +17,7 @@
       "price": "75",
       "stock": 40,
       "rating": 5.0,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710972461/Producto2_x7s91k.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710972461/Producto2_x7s91k.webp",
       "categories": [4]
     },
     {
@@ -27,7 +27,7 @@
       "price": "40",
       "stock": 61,
       "rating": 5.0,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710973193/Producto3_f9mp1x.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710973193/Producto3_f9mp1x.webp",
       "categories": [4]
     },
     {
@@ -37,7 +37,7 @@
       "price": "75",
       "stock": 32,
       "rating": 4.9,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710973550/Producto4_o8fh7l.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710973550/Producto4_o8fh7l.webp",
       "categories": [4]
     },
     {
@@ -47,7 +47,7 @@
       "price": "70",
       "stock": 53,
       "rating": 4.7,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710973642/Producto5_idisvh.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710973642/Producto5_idisvh.webp",
       "categories": [4]
     },
     {
@@ -57,7 +57,7 @@
       "price": "78",
       "stock": 41,
       "rating": 4.8,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710973744/Producto6_cfeigy.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710973744/Producto6_cfeigy.webp",
       "categories": [4]
     },
     {
@@ -67,7 +67,7 @@
       "price": "52",
       "stock": 75,
       "rating": 4.9,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710973903/Producto7_lecdwp.jpg",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710973903/Producto7_lecdwp.jpg",
       "categories": [4]
     },
     {
@@ -77,7 +77,7 @@
       "price": "55",
       "stock": 75,
       "rating": 4.8,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710973993/Producto8_kfuex9.jpg",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710973993/Producto8_kfuex9.jpg",
       "categories": [4]
     },
     {
@@ -87,7 +87,7 @@
       "price": "30",
       "stock": 34,
       "rating": 5.0,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710974162/Producto9_ldu1mj.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710974162/Producto9_ldu1mj.webp",
       "categories": [4]
     },
     {
@@ -97,7 +97,7 @@
       "price": "25",
       "stock": 320,
       "rating": 4.9,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710974296/Producto10_yjod9q.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710974296/Producto10_yjod9q.webp",
       "categories": [4]
     },
     {
@@ -107,7 +107,7 @@
       "price": "27",
       "stock": 44,
       "rating": 4.9,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710974381/Producto11_wrbm4j.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710974381/Producto11_wrbm4j.webp",
       "categories": [4]
     },
     {
@@ -117,7 +117,7 @@
       "price": "30",
       "stock": 14,
       "rating": 5.0,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710974470/Producto12_nbeqad.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710974470/Producto12_nbeqad.webp",
       "categories": [4]
     },
     {
@@ -127,7 +127,7 @@
       "price": "10",
       "stock": 18,
       "rating": 4.5,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710974612/Producto13_bqccii.jpg",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710974612/Producto13_bqccii.jpg",
       "categories": [4]
     },
     {
@@ -137,7 +137,7 @@
       "price": "6",
       "stock": 11,
       "rating": 4.7,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710976380/Producto14_d8hsqq.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710976380/Producto14_d8hsqq.webp",
       "categories": [4]
     },
     {
@@ -147,7 +147,7 @@
       "price": "15",
       "stock": 12,
       "rating": 4.8,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710976452/Producto15_qro8bn.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710976452/Producto15_qro8bn.webp",
       "categories": [4]
     },
     {
@@ -157,7 +157,7 @@
       "price": "78",
       "stock": 22,
       "rating": 4.6,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710976532/Producto16_bcsdz1.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710976532/Producto16_bcsdz1.webp",
       "categories": [8]
     },
     {
@@ -167,7 +167,7 @@
       "price": "145",
       "stock": 30,
       "rating": 4.8,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710976701/Producto17_hs971k.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710976701/Producto17_hs971k.webp",
       "categories": [8]
     },
     {
@@ -177,7 +177,7 @@
       "price": "8",
       "stock": 2100,
       "rating": 3.8,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710977161/Producto18_nv8xqp.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710977161/Producto18_nv8xqp.webp",
       "categories": [7]
     },
     {
@@ -187,7 +187,7 @@
       "price": "24",
       "stock": 10,
       "rating": 3.8,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710977617/Producto19_q0e9yd.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710977617/Producto19_q0e9yd.webp",
       "categories": [7]
     },
     {
@@ -197,7 +197,7 @@
       "price": "73",
       "stock": 8,
       "rating": 4.1,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710977801/Producto20_gzf7lq.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710977801/Producto20_gzf7lq.webp",
       "categories": [8]
     },
     {
@@ -207,7 +207,7 @@
       "price": "200",
       "stock": 5,
       "rating": 4.0,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710977942/Producto21_qsjp9t.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710977942/Producto21_qsjp9t.webp",
       "categories": [8]
     },
     {
@@ -217,7 +217,7 @@
       "price": "8",
       "stock": 1207,
       "rating": 4.5,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710978059/Producto22_h1lojx.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710978059/Producto22_h1lojx.webp",
       "categories": [4]
     },
     {
@@ -227,7 +227,7 @@
       "price": "4",
       "stock": 1213,
       "rating": 4.5,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710978156/Producto23_zfekri.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710978156/Producto23_zfekri.webp",
       "categories": [4]
     },
     {
@@ -237,7 +237,7 @@
       "price": "9",
       "stock": 22,
       "rating": 4.2,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710978530/Producto26_gcti54.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710978530/Producto26_gcti54.webp",
       "categories": [4]
     },
     {
@@ -247,7 +247,7 @@
       "price": "8",
       "stock": 462,
       "rating": 4.9,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710978286/Producto24_br8ydq.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710978286/Producto24_br8ydq.webp",
       "categories": [6]
     },
     {
@@ -257,7 +257,7 @@
       "price": "6",
       "stock": 80,
       "rating": 5.0,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710978403/Producto25_a7fksj.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710978403/Producto25_a7fksj.webp",
       "categories": [6]
     },
     {
@@ -267,7 +267,7 @@
       "price": "4",
       "stock": 14,
       "rating": 4.0,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710978594/Producto27_rn43kd.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710978594/Producto27_rn43kd.webp",
       "categories": [10]
     },
     {
@@ -277,7 +277,7 @@
       "price": "15",
       "stock": 24,
       "rating": 4.7,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710978652/Producto28_onbtxc.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710978652/Producto28_onbtxc.webp",
       "categories": [10]
     },
     {
@@ -287,7 +287,7 @@
       "price": "7",
       "stock": 4,
       "rating": 4.8,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710971158/producto28.jpg",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710971158/producto28.jpg",
       "categories": [10]
     },
     {
@@ -297,7 +297,7 @@
       "price": "8",
       "stock": 141,
       "rating": 4.6,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710972839/producto29.jpg",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710972839/producto29.jpg",
       "categories": [1]
     },
     {
@@ -307,7 +307,7 @@
       "price": "4",
       "stock": 203,
       "rating": 4.1,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710973136/producto30.jpg",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710973136/producto30.jpg",
       "categories": [1]
     },
     {
@@ -317,7 +317,7 @@
       "price": "22",
       "stock": 67,
       "rating": 4.8,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710973864/producto31.jpg",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710973864/producto31.jpg",
       "categories": [1]
     },
     {
@@ -327,7 +327,7 @@
       "price": "9",
       "stock": 59,
       "rating": 3.9,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710974346/producto32.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710974346/producto32.webp",
       "categories": [1]
     },
     {
@@ -337,7 +337,7 @@
       "price": "7",
       "stock": 37,
       "rating": 3.9,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710974935/producto33.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710974935/producto33.webp",
       "categories": [1]
     },
     {
@@ -347,7 +347,7 @@
       "price": "15",
       "stock": 59,
       "rating": 4.7,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710975038/producto34.jpg",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710975038/producto34.jpg",
       "categories": [2]
     },
     {
@@ -357,7 +357,7 @@
       "price": "3",
       "stock": 8,
       "rating": 4.9,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710975143/producto35y36.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710975143/producto35y36.webp",
       "categories": [2]
     },
     {
@@ -367,7 +367,7 @@
       "price": "5",
       "stock": 45,
       "rating": 4.9,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710975143/producto35y36.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710975143/producto35y36.webp",
       "categories": [2]
     },
     {
@@ -377,7 +377,7 @@
       "price": "36",
       "stock": 5,
       "rating": 5.0,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710976620/producto37.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710976620/producto37.webp",
       "categories": [2]
     },
     {
@@ -387,7 +387,7 @@
       "price": "21",
       "stock": 8,
       "rating": 5.0,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710976713/producto38.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710976713/producto38.webp",
       "categories": [2]
     },
     {
@@ -397,7 +397,7 @@
       "price": "36",
       "stock": 10,
       "rating": 4.5,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710977617/producto39.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710977617/producto39.webp",
       "categories": [1]
     },
     {
@@ -407,7 +407,7 @@
       "price": "18",
       "stock": 34,
       "rating": 3.7,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710978052/producto40.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710978052/producto40.webp",
       "categories": [1]
     },
     {
@@ -417,7 +417,7 @@
       "price": "29",
       "stock": 99,
       "rating": 5.0,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710978432/producto41.jpg",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710978432/producto41.jpg",
       "categories": [5]
     },
     {
@@ -427,7 +427,7 @@
       "price": "37",
       "stock": 23,
       "rating": 4.9,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710978465/producto42.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710978465/producto42.webp",
       "categories": [5]
     },
     {
@@ -437,7 +437,7 @@
       "price": "48",
       "stock": 22,
       "rating": 4.8,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710978502/producto43.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710978502/producto43.webp",
       "categories": [5]
     },
     {
@@ -447,7 +447,7 @@
       "price": "32",
       "stock": 101,
       "rating": 4.7,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710979213/producto44_al0hpm.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710979213/producto44_al0hpm.webp",
       "categories": [5]
     },
     {
@@ -457,7 +457,7 @@
       "price": "26",
       "stock": 20,
       "rating": 5.0,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710979398/producto45_xlgunf.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710979398/producto45_xlgunf.webp",
       "categories": [3]
     },
     {
@@ -467,7 +467,7 @@
       "price": "37",
       "stock": 4,
       "rating": 5.0,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710979831/producto46_fcrkq3.jpg",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710979831/producto46_fcrkq3.jpg",
       "categories": [3]
     },
     {
@@ -477,7 +477,7 @@
       "price": "37",
       "stock": 3,
       "rating": 5.0,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710979917/producto_47_bjpzqr.jpg",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710979917/producto_47_bjpzqr.jpg",
       "categories": [3]
     },
     {
@@ -487,7 +487,7 @@
       "price": "37",
       "stock": 11,
       "rating": 4.9,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710979956/producto48_q1qz7v.jpg",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710979956/producto48_q1qz7v.jpg",
       "categories": [3]
     },
     {
@@ -497,7 +497,7 @@
       "price": "75",
       "stock": 15,
       "rating": 5.0,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710980213/producto49_nbedxv.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710980213/producto49_nbedxv.webp",
       "categories": [8]
     },
     {
@@ -507,7 +507,7 @@
       "price": "63",
       "stock": 3,
       "rating": 5.0,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710980380/producto50_bh5sjl.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710980380/producto50_bh5sjl.webp",
       "categories": [8]
     },
     {
@@ -517,7 +517,7 @@
       "price": "31",
       "stock": 55,
       "rating": 4.7,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710980640/producto51_a0xctv.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710980640/producto51_a0xctv.webp",
       "categories": [9]
     },
     {
@@ -527,7 +527,7 @@
       "price": "7",
       "stock": 57,
       "rating": 4.8,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710980743/producto52_hjymfv.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710980743/producto52_hjymfv.webp",
       "categories": [9]
     },
     {
@@ -537,7 +537,7 @@
       "price": "25",
       "stock": 120,
       "rating": 4.9,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710980865/producto53_y7nusm.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710980865/producto53_y7nusm.webp",
       "categories": [9]
     },
     {
@@ -547,7 +547,7 @@
       "price": "23",
       "stock": 512,
       "rating": 4.1,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710981019/producto54_lfupyv.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710981019/producto54_lfupyv.webp",
       "categories": [9]
     },
     {
@@ -557,7 +557,7 @@
       "price": "72",
       "stock": 2,
       "rating": 4.3,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710981212/producto55_wkffbp.webp",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710981212/producto55_wkffbp.webp",
       "categories": [10]
     },
     {
@@ -567,7 +567,7 @@
       "price": "6",
       "stock": 11,
       "rating": 4.9,
-      "img": "https://res.cloudinary.com/dkjcdxoid/image/upload/v1710983476/producto56_spuqw9.jpg",
+      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710983476/producto56_spuqw9.jpg",
       "categories": [10]
     }
   ]
