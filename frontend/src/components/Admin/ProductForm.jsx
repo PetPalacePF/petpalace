@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import validation from "../../utils/validation"
 import { Link } from "react-router-dom";
-import {getCategories} from "../../utils/getCategories"
-import {postProduct} from "../../utils/postProduct"
+import getCategories from "../../utils/getCategories"
+import postProduct from "../../utils/postProduct"
 
 
 const ProductForm = () => {
