@@ -5,8 +5,8 @@ const putCategories = async (req, res) => {
     try {
     const updatedCategory = await modifyCategory(id, name);
     updatedCategory.hasOwnProperty('name')
-    ? res.status(201).json({updatedCategory: updatedCategory})
-    : res.status(404).json({message: updatedCategory.message});
+    ? res.status(201).json(updatedCategory)
+    : res.status(404).send(updatedCategory.message);
     } catch (error) {
     res.status(500).json({ error: error.message });
     }

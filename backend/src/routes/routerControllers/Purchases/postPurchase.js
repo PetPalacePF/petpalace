@@ -13,8 +13,8 @@ const postPurchase = async (req, res) => {
   try {
     const newPurchase = await createPurchase( orders, userId );
     newPurchase.hasOwnProperty("UserId")
-    ? res.status(201).json({ newPurchase: newPurchase })
-    : res.status(500).json({ newPurchase: newPurchase.message });
+    ? res.status(201).json(newPurchase)
+    : res.status(500).send(newPurchase.message);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

@@ -1,4 +1,4 @@
-const filterByCategories = async (queryInputs) => {
+const filterByCategories = (queryInputs) => {
   let whereClause = {};
   if (queryInputs && queryInputs.filterCategories.length > 0) {
     const { filterCategories } = queryInputs;

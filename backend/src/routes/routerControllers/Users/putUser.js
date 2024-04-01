@@ -6,8 +6,8 @@ const putUser = async (req, res) => {
   try {
     const updatedUser = await modifyUser(id, name, email);
     updatedUser.hasOwnProperty('name')
-      ? res.status(201).json({updatedUser: updatedUser})
-      : res.status(404).json({message: updatedUser.message});
+      ? res.status(201).json(updatedUser)
+      : res.status(404).send(updatedUser.message);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
