@@ -1,11 +1,8 @@
 import React from "react";
-import ProductForm from "../components/Admin/ProductForm";
 
 const About = () => {
   return (
-    <div>
-      <ProductForm/>
-      {/* <div>
+      <div>
         <h1>About Us</h1>
         <h2>Welcome to Pet Palace - Your Premier Pet Destination</h2>
         <p>
@@ -43,7 +40,6 @@ const About = () => {
         </p>
         <h2>Let's Connect:</h2>
         <p>Aca iria el footer?</p>
-      </div> */}
     </div>
   );
 };
