@@ -6,6 +6,7 @@ import { NavBar } from "../Nav Bar/NavBar";
 
 import Cart from "../Cart/Cart";
 import BackgroundBlur from '../BackgroundBlur/BackgroundBlur'
+import CartIcon from "../../assets/cart-24x24.png"
 
 const Header = ({ allCategories, setProducts, search, setSearch }) => {
 
@@ -17,7 +18,7 @@ const Header = ({ allCategories, setProducts, search, setSearch }) => {
         <Link to='/'>🐾PET PALACE</Link>
         <div className="flex items-center">
           <SearchBar setProducts={setProducts} search={search} setSearch={setSearch} />
-          <button onClick={() => setOpenCart(!openCart)} className="ml-4">🛒MY CART</button>
+          <button onClick={() => setOpenCart(!openCart)} className="ml-4"> <img src={CartIcon} alt="" /></button>
           {
             openCart &&
             <BackgroundBlur onClick={() => setOpenCart(!openCart)}>
