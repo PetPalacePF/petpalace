@@ -13,37 +13,53 @@ export const getAllProducts = async (setProducts) => {
 
 export const getFilteredProducts = async (
   setProducts,
-  filterCategories,
-  sortRating,
-  priceRange
+  filterCategories = [],
+  sortRating = "",
+  priceRange = [],
+  search = "",
+  location
 ) => {
-  let palabraUnida = filterCategories.join("&filterCategories=");
-  let palabraUnida3 = priceRange.join("&filterPrice=");
 
-  let string = "filterCategories=";
-  let string2 = "sortRating=";
-  let string3 = "filterPrice=";
+  const querys = location.search.split('?')[1]
+  console.log(querys)
+
+  let unifiedWordFilterCategories = filterCategories.join("&filterCategories=");
+  let unifiedWordFilterPrice = priceRange.join("&filterPrice=");
+
+  let URLWordSearch = "brand_or_name=";
+  let URLWordFilterCategories = "filterCategories=";
+  let URLWordSortRating = "sortRating=";
+  let URLWordFilterPrice = "filterPrice=";
+
+  if (search !== "") {
+    URLWordSearch = URLWordSearch + search;
+  } else {
+    URLWordSearch = "";
+  }
 
   if (filterCategories.length > 0) {
-    string = string + palabraUnida;
+    URLWordFilterCategories =
+      URLWordFilterCategories + unifiedWordFilterCategories;
   } else {
-    string = "";
+    URLWordFilterCategories = "";
   }
 
   if (sortRating !== "") {
-    string2 = string2 + sortRating;
+    URLWordSortRating = URLWordSortRating + sortRating;
   } else {
-    string2 = "";
+    URLWordSortRating = "";
   }
 
   if (priceRange.length > 0) {
-    string3 = string3 + palabraUnida3;
+    URLWordFilterPrice = URLWordFilterPrice + unifiedWordFilterPrice;
   } else {
-    string3 = "";
+    URLWordFilterPrice = "";
   }
 
   try {
-    const response = await axios(`${URL}?${string}&${string2}&${string3}`);
+    const response = await axios(
+      `${URL}?${URLWordSearch}&${querys}&${URLWordSortRating}&${URLWordFilterPrice}`
+    );
     setProducts(response.data);
   } catch (error) {
     console.error("Error fetching products:", error);
