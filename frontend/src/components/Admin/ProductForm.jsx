@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import validation from "../../utils/validation"
 import { Link } from "react-router-dom";
-import getCategories from "../../utils/getCategories"
-import postProduct from "../../utils/postProduct"
 
 
 const ProductForm = () => {
@@ -28,7 +26,7 @@ const ProductForm = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await getCategories()
+        const response = await axios.get("http://localhost:5000/categories");
         
         const categoriesWithData = response.data.map(category => {
           // Extraigo los nombres de los productos de cada categoría
@@ -89,10 +87,10 @@ const ProductForm = () => {
       const imgUrl = await uploadImageCloudinary(productInfo.img);
 
       // Guardo el producto en la base de datos, incluyendo la URL de la imagen
-      await postProduct({
+      await axios.post("http://localhost:5000/products", {
         ...productInfo,
         img: imgUrl
-      })
+      });
 
       // Restablezco el estado después de enviar el formulario
       setProductInfo({
