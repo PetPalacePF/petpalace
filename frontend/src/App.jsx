@@ -16,7 +16,7 @@ import AdminPanel from "./Views/Admin/AdminPanel";
 
 // * Utils
 import getCategories from './utils/getCategories.js'
-import { Shop } from "./components/Shop/Shop.jsx";
+import { Shop } from "./Views/Shop.jsx";
 
 function App() {
 
