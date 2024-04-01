@@ -24,7 +24,7 @@ const TopRatedCards = () => {
   }, []);
 
   return (
-    <div className="flex flex-col md:flex-row justify-between items-center md:items-start my-5">
+    <div className="flex flex-col md:flex-row justify-between items-center md:items-start my-5 max-w-[1400px]">
       {topRatedProducts.map((product) => (
         <Card key={product.id} product={product} />
       ))}

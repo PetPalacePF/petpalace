@@ -11,7 +11,7 @@ export const Footer = () => {
                         <Link to='/' className="text-white">🐾PET PALACE</Link>
                     </div>
                     <div>
-                        <p className="m-0 pb-4">¡Keep your furry friend´s tail wagging non-stop!!</p>
+                        <p className="m-0 pb-4">¡Keep your furry friend's tail wagging non-stop!</p>
                     </div>
                 </div>
             </div>
