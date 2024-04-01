@@ -21,7 +21,7 @@ const findAllOrders = async (queryInputs) => {
     include: [
       {
         model: Product,
-        attributes: ["name"],
+        attributes: ["id"],
         through: {
           attributes: [],
         },
