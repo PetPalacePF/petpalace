@@ -1,7 +1,10 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import { getFilteredProducts } from "../../utils/getAllProducts";
-import { Card } from "../Cards/Card";
+
+import { useLocation, Link, useNavigate  } from "react-router-dom";
+
+import { getFilteredProducts } from "../utils/getAllProducts";
+import { Card } from "../components/Cards/Card";
 
 export const Shop = ({
   setProducts,
@@ -13,11 +16,15 @@ export const Shop = ({
   setSortRating,
   search
 }) => {
+
+  const location = useLocation()
+  const navigate = useNavigate()
+
   const [priceRange, setPriceRange] = useState([0, 1000]);
 
   useEffect(() => {
-    getFilteredProducts(setProducts, filterCategories, sortRating, priceRange, search);
-  }, [setProducts, filterCategories, sortRating, priceRange, search]);
+    getFilteredProducts(setProducts, filterCategories, sortRating, priceRange, search, location);
+  }, [setProducts, filterCategories, sortRating, priceRange, search, location]);
 
   const handleSortChange = (e) => {
     setSortRating(e.target.value);
@@ -34,20 +41,33 @@ export const Shop = ({
       setFilterCategories([...filterCategories, id]);
     }
   };
+
+  const handleCategoryToggle = (id) => {
+    if(location.search.includes(id)) {
+      const searchParams = new URLSearchParams(location.search);
+      searchParams.delete('filterCategories', id);
+      const nuevaUrl = searchParams.toString();
+      navigate(`?${nuevaUrl}`)
+    } else {
+      navigate(`${location.search}${ location.search.includes('?') ? '&filterCategories=' : '?filterCategories=' }${id}`)
+    }
+  };
+
   return (
     <div className="flex flex-row">
       <div className="bg-violetahome text-white font-bold flex flex-col gap-4 h-fixed p-6 w-[200px]">
         <h1 className="text-2xl">Categories</h1>
-        <div>
+        <div className="flex flex-col">
           {allCategories.allIds.map((id) => (
-            <option
+            <p
+              // to={`${location.search}${ location.search.includes('?') ? '&filterCategories=' : '?filterCategories=' }${id}`}
               key={id}
               value={id}
-              className={`text-black cursor-pointer hover:bg-gray-100 ${filterCategories.includes(id) ? 'bg-gray-100' : ''}`}
-              onClick={() => handleCategoryChange(id)}
+              className={`text-black cursor-pointer hover:bg-gray-100 ${location.search.includes(id) ? 'bg-gray-100' : ''}`}
+              onClick={() => handleCategoryToggle(id)}
             >
               {allCategories.byId[id].name}
-            </option>
+            </p>
           ))}
         </div>
         <div className="w-full mb-4">

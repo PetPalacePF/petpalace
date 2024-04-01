@@ -16,8 +16,13 @@ export const getFilteredProducts = async (
   filterCategories = [],
   sortRating = "",
   priceRange = [],
-  search = ""
+  search = "",
+  location
 ) => {
+
+  const querys = location.search.split('?')[1]
+  console.log(querys)
+
   let unifiedWordFilterCategories = filterCategories.join("&filterCategories=");
   let unifiedWordFilterPrice = priceRange.join("&filterPrice=");
 
@@ -53,7 +58,7 @@ export const getFilteredProducts = async (
 
   try {
     const response = await axios(
-      `${URL}?${URLWordSearch}&${URLWordFilterCategories}&${URLWordSortRating}&${URLWordFilterPrice}`
+      `${URL}?${URLWordSearch}&${querys}&${URLWordSortRating}&${URLWordFilterPrice}`
     );
     setProducts(response.data);
   } catch (error) {
