@@ -1,24 +1,20 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getProductsByNameOrBrand, getProductsByNameOrBrandOnchange } from "../../utils/getProductsByNameOrBrand";
+import { getFilteredProducts } from "../../utils/getAllProducts";
 
-export const SearchBar = ({ setProducts }) => {
-    const [search, setSearch] = useState("");
-    const [searchResults, setSearchResults] = useState([]);
-    const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(false);
+// eslint-disable-next-line react/prop-types
+export const SearchBar = ({ setProducts, search, setSearch }) => {
     const navigate = useNavigate();
     const handleSubmit = (event) => {
         event.preventDefault();
-        getProductsByNameOrBrand({ search, setLoading, setError, navigate, setProducts });
+        getFilteredProducts({ search, setProducts })
         setSearch("");
     };
 
     const onChange = (event) => {
         setSearch(event.target.value);
-        getProductsByNameOrBrandOnchange({ setLoading, setError, navigate, setProducts, searchResults, search });
+        getFilteredProducts({ search, setProducts })
+        navigate('/shop')
     };
-
     return (
         <div>
             <form onSubmit={handleSubmit}>
@@ -28,10 +24,8 @@ export const SearchBar = ({ setProducts }) => {
                     value={search}
                     onChange={onChange}
                 />
-                <button type="submit" disabled={loading}>🔍</button>
-
+                <button type="submit">🔍</button>
             </form>
-            {/* <SearchResults searchResults={searchResults} loading={loading} error={error} /> */}
         </div>
     )
 }

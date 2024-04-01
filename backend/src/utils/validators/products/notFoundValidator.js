@@ -3,6 +3,7 @@ const notFoundValidator = (queryInputs) => {
     brand_or_name,
     page,
     pageSize,
+    filterBrands,
     filterCategories,
     filterPrice,
     sortName,
@@ -24,6 +25,10 @@ const notFoundValidator = (queryInputs) => {
 
   if (brand_or_name !== "") {
     return `No se ha encontrado ningún Producto que contenga una marca o nombre que coincida con la palabra '${brand_or_name}'`;
+  }
+
+  if (filterBrands !== "" || filterBrands.length > 0) {
+    return `No se ha encontrado ningún Producto que contenga una marca que coincida con los siguientes marcas: '${filterBrands}'`;
   }
 
   if (filterCategories.length > 0) {
