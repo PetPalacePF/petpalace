@@ -6,8 +6,8 @@ import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Auth0Provider
-    domain="dev-odgq51fz5thevquo.us.auth0.com"
-    clientId="OFohRLXGigW9v4PZWckdUI10CD89clRK"
+    domain={import.meta.env.VITE_DOMAIN}
+    clientId={import.meta.env.VITE_CLIENT_ID}
     authorizationParams={{
       redirect_uri: window.location.origin
     }}
