@@ -12,7 +12,7 @@ const TopRatedCards = () => {
         const data = await response.json();
 
         // Select the top 4 rated products
-        const topRatedProducts = data.slice(0, 4);
+        const topRatedProducts = data.products.slice(0, 4);
 
         setTopRatedProducts(topRatedProducts);
       } catch (error) {
