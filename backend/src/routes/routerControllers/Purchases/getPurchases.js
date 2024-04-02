@@ -5,8 +5,8 @@ const notFoundValidator = require("../../../utils/validators/purchases/notFoundV
 const inputValidator = require("../../../utils/validators/purchases/inputValidator");
 
 const getPurchases = async (req, res) => {
-  const { filterOrders = [], filterUsers = [], sortId = "" } = req.query;
-  const queryInputs = { filterOrders, filterUsers, sortId };
+  const { filterOrders = [], filterUsers = [], sortId = "", sortUsers = "" } = req.query;
+  const queryInputs = { filterOrders, filterUsers, sortId, sortUsers };
   const emptyTable = `No se ha encontrado ninguna Compra registrada en la base de datos`;
   let purchases;
 

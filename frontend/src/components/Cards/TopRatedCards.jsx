@@ -12,7 +12,7 @@ const TopRatedCards = () => {
         const data = await response.json();
 
         // Select the top 4 rated products
-        const topRatedProducts = data.slice(0, 4);
+        const topRatedProducts = data.products.slice(0, 4);
 
         setTopRatedProducts(topRatedProducts);
       } catch (error) {
@@ -24,7 +24,7 @@ const TopRatedCards = () => {
   }, []);
 
   return (
-    <div className="flex flex-col md:flex-row justify-between items-center md:items-start my-5">
+    <div className="flex flex-col md:flex-row justify-between items-center md:items-start my-5 max-w-[1400px] gap-8">
       {topRatedProducts.map((product) => (
         <Card key={product.id} product={product} />
       ))}
