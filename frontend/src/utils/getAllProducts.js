@@ -5,7 +5,7 @@ const URL = "http://localhost:5000/products";
 export const getAllProducts = async (setProducts) => {
   try {
     const response = await axios(URL);
-    setProducts(response.data);
+    setProducts(response.data.products);
   } catch (error) {
     console.error("Error fetching products:", error);
   }
@@ -60,7 +60,7 @@ export const getFilteredProducts = async (
     const response = await axios(
       `${URL}?${URLWordSearch}&${querys}&${URLWordSortRating}&${URLWordFilterPrice}`
     );
-    setProducts(response.data);
+    setProducts(response.data.products);
   } catch (error) {
     console.error("Error fetching products:", error);
   }
