@@ -1,9 +1,11 @@
 /* eslint-disable react/prop-types */
+import { useAuth0 } from "@auth0/auth0-react";
 import { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 
 export const NavBar = ({ allCategories }) => {
   const [selectingCategory, setSelectingCategory] = useState(false);
+  const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
 
   return (
     <div className="absolute top-[76px] left-0 right-0 flex justify-center z-10">
@@ -77,7 +79,16 @@ export const NavBar = ({ allCategories }) => {
         >
           CONTACT
         </NavLink>
-        <button className="text-black hover:text-gray-300"> LOGIN </button>
+        {
+          isAuthenticated ? (
+            <button className="text-black hover:text-gray-300" onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
+              LOGOUT
+            </button>
+          )
+            : (
+              <button className="text-black hover:text-gray-300" onClick={() => loginWithRedirect()}>LOGIN</button>
+            )
+        }
       </nav>
     </div>
   );
