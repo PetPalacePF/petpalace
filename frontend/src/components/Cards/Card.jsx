@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { NavLink } from "react-router-dom";
+import CartIcon from "../../assets/cart-24x24.png";
 
 export const Card = ({ product }) => {
   return (
@@ -13,6 +14,9 @@ export const Card = ({ product }) => {
           />
           <span className="absolute top-3 left-4 border border-blue-200 text-xs rounded-xl px-4 py-2 font-semibold capitalize bg-blue-100">
             {product.categories}
+          </span>
+          <span className="absolute top-3 right-4 border border-blue-200 rounded-xl px-4 py-2 bg-blue-100">
+            <img src={CartIcon} alt="" className="w-4 h-4" />
           </span>
         </div>
         <div className="px-4 flex gap-4">
@@ -32,6 +36,6 @@ export const Card = ({ product }) => {
           </div>
         </div>
       </div>
-    </NavLink >
+    </NavLink>
   );
 };

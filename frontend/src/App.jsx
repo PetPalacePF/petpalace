@@ -62,7 +62,7 @@ function App() {
   }, [])
 
   return (
-    <>
+    <div className="">
       <Routes>
         <Route path='/*' element={<>
           <Header allCategories={allCategories} setProducts={setProducts} search={search} setSearch={setSearch} />
@@ -83,7 +83,7 @@ function App() {
 
         <Route path='/admin/*' element={<AdminPanel allCategories={allCategories} />} />
       </Routes>
-    </>
+    </div>
   );
 }
 
