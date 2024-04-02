@@ -15,6 +15,7 @@
     "@stripe/react-stripe-js": "^2.6.2",
     "@stripe/stripe-js": "^3.2.0",
     "axios": "^1.6.8",
+    "dotenv": "^16.4.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^9.1.0",
@@ -22,6 +23,7 @@
     "stripe": "^14.23.0"
   },
   "devDependencies": {
+    "@rollup/plugin-replace": "^5.0.5",
     "@types/react": "^18.2.64",
     "@types/react-dom": "^18.2.21",
     "@vitejs/plugin-react-swc": "^3.5.0",

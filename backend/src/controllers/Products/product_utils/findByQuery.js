@@ -45,7 +45,6 @@ const findByQuery = (queryInputs) => {
       [Op.between]: [prices[0], prices[1]],
     };
   }
-  console.log(whereClause);
 
   return whereClause;
 };
