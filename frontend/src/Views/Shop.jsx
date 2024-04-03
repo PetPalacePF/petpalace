@@ -22,14 +22,27 @@ export const Shop = ({
       setProducts,
       filterCategories,
       sortRating,
+      sortPrice,
       priceRange,
       search,
       location
     );
-  }, [setProducts, filterCategories, sortRating, priceRange, search, location]);
+  }, [
+    setProducts,
+    filterCategories,
+    sortRating,
+    sortPrice,
+    priceRange,
+    search,
+    location,
+  ]);
 
-  const handleSortChange = (e) => {
+  const handleSortRatingChange = (e) => {
     setSortRating(e.target.value);
+  };
+
+  const handleSortPriceChange = (e) => {
+    setSortPrice(e.target.value);
   };
 
   const handlePriceRangeChange = (newRange) => {
@@ -82,74 +95,140 @@ export const Shop = ({
         </div>
         <div className="w-full mb-4">
           <label htmlFor="sort">Sort by Rating:</label>
+    <div>
+      <div className="w-full text-black mt-14 flex justify-end items-center pr-[200px]">
+          <label htmlFor="sortRating" className="mx-2">
+            Sort by Rating:
+          </label>
           <select
-            id="sort"
-            className="ml-2 px-2 py-1 border border-gray-300 rounded-md text-black"
+            id="sortRating"
+            className="mr-2 px-2 py-1 border border-gray-300 rounded-md text-black"
             value={sortRating}
-            onChange={handleSortChange}
+            onChange={handleSortRatingChange}
           >
             <option value="">None</option>
             <option value="ASC">Highest Rating</option>
             <option value="DESC">Lowest Rating</option>
           </select>
+          <label htmlFor="sortPrice" className="mx-2">
+            Sort by Price:
+          </label>
+          <select
+            id="sortPrice"
+            className="mr-2 px-2 py-1 border border-gray-300 rounded-md text-black"
+            value={sortPrice}
+            onChange={handleSortPriceChange}
+          >
+            <option value="">None</option>
+            <option value="DESC">Highest Price</option>
+            <option value="ASC">Lowest Price</option>
+          </select>
         </div>
-        <div className="w-full mb-4 flex flex-col items-center">
-          <h1 className="mb-2 text-lg font-bold">Price Range:</h1>
-          <div className="flex">
-            <div className="flex flex-col items-center">
-              <input
-                type="number"
-                id="priceRangeMin"
-                min={0}
-                max={999}
-                value={
-                  priceRange[0] === 0 && priceRange[1] === 1000
-                    ? ""
-                    : priceRange[0]
-                }
-                onChange={(e) =>
-                  handlePriceRangeChange([
-                    parseInt(e.target.value),
-                    priceRange[1],
-                  ])
-                }
-                className="text-black border rounded-md px-1 py-1 w-16 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Min"
-                style={{ fontWeight: "normal" }}
-              />
-            </div>
-            <div className="flex flex-col items-center ml-4">
-              <input
-                type="number"
-                id="priceRangeMax"
-                min={1}
-                max={1000}
-                value={
-                  priceRange[0] === 0 && priceRange[1] === 1000
-                    ? ""
-                    : priceRange[1]
-                }
-                onChange={(e) =>
-                  handlePriceRangeChange([
-                    priceRange[0],
-                    parseInt(e.target.value),
-                  ])
-                }
-                className="text-black border rounded-md px-1 py-1 w-16 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Max"
-                style={{ fontWeight: "normal" }}
-              />
+      <div className="flex flex-row">
+        <div className="bg-violetahome text-white flex flex-col gap-4 h-fixed p-6 w-[200px]">
+          <h1 className="text-2xl text-black">Categories</h1>
+          <div className="flex flex-col">
+            {allCategories.allIds.map((id) => (
+              <p
+                // to={`${location.search}${ location.search.includes('?') ? '&filterCategories=' : '?filterCategories=' }${id}`}
+                key={id}
+                value={id}
+                className={`text-black cursor-pointer hover:bg-gray-100 ${
+                  location.search.includes(id) ? "bg-gray-100" : ""
+                }`}
+                onClick={() => handleCategoryToggle(id)}
+              >
+                {allCategories.byId[id].name}
+              </p>
+            ))}
+          </div>
+          <div className="w-full mb-4 flex flex-col items-center">
+            <h1 className="mb-2 text-lg text-black">Price Range:</h1>
+            <div className="flex">
+              <div className="flex flex-col items-center">
+                <input
+                  type="number"
+                  id="priceRangeMin"
+                  min={0}
+                  max={999}
+                  value={
+                    priceRange[0] === 0 && priceRange[1] === 1000
+                      ? ""
+                      : priceRange[0]
+                  }
+                  onChange={(e) =>
+                    handlePriceRangeChange([
+                      parseInt(e.target.value),
+                      priceRange[1],
+                    ])
+                  }
+                  className="text-black border rounded-md px-1 py-1 w-16 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Min"
+                  style={{ fontWeight: "normal" }}
+                />
+              </div>
+              <div className="flex flex-col items-center ml-4">
+                <input
+                  type="number"
+                  id="priceRangeMax"
+                  min={1}
+                  max={1000}
+                  value={
+                    priceRange[0] === 0 && priceRange[1] === 1000
+                      ? ""
+                      : priceRange[1]
+                  }
+                  onChange={(e) =>
+                    handlePriceRangeChange([
+                      priceRange[0],
+                      parseInt(e.target.value),
+                    ])
+                  }
+                  className="text-black border rounded-md px-1 py-1 w-16 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Max"
+                  style={{ fontWeight: "normal" }}
+                />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <div className="mt-20 flex flex-wrap justify-center">
-        {products.map((product) => (
-          <div key={product.id} className="mt-5 p-2">
-            <Card product={product} />
+        <div className="flex flex-col">
+          {/* <div className="w-full text-black mt-16 flex justify-end items-center pr-[200px]">
+          <label htmlFor="sortRating" className="mr-2">
+          Sort by Rating:
+          </label>
+          <select
+          id="sortRating"
+          className="mx-2 px-2 py-1 border border-gray-300 rounded-md text-black"
+          value={sortRating}
+          onChange={handleSortRatingChange}
+          >
+          <option value="">None</option>
+          <option value="ASC">Highest Rating</option>
+          <option value="DESC">Lowest Rating</option>
+          </select>
+          <label htmlFor="sortPrice" className="mr-2">
+          Sort by Price:
+          </label>
+          <select
+          id="sortPrice"
+          className="ml-2 px-2 py-1 border border-gray-300 rounded-md text-black"
+          value={sortPrice}
+          onChange={handleSortPriceChange}
+          >
+          <option value="">None</option>
+          <option value="DESC">Highest Price</option>
+          <option value="ASC">Lowest Price</option>
+          </select>
+        </div> */}
+          <div className="flex flex-wrap justify-center">
+            {products.map((product) => (
+              <div key={product.id} className="mt-5 p-2">
+                <Card product={product} />
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
     </div>
   );

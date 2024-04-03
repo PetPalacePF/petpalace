@@ -33,7 +33,8 @@ const findAllProducts = async (paginated, queryInputs) => {
   });
 
   const { count, rows } = products;
-  const totalPages = Math.ceil(count / pageSize);
+  let totalPages = Math.ceil(count / pageSize);
+  // if (totalPages === 0) {totalPages = 1 }
 
   return {
     totalResults: count,

@@ -1,6 +1,14 @@
 const inputValidator = (queryInputs) => {
-  const { filterPrice, sortBrand, sortId, sortName, sortPrice, sortRating } =
-    queryInputs;
+  const {
+    filterPrice,
+    page,
+    pageSize,
+    sortBrand,
+    sortId,
+    sortName,
+    sortPrice,
+    sortRating,
+  } = queryInputs;
 
   const query = {
     error: false,
@@ -30,7 +38,7 @@ const inputValidator = (queryInputs) => {
     sortId.toUpperCase() !== "DESC"
   ) {
     query.error = true;
-    query.message = `Los únicos valores válidos para ordenar los productos por id son 'ASC' o 'DESC'. Se ha ingresado como valor: '${sortBrand}'`;
+    query.message = `Los únicos valores válidos para ordenar los productos por id son 'ASC' o 'DESC'. Se ha ingresado como valor: '${sortId}'`;
   }
 
   if (
@@ -58,6 +66,11 @@ const inputValidator = (queryInputs) => {
   ) {
     query.error = true;
     query.message = `Los únicos valores válidos para ordenar los productos por rating son 'ASC' o 'DESC'. Se ha ingresado como valor: '${sortRating}'`;
+  }
+
+  if (isNaN(page) || isNaN(pageSize)) {
+    query.error = true;
+    query.message = `Los únicos valores válidos para la paginación son números. Se ha ingresado: 'page: ${page}' & 'pageSize: ${pageSize}'`;
   }
   return query;
 };
