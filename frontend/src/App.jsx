@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 import { Route, Routes } from "react-router-dom";
 
+
 // * Routes
 import Home from "./Views/Home";
 import About from "./Views/About";
