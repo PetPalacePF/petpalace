@@ -15,13 +15,13 @@ export const getFilteredProducts = async (
   setProducts,
   filterCategories = [],
   sortRating = "",
+  sortPrice = "",
   priceRange = [],
   search = "",
   location
 ) => {
-
-  const querys = location.search.split('?')[1]
-  console.log(querys)
+  const querys = location.search.split("?")[1];
+  console.log(querys);
 
   let unifiedWordFilterCategories = filterCategories.join("&filterCategories=");
   let unifiedWordFilterPrice = priceRange.join("&filterPrice=");
@@ -30,6 +30,7 @@ export const getFilteredProducts = async (
   let URLWordFilterCategories = "filterCategories=";
   let URLWordSortRating = "sortRating=";
   let URLWordFilterPrice = "filterPrice=";
+  let URLWordSortPrice = "sortPrice=";
 
   if (search !== "") {
     URLWordSearch = URLWordSearch + search;
@@ -50,6 +51,12 @@ export const getFilteredProducts = async (
     URLWordSortRating = "";
   }
 
+  if (sortPrice !== "") {
+    URLWordSortPrice = URLWordSortPrice + sortPrice;
+  } else {
+    URLWordSortPrice = "";
+  }
+
   if (priceRange.length > 0) {
     URLWordFilterPrice = URLWordFilterPrice + unifiedWordFilterPrice;
   } else {
@@ -58,7 +65,7 @@ export const getFilteredProducts = async (
 
   try {
     const response = await axios(
-      `${URL}?${URLWordSearch}&${querys}&${URLWordSortRating}&${URLWordFilterPrice}`
+      `${URL}?${URLWordSearch}&${querys}&${URLWordSortRating}&${URLWordSortPrice}&${URLWordFilterPrice}`
     );
     setProducts(response.data.products);
   } catch (error) {
