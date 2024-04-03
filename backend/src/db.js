@@ -1,5 +1,5 @@
 const { DB_USER, DB_PASSWORD, HOST, PORT, DB_NAME } = require("./config");
-const { DB_DEPLOY } = process.env;
+// const { DB_DEPLOY } = process.env;
 const { Sequelize } = require("sequelize");
 const AdminModel = require("./models/Admin");
 const CategoryModel = require("./models/Category");
@@ -10,15 +10,16 @@ const UserModel = require("./models/User");
 
 //? CONNECTION
 const dataBase = new Sequelize(
-  DB_DEPLOY,
+  // DB_DEPLOY,
+  `postgres://${DB_USER}:${DB_PASSWORD}@${HOST}:${PORT}/${DB_NAME}`,
   {
     logging: false,
     native: false,
-    dialectOptions:{
-      ssl:{
-        require: true,
-      }
-    }
+    // dialectOptions:{
+    //   ssl:{
+    //     require: true,
+    //   }
+    // }
   }
 );
 
