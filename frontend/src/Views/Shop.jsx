@@ -10,17 +10,11 @@ export const Shop = ({
   setProducts,
   products,
   allCategories,
-  filterCategories,
-  setFilterCategories,
-  sortRating,
-  setSortRating,
-  sortPrice,
-  setSortPrice,
-  search,
+  filters,
 }) => {
   const location = useLocation();
   const navigate = useNavigate();
-
+  const { filterCategories, sortRating, search, setFilterCategories, setSortRating } = filters
   const [priceRange, setPriceRange] = useState([0, 1000]);
 
   useEffect(() => {
@@ -73,16 +67,34 @@ export const Shop = ({
       navigate(`?${nuevaUrl}`);
     } else {
       navigate(
-        `${location.search}${
-          location.search.includes("?")
-            ? "&filterCategories="
-            : "?filterCategories="
+        `${location.search}${location.search.includes("?")
+          ? "&filterCategories="
+          : "?filterCategories="
         }${id}`
       );
     }
   };
 
   return (
+    <div className="flex flex-row">
+      <div className="bg-violetahome text-white font-bold flex flex-col gap-4 h-fixed p-6 w-[200px]">
+        <h1 className="text-2xl text-black">Categories</h1>
+        <div className="flex flex-col">
+          {allCategories.allIds.map((id) => (
+            <p
+              // to={`${location.search}${ location.search.includes('?') ? '&filterCategories=' : '?filterCategories=' }${id}`}
+              key={id}
+              value={id}
+              className={`text-black cursor-pointer hover:bg-gray-100 ${location.search.includes(id) ? "bg-gray-100" : ""
+                }`}
+              onClick={() => handleCategoryToggle(id)}
+            >
+              {allCategories.byId[id].name}
+            </p>
+          ))}
+        </div>
+        <div className="w-full mb-4">
+          <label htmlFor="sort">Sort by Rating:</label>
     <div>
       <div className="w-full text-black mt-14 flex justify-end items-center pr-[200px]">
           <label htmlFor="sortRating" className="mx-2">

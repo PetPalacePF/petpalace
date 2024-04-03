@@ -1,15 +1,18 @@
-/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { SearchBar } from "../Search Bar/SearchBar";
 import { NavBar } from "../Nav Bar/NavBar";
-
 import Cart from "../Cart/Cart";
 import BackgroundBlur from "../BackgroundBlur/BackgroundBlur";
 import CartIcon from "../../assets/cart-24x24.png";
 import logo from "../../assets/logo.png";
-const Header = ({ allCategories, setProducts, search, setSearch }) => {
+import { useAuth0 } from "@auth0/auth0-react";
+
+const Header = ({ allCategories, setProducts, filters }) => {
   const [openCart, setOpenCart] = useState(false);
+  const [openUser, setOpenUser] = useState(false);
+  const { search, setSearch } = filters;
+  const { isAuthenticated, user } = useAuth0();
 
   return (
     <>
@@ -24,14 +27,32 @@ const Header = ({ allCategories, setProducts, search, setSearch }) => {
             search={search}
             setSearch={setSearch}
           />
-          <button onClick={() => setOpenCart(!openCart)} className="ml-4">
-            {" "}
+          <button onClick={() => setOpenCart(!openCart)} className="ml-4 relative">
             <img src={CartIcon} alt="" />
+            {openCart && (
+              <BackgroundBlur onClick={() => setOpenCart(!openCart)}>
+                <Cart openCart={openCart} />
+              </BackgroundBlur>
+            )}
           </button>
-          {openCart && (
-            <BackgroundBlur onClick={() => setOpenCart(!openCart)}>
-              <Cart openCart={openCart} />
-            </BackgroundBlur>
+          {isAuthenticated && (
+            <div
+              className="ml-4 rounded-full overflow-hidden"
+              onMouseEnter={() => setOpenUser(true)}
+              onMouseLeave={() => setOpenUser(false)}
+            >
+              <img
+                src={user.picture}
+                alt={user.name}
+                className="w-8 h-8"
+              />
+              {openUser && (
+                <div className="absolute bg-white shadow-md py-2 px-4 top-10 right-0 z-10">
+                  <Link to="/profile" className="block mb-2">Perfil</Link>
+                  <Link to="/purchases" className="block">Compras</Link>
+                </div>
+              )}
+            </div>
           )}
         </div>
       </div>
