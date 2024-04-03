@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 import { Route, Routes } from "react-router-dom";
 
+
 // * Routes
 import Home from "./Views/Home";
 import About from "./Views/About";
@@ -19,6 +20,7 @@ import getCategories from './utils/getCategories.js'
 import { Shop } from "./Views/Shop.jsx";
 
 function App() {
+
 
   const [products, setProducts] = useState([])
   const [search, setSearch] = useState("");
