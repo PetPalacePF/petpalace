@@ -5,7 +5,7 @@ const useFilters = () => {
     const [filterCategories, setFilterCategories] = useState([]);
     const [filterPrice, setFilterPrice] = useState([]);
     const [sortRating, setSortRating] = useState("");
-
+    const [sortPrice, setSortPrice] = useState("");
     return {
         search,
         setSearch,
@@ -14,7 +14,9 @@ const useFilters = () => {
         filterPrice,
         setFilterPrice,
         sortRating,
-        setSortRating
+        setSortRating,
+        sortPrice,
+        setSortPrice
     };
 };
 
