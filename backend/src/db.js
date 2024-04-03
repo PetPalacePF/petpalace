@@ -10,16 +10,15 @@ const UserModel = require("./models/User");
 
 //? CONNECTION
 const dataBase = new Sequelize(
-  // DB_DEPLOY,
-  `postgres://${DB_USER}:${DB_PASSWORD}@${HOST}:${PORT}/${DB_NAME}`,
+  DB_DEPLOY,
   {
     logging: false,
     native: false,
-    // dialectOptions:{
-    //   ssl:{
-    //     require: true,
-    //   }
-    // }
+    dialectOptions:{
+      ssl:{
+        require: true,
+      }
+    }
   }
 );
 
