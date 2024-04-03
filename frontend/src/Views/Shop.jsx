@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 
-import { useLocation, Link, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { getFilteredProducts } from "../utils/getAllProducts";
 import { Card } from "../components/Cards/Card";
@@ -14,7 +14,7 @@ export const Shop = ({
 }) => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { filterCategories, sortRating, search, setFilterCategories, setSortRating } = filters
+  const { filterCategories, sortRating, search, setSortRating, sortPrice, setSortPrice } = filters
   const [priceRange, setPriceRange] = useState([0, 1000]);
 
   useEffect(() => {
@@ -49,15 +49,15 @@ export const Shop = ({
     setPriceRange(newRange);
   };
 
-  const handleCategoryChange = (id) => {
-    if (filterCategories.includes(id)) {
-      setFilterCategories(
-        filterCategories.filter((products) => products !== id)
-      );
-    } else {
-      setFilterCategories([...filterCategories, id]);
-    }
-  };
+  // const handleCategoryChange = (id) => {
+  //   if (filterCategories.includes(id)) {
+  //     setFilterCategories(
+  //       filterCategories.filter((products) => products !== id)
+  //     );
+  //   } else {
+  //     setFilterCategories([...filterCategories, id]);
+  //   }
+  // };S
 
   const handleCategoryToggle = (id) => {
     if (location.search.includes(id)) {
@@ -76,54 +76,35 @@ export const Shop = ({
   };
 
   return (
-    <div className="flex flex-row">
-      <div className="bg-violetahome text-white font-bold flex flex-col gap-4 h-fixed p-6 w-[200px]">
-        <h1 className="text-2xl text-black">Categories</h1>
-        <div className="flex flex-col">
-          {allCategories.allIds.map((id) => (
-            <p
-              // to={`${location.search}${ location.search.includes('?') ? '&filterCategories=' : '?filterCategories=' }${id}`}
-              key={id}
-              value={id}
-              className={`text-black cursor-pointer hover:bg-gray-100 ${location.search.includes(id) ? "bg-gray-100" : ""
-                }`}
-              onClick={() => handleCategoryToggle(id)}
-            >
-              {allCategories.byId[id].name}
-            </p>
-          ))}
-        </div>
-        <div className="w-full mb-4">
-          <label htmlFor="sort">Sort by Rating:</label>
     <div>
       <div className="w-full text-black mt-14 flex justify-end items-center pr-[200px]">
-          <label htmlFor="sortRating" className="mx-2">
-            Sort by Rating:
-          </label>
-          <select
-            id="sortRating"
-            className="mr-2 px-2 py-1 border border-gray-300 rounded-md text-black"
-            value={sortRating}
-            onChange={handleSortRatingChange}
-          >
-            <option value="">None</option>
-            <option value="ASC">Highest Rating</option>
-            <option value="DESC">Lowest Rating</option>
-          </select>
-          <label htmlFor="sortPrice" className="mx-2">
-            Sort by Price:
-          </label>
-          <select
-            id="sortPrice"
-            className="mr-2 px-2 py-1 border border-gray-300 rounded-md text-black"
-            value={sortPrice}
-            onChange={handleSortPriceChange}
-          >
-            <option value="">None</option>
-            <option value="DESC">Highest Price</option>
-            <option value="ASC">Lowest Price</option>
-          </select>
-        </div>
+        <label htmlFor="sortRating" className="mx-2">
+          Sort by Rating:
+        </label>
+        <select
+          id="sortRating"
+          className="mr-2 px-2 py-1 border border-gray-300 rounded-md text-black"
+          value={sortRating}
+          onChange={handleSortRatingChange}
+        >
+          <option value="">None</option>
+          <option value="ASC">Highest Rating</option>
+          <option value="DESC">Lowest Rating</option>
+        </select>
+        <label htmlFor="sortPrice" className="mx-2">
+          Sort by Price:
+        </label>
+        <select
+          id="sortPrice"
+          className="mr-2 px-2 py-1 border border-gray-300 rounded-md text-black"
+          value={sortPrice}
+          onChange={handleSortPriceChange}
+        >
+          <option value="">None</option>
+          <option value="DESC">Highest Price</option>
+          <option value="ASC">Lowest Price</option>
+        </select>
+      </div>
       <div className="flex flex-row">
         <div className="bg-violetahome text-white flex flex-col gap-4 h-fixed p-6 w-[200px]">
           <h1 className="text-2xl text-black">Categories</h1>
@@ -133,9 +114,8 @@ export const Shop = ({
                 // to={`${location.search}${ location.search.includes('?') ? '&filterCategories=' : '?filterCategories=' }${id}`}
                 key={id}
                 value={id}
-                className={`text-black cursor-pointer hover:bg-gray-100 ${
-                  location.search.includes(id) ? "bg-gray-100" : ""
-                }`}
+                className={`text-black cursor-pointer hover:bg-gray-100 ${location.search.includes(id) ? "bg-gray-100" : ""
+                  }`}
                 onClick={() => handleCategoryToggle(id)}
               >
                 {allCategories.byId[id].name}
