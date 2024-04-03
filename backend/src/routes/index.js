@@ -7,6 +7,7 @@ const routerOrders = require("./orders");
 const routerProducts = require("./products");
 const routerPurchases = require("./purchases");
 const routerUsers = require("./users");
+const routerPaymentSession = require("./paymentSession")
 
 //? RUTAS
 router.use("/admin", routerAdmin);
@@ -16,6 +17,7 @@ router.use("/orders", routerOrders);
 router.use("/products", routerProducts);
 router.use("/purchases", routerPurchases);
 router.use("/users", routerUsers);
+router.use("/payment-session", routerPaymentSession)
 
 
 module.exports = router;
