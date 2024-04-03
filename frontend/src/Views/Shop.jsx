@@ -10,15 +10,11 @@ export const Shop = ({
   setProducts,
   products,
   allCategories,
-  filterCategories,
-  setFilterCategories,
-  sortRating,
-  setSortRating,
-  search,
+  filters,
 }) => {
   const location = useLocation();
   const navigate = useNavigate();
-
+  const { filterCategories, sortRating, search, setFilterCategories, setSortRating } = filters
   const [priceRange, setPriceRange] = useState([0, 1000]);
 
   useEffect(() => {
@@ -58,10 +54,9 @@ export const Shop = ({
       navigate(`?${nuevaUrl}`);
     } else {
       navigate(
-        `${location.search}${
-          location.search.includes("?")
-            ? "&filterCategories="
-            : "?filterCategories="
+        `${location.search}${location.search.includes("?")
+          ? "&filterCategories="
+          : "?filterCategories="
         }${id}`
       );
     }
@@ -77,9 +72,8 @@ export const Shop = ({
               // to={`${location.search}${ location.search.includes('?') ? '&filterCategories=' : '?filterCategories=' }${id}`}
               key={id}
               value={id}
-              className={`text-black cursor-pointer hover:bg-gray-100 ${
-                location.search.includes(id) ? "bg-gray-100" : ""
-              }`}
+              className={`text-black cursor-pointer hover:bg-gray-100 ${location.search.includes(id) ? "bg-gray-100" : ""
+                }`}
               onClick={() => handleCategoryToggle(id)}
             >
               {allCategories.byId[id].name}
