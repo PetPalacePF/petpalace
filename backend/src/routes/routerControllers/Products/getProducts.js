@@ -20,6 +20,8 @@ const getProducts = async (req, res) => {
     sortRating = "",
   } = req.query;
 
+  const paginated = { page, pageSize };
+
   const queryInputs = {
     brand_or_name,
     page,
@@ -43,22 +45,30 @@ const getProducts = async (req, res) => {
 
   try {
     if (inputsActive) {
-      products = await findAllProducts(queryInputs);
+      products = await findAllProducts(paginated, queryInputs);
       if (products.length === 0) {
         const notFound_Products = notFoundValidator(queryInputs);
         return res.status(404).send(notFound_Products);
       }
     } else {
-      products = await findAllProducts();
+      products = await findAllProducts(paginated);
       if (products.length === 0) {
         await createBulkProducts();
         products = await findAllProducts();
       }
     }
 
-    products = formattedProducts(products);
+    const { totalResults, totalPages, currentPage, pageSize, productArray } =
+      products;
+    const productsResult = formattedProducts(productArray);
 
-    return res.status(200).json(products);
+    return res.status(200).json({
+      totalResults: totalResults,
+      totalPages: totalPages,
+      currentPage: currentPage,
+      pageSize: pageSize,
+      products: productsResult,
+    });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

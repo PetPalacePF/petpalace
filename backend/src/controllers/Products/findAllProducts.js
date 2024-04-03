@@ -3,10 +3,12 @@ const filterByCategories = require("./product_utils/filterByCategories");
 const findByQuery = require("./product_utils/findByQuery");
 const SortByQuery = require("./product_utils/SortByQuery");
 
-const findAllProducts = async (queryInputs) => {
+const findAllProducts = async (paginated, queryInputs) => {
   let whereClause = {};
   let includeCategoriesClause = {};
   let orderClause = [["id", "ASC"]];
+  const {page, pageSize} = paginated; 
+  const offset = (page - 1) * pageSize; 
 
   if (queryInputs) {
     whereClause = findByQuery(queryInputs);
@@ -15,7 +17,7 @@ const findAllProducts = async (queryInputs) => {
     orderClause.length === 0 && (orderClause = [["id", "ASC"]]);
   }
 
-  const products = await Product.findAll({
+  const products = await Product.findAndCountAll({
     where: whereClause,
     include: {
       model: Category,
@@ -26,9 +28,20 @@ const findAllProducts = async (queryInputs) => {
       },
     },
     order: orderClause,
+    limit: pageSize, // Especifica cuántos resultados devolver/mostrar
+    offset: offset, // Especifica cuántos resultados omitir
   });
 
-  return products;
+  const { count, rows } = products;
+  const totalPages = Math.ceil(count / pageSize);
+
+  return {
+    totalResults: count,
+    totalPages: totalPages,
+    currentPage: page,
+    pageSize: pageSize,
+    productArray: rows,
+  };
 };
 
 module.exports = findAllProducts;

@@ -2,9 +2,6 @@
 const SortByQuery = (queryInputs) => {
   const { sortBrand, sortId, sortName, sortPrice, sortRating } = queryInputs;
 
-  console.log(sortId);
-
-
   let orderClause = [];
 
   if (sortBrand !== "") {
