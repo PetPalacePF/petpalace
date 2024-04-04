@@ -7,6 +7,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./Views/Home";
 import About from "./Views/About";
 import Detail from "./Views/Detail";
+import Contact from "./Views/Contact.jsx";
 
 // * Components
 import Header from "./components/Header/Header";
@@ -78,6 +79,7 @@ function App() {
               filterPrice={filterPrice} setFilterPrice={setFilterPrice}
               sortRating={sortRating} setSortRating={setSortRating}
             />}></Route>
+            <Route path="/contact" element={<Contact />}></Route>
           </Routes>
         </>} />
 
