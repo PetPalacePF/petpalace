@@ -6,7 +6,7 @@ import AllOrders from "./AllOrders"
 
 import CartIcon from '../../assets/cart.png'
 
-const Cart = ({ openCart, setOpenCart, showCart, setShowCart, handleClickBuy }) => {
+const AsideCart = ({ showCart, setShowCart, handleClickBuy, handleClickClose }) => {
 
     const {
         ordersData,
@@ -29,7 +29,7 @@ const Cart = ({ openCart, setOpenCart, showCart, setShowCart, handleClickBuy }) 
     }, [])
 
     return (
-        <div className={`fixed ${!showCart ? '-right-[350px]' : 'right-0'} top-0 h-screen w-[350px] bg-white z-50 py-10 px-6 text-center flex flex-col gap-12 transition-all`}>
+        <div className={`fixed ${!showCart ? '-right-[350px]' : 'right-0'} top-0 h-screen w-[350px] bg-white z-50 pt-10 px-6 text-center flex flex-col gap-12 transition-all overflow-y-scroll`}>
             <div className="flex flex-col items-center gap-1">
                 <div className="relative w-8 h-8 flex items-center justify-center">
                     <div className="absolute top-0 right-0 w-4 h-4 bg-violetahome rounded-full flex items-center justify-center">
@@ -43,14 +43,15 @@ const Cart = ({ openCart, setOpenCart, showCart, setShowCart, handleClickBuy }) 
                 <p className="uppercase" onClick={() => console.log(ordersData)}>Carrito de compras</p>
             </div>
             {   
-                ordersData.length === 0  
+                ordersData.length === 0 ||
+                ordersData[0].Products.length === 0 
                 ? <OrderNotExists 
-                    setOpenCart={setOpenCart}
+                    setOpenCart={handleClickClose}
                 />
-                : <AllOrders handleClickBuy={handleClickBuy} ordersData={ordersData[0]} />
+                : <AllOrders handleClickBuy={handleClickBuy} ordersData={ordersData[0]} setOrdersData={setOrdersData} />
             }
         </div>
     )
 }
 
-export default Cart
+export default AsideCart
