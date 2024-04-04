@@ -1,7 +1,7 @@
-const formattedOrders = (order) => {
+const formattedOrder = (order) => {
   const { id, Products, User, Purchase } = order;
-  const products = Products.map((product) => product.name);
-  return { id, products, User, Purchase };
+
+  return { id, Products, User, Purchase };
 };
 
-module.exports = formattedOrders;
+module.exports = formattedOrder;
