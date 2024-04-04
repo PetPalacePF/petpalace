@@ -19,12 +19,9 @@ import AdminPanel from "./Views/Admin/AdminPanel";
 // * Utils
 import getCategories from "./utils/getCategories.js";
 import { Shop } from "./Views/Shop.jsx";
-<<<<<<< HEAD
 import Cart from "./Views/User/Cart.jsx";
-=======
 import useFilters from "./hooks/useFilter.jsx";
 import { Profile } from "./Views/Users/Profile.jsx";
->>>>>>> 36ff22044afd451a1b8f4e4a7bc7b475cb19d833
 
 function App() {
   const [products, setProducts] = useState([])
@@ -79,16 +76,13 @@ function App() {
               products={products} setProducts={setProducts}
               filters={filters}
             />}></Route>
-<<<<<<< HEAD
             <Route 
               path="/cart"
               element={<Cart />}
             />
-=======
 
             <Route path="/profile" element={<Profile />}></Route>
             <Route path="/contact" element={<Contact />}></Route>
->>>>>>> 36ff22044afd451a1b8f4e4a7bc7b475cb19d833
           </Routes>
         </>} />
 
