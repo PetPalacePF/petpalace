@@ -1,4 +1,5 @@
 import axios from "../config/axios";
+const URL = "http://localhost:5000/categories"
 
 const getCategories = async () => {
   try {
