@@ -6,15 +6,17 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { getFilteredProducts } from "../utils/getAllProducts";
 import { Card } from "../components/Cards/Card";
 
-export const Shop = ({
-  setProducts,
-  products,
-  allCategories,
-  filters,
-}) => {
+export const Shop = ({ setProducts, products, allCategories, filters }) => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { filterCategories, sortRating, search, setSortRating, sortPrice, setSortPrice } = filters
+  const {
+    filterCategories,
+    sortRating,
+    search,
+    setSortRating,
+    sortPrice,
+    setSortPrice,
+  } = filters;
   const [priceRange, setPriceRange] = useState([0, 1000]);
 
   useEffect(() => {
@@ -67,9 +69,10 @@ export const Shop = ({
       navigate(`?${nuevaUrl}`);
     } else {
       navigate(
-        `${location.search}${location.search.includes("?")
-          ? "&filterCategories="
-          : "?filterCategories="
+        `${location.search}${
+          location.search.includes("?")
+            ? "&filterCategories="
+            : "?filterCategories="
         }${id}`
       );
     }
@@ -88,8 +91,8 @@ export const Shop = ({
           onChange={handleSortRatingChange}
         >
           <option value="">None</option>
-          <option value="ASC">Highest Rating</option>
-          <option value="DESC">Lowest Rating</option>
+          <option value="DESC">Highest Rating</option>
+          <option value="ASC">Lowest Rating</option>
         </select>
         <label htmlFor="sortPrice" className="mx-2">
           Sort by Price:
@@ -114,8 +117,9 @@ export const Shop = ({
                 // to={`${location.search}${ location.search.includes('?') ? '&filterCategories=' : '?filterCategories=' }${id}`}
                 key={id}
                 value={id}
-                className={`text-black cursor-pointer hover:bg-gray-100 ${location.search.includes(id) ? "bg-gray-100" : ""
-                  }`}
+                className={`text-black cursor-pointer hover:bg-gray-100 ${
+                  location.search.includes(id) ? "bg-gray-100" : ""
+                }`}
                 onClick={() => handleCategoryToggle(id)}
               >
                 {allCategories.byId[id].name}
