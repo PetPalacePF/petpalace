@@ -1,6 +1,8 @@
+/* eslint-disable no-unused-vars */
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { loadStripe } from "@stripe/stripe-js";
 
 const Detail = () => {
   const { id } = useParams();
@@ -17,6 +19,39 @@ const Detail = () => {
         setProduct({});
       });
   }, [id]);
+
+  //* Stripe implementation
+  const makePayment = async () => {
+    const stripe = await loadStripe("pk_test_51P0rxH2NIYOIQA82hkjbhAvzJzKGiKpivFNd8bVen5bbAUpBgz7IxiJCaEVXRxmAC2iOrDIcvwFFqi9Pqfgp4EiB00aboN6QK3")
+
+    const body = {
+      products: [{
+        name: product.name,
+        description: product.description,
+        img: product.img,
+        price: product.price,
+        // quantity: 1 //modificar esta parte del código
+      }],
+    }
+
+    console.log("esto es body ", body);
+
+    const response = await axios.post('http://localhost:5000/payment-session',
+      body
+    )
+
+    console.log("esto es response ",response);
+
+    const session = await response.data
+
+    console.log("esto es session ", session);
+
+    const result = stripe.redirectToCheckout({
+      sessionId: session.sessionId
+    })
+
+    console.log("esto es result ", result);
+  }
 
   return (
     <div className="container mx-auto my-10 flex justify-center">
@@ -49,7 +84,7 @@ const Detail = () => {
           <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-2">
             Add to Cart
           </button>
-          <button className="bg-violetahome hover:bg-violetamain text-white font-bold py-2 px-4 rounded">
+          <button onClick={makePayment} className="bg-violetahome hover:bg-violetamain text-white font-bold py-2 px-4 rounded">
             Buy Now
           </button>
         </div>

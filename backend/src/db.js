@@ -11,6 +11,7 @@ const UserModel = require("./models/User");
 //? CONNECTION
 const dataBase = new Sequelize(
   DB_DEPLOY,
+  // `postgres://${DB_USER}:${DB_PASSWORD}@${HOST}:${PORT}/${DB_NAME}`,
   {
     logging: false,
     native: false,
