@@ -28,7 +28,7 @@ export const Card = ({ product }) => {
               {`from ${product.brand}`}
             </h3>
             <div className="flex gap-2">
-              <p className="text-sm text-slate-800 font-bold">At</p>
+              <p className="text-sm text-slate-800 font-bold">Price:</p>
               <p className="text-sm text-gray-800 font-bold">
                 {`$${product.price}.00`}
               </p>{" "}
