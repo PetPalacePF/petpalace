@@ -19,6 +19,7 @@ import AdminPanel from "./Views/Admin/AdminPanel";
 import getCategories from "./utils/getCategories.js";
 import { Shop } from "./Views/Shop.jsx";
 import useFilters from "./hooks/useFilter.jsx";
+import { Profile } from "./Views/Users/Profile.jsx";
 
 function App() {
   const [products, setProducts] = useState([])
@@ -73,6 +74,9 @@ function App() {
               products={products} setProducts={setProducts}
               filters={filters}
             />}></Route>
+
+            <Route path="/profile" element={<Profile />}></Route>
+
           </Routes>
         </>} />
 

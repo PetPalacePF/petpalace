@@ -10,9 +10,22 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const Header = ({ allCategories, setProducts, filters }) => {
   const [openCart, setOpenCart] = useState(false);
-  const [openUser, setOpenUser] = useState(false);
+  // const [openUser, setOpenUser] = useState(false);
+  // const [userHoverTimeout, setUserHoverTimeout] = useState(null);
   const { search, setSearch } = filters;
   const { isAuthenticated, user } = useAuth0();
+
+  // const handleUserHover = () => {
+  //   setUserHoverTimeout(setTimeout(() => {
+  //     setOpenUser(true);
+  //   }, 1000));
+  // };
+
+  // const handleUserLeave = () => {
+  //   clearTimeout(userHoverTimeout);
+  //   setUserHoverTimeout(null);
+  //   setOpenUser(false);
+  // };
 
   return (
     <>
@@ -38,20 +51,22 @@ const Header = ({ allCategories, setProducts, filters }) => {
           {isAuthenticated && (
             <div
               className="ml-4 rounded-full overflow-hidden"
-              onMouseEnter={() => setOpenUser(true)}
-              onMouseLeave={() => setOpenUser(false)}
+            // onMouseEnter={handleUserHover}
+            // onMouseLeave={handleUserLeave}
             >
-              <img
-                src={user.picture}
-                alt={user.name}
-                className="w-8 h-8"
-              />
-              {openUser && (
-                <div className="absolute bg-white shadow-md py-2 px-4 top-10 right-0 z-10">
+              <Link to="/profile">
+                <img
+                  src={user.picture}
+                  alt={user.name}
+                  className="w-8 h-8 cursor-pointer"
+                />
+              </Link>
+              {/* {openUser && (
+                <button className="absolute bg-white shadow-md py-2 px-4 top-10 right-0 z-10">
                   <Link to="/profile" className="block mb-2">Perfil</Link>
                   <Link to="/purchases" className="block">Compras</Link>
-                </div>
-              )}
+                </button>
+              )} */}
             </div>
           )}
         </div>
