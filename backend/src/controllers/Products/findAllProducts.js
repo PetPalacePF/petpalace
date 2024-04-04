@@ -2,13 +2,14 @@ const { Product, Category } = require("../../db");
 const filterByCategories = require("./product_utils/filterByCategories");
 const findByQuery = require("./product_utils/findByQuery");
 const SortByQuery = require("./product_utils/SortByQuery");
+const findAll_returnValidator = require("../../utils/validators/products/findAll_returnValidator");
 
 const findAllProducts = async (paginated, queryInputs) => {
   let whereClause = {};
   let includeCategoriesClause = {};
   let orderClause = [["id", "ASC"]];
-  const {page, pageSize} = paginated; 
-  const offset = (page - 1) * pageSize; 
+  const { page, pageSize } = paginated;
+  const offset = (page - 1) * pageSize;
 
   if (queryInputs) {
     whereClause = findByQuery(queryInputs);
@@ -33,15 +34,17 @@ const findAllProducts = async (paginated, queryInputs) => {
   });
 
   const { count, rows } = products;
-  let totalPages = Math.ceil(count / pageSize);
-  // if (totalPages === 0) {totalPages = 1 }
+  const totalPages = Math.ceil(count / pageSize);
+  const { message, status } = findAll_returnValidator(rows, page, totalPages);
 
   return {
     totalResults: count,
     totalPages: totalPages,
     currentPage: page,
     pageSize: pageSize,
-    productArray: rows,
+    productsDB: rows,
+    message: message,
+    status: status,
   };
 };
 
