@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@auth0/auth0-react": "^2.2.4",
+    "@emailjs/browser": "^4.3.3",
     "@reduxjs/toolkit": "^2.2.1",
     "@stripe/react-stripe-js": "^2.6.2",
     "@stripe/stripe-js": "^3.2.0",
@@ -20,6 +21,7 @@
     "react-dom": "^18.2.0",
     "react-redux": "^9.1.0",
     "react-router-dom": "^6.22.3",
+    "sweetalert2": "^11.10.7",
     "stripe": "^14.23.0"
   },
   "devDependencies": {

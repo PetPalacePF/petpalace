@@ -25,24 +25,32 @@ const Detail = () => {
     const stripe = await loadStripe("pk_test_51P0rxH2NIYOIQA82hkjbhAvzJzKGiKpivFNd8bVen5bbAUpBgz7IxiJCaEVXRxmAC2iOrDIcvwFFqi9Pqfgp4EiB00aboN6QK3")
 
     const body = {
-      products: product
+      products: [{
+        name: product.name,
+        description: product.description,
+        img: product.img,
+        price: product.price,
+        // quantity: 1 //modificar esta parte del código
+      }],
     }
 
-    const response = await fetch('http://localhost:5000/create-checkout-session', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(body)
-    })
+    console.log("esto es body ", body);
 
-    console.log(response);
+    const response = await axios.post('http://localhost:5000/payment-session',
+      body
+    )
 
-    const session = await response.json()
+    console.log("esto es response ",response);
+
+    const session = await response.data
+
+    console.log("esto es session ", session);
 
     const result = stripe.redirectToCheckout({
-      sessionId: session.id
+      sessionId: session.sessionId
     })
+
+    console.log("esto es result ", result);
   }
 
   return (
