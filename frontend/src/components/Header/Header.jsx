@@ -4,12 +4,30 @@ import { Link } from "react-router-dom";
 import { SearchBar } from "../Search Bar/SearchBar";
 import { NavBar } from "../Nav Bar/NavBar";
 
-import Cart from "../Cart/Cart";
+import AsideCart from "../AsideCart/AsideCart";
 import BackgroundBlur from "../BackgroundBlur/BackgroundBlur";
 import CartIcon from "../../assets/cart-24x24.png";
 import logo from "../../assets/logo.png";
+
+import { useNavigate } from "react-router-dom";
+
 const Header = ({ allCategories, setProducts, search, setSearch }) => {
+
+  const navigate = useNavigate()
   const [openCart, setOpenCart] = useState(false);
+  const [ showCart, setShowCart ] = useState(false)
+
+  const handleClick = () => {
+    setShowCart(false)
+    setTimeout(() => {
+      setOpenCart(false)
+    }, 200)
+  }
+
+  const handleClickBuy = () => {
+    handleClick()
+    return navigate('/cart')
+  } 
 
   return (
     <>
@@ -29,8 +47,8 @@ const Header = ({ allCategories, setProducts, search, setSearch }) => {
             <img src={CartIcon} alt="" />
           </button>
           {openCart && (
-            <BackgroundBlur onClick={() => setOpenCart(!openCart)}>
-              <Cart openCart={openCart} />
+            <BackgroundBlur onClick={handleClick} showCart={showCart} >
+              <AsideCart handleClickBuy={handleClickBuy} openCart={openCart} setOpenCart={setOpenCart} showCart={showCart} setShowCart={setShowCart} />
             </BackgroundBlur>
           )}
         </div>

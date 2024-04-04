@@ -17,6 +17,7 @@ import AdminPanel from "./Views/Admin/AdminPanel";
 // * Utils
 import getCategories from './utils/getCategories.js'
 import { Shop } from "./Views/Shop.jsx";
+import Cart from "./Views/User/Cart.jsx";
 
 function App() {
 
@@ -78,6 +79,10 @@ function App() {
               filterPrice={filterPrice} setFilterPrice={setFilterPrice}
               sortRating={sortRating} setSortRating={setSortRating}
             />}></Route>
+            <Route 
+              path="/cart"
+              element={<Cart />}
+            />
           </Routes>
         </>} />
 
