@@ -1,4 +1,4 @@
-const productsJsonError = (message) => {
+const jsonProductsError = (message) => {
     return {
         totalResults: 0,
         totalPages: 0,
@@ -10,4 +10,4 @@ const productsJsonError = (message) => {
 
 };
 
-module.exports = productsJsonError;
+module.exports = jsonProductsError;
