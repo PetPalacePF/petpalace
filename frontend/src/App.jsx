@@ -76,12 +76,11 @@ function App() {
               products={products} setProducts={setProducts}
               filters={filters}
             />}></Route>
+            <Route path="/profile/*" element={<Profile />}></Route>
             <Route 
               path="/cart"
               element={<Cart />}
             />
-
-            <Route path="/profile" element={<Profile />}></Route>
             <Route path="/contact" element={<Contact />}></Route>
           </Routes>
         </>} />
