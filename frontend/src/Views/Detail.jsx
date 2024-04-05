@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import starFilled from "../assets/starIcon-yellowFilled.png";
 import starEmpty from "../assets/starIcon-yellowEmpty.png";
+import addToCart from "../utils/sendToCart";
 
 const Detail = () => {
   const { id } = useParams();
@@ -76,6 +77,11 @@ const Detail = () => {
     return <div className="flex">{stars}</div>;
   };
 
+  const handleAddToCart = (event) => {
+    event.preventDefault();
+    addToCart(product.id);
+  };
+
   return (
     <section className="text-gray-700 body-font overflow-hidden bg-white">
       <div className="container px-5 py-24 mx-auto rounded border border-gray-200">
@@ -106,7 +112,10 @@ const Detail = () => {
                 ${product.price}
               </span>
               <div className="flex">
-                <button className="flex ml-auto text-white bg-violetahome border-0 py-2 px-4 mx-2 focus:outline-none hover:bg-violetamain rounded">
+                <button
+                  onClick={(event) => handleAddToCart(event)}
+                  className="flex ml-auto text-white bg-violetahome border-0 py-2 px-4 mx-2 focus:outline-none hover:bg-violetamain rounded"
+                >
                   Add to cart
                 </button>
                 <button
