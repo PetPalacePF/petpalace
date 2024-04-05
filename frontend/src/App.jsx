@@ -19,6 +19,7 @@ import AdminPanel from "./Views/Admin/AdminPanel";
 // * Utils
 import getCategories from "./utils/getCategories.js";
 import { Shop } from "./Views/Shop.jsx";
+import Cart from "./Views/User/Cart.jsx";
 import useFilters from "./hooks/useFilter.jsx";
 import { Profile } from "./Views/Users/Profile.jsx";
 
@@ -75,6 +76,10 @@ function App() {
               products={products} setProducts={setProducts}
               filters={filters}
             />}></Route>
+            <Route 
+              path="/cart"
+              element={<Cart />}
+            />
 
             <Route path="/profile" element={<Profile />}></Route>
             <Route path="/contact" element={<Contact />}></Route>
