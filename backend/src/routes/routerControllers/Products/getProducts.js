@@ -8,9 +8,9 @@ const jsonProductsError = require("../../../utils/validators/products/errors/jso
 
 const getProducts = async (req, res) => {
   const {
-    brand_or_name = "",
     page = 1,
     pageSize = 15,
+    brand_or_name = "",
     filterBrands = "",
     filterCategories = [],
     filterPrice = [],
@@ -24,9 +24,9 @@ const getProducts = async (req, res) => {
   const paginated = { page, pageSize };
 
   const queryInputs = {
-    brand_or_name,
     page,
     pageSize,
+    brand_or_name,
     filterBrands,
     filterCategories,
     filterPrice,
@@ -37,7 +37,6 @@ const getProducts = async (req, res) => {
     sortRating,
   };
 
-  //* INPUT
   const queryError = inputValidator(queryInputs);
   if (queryError.error) {
     const message = jsonProductsError(queryError.message);
@@ -62,7 +61,6 @@ const getProducts = async (req, res) => {
       }
     }
 
-    //* OUTPUT
     const {
       totalResults,
       totalPages,
