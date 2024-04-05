@@ -106,12 +106,12 @@ const Detail = () => {
                 ${product.price}
               </span>
               <div className="flex">
-                <button className="flex ml-auto text-white bg-violetahome border-0 py-2 px-4 mx-2 focus:outline-none hover:violetamain rounded">
+                <button className="flex ml-auto text-white bg-violetahome border-0 py-2 px-4 mx-2 focus:outline-none hover:bg-violetamain rounded">
                   Add to cart
                 </button>
                 <button
                   onClick={makePayment}
-                  className="flex ml-auto text-white bg-violetahome border-0 py-2 px-4 mx-2 focus:outline-none hover:violetamain rounded"
+                  className="flex ml-auto text-white bg-violetahome border-0 py-2 px-4 mx-2 focus:outline-none hover:bg-violetamain rounded"
                 >
                   Buy now
                 </button>
