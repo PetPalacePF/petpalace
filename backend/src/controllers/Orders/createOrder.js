@@ -18,8 +18,15 @@ const createOrder = async (products, userId) => {
     // Agregar productos a la orden
     console.log(products);
     for (const product of products) {
-      product.length === 2 &&
-      await newOrder.addProducts(product[0], { through: { cantidad: product[1] } });
+      if (product.length === 2) {
+        await newOrder.addProducts(product[0], {
+          through: { cantidad: product[1] },
+        });
+      } else if (product.length === 1){
+        await newOrder.addProducts(product[0], {
+          through: { cantidad: 1 },
+        });
+      }
     }
 
     return newOrder.dataValues;
