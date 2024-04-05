@@ -87,13 +87,13 @@ export const UserForm = () => {
                     {!user.phone_number && (
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2">Phone number:</label>
-                            <input value={phoneInput} onChange={handlePhoneInputChange} className="shadow appearance-none border rounded w-1/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+                            <input value={phoneInput} onChange={handlePhoneInputChange} className="shadow appearance-none border rounded w-1/4 py-2 px-40 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
                         </div>
                     )}
                     {user.phone_number && (
                         <div className="mb-4">
                             <label className="block text-gray-700 text-sm font-bold mb-2">Phone number:</label>
-                            <input value={user.phone_number} className="shadow appearance-none border rounded w-1/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" disabled />
+                            <input value={user.phone_number} className="shadow appearance-none border rounded w-1/4 py-2 px-40 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" disabled />
                         </div>
                     )}
                     <div className="flex justify-between">
