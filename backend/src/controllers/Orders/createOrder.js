@@ -10,11 +10,17 @@ const createOrder = async (products, userId) => {
       newOrder = await Order.create();
       await newOrder.setUser(user);
     } else {
-      return (newOrder = { message: `No se pudo crear la Orden. Usuario ${userId} no encontrado` });
+      return (newOrder = {
+        message: `No se pudo crear la Orden. Usuario ${userId} no encontrado`,
+      });
     }
 
     // Agregar productos a la orden
-    await newOrder.addProducts(products);
+    console.log(products);
+    for (const product of products) {
+      product.length === 2 &&
+      await newOrder.addProducts(product[0], { through: { cantidad: product[1] } });
+    }
 
     return newOrder.dataValues;
   } catch (error) {
