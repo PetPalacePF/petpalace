@@ -6,6 +6,7 @@ const DB_PASSWORD   = process.env.DB_PASSWORD || 'postgres'
 const HOST          = process.env.HOST || 'localhost'
 const PORT          = process.env.PORT || 5432 
 const DB_NAME       = process.env.DB_NAME || 'pet_palace'
+const DB_DEPLOY     = 'https://petpalacepf.onrender.com/'
 
 module.exports = {
     FRONTEND_URL,
@@ -13,5 +14,6 @@ module.exports = {
     DB_PASSWORD,
     HOST,
     PORT,
-    DB_NAME
+    DB_NAME,
+    DB_DEPLOY
 }
