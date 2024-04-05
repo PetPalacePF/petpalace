@@ -3,8 +3,8 @@ const removeUser = require("../../../controllers/Users/removeUser");
 const deleteUser = async (req, res) => {
   try {
     const { id } = req.params;
-
-    userDeleted = await removeUser(id);
+    let message;
+    const userDeleted = await removeUser(id);
     userDeleted
       ? (message = `Usuario '${id}' eliminado correctamente`)
       : (message = `No existe un Usuario con el id '${id}' para eliminar`);
