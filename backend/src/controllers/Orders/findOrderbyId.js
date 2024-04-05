@@ -5,7 +5,7 @@ const findOrderbyId = async (id) => {
     include: [
       {
         model: Product,
-        attributes: ["name"],
+        attributes: ["id", "brand", "name", "price", "stock", "img"],
         through: {
           attributes: [],
         },

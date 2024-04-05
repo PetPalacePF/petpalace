@@ -1,8 +1,6 @@
 const notFoundValidator = (queryInputs) => {
   const {
     brand_or_name,
-    page,
-    pageSize,
     filterBrands,
     filterCategories,
     filterPrice,
@@ -37,7 +35,7 @@ const notFoundValidator = (queryInputs) => {
 
   if (filterPrice instanceof Array && filterPrice.length === 2) {
     return `No se ha encontrado ningún Producto que contenga un precio que coincida entre los siguientes valores: '${filterPrice}'`;
-  } 
+  }
 
   if (sortBrand !== "") {
     return `La tabla de productos se encuentra actualmente vacía, no hay productos para ordenar por marca.`;
