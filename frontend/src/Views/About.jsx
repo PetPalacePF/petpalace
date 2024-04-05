@@ -4,7 +4,7 @@ import ProductForm from "../components/Admin/ProductForm";
 const About = () => {
   return (
     <div>
-      <ProductForm/>
+      <ProductForm />
       {/* <div>
         <h1>About Us</h1>
         <h2>Welcome to Pet Palace - Your Premier Pet Destination</h2>
