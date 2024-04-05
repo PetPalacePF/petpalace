@@ -4,8 +4,9 @@ const notFoundValidator = (queryInputs) => {
     filterBrands,
     filterCategories,
     filterPrice,
-    sortName,
     sortBrand,
+    sortId,
+    sortName,
     sortPrice,
     sortRating,
   } = queryInputs;
@@ -39,6 +40,10 @@ const notFoundValidator = (queryInputs) => {
 
   if (sortBrand !== "") {
     return `La tabla de productos se encuentra actualmente vacía, no hay productos para ordenar por marca.`;
+  }
+
+  if (sortId !== "") {
+    return `La tabla de productos se encuentra actualmente vacía, no hay productos para ordenar por id.`;
   }
 
   if (sortName !== "") {
