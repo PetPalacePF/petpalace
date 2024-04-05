@@ -1,9 +1,6 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-export const UserSideBar = () => {
-    const [selectedLink, setSelectedLink] = useState('/profile');
-
+export const UserSideBar = ({ selectedLink, handleLinkClick }) => {
     return (
         <aside className="w-48 bg-gray-800 p-4 mt-12">
             <div className="text-white mb-4">
@@ -11,18 +8,18 @@ export const UserSideBar = () => {
                 <ul>
                     <li className="mb-2">
                         <Link
-                            to="/profile"
-                            className={`block py-2 px-4 rounded hover:bg-gray-700 ${selectedLink === '/profile' ? 'bg-gray-700' : ''}`}
-                            onClick={() => setSelectedLink('/profile')}
+                            to="/profile/personalInfo"
+                            className={`block py-2 px-4 rounded hover:bg-gray-700 ${selectedLink === '/profile/personalInfo' ? 'bg-gray-700' : ''}`}
+                            onClick={() => handleLinkClick('/profile/personalInfo')}
                         >
                             Personal information
                         </Link>
                     </li>
                     <li className="mb-2">
                         <Link
-                            to="/purchases"
-                            className={`block py-2 px-4 rounded hover:bg-gray-700 ${selectedLink === '/purchases' ? 'bg-gray-700' : ''}`}
-                            onClick={() => setSelectedLink('/purchases')}
+                            to="/profile/purchases"
+                            className={`block py-2 px-4 rounded hover:bg-gray-700 ${selectedLink === '/profile/purchases' ? 'bg-gray-700' : ''}`}
+                            onClick={() => handleLinkClick('/profile/purchases')}
                         >
                             My Purchases
                         </Link>
@@ -30,5 +27,5 @@ export const UserSideBar = () => {
                 </ul>
             </div>
         </aside>
-    )
-}
+    );
+};
