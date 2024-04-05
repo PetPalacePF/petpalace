@@ -9,19 +9,15 @@ const PurchaseModel = require("./models/Purchase");
 const UserModel = require("./models/User");
 
 //? CONNECTION
-const dataBase = new Sequelize(
-  DB_DEPLOY,
-  // `postgres://${DB_USER}:${DB_PASSWORD}@${HOST}:${PORT}/${DB_NAME}`,
-  {
-    logging: false,
-    native: false,
-    dialectOptions:{
-      ssl:{
-        require: true,
-      }
-    }
-  }
-);
+const dataBase = new Sequelize(DB_DEPLOY, {
+  logging: false,
+  native: false,
+  dialectOptions: {
+    ssl: {
+      require: true,
+    },
+  },
+});
 
 //* MODELS
 AdminModel(dataBase);

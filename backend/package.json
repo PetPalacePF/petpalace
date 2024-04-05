@@ -18,7 +18,7 @@
     "pg": "^8.11.3",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.37.1",
-    "stripe": "^14.23.0"
+    "stripe": "^14.24.0"
   },
   "devDependencies": {
     "morgan": "^1.10.0",
