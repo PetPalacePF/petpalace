@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { SearchBar } from "../Search Bar/SearchBar";
 import { NavBar } from "../Nav Bar/NavBar";
+import { useAuth0 } from "@auth0/auth0-react";
 
 import AsideCart from "../AsideCart/AsideCart";
 import BackgroundBlur from "../BackgroundBlur/BackgroundBlur";
@@ -12,11 +13,11 @@ import { useNavigate } from "react-router-dom";
 
 const Header = ({ allCategories, setProducts, search, setSearch }) => {
 
-  const { pathname }  = useLocation()
+  const { pathname } = useLocation()
   const navigate = useNavigate()
   const [openCart, setOpenCart] = useState(false);
-  const [ showCart, setShowCart ] = useState(false)
-
+  const [showCart, setShowCart] = useState(false)
+  const { isAuthenticated, user } = useAuth0();
   const handleClick = () => {
     setShowCart(false)
     setTimeout(() => {
@@ -27,7 +28,7 @@ const Header = ({ allCategories, setProducts, search, setSearch }) => {
   const handleClickBuy = () => {
     handleClick()
     return navigate('/cart')
-  } 
+  }
 
   return (
     <>
@@ -50,6 +51,18 @@ const Header = ({ allCategories, setProducts, search, setSearch }) => {
               <AsideCart handleClickClose={handleClick} handleClickBuy={handleClickBuy} openCart={openCart} setOpenCart={setOpenCart} showCart={showCart} setShowCart={setShowCart} />
             </BackgroundBlur>
           )}
+          {isAuthenticated && (
+            <div className="ml-4 rounded-full overflow-hidden">
+              <Link to="/profile/personalInfo">
+                <img
+                  src={user.picture}
+                  alt={user.name}
+                  className="w-8 h-8 cursor-pointer"
+                />
+              </Link>
+            </div>
+          )}
+
         </div>
       </div>
       <NavBar allCategories={allCategories} />
