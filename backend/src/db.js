@@ -7,23 +7,23 @@ const OrderModel = require("./models/Order");
 const ProductModel = require("./models/Product");
 const PurchaseModel = require("./models/Purchase");
 const UserModel = require("./models/User");
+const Order_ProductModel = require("./models/Order_Product");
 
 //? CONNECTION
 
 const dataBase = new Sequelize(
-  DB_DEPLOY,
-  // `postgres://${DB_USER}:${DB_PASSWORD}@${HOST}:${PORT}/${DB_NAME}`,
+  // DB_DEPLOY,
+  `postgres://${DB_USER}:${DB_PASSWORD}@${HOST}:${PORT}/${DB_NAME}`,
   {
     logging: false,
     native: false,
-    dialectOptions:{
-      ssl:{
-        require: true,
-      }
-    }
+    // dialectOptions:{
+    //   ssl:{
+    //     require: true,
+    //   }
+    // }
   }
 );
-
 
 //* MODELS
 AdminModel(dataBase);
@@ -32,6 +32,7 @@ OrderModel(dataBase);
 ProductModel(dataBase);
 PurchaseModel(dataBase);
 UserModel(dataBase);
+Order_ProductModel(dataBase);
 
 // ASSOCIATIONS
 const { Admin, Category, Order, Product, Purchase, User } = dataBase.models;
@@ -43,8 +44,20 @@ Category.belongsToMany(Product, { through: "Category_Product" });
 Product.belongsToMany(Category, { through: "Category_Product" });
 
 //Product - Order (n a n)
-Order.belongsToMany(Product, { through: "Order_Product" });
-Product.belongsToMany(Order, { through: "Order_Product" });
+// Order.belongsToMany(Product, { through: "Order_Product" });
+// Product.belongsToMany(Order, { through: "Order_Product" });
+
+//Product - Order (n a n)
+Order.belongsToMany(Product, {
+  through: "Order_Product",
+  foreignKey: "orderId",
+  otherKey: "productId",
+});
+Product.belongsToMany(Order, {
+  through: "Order_Product",
+  foreignKey: "productId",
+  otherKey: "orderId",
+});
 
 // Orders - User (n a 1)
 Order.belongsTo(User);
