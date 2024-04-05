@@ -3,13 +3,15 @@ const removeProduct = require("../../../controllers/Products/removeProduct");
 const deleteProducts = async (req, res) => {
   try {
     const { id } = req.params;
+    let message;
+    let status;
 
-    productDeleted = await removeProduct(id);
+    const productDeleted = await removeProduct(id);
     productDeleted
-      ? (message = `Producto '${id}' eliminado correctamente`)
-      : (message = `No existe un Producto con el id '${id}' para eliminar`);
+      ? (message = `Producto '${id}' eliminado correctamente`) && (status = 200)
+      : (message = `No existe un Producto con el id '${id}' para eliminar`) && (status = 400);
 
-    res.status(200).json({ message: message });
+    res.status(status).json({ message: message });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
