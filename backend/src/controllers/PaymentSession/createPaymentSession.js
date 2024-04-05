@@ -34,7 +34,7 @@ const createPaymentSession = async(products, userId) =>{
           payment_method_types: ['card'],
           line_items: lineItems,
           mode: 'payment',
-          success_url: 'https://tudominio.com/pago-exitoso',
+          success_url: 'https://localhost:5173/',
           cancel_url: 'https://tudominio.com/pago-cancelado',
         });
     
