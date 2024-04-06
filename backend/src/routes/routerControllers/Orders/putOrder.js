@@ -4,6 +4,8 @@ const formattedOrder = require("../../../utils/formatted/formattedOrder");
 const putOrder = async (req, res) => {
   const { id, productsToAdd, productsToRemove } = req.body;
   let paramsInputError = false;
+
+  productsToAdd &&
   productsToAdd.forEach((product) => {
     product.forEach((element) => {
       if (isNaN(element)) {
@@ -12,6 +14,7 @@ const putOrder = async (req, res) => {
     });
   });
 
+  productsToRemove &&
   productsToRemove.forEach((element) => {
     if (isNaN(element)) {
       paramsInputError = true;

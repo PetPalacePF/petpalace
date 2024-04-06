@@ -6,23 +6,26 @@ const modifyOrder = async (id, productsToAdd, productsToRemove) => {
 
     if (updatedOrder) {
       if (updatedOrder.dataValues.PurchaseId === null) {
-     
         // Agregar nuevos productos
-        for (const product of productsToAdd) {
-          if (product.length === 2) {
-            await updatedOrder.addProducts(product[0], {
-              through: { cantidad: product[1] },
-            });
-          } else if (product.length === 1) {
-            await updatedOrder.addProducts(product[0], {
-              through: { cantidad: 1 },
-            });
+        if (productsToAdd) {
+          for (const product of productsToAdd) {
+            if (product.length === 2) {
+              await updatedOrder.addProducts(product[0], {
+                through: { cantidad: product[1] },
+              });
+            } else if (product.length === 1) {
+              await updatedOrder.addProducts(product[0], {
+                through: { cantidad: 1 },
+              });
+            }
           }
         }
 
         // Eliminar productos
-        for (const product of productsToRemove) {
-          await updatedOrder.removeProducts(product);
+        if (productsToRemove) {
+          for (const product of productsToRemove) {
+            await updatedOrder.removeProducts(product);
+          }
         }
 
         // Actualizar la orden
@@ -43,4 +46,3 @@ const modifyOrder = async (id, productsToAdd, productsToRemove) => {
 };
 
 module.exports = modifyOrder;
-
