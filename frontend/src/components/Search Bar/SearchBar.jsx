@@ -3,8 +3,9 @@ import { getFilteredProducts } from "../../utils/getAllProducts";
 import searchIcon from "../../assets/searchIcon-24x24.png";
 
 // eslint-disable-next-line react/prop-types
-export const SearchBar = ({ setProducts, search, setSearch }) => {
+export const SearchBar = ({ filters, setProducts }) => {
   const navigate = useNavigate();
+  const { search, setSearch } = filters;
   const handleSubmit = (event) => {
     event.preventDefault();
     getFilteredProducts({ search, setProducts });
@@ -15,6 +16,7 @@ export const SearchBar = ({ setProducts, search, setSearch }) => {
     setSearch(event.target.value);
     getFilteredProducts({ search, setProducts });
     navigate("/shop");
+    console.log(setProducts)
   };
   return (
     <div className="relative">
