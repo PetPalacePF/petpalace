@@ -3,12 +3,12 @@ import { Footer } from "../components/Footer/Footer";
 
 const About = () => {
   return (
-    <div className="mx-auto mt-20" style={{ backgroundImage: "url('./public/Carousel_2.jpg')"}}>
+    <div className="mx-auto mt-20" style={{ backgroundImage:  "url('./public/Carousel_2.jpg')"}}>
       <div className="max-w-5xl mx-auto">
-        <h1 className="text-3xl font-bold text-center border-b-2 border-black pb-1 mb-4">About Us</h1>
-        <div className="flex flex-col items-start mt-20">
-          <h2 className="text-xl font-semibold mb-2 ml-2">Welcome to Pet Palace - Your Premier Pet Destination</h2>
-          <p className="text-gray-700 mb-6 ml-2 max-w-full text-left">
+      <h1 className="text-4xl font-bold text-center border-b-2 border-black pb-2 mb-4">About Us</h1>
+        <div className="flex flex-col items-start mt-20 relative backdrop-filter backdrop-blur-md rounded-lg shadow-md p-8">
+          <h2 className="text-xl font-semibold mb-2 ml-2">🐾Welcome to Pet Palace - Your Premier Pet Destination</h2>
+          <p className=" mb-6 ml-2 max-w-full text-left">
             At Pet Palace, we're dedicated to catering to every aspect of your
             pet's well-being. As pet lovers ourselves, we understand the
             importance of providing the best care for your furry companions.
@@ -26,8 +26,8 @@ const About = () => {
             lovers today and experience the ultimate destination for all your pet
             needs.
           </p>
-          <h2 className="text-xl font-semibold mb-2 ml-2">Expert Care at Your Fingertips</h2>
-          <p className="text-gray-700 mb-6 ml-2 max-w-full text-left">
+          <h2 className="text-xl font-semibold mb-2 ml-2">🐾Expert Care at Your Fingertips</h2>
+          <p className="mb-6 ml-2 max-w-full text-left">
             At Pet Palace, we go beyond just providing products. We're committed
             to ensuring your pet receives comprehensive care and attention. That's
             why we offer a unique feature that allows you to connect with
@@ -41,21 +41,22 @@ const About = () => {
             experience the convenience of expert care at your fingertips. After
             all, at Pet Palace, every pet reigns supreme!
           </p>
-          <h2 className="text-xl font-semibold mb-2 ml-2">Let's Connect:</h2>
-          <p className="text-gray-700 ml-2 max-w-full text-left">
+          <h2 className="text-xl font-semibold mb-2 ml-2">🐾Let's Connect:</h2>
+          <p className="ml-2 max-w-full text-left">
             To contact us you can go to the contact section or through one of the 
             contacts that appear in the footer of the page.
           </p>
         </div>
       </div>
       <div className="mt-20 w-full">
-      <Footer />
+        <Footer />
       </div>
     </div>
   );
 };
 
 export default About;
+
 
 
 
