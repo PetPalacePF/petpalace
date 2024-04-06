@@ -1,6 +1,20 @@
 
 export const Mypurchases = () => {
     return (
-        <div>Mypurchases</div>
+        <>
+            <ul>
+                <li> My Purchases </li>
+                <li> My Purchases </li>
+                <li> My Purchases </li>
+                <li> My Purchases </li>
+                <li> My Purchases </li>
+                <li> My Purchases </li>
+                <li> My Purchases </li>
+                <li> My Purchases </li>
+                <li> My Purchases </li>
+                <li> My Purchases </li>
+
+            </ul>
+        </>
     )
 }

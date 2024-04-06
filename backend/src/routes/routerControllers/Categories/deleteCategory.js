@@ -5,7 +5,7 @@ const deleteCategory = async (req, res) => {
     const { id } = req.params;
     let message;
     let status;
-    categoryDeleted = await removeCategory(id);
+    const categoryDeleted = await removeCategory(id);
     categoryDeleted
       ? (message = `Categoria '${id}' eliminada correctamente`) &&
         (status = 200)

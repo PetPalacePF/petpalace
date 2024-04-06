@@ -1,31 +1,34 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { SearchBar } from "../Search Bar/SearchBar";
 import { NavBar } from "../Nav Bar/NavBar";
-import Cart from "../Cart/Cart";
+import { useAuth0 } from "@auth0/auth0-react";
+
+import AsideCart from "../AsideCart/AsideCart";
 import BackgroundBlur from "../BackgroundBlur/BackgroundBlur";
 import CartIcon from "../../assets/cart-24x24.png";
 import logo from "../../assets/logo.png";
-import { useAuth0 } from "@auth0/auth0-react";
+
+import { useNavigate } from "react-router-dom";
 
 const Header = ({ allCategories, setProducts, filters }) => {
+
+  const { pathname } = useLocation()
+  const navigate = useNavigate()
   const [openCart, setOpenCart] = useState(false);
-  // const [openUser, setOpenUser] = useState(false);
-  // const [userHoverTimeout, setUserHoverTimeout] = useState(null);
-  const { search, setSearch } = filters;
+  const [showCart, setShowCart] = useState(false)
   const { isAuthenticated, user } = useAuth0();
+  const handleClick = () => {
+    setShowCart(false)
+    setTimeout(() => {
+      setOpenCart(false)
+    }, 200)
+  }
 
-  // const handleUserHover = () => {
-  //   setUserHoverTimeout(setTimeout(() => {
-  //     setOpenUser(true);
-  //   }, 1000));
-  // };
-
-  // const handleUserLeave = () => {
-  //   clearTimeout(userHoverTimeout);
-  //   setUserHoverTimeout(null);
-  //   setOpenUser(false);
-  // };
+  const handleClickBuy = () => {
+    handleClick()
+    return navigate('/cart')
+  }
 
   return (
     <>
@@ -37,38 +40,28 @@ const Header = ({ allCategories, setProducts, filters }) => {
         <div className="flex items-center">
           <SearchBar
             setProducts={setProducts}
-            search={search}
-            setSearch={setSearch}
+            filters={filters}
           />
-          <button onClick={() => setOpenCart(!openCart)} className="ml-4 relative">
+          <button disabled={pathname.includes('cart')} onClick={() => setOpenCart(!openCart)} className="ml-4 relative cursor-pointer">
             <img src={CartIcon} alt="" />
-            {openCart && (
-              <BackgroundBlur onClick={() => setOpenCart(!openCart)}>
-                <Cart openCart={openCart} />
-              </BackgroundBlur>
-            )}
           </button>
+          {openCart && (
+            <BackgroundBlur onClick={handleClick} showCart={showCart} >
+              <AsideCart handleClickClose={handleClick} handleClickBuy={handleClickBuy} openCart={openCart} setOpenCart={setOpenCart} showCart={showCart} setShowCart={setShowCart} />
+            </BackgroundBlur>
+          )}
           {isAuthenticated && (
-            <div
-              className="ml-4 rounded-full overflow-hidden"
-            // onMouseEnter={handleUserHover}
-            // onMouseLeave={handleUserLeave}
-            >
-              <Link to="/profile">
+            <div className="ml-4 rounded-full overflow-hidden">
+              <Link to="/profile/personalInfo">
                 <img
                   src={user.picture}
                   alt={user.name}
                   className="w-8 h-8 cursor-pointer"
                 />
               </Link>
-              {/* {openUser && (
-                <button className="absolute bg-white shadow-md py-2 px-4 top-10 right-0 z-10">
-                  <Link to="/profile" className="block mb-2">Perfil</Link>
-                  <Link to="/purchases" className="block">Compras</Link>
-                </button>
-              )} */}
             </div>
           )}
+
         </div>
       </div>
       <NavBar allCategories={allCategories} />
