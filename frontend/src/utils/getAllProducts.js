@@ -21,7 +21,7 @@ export const getFilteredProducts = async (
   location
 ) => {
   const querys = location.search.split("?")[1];
-  console.log(querys);
+  // console.log("log de querys",querys);
 
   let unifiedWordFilterCategories = filterCategories.join("&filterCategories=");
   let unifiedWordFilterPrice = priceRange.join("&filterPrice=");
