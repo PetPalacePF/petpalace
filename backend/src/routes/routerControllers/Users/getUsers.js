@@ -13,15 +13,25 @@ const getUsers = async (req, res) => {
 
     users = formattedUsers(users);
     if (users.length > 0) {
-      return res.status(200).json(users);
+      return res
+        .status(200)
+        .json({
+          totalResults: 0,
+          totalPages: 0,
+          currentPage: 0,
+          pageSize: 0,
+          users: users,
+          message: "message",
+        });
     } else if (name_or_email !== "") {
       return res.status(404).json({
+        users: users,
         message: `No se ha encontrado ningun Usuario que coincida con la palabra '${name_or_email}'`,
       });
     } else {
       return res.status(404).json({
-        message: `No se ha encontrado ningun Usuario registrado en la base de datos`,
         users: users,
+        message: `No se ha encontrado ningun Usuario registrado en la base de datos`,
       });
     }
   } catch (error) {

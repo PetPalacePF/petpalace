@@ -9,15 +9,39 @@ module.exports = (dataBase) => {
         autoIncrement: true,
         primaryKey: true,
       },
+
       name: {
         type: DataTypes.STRING,
-        unique: true,
-        allowNull: false,
       },
+
       email: {
         type: DataTypes.STRING,
         unique: true,
         allowNull: false,
+      },
+
+      country: {
+        type: DataTypes.STRING,
+      },
+
+      state: {
+        type: DataTypes.STRING,
+      },
+
+      city: {
+        type: DataTypes.STRING,
+      },
+
+      street_address: {
+        type: DataTypes.STRING,
+      },
+
+      ZIP_Code: {
+        type: DataTypes.STRING,
+      },
+
+      phone: {
+        type: DataTypes.STRING,
       },
     },
     {
