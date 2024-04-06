@@ -11,7 +11,7 @@ import logo from "../../assets/logo.png";
 
 import { useNavigate } from "react-router-dom";
 
-const Header = ({ allCategories, setProducts, search, setSearch }) => {
+const Header = ({ allCategories, setProducts, filters }) => {
 
   const { pathname } = useLocation()
   const navigate = useNavigate()
@@ -40,8 +40,7 @@ const Header = ({ allCategories, setProducts, search, setSearch }) => {
         <div className="flex items-center">
           <SearchBar
             setProducts={setProducts}
-            search={search}
-            setSearch={setSearch}
+            filters={filters}
           />
           <button disabled={pathname.includes('cart')} onClick={() => setOpenCart(!openCart)} className="ml-4 relative cursor-pointer">
             <img src={CartIcon} alt="" />
