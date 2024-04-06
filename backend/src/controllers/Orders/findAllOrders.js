@@ -39,7 +39,7 @@ const findAllOrders = async (paginated, queryInputs) => {
         model: Product,
         attributes: ["id", "brand", "name", "price", "stock", "img"],
         through: {
-          attributes: [],
+          attributes: ["cantidad"],
         },
       },
       purchaseModel,

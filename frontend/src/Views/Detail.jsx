@@ -5,11 +5,13 @@ import { useParams } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import starFilled from "../assets/starIcon-yellowFilled.png";
 import starEmpty from "../assets/starIcon-yellowEmpty.png";
+import addToCart from "../utils/sendToCart";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Detail = () => {
   const { id } = useParams();
   const [product, setProduct] = useState({});
-
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
   useEffect(() => {
     axios
       .get(`http://localhost:5000/products/${id}`)
@@ -70,6 +72,11 @@ const Detail = () => {
     return <div className="flex">{stars}</div>;
   };
 
+  const handleAddToCart = (event) => {
+    event.preventDefault();
+    addToCart(product.id);
+  };
+
   return (
     <section className="text-gray-700 body-font overflow-hidden bg-white">
       <div className="container px-5 py-24 mx-auto rounded border border-gray-200">
@@ -90,25 +97,38 @@ const Detail = () => {
             </h2>
             <div className="flex mb-4">
               <div className="leading-relaxed">
-                Rating: {ratingToStars(product.rating)} ({product.rating}/5)
+                {ratingToStars(product.rating)}
               </div>
             </div>
 
             <p className="leading-relaxed">{product.description}</p>
             <div className="flex justify-between items-end mt-10">
               <span className="title-font font-medium text-2xl text-gray-900">
-                ${product.price}
+                ${product.price}.00
               </span>
               <div className="flex">
-                <button className="flex ml-auto text-white bg-violetahome border-0 py-2 px-4 mx-2 focus:outline-none hover:violetamain rounded">
+                <button
+                  onClick={(event) => handleAddToCart(event)}
+                  className="flex ml-auto text-white bg-violetahome border-0 py-2 px-4 mx-2 focus:outline-none hover:bg-violetamain rounded"
+                >
                   Add to cart
                 </button>
-                <button
-                  onClick={makePayment}
-                  className="flex ml-auto text-white bg-violetahome border-0 py-2 px-4 mx-2 focus:outline-none hover:violetamain rounded"
-                >
-                  Buy now
-                </button>
+                {isAuthenticated ? (
+                  <button
+                    onClick={makePayment}
+                    className="flex ml-auto text-white bg-violetahome border-0 py-2 px-4 mx-2 focus:outline-none hover:violetamain rounded"
+                  >
+                    Buy now
+                  </button>
+                ) : (
+                  <button
+                    onClick={loginWithRedirect}
+                    className="flex ml-auto text-white bg-violetahome border-0 py-2 px-4 mx-2 focus:outline-none hover:violetamain rounded"
+                  >
+                    Log in to buy
+                  </button>
+                )}
+
               </div>
             </div>
           </div>

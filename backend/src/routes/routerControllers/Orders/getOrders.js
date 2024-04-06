@@ -57,7 +57,7 @@ const getOrders = async (req, res) => {
       totalPages: totalPages,
       currentPage: currentPage,
       pageSize: pageSize,
-      products: ordersResult,
+      orders: ordersResult,
       message: message,
     });
   } catch (error) {
