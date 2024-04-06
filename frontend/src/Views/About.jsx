@@ -3,7 +3,7 @@ import { Footer } from "../components/Footer/Footer";
 
 const About = () => {
   return (
-    <div className="mx-auto mt-20" style={{ backgroundImage:  "url('./public/Carousel_2.jpg')"}}>
+    <div className="mx-auto mt-20" style={{ backgroundImage:  "url('./public/AboutImg.png')"}}>
       <div className="max-w-5xl mx-auto">
       <h1 className="text-4xl font-bold text-center border-b-2 border-black pb-2 mb-4">About Us</h1>
         <div className="flex flex-col items-start mt-20 relative backdrop-filter backdrop-blur-md rounded-lg shadow-md p-8">
