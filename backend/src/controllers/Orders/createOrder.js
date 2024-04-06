@@ -16,7 +16,6 @@ const createOrder = async (products, userId) => {
     }
 
     // Agregar productos a la orden
-    console.log(products);
     for (const product of products) {
       if (product.length === 2) {
         await newOrder.addProducts(product[0], {
