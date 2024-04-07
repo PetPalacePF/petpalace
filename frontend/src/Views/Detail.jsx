@@ -49,17 +49,11 @@ const Detail = () => {
       body
     );
 
-    console.log("esto es response ", response);
-
     const session = await response.data;
-
-    console.log("esto es session ", session);
 
     const result = stripe.redirectToCheckout({
       sessionId: session.sessionId,
     });
-
-    console.log("esto es result ", result);
   };
 
   const ratingToStars = (rating) => {
