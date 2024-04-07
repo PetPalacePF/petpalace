@@ -25,11 +25,19 @@ const getUsers = async (req, res) => {
         });
     } else if (name_or_email !== "") {
       return res.status(404).json({
+        totalResults: 0,
+        totalPages: 0,
+        currentPage: 0,
+        pageSize: 0,
         users: users,
         message: `No se ha encontrado ningun Usuario que coincida con la palabra '${name_or_email}'`,
       });
     } else {
       return res.status(404).json({
+        totalResults: 0,
+        totalPages: 0,
+        currentPage: 0,
+        pageSize: 0,
         users: users,
         message: `No se ha encontrado ningun Usuario registrado en la base de datos`,
       });
