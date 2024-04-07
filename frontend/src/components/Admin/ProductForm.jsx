@@ -265,6 +265,8 @@ const ProductForm = () => {
     })}
   </ul>
 </div>
+{errors.category && <div>{errors.category}</div>}
+
         {console.log("Selected categories:", productInfo.categories)}
         <br />
 
