@@ -8,9 +8,10 @@ import starEmpty from "../assets/starIcon-yellowEmpty.png";
 import addToCart from "../utils/sendToCart";
 import { useAuth0 } from "@auth0/auth0-react";
 
-const Detail = () => {
+const Detail = ({ users }) => {
   const { id } = useParams();
   const [product, setProduct] = useState({});
+  const [quantity, setQuantity] = useState(1);
   const { isAuthenticated, loginWithRedirect } = useAuth0();
   useEffect(() => {
     axios
@@ -74,7 +75,7 @@ const Detail = () => {
 
   const handleAddToCart = (event) => {
     event.preventDefault();
-    addToCart(product.id);
+    addToCart(product.id, quantity, users);
   };
 
   return (
@@ -106,29 +107,48 @@ const Detail = () => {
               <span className="title-font font-medium text-2xl text-gray-900">
                 ${product.price}.00
               </span>
-              <div className="flex">
+              <div className="flex items-center">
                 <button
-                  onClick={(event) => handleAddToCart(event)}
-                  className="flex ml-auto text-white bg-violetahome border-0 py-2 px-4 mx-2 focus:outline-none hover:bg-violetamain rounded"
+                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                  className="text-gray-500 border border-gray-200 rounded-full p-2"
                 >
-                  Add to cart
+                  -
                 </button>
-                {isAuthenticated ? (
+                <input
+                  type="text"
+                  value={quantity}
+                  readOnly
+                  className="w-12 text-center mx-3"
+                />
+                <button
+                  onClick={() => setQuantity(quantity + 1)}
+                  className="text-gray-500 border border-gray-200 rounded-full p-2 mr-2"
+                >
+                  +
+                </button>
+                <div className="flex">
                   <button
-                    onClick={makePayment}
-                    className="flex ml-auto text-white bg-violetahome border-0 py-2 px-4 mx-2 focus:outline-none hover:violetamain rounded"
+                    onClick={(event) => handleAddToCart(event)}
+                    className="flex ml-auto text-white bg-violetahome border-0 py-2 px-4 mx-2 focus:outline-none hover:bg-violetamain rounded"
                   >
-                    Buy now
+                    Add to cart
                   </button>
-                ) : (
-                  <button
-                    onClick={loginWithRedirect}
-                    className="flex ml-auto text-white bg-violetahome border-0 py-2 px-4 mx-2 focus:outline-none hover:violetamain rounded"
-                  >
-                    Log in to buy
-                  </button>
-                )}
-
+                  {isAuthenticated ? (
+                    <button
+                      onClick={makePayment}
+                      className="flex ml-auto text-white bg-violetahome border-0 py-2 px-4 mx-2 focus:outline-none hover:violetamain rounded"
+                    >
+                      Buy now
+                    </button>
+                  ) : (
+                    <button
+                      onClick={loginWithRedirect}
+                      className="flex ml-auto text-white bg-violetahome border-0 py-2 px-4 mx-2 focus:outline-none hover:violetamain rounded"
+                    >
+                      Log in to buy
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
           </div>

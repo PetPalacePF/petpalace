@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 
 import { Route, Routes } from "react-router-dom";
 
-
 // * Routes
 import Home from "./Views/Home";
 import About from "./Views/About";
@@ -24,8 +23,9 @@ import useFilters from "./hooks/useFilter.jsx";
 import { Profile } from "./Views/Users/Profile.jsx";
 
 function App() {
-  const [products, setProducts] = useState([])
-  const filters = useFilters()
+  const [products, setProducts] = useState([]);
+  const [users, setUsers] = useState();
+  const filters = useFilters();
 
   // const [error, setError] = useState(null);
   // const [loading, setLoading] = useState(false);
@@ -60,32 +60,51 @@ function App() {
     };
 
     get();
-  }, []);
-
+  }, [users, setUsers]);
+  // console.log("estos son los users", users);
   return (
     <div className="">
       <Routes>
-        <Route path='/*' element={<>
-          <Header allCategories={allCategories} setProducts={setProducts} filters={filters} />
-          <Routes>
-            <Route path="/" element={<Home />}></Route>
-            <Route path="/about" element={<About />}></Route>
-            <Route path="/detail/:id" element={<Detail />}></Route>
-            <Route path="/shop" element={<Shop
-              allCategories={allCategories}
-              products={products} setProducts={setProducts}
-              filters={filters}
-            />}></Route>
-            <Route path="/profile/*" element={<Profile />}></Route>
-            <Route 
-              path="/cart"
-              element={<Cart />}
-            />
-            <Route path="/contact" element={<Contact />}></Route>
-          </Routes>
-        </>} />
+        <Route
+          path="/*"
+          element={
+            <>
+              <Header
+                allCategories={allCategories}
+                setProducts={setProducts}
+                filters={filters}
+                setUsers={setUsers}
+              />
+              <Routes>
+                <Route path="/" element={<Home />}></Route>
+                <Route path="/about" element={<About />}></Route>
+                <Route
+                  path="/detail/:id"
+                  element={<Detail users={users} />}
+                ></Route>
+                <Route
+                  path="/shop"
+                  element={
+                    <Shop
+                      allCategories={allCategories}
+                      products={products}
+                      setProducts={setProducts}
+                      filters={filters}
+                    />
+                  }
+                ></Route>
+                <Route path="/profile/*" element={<Profile />}></Route>
+                <Route path="/cart" element={<Cart />} />
+                <Route path="/contact" element={<Contact />}></Route>
+              </Routes>
+            </>
+          }
+        />
 
-        <Route path='/admin/*' element={<AdminPanel allCategories={allCategories} />} />
+        <Route
+          path="/admin/*"
+          element={<AdminPanel allCategories={allCategories} />}
+        />
       </Routes>
     </div>
   );
