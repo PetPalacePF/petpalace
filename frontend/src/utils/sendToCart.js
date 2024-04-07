@@ -8,7 +8,8 @@ const addToCart = async (productId, orderedProductQuantity, users) => {
     console.log(users);
     try {
       const response = await axios.post("http://localhost:5000/orders", {
-        userId: id,
+        // userId: id,
+        userId: 1, // Harcodeado para seguir trabajando
         products: [[productId, orderedProductQuantity]],
       });
       console.log("Product added to cart:", response.data);

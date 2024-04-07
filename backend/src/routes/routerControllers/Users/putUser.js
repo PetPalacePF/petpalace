@@ -9,22 +9,25 @@ const putUser = async (req, res) => {
     state,
     city,
     street_address,
+    street_number,
     ZIP_Code,
     phone,
   } = req.body;
 
+  const userBody = {
+    name,
+    email,
+    country,
+    state,
+    city,
+    street_address,
+    street_number,
+    ZIP_Code,
+    phone,
+  };
+
   try {
-    const updatedUser = await modifyUser(
-      id,
-      name,
-      email,
-      country,
-      state,
-      city,
-      street_address,
-      ZIP_Code,
-      phone
-    );
+    const updatedUser = await modifyUser(id, userBody);
     updatedUser.hasOwnProperty("name")
       ? res.status(201).json({ updatedUser: updatedUser })
       : res.status(404).json({

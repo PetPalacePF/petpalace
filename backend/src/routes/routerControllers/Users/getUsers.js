@@ -1,46 +1,40 @@
 const findAllUsers = require("../../../controllers/Users/findAllUsers");
 const formattedUsers = require("../../../utils/formatted/formattedUsers");
+const activeInputsValidator = require("../../../utils/validators/users/activeInputsValidator");
+const inputValidator = require("../../../utils/validators/users/inputValidator");
+const jsonUsersError = require("../../../utils/validators/users/errors/jsonUsersError");
 
 const getUsers = async (req, res) => {
-  const { name_or_email = "" } = req.query;
-
+  const { page, pageSize, name_or_email = "", sortId = "" } = req.query;
+  const paginated = { page, pageSize };
+  const queryInputs = {
+    name_or_email,
+    sortId,
+  };
   let users;
+  const emptyTable = `No se ha encontrado ninguna Orden registrada en la base de datos`;
+
+  const queryError = inputValidator(queryInputs);
+  if (queryError.error) {
+    const message = jsonUsersError(queryError.message);
+    return res.status(404).json(message);
+  }
+  const inputsActive = activeInputsValidator(queryInputs);
 
   try {
-    name_or_email !== ""
-      ? (users = await findAllUsers(name_or_email))
-      : (users = await findAllUsers());
-
-    users = formattedUsers(users);
-    if (users.length > 0) {
-      return res
-        .status(200)
-        .json({
-          totalResults: 0,
-          totalPages: 0,
-          currentPage: 0,
-          pageSize: 0,
-          users: users,
-          message: "message",
-        });
-    } else if (name_or_email !== "") {
-      return res.status(404).json({
-        totalResults: 0,
-        totalPages: 0,
-        currentPage: 0,
-        pageSize: 0,
-        users: users,
-        message: `No se ha encontrado ningun Usuario que coincida con la palabra '${name_or_email}'`,
-      });
+    if (inputsActive) {
+      // users = await findAllUsers(paginated, queryInputs);
+      // if (users.totalResults === 0) {
+      //   const notFound_Products = notFoundValidator(queryInputs);
+      //   const message = jsonUsersError(notFound_Products);
+      //   return res.status(404).json(message);
+      // }
     } else {
-      return res.status(404).json({
-        totalResults: 0,
-        totalPages: 0,
-        currentPage: 0,
-        pageSize: 0,
-        users: users,
-        message: `No se ha encontrado ningun Usuario registrado en la base de datos`,
-      });
+      users = await findAllUsers(paginated);
+      if (users.totalResults === 0) {
+        const message = jsonUsersError(emptyTable);
+        return res.status(404).json(message);
+      }
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
