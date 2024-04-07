@@ -19,7 +19,7 @@ export const Card = ({ product }) => {
             alt=""
           />
           <span className="absolute top-3 left-4 border border-blue-200 text-xs rounded-xl px-4 py-2 font-semibold capitalize bg-blue-100">
-            {product.categories}
+            {product.Categories[0].name}
           </span>
           <button
             className="absolute top-3 right-4 border border-blue-200 rounded-xl px-4 py-2 bg-blue-100"
