@@ -7,8 +7,10 @@ const getUserById = async (req, res) => {
   try {
     const user = await findUserbyId(id);
     return user
-    ?  res.status(200).json(formattedUser(user))
-    :  res.status(400).send(`No existe el usuario con id: ${id}`);
+    ?  res.status(200).json({user: formattedUser(user)})
+    :  res.status(400).json({
+      user: user,
+      message : `No existe el usuario con id: ${id}`});
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
