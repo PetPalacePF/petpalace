@@ -36,6 +36,10 @@ module.exports = (dataBase) => {
         type: DataTypes.STRING,
       },
 
+      street_number: {
+        type: DataTypes.STRING,
+      },
+
       ZIP_Code: {
         type: DataTypes.STRING,
       },

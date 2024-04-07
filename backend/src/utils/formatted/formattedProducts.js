@@ -13,7 +13,7 @@ const formattedProducts = (products) => {
       Categories,
     } = product;
 
-    const categories = Categories.map((category) => category.name);
+    // const categories = Categories.map((category) => category.name);
 
     return {
       id,
@@ -25,7 +25,7 @@ const formattedProducts = (products) => {
       stock,
       rating,
       enabled,
-      categories,
+      Categories,
     };
   });
 };

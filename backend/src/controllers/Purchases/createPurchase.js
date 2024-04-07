@@ -1,13 +1,15 @@
 const { Purchase, User } = require("../../db");
 
-const createPurchase = async (orders, userId) => {
+const createPurchase = async (orders, userId, stripe_payment_id, stripe_payment_status) => {
+  const stripeData = {stripe_payment_id, stripe_payment_status}
+  
   try {
     let newPurchase;
 
     // Asignar el usuario a la compra
     const user = await User.findByPk(userId);
     if (user) {
-      newPurchase = await Purchase.create();
+      newPurchase = await Purchase.create(stripeData);
       await newPurchase.setUser(user);
     } else {
       return (newPurchase = {

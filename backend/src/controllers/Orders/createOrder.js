@@ -1,4 +1,5 @@
 const { Order, User } = require("../../db");
+const findOrderbyId = require("./findOrderbyId");
 
 const createOrder = async (products, userId) => {
   try {
@@ -27,8 +28,10 @@ const createOrder = async (products, userId) => {
         });
       }
     }
-
-    return newOrder.dataValues;
+const {id} = newOrder
+console.log(id);
+    const createdOrder = await findOrderbyId(id);
+    return createdOrder;
   } catch (error) {
     console.log("error: ", error.message);
     return { message: error.message };

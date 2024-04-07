@@ -9,10 +9,6 @@ module.exports = (dataBase) => {
         autoIncrement: true,
         primaryKey: true,
       },
-      cantidad: {
-        type: DataTypes.INTEGER,
-        // allowNull: false,
-      },
     },
     {
       timestamps: false,
