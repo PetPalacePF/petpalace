@@ -26,10 +26,25 @@ const getPurchases = async (req, res) => {
     } else {
       purchases = await findAllPurchases();
       if (purchases.length === 0) {
-        return res.status(404).send(emptyTable);
+        return res.status(404).json({
+          totalResults: 0,
+          totalPages: 0,
+          currentPage: 0,
+          pageSize: 0,
+          purchases: purchases,
+          message: emptyTable,
+        });
       }
     }
-    return res.status(200).json(formattedPurchases(purchases));
+    purchases = formattedPurchases(purchases);
+    return res.status(200).json({
+      totalResults: 0,
+      totalPages: 0,
+      currentPage: 0,
+      pageSize: 0,
+      purchases: purchases,
+      message: "message",
+    });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

@@ -1,8 +1,8 @@
 const { User } = require("../../db");
 
-const modifyUser = async (id, name, email) => {
+const modifyUser = async (id, userBody) => {
   try {
-    let updatedUser = await User.update({ name, email }, { where: { id: id } });
+    let updatedUser = await User.update(userBody, { where: { id: id } });
     if (updatedUser[0] === 0) {
       return { message: `Usuario '${id}' no encontrado` };
     }

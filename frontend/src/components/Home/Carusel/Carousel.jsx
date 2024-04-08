@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 
 import img1 from "/Carousel_1.jpg";
-import img2 from "/Carousel_2.jpg";
+import img2 from "/Carousel_2.png";
 import img3 from "/Carousel_3.jpeg";
 
 function Carousel() {

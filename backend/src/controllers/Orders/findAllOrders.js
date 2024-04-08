@@ -1,13 +1,17 @@
+const { Op } = require("sequelize");
 const { Order, Product, User, Purchase } = require("../../db");
 const filterByPurchases = require("./orders_utils/filterByPurchases");
 const filterByUsers = require("./orders_utils/filterByUsers");
 const SortByQuery = require("./orders_utils/SortByQuery");
 const purchaseModelCreator = require("./orders_utils/purchaseModelCreator");
+const findAll_returnValidator = require("../../utils/validators/orders/findAll_returnValidator");
 
-const findAllOrders = async (queryInputs) => {
+const findAllOrders = async (paginated, queryInputs) => {
   let includePurchasesClause = {};
   let includeUsersClause = {};
   let orderClause = [["id", "ASC"]];
+  const { page, pageSize } = paginated;
+  const offset = (page - 1) * pageSize;
 
   if (queryInputs) {
     includePurchasesClause = filterByPurchases(queryInputs);
@@ -17,13 +21,25 @@ const findAllOrders = async (queryInputs) => {
   }
   const purchaseModel = purchaseModelCreator(includePurchasesClause, Purchase);
 
-  const orders = await Order.findAll({
+
+   // Consulta para obtener el recuento total de órdenes
+   const totalCount = await Order.count({
+    where: {
+      [Op.and]: [
+        includeUsersClause, // Agregar la cláusula includeUsersClause existente
+        includePurchasesClause // Agregar la cláusula includePurchasesClause
+      ]
+    }
+  });
+
+
+  const orders = await Order.findAndCountAll({
     include: [
       {
         model: Product,
         attributes: ["id", "brand", "name", "price", "stock", "img"],
         through: {
-          attributes: [],
+          attributes: ["cantidad"],
         },
       },
       purchaseModel,
@@ -34,9 +50,23 @@ const findAllOrders = async (queryInputs) => {
       },
     ],
     order: orderClause,
+    limit: pageSize,
+    offset: offset,
   });
 
-  return orders;
+  const { rows } = orders;
+  const totalPages = Math.ceil(totalCount / pageSize);
+  const { message, status } = findAll_returnValidator(rows, page, totalPages);
+
+  return {
+    totalResults: totalCount,
+    totalPages: totalPages,
+    currentPage: page,
+    pageSize: pageSize,
+    ordersDB: rows,
+    message: message,
+    status: status,
+  };
 };
 
 module.exports = findAllOrders;

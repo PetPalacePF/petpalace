@@ -1,25 +1,28 @@
-import { useAuth0 } from "@auth0/auth0-react";
+// Profile.js
+import { useState } from 'react';
+import { UserForm } from '../../components/Users/UserForm';
+import { UserSideBar } from '../../components/Users/UserSideBar';
+import { Mypurchases } from '../../components/Users/Mypurchases';
+import { Routes, Route } from "react-router-dom"
 
 export const Profile = () => {
-    const { user, isAuthenticated } = useAuth0();
+    const [selectedLink, setSelectedLink] = useState('/profile/personalInfo');
+
+    const handleLinkClick = (link) => {
+        setSelectedLink(link);
+    };
 
     return (
-        <form>
-            <h1>Profile</h1>
-            {isAuthenticated && user && (
-                <>
-                    <img src={user.picture} alt={user.name} />
-                    <input value={user.email} />
-                    <input value={user.name} />
-                    <input value={user} />
-                    <input value={user} />
-                    <input value={user} />
-                    <input value={user} />
-                    <input value={user} />
+        <div className="flex">
+            <UserSideBar selectedLink={selectedLink} handleLinkClick={handleLinkClick} />
 
-                </>
-            )}
-            <button>SUBMIT</button>
-        </form>
+            <div className="w-full">
+
+                <Routes>
+                    <Route path="/personalInfo" element={<UserForm />}></Route>
+                    <Route path="/purchases" element={<Mypurchases />}></Route>
+                </Routes>
+            </div>
+        </div>
     );
 };

@@ -1,8 +1,6 @@
 const activeInputsValidator = (queryInputs) => {
   const {
     brand_or_name,
-    page,
-    pageSize,
     filterBrands,
     filterCategories,
     filterPrice,

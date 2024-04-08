@@ -1,20 +1,31 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { getFilteredProducts } from "../../utils/getAllProducts";
 import searchIcon from "../../assets/searchIcon-24x24.png";
 
 // eslint-disable-next-line react/prop-types
-export const SearchBar = ({ setProducts, search, setSearch }) => {
+export const SearchBar = ({ filters, setProducts }) => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { search, setSearch } = filters;
   const handleSubmit = (event) => {
     event.preventDefault();
-    getFilteredProducts({ search, setProducts });
+    getFilteredProducts(setProducts, [], "", "", [], search, location);
     setSearch("");
   };
 
   const onChange = (event) => {
     setSearch(event.target.value);
-    getFilteredProducts({ search, setProducts });
+    getFilteredProducts(
+      setProducts,
+      [],
+      "",
+      "",
+      [],
+      event.target.value,
+      location
+    );
     navigate("/shop");
+    // console.log(setProducts);
   };
   return (
     <div className="relative">

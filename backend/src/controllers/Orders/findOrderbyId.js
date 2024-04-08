@@ -7,7 +7,7 @@ const findOrderbyId = async (id) => {
         model: Product,
         attributes: ["id", "brand", "name", "price", "stock", "img"],
         through: {
-          attributes: [],
+          attributes: ["cantidad"],
         },
       },
       {

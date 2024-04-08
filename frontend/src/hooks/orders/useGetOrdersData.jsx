@@ -1,25 +1,22 @@
 import { useState, useEffect } from "react";
 
-import axios from '../../config/axios'
+import axios from "../../config/axios";
 
 const useGetOrdersData = () => {
+  const [ordersData, setOrdersData] = useState({ orders: [] });
 
-    const [ ordersData, setOrdersData ] = useState([])
-    
-    useEffect(() => {
+  useEffect(() => {
+    axios
+      .get("/orders")
+      .then((res) => res.data)
+      .then((data) => setOrdersData(data))
+      .catch((err) => console.log(err));
+  }, []);
 
-        axios.get('/orders')
-            .then(res => res.data)
-            .then(data => setOrdersData(data))
-            .catch(err => console.log(err))
+  return {
+    ordersData,
+    setOrdersData,
+  };
+};
 
-    }, [])
-
-    return {
-        ordersData,
-        setOrdersData
-    }
-
-}
-
-export default useGetOrdersData
+export default useGetOrdersData;
