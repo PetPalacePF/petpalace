@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { SearchBar } from "../Search Bar/SearchBar";
