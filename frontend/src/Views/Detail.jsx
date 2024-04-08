@@ -127,12 +127,12 @@ const Detail = ({ users }) => {
                   +
                 </button>
                 <div className="flex">
-                  {/* <button
+                  <button
                     onClick={(event) => handleAddToCart(event)}
                     className="flex ml-auto text-white bg-violetahome border-0 py-2 px-4 mx-2 focus:outline-none hover:bg-violetamain rounded"
                   >
                     Add to cart
-                  </button> */}
+                  </button>
                   {isAuthenticated ? (
                     <button
                       onClick={makePayment}
