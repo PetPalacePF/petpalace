@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { SearchBar } from "../Search Bar/SearchBar";
@@ -17,6 +18,7 @@ const Header = ({ allCategories, setProducts, filters, setUsers }) => {
   const [openCart, setOpenCart] = useState(false);
   const [showCart, setShowCart] = useState(false);
   const { isAuthenticated, user } = useAuth0();
+
   const handleClick = () => {
     setShowCart(false);
     setTimeout(() => {

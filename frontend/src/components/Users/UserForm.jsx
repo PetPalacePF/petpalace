@@ -4,19 +4,14 @@ import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 
 export const UserForm = () => {
-    const { user, isAuthenticated } = useAuth0();
+    // const { user, isAuthenticated } = useAuth0();
     const [email, setEmail] = useState('');
 
-    useEffect(() => {
-        if (isAuthenticated && user) {
-            setEmail(user.email);
-    }
-}, [isAuthenticated, user]);
-
-console.log(user);
-    
+    const user = JSON.parse(window.localStorage.getItem("userData"));
+    console.log("id desde local storage del form ", user.id);
 
     const [userData, setUserData] = useState({
+        id: '',
         email: '',
         name: '',
         address: '',
@@ -28,24 +23,38 @@ console.log(user);
         numberAddress: ''
     });
 
-    
     useEffect(() => {
-        if (isAuthenticated && user) {
-            setUserData({
-                email: user.email || '',
-                name: user.name || '',
-                address: user.address || '',
-                country: user.country || '',
-                province: user.province || '',
-                city: user.city || '',
-                zipCode: user.zip_code || '',
-                phone: user.phone_number || '',
-                numberAddress: user.numberAddress || ''
-            });
-        }
-    }, [isAuthenticated, user]);
-    
-    console.log(user);
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`http://localhost:5000/users?name_or_email=${email}`);
+                setUserData(response.data.users[0]);
+            } catch (error) {
+                return `No users found with email ${email}.`;
+            }
+        };
+
+        fetchData();
+
+    }, [email]);
+
+
+    // useEffect(() => {
+    //     if (isAuthenticated && user) {
+    //         setUserData({
+    //             email: user.email || '',
+    //             name: user.name || '',
+    //             address: user.address || '',
+    //             country: user.country || '',
+    //             province: user.province || '',
+    //             city: user.city || '',
+    //             zipCode: user.zip_code || '',
+    //             phone: user.phone_number || '',
+    //             numberAddress: user.numberAddress || ''
+    //         });
+    //     }
+    // }, [isAuthenticated, user]);
+
+
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setUserData(prevState => ({
@@ -54,9 +63,11 @@ console.log(user);
         }));
     };
 
+    
     const handleUpdateUser = () => {
-        axios.put(`http://localhost:5000/users/${user.sub}`, userData)
-            .then(response => {
+        console.log("este es userData ",userData);
+        axios.put(`http://localhost:5000/users`, userData)
+        .then(response => {
                 console.log('User updated successfully:', response.data);
             })
             .catch(error => {
@@ -117,7 +128,7 @@ console.log(user);
 
     return (
         <div className="w-full p-4 mt-8">
-            {isAuthenticated && user && (
+            {/* {isAuthenticated && user && ( */}
                 <>
                     <div className="flex justify-center mb-4 w-full">
                         <button className="focus:outline-none">
@@ -240,7 +251,7 @@ console.log(user);
                     </div>
 
                 </>
-            )}
+            {/* )} */}
             <button onClick={handleUpdateUser} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">Save</button>
         </div >
     )
