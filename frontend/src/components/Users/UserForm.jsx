@@ -1,10 +1,14 @@
+/* eslint-disable no-unused-vars */
 import { useState, useEffect } from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 
 export const UserForm = () => {
-    const { user, isAuthenticated } = useAuth0();
+    // const { user, isAuthenticated } = useAuth0();
     const [email, setEmail] = useState('');
+
+    const user = JSON.parse(window.localStorage.getItem("userData"));
+    console.log("id desde local storage del form ", user.id);
 
     const [userData, setUserData] = useState({
         id: '',
@@ -20,12 +24,6 @@ export const UserForm = () => {
     });
 
     useEffect(() => {
-        if (isAuthenticated && user) {
-            setEmail(user.email);
-        }
-    }, [isAuthenticated, user]);
-
-    useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await axios.get(`http://localhost:5000/users?name_or_email=${email}`);
@@ -38,6 +36,7 @@ export const UserForm = () => {
         fetchData();
 
     }, [email]);
+
 
     // useEffect(() => {
     //     if (isAuthenticated && user) {
@@ -129,7 +128,7 @@ export const UserForm = () => {
 
     return (
         <div className="w-full p-4 mt-8">
-            {isAuthenticated && user && (
+            {/* {isAuthenticated && user && ( */}
                 <>
                     <div className="flex justify-center mb-4 w-full">
                         <button className="focus:outline-none">
@@ -252,7 +251,7 @@ export const UserForm = () => {
                     </div>
 
                 </>
-            )}
+            {/* )} */}
             <button onClick={handleUpdateUser} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">Save</button>
         </div >
     )
