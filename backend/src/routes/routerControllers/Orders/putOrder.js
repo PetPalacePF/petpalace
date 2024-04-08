@@ -29,9 +29,9 @@ const putOrder = async (req, res) => {
 
   try {
     const updatedOrder = await modifyOrder(id, productsToAdd, productsToRemove);
-    updatedOrder.hasOwnProperty("id")
-      ? res.status(201).json(formattedOrder(updatedOrder))
-      : res.status(404).json({ message: updatedOrder.message });
+    updatedOrder.newOrder.hasOwnProperty("id")
+      ? res.status(201).json({updatedOrder : formattedOrder(updatedOrder)})
+      : res.status(404).json({ updatedOrder: null, message: updatedOrder.message });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
