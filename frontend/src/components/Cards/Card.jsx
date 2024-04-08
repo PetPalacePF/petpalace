@@ -21,12 +21,12 @@ export const Card = ({ product }) => {
           <span className="absolute top-3 left-4 border border-blue-200 text-xs rounded-xl px-4 py-2 font-semibold capitalize bg-blue-100">
             {product.Categories[0].name}
           </span>
-          <button
+          {/* <button
             className="absolute top-3 right-4 border border-blue-200 rounded-xl px-4 py-2 bg-blue-100"
             onClick={(event) => handleAddToCart(event)}
           >
             <img src={CartIcon} alt="" className="w-4 h-4" />
-          </button>
+          </button> */}
         </div>
         <div className="px-4 flex gap-4">
           <div className="flex flex-col w-full">
