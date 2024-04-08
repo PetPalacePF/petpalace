@@ -10,7 +10,6 @@ const UserModel = require("./models/User");
 const Order_ProductModel = require("./models/Order_Product");
 
 //? CONNECTION
-
 const dataBase = new Sequelize(
   DB_DEPLOY,
   {
