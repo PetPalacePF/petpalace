@@ -1,4 +1,5 @@
-const stripe = require('stripe')('sk_test_51P0rxH2NIYOIQA82xsJIavzHOKKcNHqT3fSJx4NYk5MlMvMfAu47zCpZNwVxMhYeqCsv930ezx5uPmzZmDlFPetW00891Fpxv3');
+const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY
+const stripe = require('stripe')(STRIPE_SECRET_KEY);
 // const { Order, Product } = require ('../../db');
 
 const createPaymentSession = async(products, userId) =>{
@@ -34,7 +35,7 @@ const createPaymentSession = async(products, userId) =>{
           payment_method_types: ['card'],
           line_items: lineItems,
           mode: 'payment',
-          success_url: 'https://tudominio.com/pago-exitoso',
+          success_url: 'http://localhost:5173/',
           cancel_url: 'https://tudominio.com/pago-cancelado',
         });
     

@@ -1,11 +1,29 @@
 /* eslint-disable react/prop-types */
 import { useAuth0 } from "@auth0/auth0-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
+import axios from "axios";
 
-export const NavBar = ({ allCategories }) => {
+export const NavBar = ({ allCategories, setUsers }) => {
   const [selectingCategory, setSelectingCategory] = useState(false);
-  const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
+  const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
+
+  useEffect(() => {
+    if (isAuthenticated && user) {
+      axios
+        .post("http://localhost:5000/users", {
+          email: user.email,
+          name: user.name,
+        })
+        .then((response) => {
+          console.log("User data stored successfully:", response.data);
+          setUsers(response.data);
+        })
+        .catch((error) => {
+          console.error("Error storing user data:", error);
+        });
+    }
+  }, [isAuthenticated, user]);
 
   return (
     <div className="absolute top-[76px] left-0 right-0 flex justify-center z-10">
@@ -79,16 +97,23 @@ export const NavBar = ({ allCategories }) => {
         >
           CONTACT
         </NavLink>
-        {
-          isAuthenticated ? (
-            <button className="text-black hover:text-gray-300" onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
-              LOGOUT
-            </button>
-          )
-            : (
-              <button className="text-black hover:text-gray-300" onClick={() => loginWithRedirect()}>LOGIN</button>
-            )
-        }
+        {isAuthenticated ? (
+          <button
+            className="text-black hover:text-gray-300"
+            onClick={() =>
+              logout({ logoutParams: { returnTo: window.location.origin } })
+            }
+          >
+            LOGOUT
+          </button>
+        ) : (
+          <button
+            className="text-black hover:text-gray-300"
+            onClick={() => loginWithRedirect()}
+          >
+            LOGIN
+          </button>
+        )}
       </nav>
     </div>
   );

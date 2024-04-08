@@ -22,7 +22,7 @@ const findAllProducts = async (paginated, queryInputs) => {
     where: whereClause,
     include: {
       model: Category,
-      attributes: ["name"],
+      attributes: ["id", "name"],
       where: includeCategoriesClause,
       through: {
         attributes: [],

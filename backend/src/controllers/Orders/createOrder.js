@@ -1,4 +1,5 @@
 const { Order, User } = require("../../db");
+const findOrderbyId = require("./findOrderbyId");
 
 const createOrder = async (products, userId) => {
   try {
@@ -10,13 +11,27 @@ const createOrder = async (products, userId) => {
       newOrder = await Order.create();
       await newOrder.setUser(user);
     } else {
-      return (newOrder = { message: `No se pudo crear la Orden. Usuario ${userId} no encontrado` });
+      return (newOrder = {
+        message: `No se pudo crear la Orden. Usuario ${userId} no encontrado`,
+      });
     }
 
     // Agregar productos a la orden
-    await newOrder.addProducts(products);
-
-    return newOrder.dataValues;
+    for (const product of products) {
+      if (product.length === 2) {
+        await newOrder.addProducts(product[0], {
+          through: { cantidad: product[1] },
+        });
+      } else if (product.length === 1){
+        await newOrder.addProducts(product[0], {
+          through: { cantidad: 1 },
+        });
+      }
+    }
+const {id} = newOrder
+console.log(id);
+    const createdOrder = await findOrderbyId(id);
+    return createdOrder;
   } catch (error) {
     console.log("error: ", error.message);
     return { message: error.message };

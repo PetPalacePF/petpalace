@@ -1,10 +1,17 @@
 const formattedOrders = (orders) => {
-  const formatted = orders.map((order) => {
-    const { id, Products, User, Purchase } = order;
-    return { id, Products, User, Purchase };
-  });
+  return orders.map(({ id, Products, User, Purchase }) => {
+    const products = Products.map(({ id, brand, name, price, stock, img, Order_Product }) => ({
+      id,
+      brand,
+      name,
+      price,
+      stock,
+      img,
+      cantidad: Order_Product.cantidad
+    }));
 
-  return formatted;
+    return { id, products, User, Purchase };
+  });
 };
 
 module.exports = formattedOrders;
