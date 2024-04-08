@@ -7,8 +7,9 @@ import starFilled from "../assets/starIcon-yellowFilled.png";
 import starEmpty from "../assets/starIcon-yellowEmpty.png";
 import addToCart from "../utils/sendToCart";
 import { useAuth0 } from "@auth0/auth0-react";
-
+import useGetOrdersData from "../hooks/orders/useGetOrdersData";
 const Detail = ({ users }) => {
+  const { ordersData } = useGetOrdersData();
   const { id } = useParams();
   const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
@@ -75,7 +76,7 @@ const Detail = ({ users }) => {
 
   const handleAddToCart = (event) => {
     event.preventDefault();
-    addToCart(product.id, quantity, users);
+    addToCart(product.id, quantity, ordersData);
   };
 
   return (

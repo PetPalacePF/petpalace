@@ -2,11 +2,16 @@
 import { NavLink } from "react-router-dom";
 import CartIcon from "../../assets/cart-24x24.png";
 import addToCart from "../../utils/sendToCart";
+import useGetOrdersData from "../../hooks/orders/useGetOrdersData";
+import { useState } from "react";
+
 
 export const Card = ({ product }) => {
+  const { ordersData } = useGetOrdersData();
+  const [quantity, setQuantity] = useState(1);
   const handleAddToCart = (event) => {
     event.preventDefault();
-    addToCart(product.id);
+    addToCart(product.id, quantity, ordersData);
   };
 
   return (
@@ -21,12 +26,12 @@ export const Card = ({ product }) => {
           <span className="absolute top-3 left-4 border border-blue-200 text-xs rounded-xl px-4 py-2 font-semibold capitalize bg-blue-100">
             {product.Categories[0].name}
           </span>
-          {/* <button
+          <button
             className="absolute top-3 right-4 border border-blue-200 rounded-xl px-4 py-2 bg-blue-100"
             onClick={(event) => handleAddToCart(event)}
           >
             <img src={CartIcon} alt="" className="w-4 h-4" />
-          </button> */}
+          </button>
         </div>
         <div className="px-4 flex gap-4">
           <div className="flex flex-col w-full">
