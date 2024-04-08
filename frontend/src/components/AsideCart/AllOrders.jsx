@@ -9,17 +9,13 @@ const AllOrders = ({ordersData, setOrdersData, handleClickBuy}) => {
 
         setLoading(true)
 
-        const newProducts = ordersData.Products.filter(product => {
-          return product.id !== id
-        })
-    
         axios.put('/orders', {
-          id: ordersData.id,
-          products: newProducts.map(product => product.id)
+          id: ordersData[0].id,
+          productsToRemove: [[id]]
         })
         .then(res => res.data)
         .then(data => {
-            setOrdersData([data])
+            setOrdersData({...ordersData, orders: [ data ]})
             setLoading(false)
         })
         .catch(err => {
@@ -27,17 +23,18 @@ const AllOrders = ({ordersData, setOrdersData, handleClickBuy}) => {
             setLoading(false)
         })
     } 
-    
 
     return (
         <div className="h-full flex flex-col justify-between">
             <div>
             {
-                ordersData?.Products 
-                ? ordersData.Products.map(product => (
-                    <div className='relative'>
+                ordersData[0]?.products 
+                ? ordersData[0].products.map(product => (
+                    <div 
+                        key={product.id}
+                        className='relative'
+                    >
                         <div 
-                            key={product.id}
                             className="flex justify-between gap-4 mb-6"
                         >
                             <div className="flex items-center gap-4">
@@ -70,8 +67,8 @@ const AllOrders = ({ordersData, setOrdersData, handleClickBuy}) => {
                 <div className="flex justify-between py-2">
                     <p className="uppercase">Subtotal:</p>
                     {
-                        ordersData?.Products && 
-                        ordersData.Products.reduce((acc, product) => {
+                        ordersData[0]?.products && 
+                        ordersData[0].products.reduce((acc, product) => {
                             acc += product.price
                             return acc
                         }, 0)
