@@ -22,14 +22,13 @@ const createOrder = async (products, userId) => {
         await newOrder.addProducts(product[0], {
           through: { cantidad: product[1] },
         });
-      } else if (product.length === 1){
+      } else if (product.length === 1) {
         await newOrder.addProducts(product[0], {
           through: { cantidad: 1 },
         });
       }
     }
-const {id} = newOrder
-console.log(id);
+    const { id } = newOrder;
     const createdOrder = await findOrderbyId(id);
     return createdOrder;
   } catch (error) {

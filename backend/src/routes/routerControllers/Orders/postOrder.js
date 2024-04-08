@@ -12,7 +12,8 @@ const postOrder = async (req, res) => {
 
   try {
     const newOrder = await createOrder( products, userId );
-    newOrder.hasOwnProperty("id")
+    console.log(newOrder.dataValues.hasOwnProperty("id"));
+    newOrder.dataValues.hasOwnProperty("id")
     ? res.status(201).json({newOrder: newOrder})
     : res.status(400).json({ newOrder: null, message: newOrder.message });
   } catch (error) {
