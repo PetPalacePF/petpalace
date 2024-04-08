@@ -12,25 +12,23 @@ import logo from "../../assets/logo.png";
 
 import { useNavigate } from "react-router-dom";
 
-const Header = ({ allCategories, setProducts, filters }) => {
-
-  const { pathname } = useLocation()
-  const navigate = useNavigate()
+const Header = ({ allCategories, setProducts, filters, setUsers }) => {
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
   const [openCart, setOpenCart] = useState(false);
-  const [showCart, setShowCart] = useState(false)
+  const [showCart, setShowCart] = useState(false);
   const { isAuthenticated, user } = useAuth0();
   const handleClick = () => {
-    setShowCart(false)
+    setShowCart(false);
     setTimeout(() => {
-      setOpenCart(false)
-    }, 200)
-  }
+      setOpenCart(false);
+    }, 200);
+  };
 
   const handleClickBuy = () => {
-    handleClick()
-    return navigate('/cart')
-  }
-
+    handleClick();
+    return navigate("/cart");
+  };
   return (
     <>
       <div className="mx-auto flex max-w-[1400px] h-[110px] items-center justify-between p-6 lg:px-8">
@@ -39,16 +37,24 @@ const Header = ({ allCategories, setProducts, filters }) => {
           <span className="text-lg">PET PALACE</span>
         </Link>
         <div className="flex items-center">
-          <SearchBar
-            setProducts={setProducts}
-            filters={filters}
-          />
-          <button disabled={pathname.includes('cart')} onClick={() => setOpenCart(!openCart)} className="ml-4 relative cursor-pointer">
+          <SearchBar setProducts={setProducts} filters={filters} />
+          <button
+            disabled={pathname.includes("cart")}
+            onClick={() => setOpenCart(!openCart)}
+            className="ml-4 relative cursor-pointer"
+          >
             <img src={CartIcon} alt="" />
           </button>
           {openCart && (
-            <BackgroundBlur onClick={handleClick} showCart={showCart} >
-              <AsideCart handleClickClose={handleClick} handleClickBuy={handleClickBuy} openCart={openCart} setOpenCart={setOpenCart} showCart={showCart} setShowCart={setShowCart} />
+            <BackgroundBlur onClick={handleClick} showCart={showCart}>
+              <AsideCart
+                handleClickClose={handleClick}
+                handleClickBuy={handleClickBuy}
+                openCart={openCart}
+                setOpenCart={setOpenCart}
+                showCart={showCart}
+                setShowCart={setShowCart}
+              />
             </BackgroundBlur>
           )}
           {isAuthenticated && (
@@ -62,10 +68,9 @@ const Header = ({ allCategories, setProducts, filters }) => {
               </Link>
             </div>
           )}
-
         </div>
       </div>
-      <NavBar allCategories={allCategories} />
+      <NavBar allCategories={allCategories} setUsers={setUsers} />
     </>
   );
 };
