@@ -10,10 +10,8 @@ const UserModel = require("./models/User");
 const Order_ProductModel = require("./models/Order_Product");
 
 //? CONNECTION
-
 const dataBase = new Sequelize(
   DB_DEPLOY,
-  // `postgres://${DB_USER}:${DB_PASSWORD}@${HOST}:${PORT}/${DB_NAME}`,
   {
     logging: false,
     native: false,
