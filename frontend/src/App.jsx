@@ -60,7 +60,7 @@ function App() {
     };
 
     get();
-  }, [users, setUsers]);
+  }, []);
   // console.log("estos son los users", users);
   return (
     <div className="">

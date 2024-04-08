@@ -17,7 +17,7 @@ export const NavBar = ({ allCategories, setUsers }) => {
         })
         .then((response) => {
           console.log("User data stored successfully:", response.data);
-          setUsers(response.data);
+          setUsers(response.data.user);
         })
         .catch((error) => {
           console.error("Error storing user data:", error);

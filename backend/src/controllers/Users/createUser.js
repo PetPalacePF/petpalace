@@ -1,8 +1,13 @@
 const { User } = require("../../db");
 
-const createUser = async (name, email) => {
-  const newUser = await User.create({name, email});
-  return newUser;
+const createUser = async (email, name) => {
+
+  const [user, created] = await User.findOrCreate({
+    where: { email }, 
+    defaults: { email, name } 
+  });
+
+  return {user, created};
 };
 
 module.exports = createUser;

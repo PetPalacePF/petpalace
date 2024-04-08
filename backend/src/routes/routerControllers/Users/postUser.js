@@ -1,11 +1,11 @@
 const createUser = require("../../../controllers/Users/createUser");
 
 const postUser = async (req, res) => {
-  const { name, email } = req.body;
+  const { email, name } = req.body;
 
   try {
-    const newUser = await createUser(name, email);
-    res.status(201).json({newUser : newUser});
+    const {user, created} = await createUser(email, name);
+    res.status(201).json({ user: user,  created: created});
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
