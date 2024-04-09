@@ -2,11 +2,16 @@
 import { NavLink } from "react-router-dom";
 import CartIcon from "../../assets/cart-24x24.png";
 import addToCart from "../../utils/sendToCart";
+import useGetOrdersData from "../../hooks/orders/useGetOrdersData";
+import { useState } from "react";
+
 
 export const Card = ({ product }) => {
+  const { ordersData } = useGetOrdersData();
+  const [quantity, setQuantity] = useState(1);
   const handleAddToCart = (event) => {
     event.preventDefault();
-    addToCart(product.id);
+    addToCart(product.id, quantity, ordersData);
   };
 
   return (

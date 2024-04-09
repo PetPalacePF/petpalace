@@ -24,7 +24,7 @@ import { Profile } from "./Views/Users/Profile.jsx";
 
 function App() {
   const [products, setProducts] = useState([]);
-  const [users, setUsers] = useState();
+  // const [users, setUsers] = useState();
   const filters = useFilters();
 
   // const [error, setError] = useState(null);
@@ -61,7 +61,7 @@ function App() {
 
     get();
   }, []);
-  // console.log("estos son los users", users);
+
   return (
     <div className="">
       <Routes>
@@ -73,14 +73,14 @@ function App() {
                 allCategories={allCategories}
                 setProducts={setProducts}
                 filters={filters}
-                setUsers={setUsers}
+                // setUsers={setUsers}
               />
               <Routes>
                 <Route path="/" element={<Home />}></Route>
                 <Route path="/about" element={<About />}></Route>
                 <Route
                   path="/detail/:id"
-                  element={<Detail users={users} />}
+                  element={<Detail />}
                 ></Route>
                 <Route
                   path="/shop"

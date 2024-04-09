@@ -18,17 +18,13 @@ const AllProducts = () => {
   const handleDeleteProductCart = (id) => {
     setLoading(true)
 
-    const newProducts = ordersData[0].Products.filter(product => {
-      return product.id !== id
-    })
-
     axios.put('/orders', {
-      id: ordersData[0].id,
-      products: newProducts.map(product => product.id)
+      id: ordersData.orders[0].id,
+      productsToRemove: [[id]]
     })
     .then(res => res.data)
     .then(data => {
-      setOrdersData([data])
+      setOrdersData({...ordersData, orders: [ data ]})
       setLoading(false)
     })
     .catch(err => {
@@ -41,7 +37,7 @@ const AllProducts = () => {
     <>
         {
           ordersData.length === 0 ||
-          ordersData[0].Products.length === 0
+          ordersData[0]?.products.length === 0
           ? <p className='text-center py-12'>No hay productos en el carrito.</p>
           : <div className='flex justify-center gap-6 py-12'>
               <div className='relative'>
@@ -54,20 +50,19 @@ const AllProducts = () => {
                 }
               </div>
               <div className='h-fit w-[350px] shadow-lg flex flex-col gap-4 p-5'>
-                <p>Acciones del carrito</p>
                 <div className='flex justify-between'>
                   <p>Total</p>
                   <p>
                     {
-                      ordersData[0].Products.reduce((acc, product) => {
+                      ordersData.orders[0]?.products.reduce((acc, product) => {
                         acc += product.price
                         return acc
                       }, 0)
                     }
                   </p>
                 </div>
-                <button className='h-8 text-white uppercase font-medium w-full bg-black'>Finalizar pago</button>
-                <Link to='/shop' className='h-8 uppercase font-medium border flex justify-center items-center'>Continuar comprando</Link>
+                <button className='h-8 text-white uppercase font-medium w-full bg-black'>Purchase</button>
+                <Link to='/shop' className='h-8 uppercase font-medium border flex justify-center items-center'>Continue shopping</Link>
               </div>
           </div> 
         }

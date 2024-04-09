@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
@@ -6,7 +7,14 @@ import axios from "axios";
 
 export const NavBar = ({ allCategories, setUsers }) => {
   const [selectingCategory, setSelectingCategory] = useState(false);
-  const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
+  const { loginWithRedirect, logout, isAuthenticated, user, } = useAuth0();
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      // Clear localStorage
+      window.localStorage.removeItem("userData");
+    }
+  }, [isAuthenticated]);
 
   useEffect(() => {
     if (isAuthenticated && user) {
@@ -17,7 +25,7 @@ export const NavBar = ({ allCategories, setUsers }) => {
         })
         .then((response) => {
           console.log("User data stored successfully:", response.data);
-          setUsers(response.data.user);
+          window.localStorage.setItem("userData", JSON.stringify(response.data.user));
         })
         .catch((error) => {
           console.error("Error storing user data:", error);

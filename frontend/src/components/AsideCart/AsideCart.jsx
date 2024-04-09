@@ -29,9 +29,6 @@ const AsideCart = ({
     };
   }, []);
 
-  console.log("esto es orders", ordersData.orders);
-  // console.log("esto es ordersData.orders.length", ordersData.orders.length)
-
   return (
     <div
       className={`fixed ${
@@ -43,23 +40,23 @@ const AsideCart = ({
           <div className="absolute top-0 right-0 w-4 h-4 bg-violetahome rounded-full flex items-center justify-center">
             <p>
               {ordersData.orders.length > 0
-                ? ordersData.orders[0].Products.length
+                ? ordersData.orders[0].products?.length
                 : "0"}
             </p>
           </div>
           <img src={CartIcon} className="w-6" />
         </div>
-        <p className="uppercase" onClick={() => console.log(ordersData.orders)}>
-          Carrito de compras
+        <p className="uppercase" onClick={() => console.log(ordersData)}>
+          Shopping Cart
         </p>
       </div>
       {ordersData.orders.length === 0 ||
-      ordersData.orders[0].Products.length === 0 ? (
+      ordersData.orders[0].products?.length === 0 ? (
         <OrderNotExists setOpenCart={handleClickClose} />
       ) : (
         <AllOrders
           handleClickBuy={handleClickBuy}
-          ordersData={ordersData.orders[0]}
+          ordersData={ordersData.orders}
           setOrdersData={setOrdersData}
         />
       )}
