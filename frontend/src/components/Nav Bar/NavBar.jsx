@@ -7,7 +7,14 @@ import axios from "axios";
 
 export const NavBar = ({ allCategories, setUsers }) => {
   const [selectingCategory, setSelectingCategory] = useState(false);
-  const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
+  const { loginWithRedirect, logout, isAuthenticated, user, } = useAuth0();
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      // Clear localStorage
+      window.localStorage.removeItem("userData");
+    }
+  }, [isAuthenticated]);
 
   useEffect(() => {
     if (isAuthenticated && user) {
