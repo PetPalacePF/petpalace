@@ -61,8 +61,8 @@ const AllProducts = () => {
                     }
                   </p>
                 </div>
-                <button className='h-8 text-white uppercase font-medium w-full bg-black'>Finalizar pago</button>
-                <Link to='/shop' className='h-8 uppercase font-medium border flex justify-center items-center'>Continuar comprando</Link>
+                <button className='h-8 text-white uppercase font-medium w-full bg-black'>Purchase</button>
+                <Link to='/shop' className='h-8 uppercase font-medium border flex justify-center items-center'>Continue shopping</Link>
               </div>
           </div> 
         }
