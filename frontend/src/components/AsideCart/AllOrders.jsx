@@ -60,7 +60,7 @@ const AllOrders = ({ordersData, setOrdersData, handleClickBuy}) => {
                         }
                     </div>
                 ))
-                : <p>No hay ordenes</p>
+                : <p>There are no orders created</p>
             }
             </div>
             <div className=" border-t-2">
@@ -77,7 +77,7 @@ const AllOrders = ({ordersData, setOrdersData, handleClickBuy}) => {
                 <button 
                     onClick={handleClickBuy}
                     className="bg-violetamain text-white w-full h-10 uppercase font-medium mb-4">
-                    Finalizar compra
+                    Purchase
                 </button>
             </div>
         </div>

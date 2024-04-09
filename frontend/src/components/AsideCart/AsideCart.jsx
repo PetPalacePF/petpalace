@@ -47,7 +47,7 @@ const AsideCart = ({
           <img src={CartIcon} className="w-6" />
         </div>
         <p className="uppercase" onClick={() => console.log(ordersData)}>
-          Carrito de compras
+          Shopping Cart
         </p>
       </div>
       {ordersData.orders.length === 0 ||

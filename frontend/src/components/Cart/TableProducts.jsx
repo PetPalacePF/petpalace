@@ -6,9 +6,9 @@ const TableProducts = ({ordersData, handleDeleteProductCart}) => {
     <table className='w-[800px] text-left'>
         <thead>
         <tr className='h-16 uppercase'>
-            <th>Producto</th>
-            <th>Precio</th>
-            <th>Cantidad</th>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
         </tr>
         </thead>
         <tbody> 
@@ -22,7 +22,7 @@ const TableProducts = ({ordersData, handleDeleteProductCart}) => {
                 />
                 <div>
                     <p>{product.name}</p>
-                    <button onClick={() => handleDeleteProductCart(product.id)} className='text-sm underline font-medium cursor-pointer'>Eliminar</button>
+                    <button onClick={() => handleDeleteProductCart(product.id)} className='text-sm underline font-medium cursor-pointer'>Delete</button>
                 </div>
                 </td>
                 <td>{product.price}</td>
