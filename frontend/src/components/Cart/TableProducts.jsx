@@ -25,7 +25,7 @@ const TableProducts = ({ordersData, handleDeleteProductCart}) => {
                     <button onClick={() => handleDeleteProductCart(product.id)} className='text-sm underline font-medium cursor-pointer'>Delete</button>
                 </div>
                 </td>
-                <td>{product.price}</td>
+                <td>${product.price}</td>
                 <td>
                     <div className="inline mr-3 w-4 h-4 text-xl">
                         <button className="">-</button>
