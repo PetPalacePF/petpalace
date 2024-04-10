@@ -27,7 +27,7 @@ const createPaymentSession = async(products, userId) =>{
             },
             unit_amount: Math.round(product.price * 100), // El precio debe estar en centavos
           },
-          quantity: 1,
+          quantity: product.cantidad,
         }));
     
         // Crear una nueva sesión de pago con Stripe
