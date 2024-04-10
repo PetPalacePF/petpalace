@@ -14,7 +14,7 @@ const postUser = async (req, res) => {
     subject: 'Welcome to PetPalace',
     html: `<h1>Hello ${name}</h1>
     <img src="https://res.cloudinary.com/petpalacecloudinary/image/upload/v1712698455/Bienvenido_yin6dr.jpg"/>
-    <h3>Thank you for signing up, feel free to review our product catalog like the professionals who are registered on our page to give your pets the best possible treatment 🐶😺 </h3>`
+    <h3>Welcome to PetPalace, feel free to review our product catalog like the professionals who are registered on our page to give your pets the best possible treatment 🐶😺 </h3>`
 }
 
 let transporter = nodemailer.createTransport({
