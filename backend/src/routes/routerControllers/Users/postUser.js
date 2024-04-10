@@ -28,7 +28,9 @@ let transporter = nodemailer.createTransport({
 
   try {
     const {user, created} = await createUser(email, name);
-    await transporter.sendMail(message)
+    if(created){
+      await transporter.sendMail(message)
+    }
     res.status(201).json({ user: user,  created: created});
   } catch (error) {
     res.status(500).json({ error: error.message });
