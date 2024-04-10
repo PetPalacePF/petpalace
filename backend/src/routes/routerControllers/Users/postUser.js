@@ -25,10 +25,14 @@ const postUser = async (req, res) => {
       user: "petpalacepf@gmail.com",
       pass: "emvouodkhkpilkti",
     },
+    tls: {
+      rejectUnauthorized: false,
+    },
   });
 
   try {
     const { user, created } = await createUser(email, name);
+    console.log(message);
     if (created) {
       await transporter.sendMail(message);
     }
