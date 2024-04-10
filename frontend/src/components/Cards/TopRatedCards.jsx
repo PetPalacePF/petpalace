@@ -10,6 +10,7 @@ const TopRatedCards = () => {
       try {
         await getAllProducts()
         // Fetch top rated products from your API or database
+        await getAllProducts()
         const response = await fetch("http://localhost:5000/products?sortRating=DESC");
         const data = await response.json();
 
