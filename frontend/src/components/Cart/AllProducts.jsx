@@ -1,5 +1,7 @@
+/* eslint-disable no-unused-vars */
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { loadStripe } from '@stripe/stripe-js'
 
 import useGetOrdersData from '../../hooks/orders/useGetOrdersData'
 
@@ -31,7 +33,40 @@ const AllProducts = () => {
       console.log(err)
       setLoading(false)
     })
-  } 
+  }
+  
+  
+  const orderToSend = ordersData.orders[0]
+  
+  console.log("esto es orderToSend", orderToSend);
+
+  //* Stripe implementation
+  const makePayment = async () => {
+    const stripe = await loadStripe(
+      "pk_test_51P0rxH2NIYOIQA82hkjbhAvzJzKGiKpivFNd8bVen5bbAUpBgz7IxiJCaEVXRxmAC2iOrDIcvwFFqi9Pqfgp4EiB00aboN6QK3"
+    );
+
+    // const { products } = ordersData.orders
+    // console.log("PRODUCTS ", products);
+    
+    const body = {
+      products: orderToSend.products,
+    };
+    
+    console.log("BODY ", body);
+
+    const response = await axios.post(
+      "http://localhost:5000/payment-session",
+      body
+    );
+
+    const session = await response.data;
+
+    const result = stripe.redirectToCheckout({
+      sessionId: session.sessionId,
+    });
+  };
+
 
   return (
     <>
@@ -61,7 +96,7 @@ const AllProducts = () => {
                     }
                   </p>
                 </div>
-                <button className='h-8 text-white uppercase font-medium w-full bg-black'>Purchase</button>
+                <button onClick={makePayment} className='h-8 text-white uppercase font-medium w-full bg-black'>Purchase</button>
                 <Link to='/shop' className='h-8 uppercase font-medium border flex justify-center items-center'>Continue shopping</Link>
               </div>
           </div> 
