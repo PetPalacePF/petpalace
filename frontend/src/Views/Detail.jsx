@@ -8,7 +8,7 @@ import starEmpty from "../assets/starIcon-yellowEmpty.png";
 import addToCart from "../utils/sendToCart";
 import { useAuth0 } from "@auth0/auth0-react";
 import useGetOrdersData from "../hooks/orders/useGetOrdersData";
-const Detail = ({ users }) => {
+const Detail = () => {
   const { ordersData } = useGetOrdersData();
   const { id } = useParams();
   const [product, setProduct] = useState({});
@@ -26,25 +26,21 @@ const Detail = ({ users }) => {
       });
   }, [id]);
 
+  console.log("esto es product ", product);
+
   //* Stripe implementation
   const makePayment = async () => {
     const stripe = await loadStripe(
       "pk_test_51P0rxH2NIYOIQA82hkjbhAvzJzKGiKpivFNd8bVen5bbAUpBgz7IxiJCaEVXRxmAC2iOrDIcvwFFqi9Pqfgp4EiB00aboN6QK3"
     );
 
+    product.cantidad = quantity
+    
     const body = {
-      products: [
-        {
-          name: product.name,
-          description: product.description,
-          img: product.img,
-          price: product.price,
-          // quantity: 1 //modificar esta parte del código
-        },
-      ],
+      products: [product],
     };
 
-    console.log("esto es body ", body);
+    console.log("DETAIL body ", body);
 
     const response = await axios.post(
       "http://localhost:5000/payment-session",

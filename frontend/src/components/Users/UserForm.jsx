@@ -21,6 +21,8 @@ export const UserForm = () => {
         street_number: userInfo?.street_number || ''
     });
 
+    console.log("esto es userInfo ", userInfo);
+
     const [editable, setEditable] = useState(false);
     const [updateSuccess, setUpdateSuccess] = useState(false);
 

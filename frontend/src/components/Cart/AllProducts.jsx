@@ -53,7 +53,7 @@ const AllProducts = () => {
       products: orderToSend.products,
     };
     
-    console.log("BODY ", body);
+    console.log("ALL PRODUCTS BODY ", body);
 
     const response = await axios.post(
       "http://localhost:5000/payment-session",
