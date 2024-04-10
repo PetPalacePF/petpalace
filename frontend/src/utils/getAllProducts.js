@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import axios from "axios";
-const URL = "http://localhost:5000/products";
+const URL = "https://petpalacepf.onrender.com/products";
 
 export const getAllProducts = async (setProducts) => {
   try {
