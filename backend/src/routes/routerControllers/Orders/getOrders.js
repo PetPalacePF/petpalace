@@ -21,7 +21,7 @@ const getOrders = async (req, res) => {
   const queryError = inputValidator(queryInputs);
   if (queryError.error) {
     const message = jsonOrdersError(queryError.message);
-    return res.status(404).json(message);
+    return res.status(400).json(message);
   }
   const inputsActive = activeInputsValidator(queryInputs);
 
@@ -58,7 +58,7 @@ const getOrders = async (req, res) => {
       currentPage: currentPage,
       pageSize: pageSize,
       orders: ordersResult,
-      // message: message,
+      message: message,
     });
   } catch (error) {
     res.status(500).json({ error: error.message });
