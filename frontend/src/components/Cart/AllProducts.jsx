@@ -31,7 +31,9 @@ const AllProducts = () => {
       console.log(err)
       setLoading(false)
     })
-  } 
+  }
+
+  console.log(ordersData);
 
   return (
     <>
@@ -61,7 +63,7 @@ const AllProducts = () => {
                     }
                   </p>
                 </div>
-                <button className='h-8 text-white uppercase font-medium w-full bg-black'>Purchase</button>
+                <Link to= '/cart/purchase'> <button className='h-8 text-white uppercase font-medium w-full bg-black'>Purchase</button></Link>
                 <Link to='/shop' className='h-8 uppercase font-medium border flex justify-center items-center'>Continue shopping</Link>
               </div>
           </div> 

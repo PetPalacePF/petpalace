@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import { Routes, Route } from "react-router-dom"
 import { Link } from "react-router-dom"
 
