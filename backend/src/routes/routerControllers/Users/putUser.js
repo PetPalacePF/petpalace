@@ -29,9 +29,9 @@ const putUser = async (req, res) => {
   try {
     const updatedUser = await modifyUser(id, userBody);
     updatedUser.hasOwnProperty("name")
-      ? res.status(201).json({ updatedUser: updatedUser })
+      ? res.status(201).json({ updated: true, user: updatedUser })
       : res.status(404).json({
-          updatedUser: null,
+          updated: false,
           message: updatedUser.message,
         });
   } catch (error) {

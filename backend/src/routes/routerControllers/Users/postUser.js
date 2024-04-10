@@ -5,12 +5,12 @@ const postUser = async (req, res) => {
   const message = `Para crear un usuario es necesario indicar un email.`
 
   if(!email || email === ""){
-    return res.status(400).json({ user: null,  created: null, error: message });
+    return res.status(400).json({ created: false, error: message });
   }
 
   try {
     const {user, created} = await createUser(email, name);
-    res.status(201).json({ user: user,  created: created});
+    res.status(201).json({ created: created, user: user });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
