@@ -1,14 +1,15 @@
 /* eslint-disable no-unused-vars */
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import starFilled from "../assets/starIcon-yellowFilled.png";
 import starEmpty from "../assets/starIcon-yellowEmpty.png";
+import closeBtn from "../assets/closeBtn.png";
 import addToCart from "../utils/sendToCart";
 import { useAuth0 } from "@auth0/auth0-react";
 import useGetOrdersData from "../hooks/orders/useGetOrdersData";
-const Detail = ({ users }) => {
+const Detail = () => {
   const { ordersData } = useGetOrdersData();
   const { id } = useParams();
   const [product, setProduct] = useState({});
@@ -82,7 +83,7 @@ const Detail = ({ users }) => {
   return (
     <section className="text-gray-700 body-font overflow-hidden bg-white">
       <div className="container px-5 py-24 mx-auto rounded border border-gray-200">
-        <div className="lg:w-4/5 mx-auto flex flex-wrap">
+        <div className="lg:w-4/5 mx-auto flex flex-wrap ">
           {product.img && (
             <img
               src={product.img}
@@ -90,10 +91,15 @@ const Detail = ({ users }) => {
               className="h-[500px] w-[500px] object-cover object-center rounded border border-gray-200"
             />
           )}
-          <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+          <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0 relative">
             <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
               {product.name}
             </h1>
+            <NavLink to="/shop">
+              <button className="absolute top-0 right-0 text-gray-500 hover:text-gray-900 p-2">
+                <img src={closeBtn} alt="" />
+              </button>
+            </NavLink>
             <h2 className="text-sm title-font text-gray-500 tracking-widest">
               {product.brand}
             </h2>
@@ -137,14 +143,14 @@ const Detail = ({ users }) => {
                   {isAuthenticated ? (
                     <button
                       onClick={makePayment}
-                      className="flex ml-auto text-white bg-violetahome border-0 py-2 px-4 mx-2 focus:outline-none hover:violetamain rounded"
+                      className="flex ml-auto text-white bg-violetahome border-0 py-2 px-4 mx-2 focus:outline-none hover:bg-violetamain rounded"
                     >
                       Buy now
                     </button>
                   ) : (
                     <button
                       onClick={loginWithRedirect}
-                      className="flex ml-auto text-white bg-violetahome border-0 py-2 px-4 mx-2 focus:outline-none hover:violetamain rounded"
+                      className="flex ml-auto text-white bg-violetahome border-0 py-2 px-4 mx-2 focus:outline-none hover:bg-violetamain rounded"
                     >
                       Log in to buy
                     </button>
