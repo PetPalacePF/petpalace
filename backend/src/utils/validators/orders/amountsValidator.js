@@ -15,7 +15,7 @@ const amountsValidator = async (products) => {
       if (!stockValidator) {
         return {
           error: true,
-          message: `No se pudo crear la orden. El producto '${id_product}' tiene un stock máximo de '${stock}'. Actualmente se están solicitando '${amount}', por favor corregir la cantidad solicitada.`,
+          message: `No se pudo crear o actualizar la orden. El producto '${id_product}' tiene un stock máximo de '${stock}'. Actualmente se están solicitando '${amount}', por favor corregir la cantidad solicitada.`,
         };
       }
     }
