@@ -5,6 +5,8 @@ const useInputCreateCategories = () => {
     const [formData, setFormData] = useState({
         name:'' 
     })
+    
+    const [error, setError] = useState('')
 
     const handleChange = (e) => setFormData({...formData, [e.target.name]:e.target.value})
 
@@ -13,7 +15,9 @@ const useInputCreateCategories = () => {
     return {
         formData,
         handleChange,
-        resetForm
+        resetForm,
+        error,
+        setError
     }
 }
 

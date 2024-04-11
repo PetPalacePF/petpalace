@@ -120,6 +120,13 @@ export const NavBar = ({ allCategories }) => {
             LOGIN
           </button>
         )}
+        {
+          isAuthenticated &&
+          <Link
+            to="/admin"
+            className="uppercase"
+          >Admin</Link>
+        }
       </nav>
     </div>
   );
