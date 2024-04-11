@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import validation from "../../utils/validation";
 import { Link } from "react-router-dom";
-import { URL } from "../../config/config";
+import { BACKEND_URL } from "../../config/config";
 
 const ProductForm = () => {
   const [productInfo, setProductInfo] = useState({
@@ -26,7 +26,7 @@ const ProductForm = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get(`${URL}/categories`);
+        const response = await axios.get(`${BACKEND_URL}/categories`);
 
         const categoriesWithData = response.data.map((category) => {
           const products = category.products.map((product) => product.name);
@@ -121,7 +121,7 @@ const ProductForm = () => {
     try {
       const imgUrl = await uploadImageCloudinary(productInfo.img);
 
-      await axios.post(`${URL}/products`, {
+      await axios.post(`${BACKEND_URL}/products`, {
         ...productInfo,
         img: imgUrl
       });

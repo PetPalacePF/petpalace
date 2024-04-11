@@ -7,14 +7,14 @@ const cors = require("cors");
 const server = express();
 
 // * Enviroments var
-const { URL } = require("./config.js");
+const { FRONTEND_URL } = require("./config.js");
 
 //*MIDDLEWARES
 server.use(morgan("dev"));
 server.use(express.json());
 server.use(
   cors({
-    origin: URL,
+    origin: FRONTEND_URL,
   })
 );
 

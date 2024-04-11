@@ -1,5 +1,5 @@
 import axios from "axios";
-import { URL } from "../config/config";
+import { BACKEND_URL } from "../config/config";
 
 const addToCart = async (productId, orderedProductQuantity = 1, ordersData) => {
   const userData = JSON.parse(window.localStorage.getItem("userData"));
@@ -10,13 +10,13 @@ const addToCart = async (productId, orderedProductQuantity = 1, ordersData) => {
   if (userData) {
     try {
       if (ordersData.orders.length > 0) {
-        const response = await axios.put(`${URL}/orders`, {
+        const response = await axios.put(`${BACKEND_URL}/orders`, {
           id: ordersData.orders[0].id,
           productsToAdd: [[productId, orderedProductQuantity]],
         });
         console.log("Product added (PUT) to cart:", response.data);
       } else {
-        const response = await axios.post(`${URL}/orders`, {
+        const response = await axios.post(`${BACKEND_URL}/orders`, {
           userId: userData.id,
           products: [[productId, orderedProductQuantity]],
         });

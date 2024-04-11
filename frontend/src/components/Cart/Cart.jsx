@@ -2,10 +2,8 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react"
 import useGetOrdersData from "../../hooks/orders/useGetOrdersData"
-
 import { loadStripe } from "@stripe/stripe-js"
-
-import { URL } from "../../config/config"
+import { BACKEND_URL } from "../../config/config"
 
 const Cart = ({ openCart }) => {
 
@@ -22,7 +20,7 @@ const Cart = ({ openCart }) => {
             products: cart //revisar cuál es el estado que tiene el carrito de compras.
         }
 
-        const response = await fetch (`${URL}/create-checkout-session`, {
+        const response = await fetch (`${BACKEND_URL}/create-checkout-session`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
