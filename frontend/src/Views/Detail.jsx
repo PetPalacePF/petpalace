@@ -8,6 +8,8 @@ import starEmpty from "../assets/starIcon-yellowEmpty.png";
 import addToCart from "../utils/sendToCart";
 import { useAuth0 } from "@auth0/auth0-react";
 import useGetOrdersData from "../hooks/orders/useGetOrdersData";
+import { URL } from "../config/config";
+
 const Detail = ({ users }) => {
   const { ordersData } = useGetOrdersData();
   const { id } = useParams();
@@ -16,7 +18,7 @@ const Detail = ({ users }) => {
   const { isAuthenticated, loginWithRedirect } = useAuth0();
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/products/${id}`)
+      .get(`${URL}/products/${id}`)
       .then(({ data }) => {
         setProduct(data);
       })
@@ -47,7 +49,7 @@ const Detail = ({ users }) => {
     console.log("esto es body ", body);
 
     const response = await axios.post(
-      "http://localhost:5000/payment-session",
+      `${URL}/payment-session`,
       body
     );
 

@@ -2,11 +2,12 @@ import axios from 'axios'
 
 import {
     FRONTEND_URL,
-    BACKEND_URL
+    BACKEND_URL,
+    URL
 } from './config.js'
 
 const instance = axios.create({
-    baseURL: BACKEND_URL
+    baseURL: URL
 })
 
 export default instance

@@ -10,7 +10,6 @@ const DB_DEPLOY =
   process.env.DB_DEPLOY ||
   `postgres://${DB_USER}:${DB_PASSWORD}@${HOST}:${PORT}/${DB_NAME}`;
 
-
 module.exports = {
   FRONTEND_URL,
   DB_USER,
