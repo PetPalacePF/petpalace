@@ -38,6 +38,7 @@ const Detail = () => {
     const body = {
       products: [
         {
+          id:product.id,
           name: product.name,
           description: product.description,
           img: product.img,
