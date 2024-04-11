@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:5173";
+const FRONTEND_URL = process.env.VITE_FRONTEND_URL || "http://localhost:5173";
 const DB_USER = process.env.DB_USER || "postgres";
 const DB_PASSWORD = process.env.DB_PASSWORD || "postgres";
 const HOST = process.env.HOST || "localhost";
