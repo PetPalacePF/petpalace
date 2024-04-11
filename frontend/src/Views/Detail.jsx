@@ -39,7 +39,16 @@ const Detail = () => {
     product.cantidad = quantity
     
     const body = {
-      products: [product],
+      products: [
+        {
+          id:product.id,
+          name: product.name,
+          description: product.description,
+          img: product.img,
+          price: product.price,
+          // quantity: 1 //modificar esta parte del código
+        },
+      ],
     };
 
     console.log("DETAIL body ", body);

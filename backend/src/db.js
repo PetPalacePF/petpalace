@@ -12,11 +12,12 @@ const Order_ProductModel = require("./models/Order_Product");
 const dataBase = new Sequelize(DB_DEPLOY, {
   logging: false,
   native: false,
-  //     dialectOptions:{
-  //       ssl:{
-  //         require: true,
+  //   dialectOptions:{
+  //     ssl:{
+  //       require: true,
   //     }
   // }
+
 });
 
 //* MODELS

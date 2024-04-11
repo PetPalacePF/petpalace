@@ -1,4 +1,18 @@
+import { useEffect } from "react"
+
 const BackgroundBlur = ({children, showCart, onClick}) => {
+
+  useEffect(() => {
+
+    document.body.style.overflow = "hidden";
+    document.body.style.marginRight = "16px";
+
+    return () => {
+      document.body.style.overflow = "auto";
+      document.body.style.marginRight = "0";
+    };
+    
+  }, []);
 
   return (
     <>
