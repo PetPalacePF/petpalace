@@ -4,38 +4,27 @@ import axios from "../../config/axios";
 const AllOrders = ({ ordersData, setOrdersData, handleClickBuy }) => {
   const [loading, setLoading] = useState(false);
 
-  const handleDeleteProductCart = (id) => {
-    setLoading(true);
-    axios
-      .put("/orders", {
-        id: ordersData[0].id,
-        productsToRemove: [[id]],
-      })
-      .then((res) => res.data)
-      .then((data) => {
-        setOrdersData({ ...ordersData, orders: [data] });
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-        setLoading(false);
-      });
-  };
+    const handleDeleteProductCart = (id) => {
 
-  const handleQuantityChange = (event, productId) => {
-    // Get the new quantity from the event
-    const newQuantity = event.target.value;
+        setLoading(true)
 
-    // Update the quantity of the product in your state
-    setOrdersData((prevState) => {
-      const newOrdersData = { ...prevState };
-      const product = newOrdersData.orders[0].products.find(
-        (product) => product.id === productId
-      );
-      product.cantidad = newQuantity;
-      return newOrdersData;
-    });
-  };
+        axios.put('/orders', {
+          id: ordersData[0].id,
+          productsToRemove: [[id]]
+        })
+        .then(res => res.data)
+        .then(data => {
+            setOrdersData({ 
+                ...ordersData,
+                orders: [data.order]
+            })
+            setLoading(false)
+        })
+        .catch(err => {
+            console.log(err)
+            setLoading(false)
+        })
+    } 
 
   return (
     <div className="h-full flex flex-col justify-between">
