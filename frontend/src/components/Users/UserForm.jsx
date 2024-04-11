@@ -63,7 +63,7 @@ export const UserForm = () => {
         console.log("este es userData ", userData);
         axios.put(`http://localhost:5000/users`, userData)
             .then(response => {
-                console.log('User updated successfully:', response.data);
+                // console.log('User updated successfully:', response.data);
                 setEditable(false);
                 setUpdateSuccess(true);
             })
