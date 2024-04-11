@@ -65,8 +65,8 @@ const AllProducts = () => {
     const result = stripe.redirectToCheckout({
       sessionId: session.sessionId,
     });
+    console.log("RESULT ", result);
   };
-
 
   return (
     <>
