@@ -10,7 +10,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import useGetOrdersData from "../hooks/orders/useGetOrdersData";
 import { BACKEND_URL } from "../config/config";
 
-const Detail = ({ users }) => {
+const Detail = () => {
   const { ordersData } = useGetOrdersData();
   const { id } = useParams();
   const [product, setProduct] = useState({});
