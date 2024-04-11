@@ -1,4 +1,6 @@
 const createOrder = require("../../../controllers/Orders/createOrder");
+const formattedOrder = require("../../../utils/formatted/formattedOrder");
+
 
 const postOrder = async (req, res) => {
   const { products, userId } = req.body;
@@ -12,10 +14,9 @@ const postOrder = async (req, res) => {
 
   try {
     const newOrder = await createOrder( products, userId );
-    console.log(newOrder.dataValues.hasOwnProperty("id"));
-    newOrder.dataValues.hasOwnProperty("id")
-    ? res.status(201).json({newOrder: newOrder})
-    : res.status(400).json({ newOrder: null, message: newOrder.message });
+    newOrder.hasOwnProperty("id")
+    ? res.status(201).json({created: true, order: formattedOrder(newOrder)})
+    : res.status(400).json({ created: false, message: newOrder.message });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

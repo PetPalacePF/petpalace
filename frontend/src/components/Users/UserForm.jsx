@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
+import { URL } from "../../config/config";
 
 export const UserForm = () => {
     const { user, isAuthenticated } = useAuth0();
@@ -22,6 +23,7 @@ export const UserForm = () => {
     });
 
     const [editable, setEditable] = useState(false);
+    const [updateSuccess, setUpdateSuccess] = useState(false);
 
     useEffect(() => {
         if (isAuthenticated && user) {
@@ -60,10 +62,11 @@ export const UserForm = () => {
 
     const handleUpdateUser = () => {
         console.log("este es userData ", userData);
-        axios.put(`http://localhost:5000/users`, userData)
+        axios.put(`${URL}/users`, userData)
             .then(response => {
                 console.log('User updated successfully:', response.data);
                 setEditable(false);
+                setUpdateSuccess(true);
             })
             .catch(error => {
                 console.error('Error updating user:', error);
@@ -119,6 +122,20 @@ export const UserForm = () => {
                             <input value={userData.ZIP_Code} onChange={handleInputChange} name="ZIP_Code" className={`shadow appearance-none border rounded w-4/4 py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${editable ? '' : 'bg-gray-200'}`} disabled={!editable} />
                         </div>
                     </div>
+                    {updateSuccess && (
+                        <div className="fixed top-0 left-0 w-full flex justify-center items-center z-50 mt-4">
+                            <div className="relative bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded max-w-sm">
+                                <strong className="font-bold">Success!</strong>
+                                <span className="block sm:inline"> User information updated successfully.</span>
+                                <span className="absolute top-0 right-0 mt-1 mr-1">
+                                    <span onClick={() => setUpdateSuccess(false)} className="fill-current h-6 w-6 text-black-bold" role="button">
+                                        X
+                                        <path fillRule="evenodd" d="M14.354 5.646a.5.5 0 0 1 0 .708l-8 8a.5.5 0 0 1-.708-.708l8-8a.5.5 0 0 1 .708 0zM5.646 5.646a.5.5 0 0 1 0-.708l8 8a.5.5 0 0 1 .708.708l-8-8a.5.5 0 0 1-.708 0z" />
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    )}
                 </>
             )}
             <div className="flex justify-between w-full mb-4 items-center flex-wrap md:flex-nowrap md:justify-start md:items-start md:space-x-4 md:space-y-0 space-y-4 space-x-0 p-4 md:p-0 md:mb-0 md:flex-wrap">

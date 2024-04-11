@@ -17,6 +17,7 @@ const dataBase = new Sequelize(DB_DEPLOY, {
         require: true,
       }
   }
+
 });
 
 //* MODELS

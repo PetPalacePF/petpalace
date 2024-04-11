@@ -1,14 +1,19 @@
 import { useEffect, useState } from "react";
 import { Card } from "./Card";
 
+import { getAllProducts } from "../../utils/getAllProducts";
+
+import { URL } from "../../config/config";
+
+
 const TopRatedCards = () => {
   const [topRatedProducts, setTopRatedProducts] = useState([]);
 
   useEffect(() => {
     const fetchTopRatedProducts = async () => {
       try {
-        // Fetch top rated products from your API or database
-        const response = await fetch("http://localhost:5000/products?sortRating=DESC");
+        await getAllProducts()
+        const response = await fetch(`${URL}/products?sortRating=DESC`);
         const data = await response.json();
 
         // Select the top 4 rated products

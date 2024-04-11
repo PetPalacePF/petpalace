@@ -4,22 +4,16 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import axios from "axios";
+import { URL } from "../../config/config";
 
-export const NavBar = ({ allCategories, setUsers }) => {
+export const NavBar = ({ allCategories }) => {
   const [selectingCategory, setSelectingCategory] = useState(false);
-  const { loginWithRedirect, logout, isAuthenticated, user, } = useAuth0();
-
-  useEffect(() => {
-    if (!isAuthenticated) {
-      // Clear localStorage
-      window.localStorage.removeItem("userData");
-    }
-  }, [isAuthenticated]);
+  const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
 
   useEffect(() => {
     if (isAuthenticated && user) {
       axios
-        .post("http://localhost:5000/users", {
+        .post(`${URL}/users`, {
           email: user.email,
           name: user.name,
         })
@@ -32,6 +26,12 @@ export const NavBar = ({ allCategories, setUsers }) => {
         });
     }
   }, [isAuthenticated, user]);
+
+  const handleLogout = () => {
+    // Limpiar localStorage cuando el usuario se desloguee
+    window.localStorage.removeItem("userData");
+    logout({ returnTo: window.location.origin });
+  };
 
   return (
     <div className="absolute top-[76px] left-0 right-0 flex justify-center z-10">
@@ -108,9 +108,7 @@ export const NavBar = ({ allCategories, setUsers }) => {
         {isAuthenticated ? (
           <button
             className="text-black hover:text-gray-300"
-            onClick={() =>
-              logout({ logoutParams: { returnTo: window.location.origin } })
-            }
+            onClick={handleLogout}
           >
             LOGOUT
           </button>
