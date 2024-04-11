@@ -24,8 +24,7 @@ const createOrder = async (products, userId) => {
       };
     } else if (existing_products.error) {
       return { message: existing_products.message };
-    } 
-    else if (existing_amounts.error) {
+    } else if (existing_amounts.error) {
       return { message: existing_amounts.message };
     }
 
@@ -54,7 +53,7 @@ const createOrder = async (products, userId) => {
       if (product.length > 1) {
         amount = product[1];
       }
-     
+
       await newOrder.addProducts(id_product, {
         through: { cantidad: amount },
       });
