@@ -124,7 +124,7 @@ function App() {
 
         <Route
           path="/admin/*"
-          element={<AdminPanel allCategories={allCategories} />}
+          element={<AdminPanel allCategories={allCategories} setAllCategories={setAllCategories} />}
         />
       </Routes>
     </div>
