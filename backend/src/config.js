@@ -10,7 +10,7 @@ const DB_DEPLOY =
   process.env.DB_DEPLOY ||
   `postgres://${DB_USER}:${DB_PASSWORD}@${HOST}:${PORT}/${DB_NAME}`;
 
-//const URL= "https://petpalace-lilac.vercel.app"; //? ESTA LA URL QUE HAY QUE PONER EN LAS VARIABLES DE ENTONORNO DEL DEPLOY BACK, COMO FRONTEND_URL.
+
 
 module.exports = {
   FRONTEND_URL,
@@ -19,6 +19,5 @@ module.exports = {
   HOST,
   PORT,
   DB_NAME,
-  DB_DEPLOY,
-  URL
+  DB_DEPLOY
 };
