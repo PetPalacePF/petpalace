@@ -32,7 +32,6 @@ const postUser = async (req, res) => {
 
   try {
     const { user, created } = await createUser(email, name);
-    console.log(message);
     if (created) {
       await transporter.sendMail(message);
     }
