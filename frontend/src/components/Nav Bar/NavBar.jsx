@@ -122,6 +122,13 @@ export const NavBar = ({ allCategories, setUsers }) => {
             LOGIN
           </button>
         )}
+        {
+          isAuthenticated &&
+          <Link
+            to="/admin"
+            className="uppercase"
+          >Admin</Link>
+        }
       </nav>
     </div>
   );
