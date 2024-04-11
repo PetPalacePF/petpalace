@@ -148,33 +148,33 @@ const ProductForm = () => {
 
   return (
     <div className="container mx-auto mt-20 space-y-1">
-      <h2 className="text-2xl font-bold mb-4 text-center">Create New Product</h2>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-md mx-auto">
-        <label htmlFor="brand">Brand:</label>
+      <h2 className="text-2xl font-bold mb-4 text-center border-b-2 border-black pb-2">Create New Product</h2>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-md mx-auto bg-purple-100 p-8 rounded-lg shadow-md">
+        <label htmlFor="brand" className='block text-sm font-medium text-gray-700'>Brand:</label>
         <input
           type="text"
           name="brand"
           value={productInfo.brand}
           onChange={handleChange}
           placeholder="Enter the brand..."
-          className="input-field"
-          style={{ border: '1px solid #ccc', borderRadius: '4px', padding: '4px' }}
+          className="input-field mt-0.5 p-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+          style={{ border: '1px solid #ccc', borderRadius: '4px' }}
         />
         {errors.brand && <div>{errors.brand}</div>}
-
-        <label htmlFor="name">Name:</label>
+  
+        <label htmlFor="name" className='block text-sm font-medium text-gray-700'>Name:</label>
         <input
           type="text"
           name="name"
           value={productInfo.name}
           onChange={handleChange}
           placeholder="Enter the name..."
-          className="input-field"
-          style={{ border: '1px solid #ccc', borderRadius: '4px', padding: '4px' }}
+          className="input-field mt-0.5 p-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+          style={{ border: '1px solid #ccc', borderRadius: '4px' }}
         />
         {errors.name && <div>{errors.name}</div>}
-
-        <label htmlFor="img">Image:</label>
+  
+        <label htmlFor="img" className='block text-sm font-medium text-gray-700'>Image:</label>
         <input
           type="file"
           name="img"
@@ -183,58 +183,58 @@ const ProductForm = () => {
           className="input-field"
         />
         {errors.img && <div>{errors.img}</div>}
-
-        <label htmlFor="description">Description:</label>
+  
+        <label htmlFor="description" className='block text-sm font-medium text-gray-700'>Description:</label>
         <textarea
           name="description"
           value={productInfo.description}
           onChange={handleChange}
           placeholder="Description"
-          className="input-field"
-          style={{ border: '1px solid #ccc', borderRadius: '4px', padding: '1px' }}
+          className="input-field mt-0.5 p-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+          style={{ border: '1px solid #ccc', borderRadius: '4px' }}
         />
         {errors.description && <div>{errors.description}</div>}
-
-        <label htmlFor="price">Price:</label>
+  
+        <label htmlFor="price" className='block text-sm font-medium text-gray-700'>Price:</label>
         <input
           type="number"
           name="price"
           value={productInfo.price}
           onChange={handleChange}
           placeholder="Enter the price..."
-          className="input-field"
-          style={{ border: '1px solid #ccc', borderRadius: '4px', padding: '4px' }}
+          className="input-field mt-0.5 p-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+          style={{ border: '1px solid #ccc', borderRadius: '4px' }}
           min="0"
         />
         {errors.price && <div>{errors.price}</div>}
-
-        <label htmlFor="stock">Stock:</label>
+  
+        <label htmlFor="stock" className='block text-sm font-medium text-gray-700'>Stock:</label>
         <input
           type="number"
           name="stock"
           value={productInfo.stock}
           onChange={handleChange}
           placeholder="Enter the stock"
-          className="input-field"
-          style={{ border: '1px solid #ccc', borderRadius: '4px', padding: '4px' }}
+          className="input-field mt-0.5 p-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+          style={{ border: '1px solid #ccc', borderRadius: '4px' }}
         />
         {errors.stock && <div>{errors.stock}</div>}
-
-        <label htmlFor="rating">Rating:</label>
+  
+        <label htmlFor="rating" className='block text-sm font-medium text-gray-700'>Rating:</label>
         <input
           type="number"
           name="rating"
           value={productInfo.rating}
           onChange={handleChange}
           placeholder="Rating (0-5)..."
-          className="input-field"
-          style={{ border: '1px solid #ccc', borderRadius: '4px', padding: '4px' }}
+          className="input-field mt-0.5 p-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+          style={{ border: '1px solid #ccc', borderRadius: '4px' }}
           min="0"
           max="5"
         />
         {errors.rating && <div>{errors.rating}</div>}
-
-        <label htmlFor="categories">Categories:</label>
+  
+        <label htmlFor="categories" className='block text-sm font-medium text-gray-700'>Categories:</label>
         <select
           name="category"
           value={selectedCategory}
@@ -249,25 +249,25 @@ const ProductForm = () => {
         </select>
         {errors.category && <div>{errors.category}</div>}
         
-        <label>Categories selected:</label>
-<div>
-  <ul>
-    {productInfo.categories.map((categoryId, index) => {
-      const category = categories.find((cat) => cat.id === parseInt(categoryId));
-      return (
-        <li key={index}>
-          {category ? category.name : "Categoria no encontrada"}
-          <button type="button" onClick={() => handleDelete(index, "category")}>
-            x
-          </button>
-        </li>
-      );
-    })}
-  </ul>
-</div>
+        <label className='block text-sm font-medium text-gray-700'>Categories selected:</label>
+        <div>
+          <ul>
+            {productInfo.categories.map((categoryId, index) => {
+              const category = categories.find((cat) => cat.id === parseInt(categoryId));
+              return (
+                <li key={index}>
+                  {category ? category.name : "Categoria no encontrada"}
+                  <button type="button" onClick={() => handleDelete(index, "category")}>
+                    x
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
         {console.log("Selected categories:", productInfo.categories)}
         <br />
-
+  
         <div className="flex justify-between">
           <Link to="/" className="container">
             <button
