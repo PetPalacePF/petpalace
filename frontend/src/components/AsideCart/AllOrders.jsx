@@ -15,7 +15,10 @@ const AllOrders = ({ordersData, setOrdersData, handleClickBuy}) => {
         })
         .then(res => res.data)
         .then(data => {
-            setOrdersData({...ordersData, orders: [ data ]})
+            setOrdersData({ 
+                ...ordersData,
+                orders: [data.order]
+            })
             setLoading(false)
         })
         .catch(err => {
