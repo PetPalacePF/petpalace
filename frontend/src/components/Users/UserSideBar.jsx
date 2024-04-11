@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 export const UserSideBar = ({ selectedLink, handleLinkClick }) => {
     return (
-        <aside className="w-48 bg-violetamain p-4 mt-12">
+        <aside className="w-48 bg-violetamain p-4 mt-12 h-screen">
             <div className="text-white mb-4">
                 <h2 className="text-lg font-semibold mb-2">PROFILE</h2>
                 <ul>
