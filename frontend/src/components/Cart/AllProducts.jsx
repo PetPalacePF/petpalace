@@ -74,7 +74,7 @@ const AllProducts = () => {
         {
           ordersData.length === 0 ||
           ordersData[0]?.products.length === 0
-          ? <p className='text-center py-12'>No hay productos en el carrito.</p>
+          ? <p className='text-center py-12'>Your cart is empty.</p>
           : <div className='flex justify-center gap-6 py-12'>
               <div className='relative'>
                 <TableProducts ordersData={ordersData} handleDeleteProductCart={handleDeleteProductCart} />
