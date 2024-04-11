@@ -4,6 +4,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import axios from "axios";
+import { BACKEND_URL } from "../../config/config";
 
 export const NavBar = ({ allCategories }) => {
   const [selectingCategory, setSelectingCategory] = useState(false);
@@ -12,7 +13,7 @@ export const NavBar = ({ allCategories }) => {
   useEffect(() => {
     if (isAuthenticated && user) {
       axios
-        .post("http://localhost:5000/users", {
+        .post(`${BACKEND_URL}/users`, {
           email: user.email,
           name: user.name,
         })

@@ -1,10 +1,10 @@
 /* eslint-disable react-refresh/only-export-components */
 import axios from "axios";
-const URL = "http://localhost:5000/products";
+import { BACKEND_URL } from "../config/config";
 
 export const getAllProducts = async (setProducts) => {
   try {
-    const response = await axios(URL);
+    const response = await axios(`${BACKEND_URL}/products`);
     setProducts(response.data.products);
   } catch (error) {
     console.error("Error fetching products:", error);
@@ -65,7 +65,7 @@ export const getFilteredProducts = async (
 
   try {
     const response = await axios(
-      `${URL}?${URLWordSearch}&${querys}&${URLWordSortRating}&${URLWordSortPrice}&${URLWordFilterPrice}`
+      `${BACKEND_URL}/products?${URLWordSearch}&${querys}&${URLWordSortRating}&${URLWordSortPrice}&${URLWordFilterPrice}`
     );
     setProducts(response.data.products);
   } catch (error) {

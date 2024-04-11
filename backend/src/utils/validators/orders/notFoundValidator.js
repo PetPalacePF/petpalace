@@ -14,7 +14,7 @@ const notFoundValidator = (queryInputs) => {
   }
 
   if (sortId !== "") {
-    return `La tabla de compras se encuentra actualmente vacía, no hay compras para ordenar por id.`;
+    return `La tabla de ordenes se encuentra actualmente vacía, no hay ordenes para ordenar por id.`;
   }
 };
 
