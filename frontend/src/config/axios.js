@@ -1,12 +1,9 @@
-import axios from 'axios'
+import axios from "axios";
 
-import {
-    FRONTEND_URL,
-    BACKEND_URL
-} from './config.js'
+import { FRONTEND_URL, BACKEND_URL } from "./config.js";
 
 const instance = axios.create({
-    baseURL: BACKEND_URL
-})
+  baseURL: BACKEND_URL,
+});
 
-export default instance
+export default instance;

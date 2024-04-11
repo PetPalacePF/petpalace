@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import { Routes, Route } from "react-router-dom"
 import { Link } from "react-router-dom"
 
@@ -10,14 +12,14 @@ import Orders from './Orders.jsx'
 // * Components
 import AdminNavbar from '../../components/Admin/AdminNavbar'
 
-const AdminPanel = ({allCategories}) => {
+const AdminPanel = ({allCategories, setAllCategories}) => {
   return (
     <div className="flex">
         <AdminNavbar />
         <div className="w-full p-6">
           <Routes>
               <Route path='/' element={<Dashboard/>} />
-              <Route path='/categories' element={<Categories allCategories={allCategories} />} />
+              <Route path='/categories' element={<Categories allCategories={allCategories} setAllCategories={setAllCategories} />} />
               <Route path='/products' element={<Products/>} />
               <Route path='/orders' element={<Orders/>} />
           </Routes>

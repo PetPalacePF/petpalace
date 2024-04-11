@@ -94,7 +94,7 @@ function App() {
                   }
                 ></Route>
                 <Route path="/profile/*" element={<Profile />}></Route>
-                <Route path="/cart" element={<Cart />} />
+                <Route path="/cart/*" element={<Cart />} />
                 <Route path="/contact" element={<Contact />}></Route>
               </Routes>
             </>
@@ -103,7 +103,7 @@ function App() {
 
         <Route
           path="/admin/*"
-          element={<AdminPanel allCategories={allCategories} />}
+          element={<AdminPanel allCategories={allCategories} setAllCategories={setAllCategories} />}
         />
       </Routes>
     </div>

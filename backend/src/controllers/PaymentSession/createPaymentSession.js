@@ -1,6 +1,7 @@
 const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY
 const stripe = require('stripe')(STRIPE_SECRET_KEY);
 const { Product } = require('../../db');
+const {FRONTEND_URL} = require('../../config');
 
 const createPaymentSession = async (products, userId) => {
     try {
@@ -31,6 +32,8 @@ const createPaymentSession = async (products, userId) => {
           throw new Error(`Insufficient stock for the following products: ${productNames.join(', ')}`);
         }
 
+         
+        // Crear un array de línea de artículos para la sesión de pago de Stripe
         const lineItems = products.map(product => ({
             price_data: {
                 currency: 'usd',
@@ -48,8 +51,8 @@ const createPaymentSession = async (products, userId) => {
            payment_method_types: ['card'],
            line_items: lineItems,
            mode:'payment',
-           success_url:'http://localhost:5173/shop',
-           cancel_url:'http://localhost:5173/shop'
+           success_url: `${FRONTEND_URL}/shop`,
+           cancel_url:`${FRONTEND_URL}/shop`
        });
 
        return session;

@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
+import { BACKEND_URL } from "../../config/config";
 
 export const UserForm = () => {
     const { user, isAuthenticated } = useAuth0();
@@ -61,9 +62,9 @@ export const UserForm = () => {
 
     const handleUpdateUser = () => {
         console.log("este es userData ", userData);
-        axios.put(`http://localhost:5000/users`, userData)
+        axios.put(`${BACKEND_URL}/users`, userData)
             .then(response => {
-                console.log('User updated successfully:', response.data);
+                // console.log('User updated successfully:', response.data);
                 setEditable(false);
                 setUpdateSuccess(true);
             })
