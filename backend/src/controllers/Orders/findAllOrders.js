@@ -26,8 +26,8 @@ const findAllOrders = async (paginated, queryInputs) => {
    const totalCount = await Order.count({
     where: {
       [Op.and]: [
-        includeUsersClause, // Agregar la cláusula includeUsersClause existente
-        includePurchasesClause // Agregar la cláusula includePurchasesClause
+        includeUsersClause, 
+        includePurchasesClause 
       ]
     }
   });

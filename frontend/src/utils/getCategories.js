@@ -1,8 +1,9 @@
 import axios from "../config/axios";
+import { BACKEND_URL } from "../config/config";
 
 const getCategories = async () => {
   try {
-    const { data } = await axios.get("http://localhost:5000/categories");
+    const { data } = await axios.get(`${BACKEND_URL}/categories`);
     return data;
   } catch (error) {
     console.log(error);

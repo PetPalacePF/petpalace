@@ -9,7 +9,9 @@ import closeBtn from "../assets/closeBtn.png";
 import addToCart from "../utils/sendToCart";
 import { useAuth0 } from "@auth0/auth0-react";
 import useGetOrdersData from "../hooks/orders/useGetOrdersData";
-const Detail = () => {
+import { BACKEND_URL } from "../config/config";
+
+const Detail = ({ users }) => {
   const { ordersData } = useGetOrdersData();
   const { id } = useParams();
   const [product, setProduct] = useState({});
@@ -17,7 +19,7 @@ const Detail = () => {
   const { isAuthenticated, loginWithRedirect } = useAuth0();
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/products/${id}`)
+      .get(`${BACKEND_URL}/products/${id}`)
       .then(({ data }) => {
         setProduct(data);
       })
@@ -48,7 +50,7 @@ const Detail = () => {
     console.log("esto es body ", body);
 
     const response = await axios.post(
-      "http://localhost:5000/payment-session",
+      `${BACKEND_URL}/payment-session`,
       body
     );
 

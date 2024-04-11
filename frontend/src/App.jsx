@@ -93,7 +93,7 @@ function App() {
                   }
                 ></Route>
                 <Route path="/profile/*" element={<Profile />}></Route>
-                <Route path="/cart" element={<Cart />} />
+                <Route path="/cart/*" element={<Cart />} />
                 <Route path="/contact" element={<Contact />}></Route>
                 <Route
                   path="/dogs"
