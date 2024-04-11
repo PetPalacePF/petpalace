@@ -1,6 +1,7 @@
 const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY
 const stripe = require('stripe')(STRIPE_SECRET_KEY);
 // const { Order, Product } = require ('../../db');
+const {URL} = require('../../config');
 
 const createPaymentSession = async(products, userId) =>{
     try {
@@ -35,7 +36,7 @@ const createPaymentSession = async(products, userId) =>{
           payment_method_types: ['card'],
           line_items: lineItems,
           mode: 'payment',
-          success_url: 'http://localhost:5173/',
+          success_url: `${URL}`,
           cancel_url: 'https://tudominio.com/pago-cancelado',
         });
     

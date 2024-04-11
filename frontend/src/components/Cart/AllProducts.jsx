@@ -7,6 +7,7 @@ import useGetOrdersData from '../../hooks/orders/useGetOrdersData'
 
 import axios from '../../config/axios'
 import TableProducts from './TableProducts'
+import { URL } from '../../config/config'
 
 const AllProducts = () => {
 
@@ -56,7 +57,7 @@ const AllProducts = () => {
     console.log("BODY ", body);
 
     const response = await axios.post(
-      "http://localhost:5000/payment-session",
+      `${URL}/payment-session`,
       body
     );
 
