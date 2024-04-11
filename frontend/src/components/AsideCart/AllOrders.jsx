@@ -6,7 +6,6 @@ const AllOrders = ({ ordersData, setOrdersData, handleClickBuy }) => {
 
   const handleDeleteProductCart = (id) => {
     setLoading(true);
-
     axios
       .put("/orders", {
         id: ordersData[0].id,
@@ -115,21 +114,3 @@ const AllOrders = ({ ordersData, setOrdersData, handleClickBuy }) => {
 };
 
 export default AllOrders;
-
-{
-  /* <div className="flex flex-col text-left">
-    <p className="font-semibold">{product.name} 
-        <span className="ml-2 bg-green-200 text-green-700 px-2 py-1 rounded-full text-sm">
-            Quantity: 
-            <input 
-                type="number" 
-                min="1" 
-                value={product.cantidad} 
-                onChange={(e) => handleQuantityChange(e, product.id)} 
-                className="ml-1 w-12 text-center"
-            />
-        </span>
-    </p>
-    <p className="text-[14px] text-[#999]">${product.price * product.cantidad}</p>
-</div> */
-}
