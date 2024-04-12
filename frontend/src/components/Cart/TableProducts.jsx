@@ -1,7 +1,5 @@
 const TableProducts = ({ordersData, handleDeleteProductCart}) => {
 
-    console.log(ordersData)
-
   return (
     <table className='w-[800px] text-left'>
         <thead>

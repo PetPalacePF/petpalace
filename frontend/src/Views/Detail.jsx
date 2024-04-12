@@ -29,12 +29,16 @@ const Detail = () => {
       });
   }, [id]);
 
+  console.log("esto es product ", product);
+
   //* Stripe implementation
   const makePayment = async () => {
     const stripe = await loadStripe(
       "pk_test_51P0rxH2NIYOIQA82hkjbhAvzJzKGiKpivFNd8bVen5bbAUpBgz7IxiJCaEVXRxmAC2iOrDIcvwFFqi9Pqfgp4EiB00aboN6QK3"
     );
 
+    product.cantidad = quantity
+    
     const body = {
       products: [
         {
@@ -48,7 +52,7 @@ const Detail = () => {
       ],
     };
 
-    console.log("esto es body ", body);
+    console.log("DETAIL body ", body);
 
     const response = await axios.post(
       `${BACKEND_URL}/payment-session`,
