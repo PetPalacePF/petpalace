@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import { getFilteredProducts } from "../utils/getAllProducts";
 import { Card } from "../components/Cards/Card";
+import getPaymentSessions from "../utils/getPaymentSessions";
 
 export const Shop = ({ setProducts, products, allCategories, filters }) => {
   const location = useLocation();
@@ -18,8 +19,14 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
     setSortPrice,
   } = filters;
   const [priceRange, setPriceRange] = useState([0, 1000]);
+  const [stripe, setStripe] = useState();
 
+
+  console.log("stripe",stripe)
   useEffect(() => {
+
+    getPaymentSessions(setStripe)
+
     getFilteredProducts(
       setProducts,
       filterCategories,
