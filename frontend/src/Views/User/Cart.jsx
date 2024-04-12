@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { Routes, Route, useLocation, NavLink } from "react-router-dom"
-import axios from "axios";
+import axios from '../../config/axios'
 
 import AllProducts from "../../components/Cart/AllProducts"
 import Purchase from "../../components/Cart/Purchase"
@@ -27,7 +27,8 @@ const Cart = () => {
         })
             .then(res => res.data)
             .then(data => {
-                setOrdersData({ ...ordersData, orders: [data] })
+                console.log(data, ordersData)
+                setOrdersData({ ...ordersData, orders: [data.order] })
                 setLoading(false)
             })
             .catch(err => {
