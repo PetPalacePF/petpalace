@@ -122,30 +122,80 @@ const AllProducts = ({ selectedLink, handleLinkClick, location }) => {
               </div>
             )}
             <div className='h-fit w-[350px] shadow-lg flex flex-col gap-4 p-5'>
-              <div className='flex justify-between'>
-                <p>Total</p>
-                <p>
-                  {
-                    ordersData.orders[0]?.products.reduce((acc, product) => {
-                      acc += product.price
-                      return acc
-                    }, 0)
-                  }
-                </p>
-              </div>
               <div>
                 {location.pathname === '/cart' ? (
-                  <NavLink to="/cart/purchase"
-                    className='h-8 uppercase font-medium border flex justify-center items-center bg-black text-white'
-                    onClick={() => handleLinkClick('/cart/purchase')}>
-                    Purchase
-                  </NavLink>
+                  <div>
+                    <div className='flex justify-between'>
+                      <p>Total</p>
+                      <p>
+                        {
+                          ordersData.orders[0]?.products.reduce((acc, product) => {
+                            acc += product.price
+                            return acc
+                          }, 0)
+                        }
+                      </p>
+                    </div>
+                    <NavLink to="/cart/purchase"
+                      className='h-8 uppercase font-medium border flex justify-center items-center bg-black text-white'
+                      onClick={() => handleLinkClick('/cart/purchase')}>
+                      Purchase
+                    </NavLink>
+                  </div>
                 ) : (
-                  <NavLink to="/cart"
-                    className='h-8 uppercase font-medium border flex justify-center items-center bg-black text-white'
-                    onClick={() => handleLinkClick('/cart')}>
-                    Buy Now
-                  </NavLink>
+                  <div className='relative'>
+                    <div className='flex flex-col gap-4'>
+                      <table className='w-[500px] text-left'>
+                        <thead>
+                          <tr className='h-16 uppercase'>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {
+                            ordersData.orders[0]?.products.map(product => (
+                              <tr key={product.id} className='border-t'>
+                                <td className='flex items-center gap-1 h-22'>
+                                  <img
+                                    src={product.img}
+                                    className='w-14'
+                                  />
+                                  <div>
+                                    <p className='text-l font-medium'>{product.name}</p>
+                                    <p className='text-sm font-medium'>{product.brand}</p>
+                                  </div>
+                                </td>
+                                <td>${product.price}</td>
+                                <td>
+                                  <p className="text-[16px] inline">
+                                    {product.cantidad}
+                                  </p>
+                                </td>
+                              </tr>
+                            ))
+                          }
+                        </tbody>
+                      </table>
+                      <div className='flex justify-between'>
+                        <h1 className='font-medium text-lg'>Total</h1>
+                        <p className='font-medium text-lg'>
+                          {
+                            ordersData.orders[0]?.products.reduce((acc, product) => {
+                              acc += product.price
+                              return acc
+                            }, 0)
+                          }
+                        </p>
+                      </div>
+                    </div>
+                    <NavLink to="/cart"
+                      className='h-8 uppercase font-medium border flex justify-center items-center bg-black text-white'
+                      onClick={() => handleLinkClick('/cart')}>
+                      Buy Now
+                    </NavLink>
+                  </div>
                 )}
                 <NavLink to='/shop' className='h-8 uppercase font-medium border flex justify-center items-center mt-2'>Continue shopping</NavLink>
               </div>
