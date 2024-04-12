@@ -1,7 +1,8 @@
 const createPaymentSession = require("../../../controllers/PaymentSession/createPaymentSession")
 
 const postPaymentSession = async(req,res) =>{
-  const products = req.body.products;
+  const {products} = req.body;
+  
 
     try {
         const session = await createPaymentSession(products);

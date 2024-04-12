@@ -3,7 +3,7 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 const listPaymentIntents = async () => {
     try {
-        const paymentIntents = await stripe.paymentIntents.list({ limit: 10 });
+        const paymentIntents = await stripe.paymentIntents.list({ limit: 1 });
         // Mapear los datos de cada pago para devolver solo los campos deseados
         const formattedPaymentIntents = paymentIntents.data.map(paymentIntent => ({
             stripe_payment_id: paymentIntent.id,
