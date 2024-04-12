@@ -46,7 +46,7 @@ const AsideCart = ({
         </p>
       </div>
       {ordersData.orders.length === 0 ||
-      ordersData.orders[0].products?.length === 0 ? (
+      ordersData.orders[ordersData.orders.length -1].products?.length === 0 ? (
         <OrderNotExists setOpenCart={handleClickClose} />
       ) : (
         <AllOrders

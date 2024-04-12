@@ -4,7 +4,7 @@ import CartIcon from "../../assets/cart-24x24.png";
 import addToCart from "../../utils/sendToCart";
 import useGetOrdersData from "../../hooks/orders/useGetOrdersData";
 import { useState } from "react";
-
+import starFilled from "../../assets/starIcon-yellowFilled.png";
 
 export const Card = ({ product }) => {
   const { ordersData } = useGetOrdersData();
@@ -32,6 +32,10 @@ export const Card = ({ product }) => {
           >
             <img src={CartIcon} alt="" className="w-4 h-4" />
           </button>
+          <p className="absolute bottom-3 right-4 flex items-center border border-blue-200 bg-blue-100 rounded-md px-2 space-x-1 text-md">
+            {`${product.rating}`}
+            <img src={starFilled} alt="Full Star" className="h-4 w-4" />
+          </p>
         </div>
         <div className="px-4 flex gap-4">
           <div className="flex flex-col w-full">
@@ -45,7 +49,7 @@ export const Card = ({ product }) => {
               <p className="text-sm text-slate-800 font-bold">Price:</p>
               <p className="text-sm text-gray-800 font-bold">
                 {`$${product.price}.00`}
-              </p>{" "}
+              </p>
             </div>
           </div>
         </div>
