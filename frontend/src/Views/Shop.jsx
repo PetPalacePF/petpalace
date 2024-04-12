@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 
 import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 import { getFilteredProducts } from "../utils/getAllProducts";
 import { Card } from "../components/Cards/Card";
@@ -18,6 +19,35 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
     setSortPrice,
   } = filters;
   const [priceRange, setPriceRange] = useState([0, 1000]);
+
+  const [brands, setBrands] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/brands`)
+      .then((response) => {
+        const brands = response.data.brands;
+        setBrands(brands);
+      })
+      .catch((error) => {
+        console.error("Error fetching brands:", error);
+      });
+  }, []);
+  const handleBrandToggle = (brand) => {
+    const searchParams = new URLSearchParams(location.search);
+    if (searchParams.getAll("filterBrands").includes(brand)) {
+      const updatedParams = searchParams
+        .getAll("filterBrands")
+        .filter((b) => b !== brand);
+      searchParams.delete("filterBrands");
+      updatedParams.forEach((b) => searchParams.append("filterBrands", b));
+    } else {
+      console.log(location.search);
+      searchParams.append("filterBrands", brand);
+    }
+
+    navigate(`?${searchParams.toString()}`);
+  };
 
   useEffect(() => {
     getFilteredProducts(
@@ -50,16 +80,6 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
   const handlePriceRangeChange = (newRange) => {
     setPriceRange(newRange);
   };
-
-  // const handleCategoryChange = (id) => {
-  //   if (filterCategories.includes(id)) {
-  //     setFilterCategories(
-  //       filterCategories.filter((products) => products !== id)
-  //     );
-  //   } else {
-  //     setFilterCategories([...filterCategories, id]);
-  //   }
-  // };S
 
   const handleCategoryToggle = (id) => {
     if (location.search.includes(id)) {
@@ -110,24 +130,8 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
       </div>
       <div className="flex flex-row">
         <div className="bg-violetahome text-white flex flex-col gap-4 h-fixed p-6 w-[200px]">
-          <h1 className="text-2xl text-black">Categories</h1>
-          <div className="flex flex-col">
-            {allCategories.allIds.map((id) => (
-              <p
-                // to={`${location.search}${ location.search.includes('?') ? '&filterCategories=' : '?filterCategories=' }${id}`}
-                key={id}
-                value={id}
-                className={`text-black cursor-pointer hover:bg-gray-100 ${
-                  location.search.includes(id) ? "bg-gray-100" : ""
-                }`}
-                onClick={() => handleCategoryToggle(id)}
-              >
-                {allCategories.byId[id].name}
-              </p>
-            ))}
-          </div>
           <div className="w-full mb-4 flex flex-col items-center">
-            <h1 className="mb-2 text-lg text-black">Price Range:</h1>
+            <h1 className="text-2xl text-black">Price Range:</h1>
             <div className="flex">
               <div className="flex flex-col items-center">
                 <input
@@ -175,7 +179,42 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
               </div>
             </div>
           </div>
+          <h1 className="text-2xl text-black">Categories</h1>
+          <div className="flex flex-col">
+            {allCategories.allIds.map((id) => (
+              <p
+                key={id}
+                value={id}
+                className={`text-black cursor-pointer hover:bg-gray-100 ${
+                  location.search.includes(id) ? "bg-gray-100" : ""
+                }`}
+                onClick={() => handleCategoryToggle(id)}
+              >
+                {allCategories.byId[id].name}
+              </p>
+            ))}
+          </div>
+
+          <h1 className="text-2xl text-black">Brands</h1>
+          <div className="flex flex-col">
+            {brands.map((brand, index) => (
+              <p
+                key={index}
+                className={`text-black cursor-pointer hover:bg-gray-100 ${
+                  location.search.includes(
+                    `filterBrands=${brand.replace(/ /g, "+")}`
+                  )
+                    ? "bg-gray-100"
+                    : ""
+                }`}
+                onClick={() => handleBrandToggle(brand)}
+              >
+                {brand}
+              </p>
+            ))}
+          </div>
         </div>
+
         <div className="flex flex-col">
           <div className="flex flex-wrap justify-center">
             {products.map((product) => (
