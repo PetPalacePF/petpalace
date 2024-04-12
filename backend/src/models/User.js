@@ -9,7 +9,10 @@ module.exports = (dataBase) => {
         autoIncrement: true,
         primaryKey: true,
       },
-
+      admin: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false, // Establecer el valor predeterminado como true
+      },
       name: {
         type: DataTypes.STRING,
       },

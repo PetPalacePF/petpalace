@@ -2,11 +2,11 @@ const formattedUsers = (users) => {
   return users.map((user) => {
     const {
       id,
-      userName,
+      admin,
+      name,
       email,
       Orders,
       Purchases,
-      name,
       country,
       state,
       city,
@@ -20,6 +20,7 @@ const formattedUsers = (users) => {
 
     return {
       id,
+      admin,
       name,
       email,
       orders,

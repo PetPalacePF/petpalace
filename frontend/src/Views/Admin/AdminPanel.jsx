@@ -10,17 +10,19 @@ import Products from './Products.jsx'
 import Orders from './Orders.jsx'
 
 // * Components
+import ProductForm from "../../components/Admin/ProductForm";
 import AdminNavbar from '../../components/Admin/AdminNavbar'
 
 const AdminPanel = ({allCategories, setAllCategories}) => {
   return (
     <div className="flex">
         <AdminNavbar />
-        <div className="w-full p-6">
+        <div className="w-full ml-[200px] p-6">
           <Routes>
               <Route path='/' element={<Dashboard/>} />
               <Route path='/categories' element={<Categories allCategories={allCategories} setAllCategories={setAllCategories} />} />
               <Route path='/products' element={<Products/>} />
+              <Route path='/products/new' element={<ProductForm/>} />
               <Route path='/orders' element={<Orders/>} />
           </Routes>
         </div>
