@@ -1,6 +1,7 @@
 const formattedUser = (user) => {
   const {
     id,
+    admin,
     name,
     email,
     Orders,
@@ -18,6 +19,7 @@ const formattedUser = (user) => {
 
   return {
     id,
+    admin,
     name,
     email,
     orders,
