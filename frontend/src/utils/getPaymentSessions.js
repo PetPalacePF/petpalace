@@ -1,7 +1,3 @@
-
-
-
-
 import axios from "../config/axios";
 import { BACKEND_URL } from "../config/config";
 
