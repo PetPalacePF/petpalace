@@ -1,11 +1,12 @@
-/* eslint-disable react-refresh/only-export-components */
 import axios from "axios";
 import { BACKEND_URL } from "../config/config";
 
 export const getAllProducts = async (setProducts) => {
   try {
-    const response = await axios(`${BACKEND_URL}/products`);
-    setProducts(response.data.products);
+    if (setProducts) {
+      const response = await axios(`${BACKEND_URL}/products`);
+      setProducts(response.data.products);
+    }
   } catch (error) {
     console.error("Error fetching products:", error);
   }

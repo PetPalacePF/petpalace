@@ -8,13 +8,15 @@ const useGetOrdersData = () => {
   const userId = JSON.parse(window.localStorage.getItem("userData"))
 
   useEffect(() => {
-    axios
-      .get(`/orders?filterUsers=${userId.id}`)
-      .then((res) => res.data)
-      .then((data) => {
-        setOrdersData(data)
-      })
-      .catch((err) => console.log(err));
+    if (userId) {
+      axios
+        .get(`/orders?filterUsers=${userId.id}`)
+        .then((res) => res.data)
+        .then((data) => {
+          setOrdersData(data)
+        })
+        .catch((err) => console.log(err));
+    }
   }, []);
 
   return {

@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { Routes, Route, useLocation } from "react-router-dom"
+import { Routes, Route, useLocation, NavLink } from "react-router-dom"
 import axios from "axios";
 
 import AllProducts from "../../components/Cart/AllProducts"
@@ -7,13 +7,36 @@ import Purchase from "../../components/Cart/Purchase"
 import { OrderStatus } from "../../components/Cart/OrderStatus"
 import { useEffect, useState } from "react"
 import { BACKEND_URL } from "../../config/config";
+import useGetOrdersData from "../../hooks/orders/useGetOrdersData";
 
 
 const Cart = () => {
+    const [loading, setLoading] = useState(false)
+
+    const {
+        ordersData,
+        setOrdersData
+    } = useGetOrdersData()
+
+    const handleDeleteProductCart = (id) => {
+        setLoading(true)
+
+        axios.put('/orders', {
+            id: ordersData.orders[0].id,
+            productsToRemove: [[id]]
+        })
+            .then(res => res.data)
+            .then(data => {
+                setOrdersData({ ...ordersData, orders: [data] })
+                setLoading(false)
+            })
+            .catch(err => {
+                console.log(err)
+                setLoading(false)
+            })
+    }
 
     const { id } = JSON.parse(window.localStorage.getItem("userData"));
-
-    console.log("esto es id ", id);
 
     const [userInfo, setUserInfo] = useState({
         user: {
@@ -26,6 +49,7 @@ const Cart = () => {
             state: null,
             city: null,
             street_address: null,
+            street_number: null,
             ZIP_Code: null,
             phone: null
         }
@@ -76,65 +100,96 @@ const Cart = () => {
     console.log("isComplete", result);
 
     return (
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center w-full">
             {location.pathname === '/cart' && (
-                <div className="pt-[35px]">
-                    <div className="bg-[#FAFAFA] h-24 flex justify-center items-center gap-4">
-                        <div className="flex items-center gap-2 cursor-pointer">
-                            <div className="bg-black text-white w-6 h-6 flex items-center justify-center rounded-full">1</div>
-                            <h1 className="text-xl uppercase">Shopping Cart</h1>
+                <div>
+                    <div className="pt-[35px] w-full">
+                        <div className="bg-[#FAFAFA] h-24 flex justify-center items-center gap-4 w-full">
+                            <div className="flex items-center gap-2 cursor-pointer">
+                                <div className="bg-black text-white w-6 h-6 flex items-center justify-center rounded-full">1</div>
+                                <h1 className="text-xl uppercase">Shopping Cart</h1>
+                            </div>
+                            <div
+                                className="h-[1px] w-[150px] bg-[#ccc]"
+                            />
+                            <div className="flex items-center gap-2 cursor-pointer">
+                                <div className="bg-[#ccc] text-[white] w-6 h-6 flex items-center justify-center rounded-full">2</div>
+                                <h1 className="text-xl uppercase text-[#ccc]">Purchase</h1>
+                            </div>
+                            <div className="h-[1px] w-[150px] bg-[#ccc]" />
+                            <div className="flex items-center gap-2 cursor-pointer">
+                                <div className="bg-[#ccc] text-[white] w-6 h-6 flex items-center justify-center rounded-full">3</div>
+                                <h1 className="text-xl uppercase text-[#ccc]">Order Status</h1>
+                            </div>
                         </div>
-                        <div
-                            className="h-[1px] w-[150px] bg-[#ccc]"
-                        />
-                        <div className="flex items-center gap-2 cursor-pointer">
-                            <div className="bg-[#ccc] text-[white] w-6 h-6 flex items-center justify-center rounded-full">2</div>
-                            <h1 className="text-xl uppercase text-[#ccc]">Purchase</h1>
+                        <h1 className="text-center text-3xl text-black-800 font-semibold mt-4">Hi {name}! Please check your cart before proceeding...</h1>
+                    </div>
+                    <div className="flex flex-wrap gap-4 mt-4">
+                    <table className='w-[800px] text-left'>
+                        <thead>
+                            <tr className='h-16 uppercase'>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                ordersData.orders[0]?.products.map(product => (
+                                    <tr key={product.id} className='border-t'>
+                                        <td className='flex items-center gap-1 h-22'>
+                                            <img
+                                                src={product.img}
+                                                className='w-14'
+                                            />
+                                            <div>
+                                                <p>{product.name}</p>
+                                                <button onClick={() => handleDeleteProductCart(product.id)} className='text-sm underline font-medium cursor-pointer'>Delete</button>
+                                            </div>
+                                        </td>
+                                        <td>${product.price}</td>
+                                        <td>
+                                            <div className="inline mr-3 w-4 h-4 text-xl">
+                                                <button className="">-</button>
+                                            </div>
+                                            <p className="text-[16px] inline">
+                                                {product.cantidad}
+                                            </p>
+                                            <div className="inline ml-3 w-4 h-4 text-xl">
+                                                <button className="">+</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))
+                            }
+                        </tbody>
+                    </table>
+                    <div className='h-fit w-[300px] shadow-lg flex flex-col gap-4 p-5 ml-7'>
+                        <div className='flex justify-between'>
+                            <p>Total</p>
+                            <p>
+                                {
+                                    ordersData.orders[0]?.products.reduce((acc, product) => {
+                                        acc += product.price
+                                        return acc
+                                    }, 0)
+                                }
+                            </p>
                         </div>
-                        <div className="h-[1px] w-[150px] bg-[#ccc]" />
-                        <div className="flex items-center gap-2 cursor-pointer">
-                            <div className="bg-[#ccc] text-[white] w-6 h-6 flex items-center justify-center rounded-full">3</div>
-                            <h1 className="text-xl uppercase text-[#ccc]">Order Status</h1>
+                        <NavLink to="/cart/purchase"
+                            className='h-8 uppercase font-medium border flex justify-center items-center bg-black text-white'
+                            onClick={() => handleLinkClick('/cart/purchase')}>
+                            Purchase
+                        </NavLink>
+                        <NavLink to='/shop' className='h-8 uppercase font-medium border flex justify-center items-center mt-2'>Continue shopping</NavLink>
                         </div>
                     </div>
-                    <h1 className="text-center text-3xl text-black-800 font-semibold mt-4">Hi {name}! Please check your cart before proceeding...</h1>
                 </div>
             )}
             {location.pathname === '/cart/purchase' && (
                 <div className="pt-[35px]">
-                    <div className="h-24 bg-[#FAFAFA] flex justify-center items-center gap-4">
-                        <div className="flex items-center gap-2 cursor-pointer">
-                            <div className="bg-black text-white w-6 h-6 flex items-center justify-center rounded-full">1</div>
-                            <h1 className="text-xl uppercase">Shopping Cart</h1>
-                        </div>
-                        <div
-                            className="h-[1px] w-[150px] bg-black"
-                        />
-                        <div className="flex items-center gap-2 cursor-pointer">
-                            <div className="bg-black text-[white] w-6 h-6 flex items-center justify-center rounded-full">2</div>
-                            <h1 className="text-xl uppercase">Purchase</h1>
-                        </div>
-                        <div className="h-[1px] w-[150px] bg-[#ccc]"/>
-                        <div className="flex items-center gap-2 cursor-pointer">
-                            <div className="bg-[#ccc] text-[white] w-6 h-6 flex items-center justify-center rounded-full">3</div>
-                            <h1 className="text-xl uppercase text-[#ccc]">Order Status</h1>
-                        </div>
-                        <div>
-                            {!result ? (
-                                <div className="flex flex-col items-center justify-center gap-4">
-                                    <h1 className="text-2xl font-bold">Looks like you have not completed your profile</h1>
-                                    <span className="text-2xl font-bold">Please check your information and try again!</span>
-                                </div>
-                            ) : (
-                                <div className="flex flex-col items-center justify-center gap-4">
-                                    <h1 className="text-2xl font-bold">Almost done!</h1>
-                                    <span className="text-2xl font-bold">Please check your information before buying</span>
-                                </div>
-                            )}
-                        </div>
-                    </div>
                     <div>
-                        <Purchase userInfo={userInfo} result={result} />
+                        <Purchase userInfo={userInfo} result={result} ordersData={ordersData} />
                     </div>
                 </div>
             )}
@@ -143,9 +198,6 @@ const Cart = () => {
                     <OrderStatus />
                 </div>
             )}
-            <div>
-                <AllProducts selectedLink={selectedLink} handleLinkClick={handleLinkClick} location={location} />
-            </div>
         </div>
     )
 }
