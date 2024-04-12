@@ -61,10 +61,18 @@ const Detail = () => {
 
     const session = await response.data;
 
-    const result = stripe.redirectToCheckout({
+    const result = await stripe.redirectToCheckout({
       sessionId: session.sessionId,
     });
+    console.log("este es result",result)
+
+    const paymentId = await axios.get(`${BACKEND_URL}/payment-session/payment`)
+
+    console.log("este es el payment id", paymentId)
   };
+
+
+
 
   const ratingToStars = (rating) => {
     const stars = [];
