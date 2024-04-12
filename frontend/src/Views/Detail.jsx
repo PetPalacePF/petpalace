@@ -10,7 +10,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import useGetOrdersData from "../hooks/orders/useGetOrdersData";
 import { BACKEND_URL } from "../config/config";
 
-const Detail = ({ users }) => {
+const Detail = () => {
   const { ordersData } = useGetOrdersData();
   const { id } = useParams();
   const [product, setProduct] = useState({});
@@ -56,10 +56,18 @@ const Detail = ({ users }) => {
 
     const session = await response.data;
 
-    const result = stripe.redirectToCheckout({
+    const result = await stripe.redirectToCheckout({
       sessionId: session.sessionId,
     });
+    console.log("este es result",result)
+
+    const paymentId = await axios.get(`${BACKEND_URL}/payment-session/payment`)
+
+    console.log("este es el payment id", paymentId)
   };
+
+
+
 
   const ratingToStars = (rating) => {
     const stars = [];
