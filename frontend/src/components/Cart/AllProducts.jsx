@@ -12,7 +12,7 @@ import TableProducts from './TableProducts'
 import { BACKEND_URL } from '../../config/config'
 
 
-const AllProducts = ({ selectedLink, handleLinkClick, location }) => {
+const AllProducts = ({ selectedLink, handleLinkClick, location, ordersData }) => {
 
   // console.log("ESTO ES LOCATION", location);
 

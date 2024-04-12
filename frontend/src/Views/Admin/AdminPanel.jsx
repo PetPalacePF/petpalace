@@ -17,7 +17,7 @@ const AdminPanel = ({allCategories, setAllCategories}) => {
   return (
     <div className="flex">
         <AdminNavbar />
-        <div className="w-full p-6">
+        <div className="w-full ml-[200px] p-6">
           <Routes>
               <Route path='/' element={<Dashboard/>} />
               <Route path='/categories' element={<Categories allCategories={allCategories} setAllCategories={setAllCategories} />} />
