@@ -14,46 +14,46 @@ import { BACKEND_URL } from '../../config/config'
 
 const AllProducts = ({ selectedLink, handleLinkClick, location }) => {
 
-  console.log("ESTO ES LOCATION", location);
+  // console.log("ESTO ES LOCATION", location);
 
-  // Función para determinar el texto del botón
-  const getButtonText = () => {
-    // Si estamos en la ruta /cart, el texto será 'Purchase'
-    if (location.pathname === '/cart') {
-      return 'Purchase';
-    }
-    // Si estamos en la ruta /purchase, el texto será 'Buy Now'
-    else if (location.pathname === '/purchase') {
-      return 'Buy Now';
-    }
-    // Para cualquier otra ruta, el texto será 'Purchase'
-    else {
-      return 'Purchase';
-    }
-  };
+  // // Función para determinar el texto del botón
+  // const getButtonText = () => {
+  //   // Si estamos en la ruta /cart, el texto será 'Purchase'
+  //   if (location.pathname === '/cart') {
+  //     return 'Purchase';
+  //   }
+  //   // Si estamos en la ruta /purchase, el texto será 'Buy Now'
+  //   else if (location.pathname === '/purchase') {
+  //     return 'Buy Now';
+  //   }
+  //   // Para cualquier otra ruta, el texto será 'Purchase'
+  //   else {
+  //     return 'Purchase';
+  //   }
+  // };
 
-  // Función para manejar el click del botón
-  const handleClick = () => {
-    // Si estamos en la ruta /cart, redirigir a /purchase
-    if (location.pathname === '/cart') {
-      history.push('/purchase');
-    } else if (location.pathname === '/purchase') {
-      history.push('/cart');
-    }
+  // // Función para manejar el click del botón
+  // const handleClick = () => {
+  //   // Si estamos en la ruta /cart, redirigir a /purchase
+  //   if (location.pathname === '/cart') {
+  //     history.push('/purchase');
+  //   } else if (location.pathname === '/purchase') {
+  //     history.push('/cart');
+  //   }
     // Aquí puedes agregar lógica para redirigir a /purchase si es necesario
     // Por ejemplo, si el usuario hace clic en 'Purchase' mientras está en /cart
     // podrías redirigirlo a /purchase usando history.push('/purchase')
     // o cualquier método que estés usando para la navegación en tu aplicación
-  };
+  // };
 
-  const [loading, setLoading] = useState(false)
+  // const [loading, setLoading] = useState(false)
 
-  const {
-    ordersData,
-    setOrdersData
-  } = useGetOrdersData()
+  // const {
+  //   ordersData,
+  //   setOrdersData
+  // } = useGetOrdersData()
 
-  console.log("ESTO ES ORDERS DATA ", ordersData);
+  // console.log("ESTO ES ORDERS DATA ", ordersData);
 
   const handleDeleteProductCart = (id) => {
     setLoading(true)
@@ -101,7 +101,7 @@ const AllProducts = ({ selectedLink, handleLinkClick, location }) => {
       sessionId: session.sessionId,
     });
     console.log("RESULT ", result);
-  };
+  }
 
   return (
     <>
