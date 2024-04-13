@@ -72,9 +72,6 @@ const Cart = () => {
         }
     }, [id]);
 
-
-    console.log("esto es userInfo ", userInfo);
-
     const nameComplete = userInfo.user
 
     const name = nameComplete.name.split(" ")[0];

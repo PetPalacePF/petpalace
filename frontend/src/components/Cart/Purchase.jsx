@@ -14,9 +14,12 @@ const Purchase = ({ userInfo, result, ordersData }) => {
         const stripe = await loadStripe(
           "pk_test_51P0rxH2NIYOIQA82hkjbhAvzJzKGiKpivFNd8bVen5bbAUpBgz7IxiJCaEVXRxmAC2iOrDIcvwFFqi9Pqfgp4EiB00aboN6QK3"
         );
+
+        window.localStorage.setItem("orderData", JSON.stringify(orderToSend));
     
         const body = {
           products: orderToSend.products,
+        //   customer_email: user.email,
         };
     
         console.log("ALL PRODUCTS BODY ", body);
