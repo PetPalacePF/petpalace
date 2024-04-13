@@ -51,6 +51,7 @@ const createPaymentSession = async (products, userId) => {
            payment_method_types: ['card'],
            line_items: lineItems,
            mode:'payment',
+          //  customer: {email: customerEmail},
            success_url: `${FRONTEND_URL}/cart/orderStatus`,
            cancel_url:`${FRONTEND_URL}/shop`
        });
