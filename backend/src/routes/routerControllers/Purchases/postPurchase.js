@@ -7,6 +7,8 @@ const postPurchase = async (req, res) => {
   const { orders, userId } = req.body;
   let { stripe_payment_id, stripe_payment_status } = req.body;
 
+  console.log({ orders, userId, stripe_payment_id, stripe_payment_status });
+
   if (
     !orders ||
     orders.length === 0 ||
@@ -30,7 +32,9 @@ const postPurchase = async (req, res) => {
     );
 
     if (!newPurchase.hasOwnProperty("id")) {
-      return res.status(400).json({ created: false, message: newPurchase.message });
+      return res
+        .status(400)
+        .json({ created: false, message: newPurchase.message });
     }
 
     // Busca la compra recién creada con el usuario asociado incluido
@@ -40,7 +44,9 @@ const postPurchase = async (req, res) => {
     });
 
     if (!purchaseWithUser) {
-      return res.status(404).json({ created: false, message: "Compra no encontrada" });
+      return res
+        .status(404)
+        .json({ created: false, message: "Compra no encontrada" });
     }
 
     const userEmail = purchaseWithUser.User.email; // Obtiene el correo electrónico del usuario asociado a la compra
@@ -68,7 +74,9 @@ const postPurchase = async (req, res) => {
 
     await transporter.sendMail(emailMessage); // Envía el correo electrónico de confirmación
 
-    res.status(201).json({ created: true, purchase: formattedPurchase(newPurchase) });
+    res
+      .status(201)
+      .json({ created: true, purchase: formattedPurchase(newPurchase) });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
