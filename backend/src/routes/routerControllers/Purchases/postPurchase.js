@@ -7,7 +7,7 @@ const postPurchase = async (req, res) => {
   const { orders, userId } = req.body;
   let { stripe_payment_id, stripe_payment_status } = req.body;
 
-  console.log({ orders, userId, stripe_payment_id, stripe_payment_status });
+  // console.log({ orders, userId, stripe_payment_id, stripe_payment_status });
 
   if (
     !orders ||

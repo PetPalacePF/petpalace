@@ -29,14 +29,14 @@ const getPurchases = async (req, res) => {
   try {
     if (inputsActive) {
       purchases = await findAllPurchases(paginated, queryInputs);
-      if (purchases.length === 0) {
+      if (purchases.totalResults === 0) {
         const notFound_Purchases = notFoundValidator(queryInputs);
         const message = jsonPurchasesError(notFound_Purchases);
         return res.status(404).json(message);
       }
     } else {
       purchases = await findAllPurchases(paginated);
-      if (purchases.length === 0) {
+      if (purchases.totalResults === 0) {
         const message = jsonPurchasesError(emptyTable);
         return res.status(404).json(message);
       }
@@ -51,10 +51,6 @@ const getPurchases = async (req, res) => {
       status,
       message,
     } = purchases;
-
-    console.log(totalResults);
-    console.log(purchasesDB);
-    console.log(message);
 
     const purchasesResult = formattedPurchases(purchasesDB);
     return res.status(status).json({
