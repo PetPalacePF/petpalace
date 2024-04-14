@@ -30,6 +30,12 @@ const Products = () => {
     setSearch(e.target.value);
   };
 
+  const handleReset = () => {
+    setSortRating("");
+    setSortPrice("");
+    setSearch("");
+  }
+
   return (
     <>
       <div className='border-b-2 border-[#A1A2A2] mb-4'>
@@ -76,6 +82,7 @@ const Products = () => {
         </select>
         <button
           className='border-2 border-violetamain rounded-lg w-[33px] h-[33px] flex items-center justify-center font-semibold text-violetamain'
+          onClick={handleReset}
         >
           <img src={ResetFilter} />
         </button>
