@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
@@ -63,27 +61,27 @@ export const NavBar = ({ allCategories }) => {
             </div>
           )}
         </div>
-        <NavLink
+        {/* <NavLink
           to="/services"
           className="text-black hover:text-gray-300"
           activeclassname="font-bold"
         >
           SERVICES
-        </NavLink>
-        <NavLink
+        </NavLink> */}
+        {/* <NavLink
           to="/cats"
           className="text-black hover:text-gray-300"
           activeclassname="font-bold"
         >
           CATS
-        </NavLink>
-        <NavLink
+        </NavLink> */}
+        {/* <NavLink
           to="/dogs"
           className="text-black hover:text-gray-300"
           activeclassname="font-bold"
         >
           DOGS
-        </NavLink>
+        </NavLink> */}
         <NavLink
           to="/shop"
           className="text-black hover:text-gray-300"
