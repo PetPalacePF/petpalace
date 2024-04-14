@@ -16,7 +16,7 @@ const Product = ({
 
     const handleChangeProduct = (e) => {
         const newProducts = productsData.products.map(product => {
-            if(product.id === id) {
+            if (product.id === id) {
                 product[e.target.name] = e.target.value
                 return product
             }
@@ -27,17 +27,17 @@ const Product = ({
             productsData: newProducts
         })
     }
-    
+
     const handlePutProduct = () => {
         const productPut = productsData.products.filter(product => product.id === id)
         productPut[0].categories = productPut[0].Categories.map(category => category.id)
         axios.put('/products', ...productPut
         )
-        .then(res => res.data)
-        .then(data => {
-            console.log(data)
-        })
-        .catch(err => console.log(err))
+            .then(res => res.data)
+            .then(data => {
+                console.log(data)
+            })
+            .catch(err => console.log(err))
     }
 
     const handleDeleteProduct = () => {
@@ -57,7 +57,7 @@ const Product = ({
         <tr className='h-16 border-t border-[#A1A2A2]'>
             <td>
                 <div className='flex gap-2 items-center'>
-                    <img 
+                    <img
                         src={img}
                         className='w-12'
                     />
@@ -68,7 +68,7 @@ const Product = ({
                 {brand}
             </td>
             <td>
-                <input 
+                <input
                     className='border max-w-[80px] rounded-lg text-sm font-medium px-2 py-1 outline-none focus:shadow-sm focus:shadow-blue-400'
                     type='number'
                     name='price'
@@ -78,7 +78,7 @@ const Product = ({
                 />
             </td>
             <td>
-                <input 
+                <input
                     className='border max-w-[80px] rounded-lg text-sm font-medium px-2 py-1 outline-none focus:shadow-sm focus:shadow-blue-400'
                     type='number'
                     value={stock}
@@ -88,7 +88,7 @@ const Product = ({
                 />
             </td>
             <td>
-                <input 
+                <input
                     className='border max-w-[80px] rounded-lg text-sm font-medium px-2 py-1 outline-none focus:shadow-sm focus:shadow-blue-400'
                     type='number'
                     value={rating}
@@ -105,7 +105,7 @@ const Product = ({
                     onClick={handleDeleteProduct}
                     className='w-7 h-7 border border-[#ccc] bg-[#eee] hover:bg-[#ccc] rounded-full flex items-center justify-center transition-all'
                 >
-                    <img 
+                    <img
                         src={Trash}
                         className='w-4'
                     />
