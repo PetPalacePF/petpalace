@@ -3,7 +3,7 @@ const stripe = require('stripe')(STRIPE_SECRET_KEY);
 const { Product } = require('../../db');
 const {FRONTEND_URL} = require('../../config');
 
-const createPaymentSession = async (products, userId) => {
+const createPaymentSession = async (products, origin) => {
     try {
         // Verifica si hay suficiente cantidad disponible en el stock para cada producto
         const availabilityCheck = await Promise.all(products.map(async (product) => {
@@ -53,8 +53,8 @@ const createPaymentSession = async (products, userId) => {
            mode:'payment',
           //  customer: {email: customerEmail},
            success_url: `${FRONTEND_URL}/cart/orderStatus`,
-           cancel_url:`${FRONTEND_URL}/shop`
-       });
+           cancel_url: origin === 'Detail' ? `${FRONTEND_URL}/detail/${products[0].id}` : `${FRONTEND_URL}/cart/purchase` 
+           });
 
        return session;
 
