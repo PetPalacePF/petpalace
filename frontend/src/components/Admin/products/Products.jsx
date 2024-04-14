@@ -1,15 +1,10 @@
-import useGetProducts from "../../../hooks/products/useGetProducts"
 
 import Product from "./Product"
 
-const AllProducts = () => {
+const AllProducts = ({ productsData, setProductsData }) => {
+  return (
+    <>
 
-    const { 
-        productsData,
-        setProductsData
-    } = useGetProducts()
-
-    return (
       <table className="w-full text-left">
         <thead className='h-16'>
           <tr>
@@ -42,7 +37,8 @@ const AllProducts = () => {
           }
         </tbody>
       </table>
-    )
+    </>
+  )
 }
 
 export default AllProducts
