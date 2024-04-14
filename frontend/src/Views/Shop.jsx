@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { BACKEND_URL } from "../config/config";
 
 import { getFilteredProducts } from "../utils/getAllProducts";
 import { Card } from "../components/Cards/Card";
@@ -22,15 +23,11 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
   const [priceRange, setPriceRange] = useState([0, 1000]);
   const [stripe, setStripe] = useState();
 
-<<<<<<< HEAD
-
-  console.log("stripe",stripe)
-=======
   const [brands, setBrands] = useState([]);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/brands`)
+      .get(`${BACKEND_URL}/brands`)
       .then((response) => {
         const brands = response.data.brands;
         setBrands(brands);
@@ -55,7 +52,6 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
     navigate(`?${searchParams.toString()}`);
   };
 
->>>>>>> 15393e782ff9c0e8f720eb04b4baa90555ece075
   useEffect(() => {
 
     getPaymentSessions(setStripe)
