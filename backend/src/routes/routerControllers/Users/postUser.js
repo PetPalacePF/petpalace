@@ -1,5 +1,8 @@
 const createUser = require("../../../controllers/Users/createUser");
 const nodemailer = require("nodemailer");
+const fs = require("fs");
+const path = require("path");
+
 
 const postUser = async (req, res) => {
   const { email, name } = req.body;
@@ -9,13 +12,13 @@ const postUser = async (req, res) => {
     return res.status(400).json({ created: false, error: email_message });
   }
 
+  const htmlContent = fs.readFileSync(path.join(__dirname, "Welcome.html"), "utf8");
+
   const message = {
     from: "petpalacepf@gmail.com",
     to: email,
     subject: "Welcome to PetPalace",
-    html: `<h1>Hello ${name}</h1>
-    <img src="https://res.cloudinary.com/petpalacecloudinary/image/upload/v1712698455/Bienvenido_yin6dr.jpg"/>
-    <h3>Welcome to PetPalace, feel free to review our product catalog like the professionals who are registered on our page to give your pets the best possible treatment 🐶😺 </h3>`,
+    html: htmlContent,
   };
 
   let transporter = nodemailer.createTransport({

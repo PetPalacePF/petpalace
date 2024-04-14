@@ -43,6 +43,8 @@ stock: (value) =>{
   } else if(
     isNaN(value)){
       return "Stock must be a number"
+    }else if (parseFloat(value) < 0) {
+      return "Stock cannot be negative";
     }
 },
 

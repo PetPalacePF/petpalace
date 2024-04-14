@@ -1,11 +1,11 @@
 const createPaymentSession = require("../../../controllers/PaymentSession/createPaymentSession")
 
 const postPaymentSession = async(req,res) =>{
-  const {products} = req.body;
+  const {products, origin} = req.body;
   
 
     try {
-        const session = await createPaymentSession(products);
+        const session = await createPaymentSession(products,origin);
         res.status(200).json({ sessionId: session.id });
       } catch (error) {
         console.error('Error al crear la sesión de pago:', error);
