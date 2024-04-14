@@ -50,7 +50,11 @@ const Detail = () => {
           // quantity: 1 //modificar esta parte del código
         },
       ],
+<<<<<<< HEAD
       origin:"Detail"
+=======
+      origin: "Detail"
+>>>>>>> 47963d2b11c9ec7966c14b73f2a425bd681ab965
     };
 
     console.log("DETAIL body ", body);
