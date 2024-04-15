@@ -1,6 +1,8 @@
+import axios from '../config/axios';
 import emailjs from '@emailjs/browser';
 import Swal from 'sweetalert2';
 import { useAuth0 } from '@auth0/auth0-react';
+
 
 const Contact = () => {
   const { isAuthenticated, user } = useAuth0()
@@ -28,6 +30,8 @@ const Contact = () => {
           title: 'Success!',
           text: 'Your message has been sent successfully.',
         });
+        axios.post("/mail",{ userEmail: email , userMessage: message, userName: name })
+
         event.target.reset();
       })
       .catch(() => {

@@ -18,7 +18,7 @@ const getUsers = async (req, res) => {
     sortId,
   };
   let users;
-  const emptyTable = `No se ha encontrado ninguna Orden registrada en la base de datos`;
+  const emptyTable = `No se ha encontrado ningún Usuario registrado en la base de datos`;
 
   const queryError = inputValidator(queryInputs);
   if (queryError.error) {

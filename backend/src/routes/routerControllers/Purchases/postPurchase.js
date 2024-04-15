@@ -185,9 +185,7 @@ const postPurchase = async (req, res) => {
 
     await transporter.sendMail(emailMessage); // Envía el correo electrónico de confirmación
 
-    res
-      .status(201)
-      .json({ created: true, purchase: formattedPurchase(newPurchase) });
+    res.status(201).json({ created: true, purchase: newPurchase });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

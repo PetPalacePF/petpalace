@@ -51,7 +51,7 @@ const getPurchases = async (req, res) => {
       status,
       message,
     } = purchases;
-
+  
     const purchasesResult = formattedPurchases(purchasesDB);
     return res.status(status).json({
       totalResults: totalResults,
