@@ -71,8 +71,6 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
       const selectedCategories = new URLSearchParams(location.search).getAll(
         "filterCategories"
       );
-      // console.log("selectedCategories", selectedCategories);
-      // console.log("allCategories.byId", allCategories.byId);
       selectedCategories.forEach((category) =>
         filters.push(`${allCategories?.byId[category]?.name}`)
       );
@@ -88,10 +86,6 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
       );
       selectedBrands.forEach((brand) => filters.push(`${brand}`));
     }
-    // console.log("activeFilters", activeFilters);
-    // console.log("allCategories id name", allCategories);
-    // console.log("filters", filters);
-    // console.log("filterCategories", filterCategories);
 
     setActiveFilters(filters);
   }, [
