@@ -36,7 +36,7 @@ export const NavBar = ({ allCategories }) => {
       <nav className="bg-white p-4 border shadow-lg rounded-lg flex gap-[56px] w-[1400px] h-[70px] items-center mx-auto justify-center">
         <NavLink
           to="/"
-          className="text-black hover:text-gray-300 hover:underline"
+          className="text-black hover:text-gray-300"
           activeclassname="font-bold"
         >
           HOME
@@ -84,35 +84,35 @@ export const NavBar = ({ allCategories }) => {
         </NavLink>*/}
         <NavLink
           to="/shop"
-          className="text-black hover:text-gray-300 hover:underline"
+          className="text-black hover:text-gray-300"
           activeclassname="font-bold"
         >
           SHOP
         </NavLink>
         <NavLink
           to="/about"
-          className="text-black hover:text-gray-300 hover:underline"
+          className="text-black hover:text-gray-300"
           activeclassname="font-bold"
         >
           ABOUT US
         </NavLink>
         <NavLink
           to="/contact"
-          className="text-black hover:text-gray-300 hover:underline"
+          className="text-black hover:text-gray-300"
           activeclassname="font-bold"
         >
           CONTACT
         </NavLink>
         {isAuthenticated ? (
           <button
-            className="text-black hover:text-gray-300 hover:underline"
+            className="text-black hover:text-gray-300"
             onClick={handleLogout}
           >
             LOGOUT
           </button>
         ) : (
           <button
-            className="text-black hover:text-gray-300 hover:underline"
+            className="text-black hover:text-gray-300"
             onClick={() => loginWithRedirect()}
           >
             LOGIN
