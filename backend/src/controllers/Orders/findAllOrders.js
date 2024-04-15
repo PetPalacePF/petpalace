@@ -1,4 +1,3 @@
-const { Op } = require("sequelize");
 const { Order, Product, User, Purchase } = require("../../db");
 const filterByPurchases = require("./orders_utils/filterByPurchases");
 const filterByUsers = require("./orders_utils/filterByUsers");
@@ -19,19 +18,8 @@ const findAllOrders = async (paginated, queryInputs) => {
     orderClause = SortByQuery(queryInputs);
     orderClause.length === 0 && (orderClause = [["id", "ASC"]]);
   }
+  
   const purchaseModel = purchaseModelCreator(includePurchasesClause, Purchase);
-
-
-   // Consulta para obtener el recuento total de órdenes
-   const totalCount = await Order.count({
-    where: {
-      [Op.and]: [
-        includeUsersClause, 
-        includePurchasesClause 
-      ]
-    }
-  });
-
 
   const orders = await Order.findAndCountAll({
     include: [
@@ -54,12 +42,12 @@ const findAllOrders = async (paginated, queryInputs) => {
     offset: offset,
   });
 
-  const { rows } = orders;
-  const totalPages = Math.ceil(totalCount / pageSize);
+  const { count, rows } = orders;
+  const totalPages = Math.ceil(count / pageSize);
   const { message, status } = findAll_returnValidator(rows, page, totalPages);
 
   return {
-    totalResults: totalCount,
+    totalResults: count,
     totalPages: totalPages,
     currentPage: page,
     pageSize: pageSize,

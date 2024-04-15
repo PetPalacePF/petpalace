@@ -1,6 +1,9 @@
 const { Purchase, User, Order } = require("../../db");
 const findPurchasebyId = require("./findPurchasebyId");
+const findOrderbyId = require("../Orders/findOrderbyId");
 const existing_orders = require("../../utils/validators/purchases/existing_orders");
+const formattedOrder = require("../../utils/formatted/formattedOrder");
+const formattedPurchase = require("../../utils/formatted/formattedPurchase");
 
 const createPurchase = async (
   orders,
@@ -17,11 +20,10 @@ const createPurchase = async (
   const ordersValidator = existing_orders(orders_db, orders);
 
   if (!userFound) {
-    return (newPurchase = {
+    return {
       message: `No se pudo crear la Compra. Usuario ${userId} no encontrado.`,
-    });
-  } 
-  else if (ordersValidator.error) {
+    };
+  } else if (ordersValidator.error) {
     return { message: ordersValidator.message };
   }
 
@@ -29,8 +31,20 @@ const createPurchase = async (
   await newPurchase.setUser(userFound);
   await newPurchase.addOrders(orders);
   const { id } = newPurchase;
-  const createdPurchase = await findPurchasebyId(id);
-  return createdPurchase.dataValues;
+  const createdPurchase = formattedPurchase(await findPurchasebyId(id));
+
+  if (createdPurchase) {
+    const { orders } = createdPurchase;
+    newPurchase = createdPurchase;
+    newPurchase.orders = [];
+    for (const order of orders) {
+      const orderData = formattedOrder(await findOrderbyId(order.id));
+      const { products } = orderData;
+      newPurchase.orders = [...newPurchase.orders, { id: order.id, products }];
+    }
+  }
+
+  return newPurchase;
 };
 
 module.exports = createPurchase;

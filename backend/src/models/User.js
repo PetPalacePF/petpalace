@@ -11,7 +11,11 @@ module.exports = (dataBase) => {
       },
       admin: {
         type: DataTypes.BOOLEAN,
-        defaultValue: false, // Establecer el valor predeterminado como true
+        defaultValue: false, 
+      },
+      enabled: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true, 
       },
       name: {
         type: DataTypes.STRING,
