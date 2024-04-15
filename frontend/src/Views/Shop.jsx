@@ -11,8 +11,6 @@ import getPaymentSessions from "../utils/getPaymentSessions";
 import { FaChevronDown } from "react-icons/fa";
 import { FaChevronUp } from "react-icons/fa";
 import { IoIosClose } from "react-icons/io";
-import { PiCurrencyDollar } from "react-icons/pi";
-
 
 export const Shop = ({ setProducts, products, allCategories, filters }) => {
   const location = useLocation();
@@ -31,6 +29,7 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
   const [brands, setBrands] = useState([]);
   const [isRatingOpen, setIsRatingOpen] = useState(false);
   const [isPriceOpen, setIsPriceOpen] = useState(false);
+  const [visibleBrands, setVisibleBrands] = useState(10);
 
   useEffect(() => {
     axios
@@ -43,20 +42,6 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
         console.error("Error fetching brands:", error);
       });
   }, []);
-  const handleBrandToggle = (brand) => {
-    const searchParams = new URLSearchParams(location.search);
-    if (searchParams.getAll("filterBrands").includes(brand)) {
-      const updatedParams = searchParams
-        .getAll("filterBrands")
-        .filter((b) => b !== brand);
-      searchParams.delete("filterBrands");
-      updatedParams.forEach((b) => searchParams.append("filterBrands", b));
-    } else {
-      searchParams.append("filterBrands", brand);
-    }
-
-    navigate(`?${searchParams.toString()}`);
-  };
 
   useEffect(() => {
     getPaymentSessions(setStripe);
@@ -124,6 +109,29 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
         }${id}`
       );
     }
+  };
+
+  const handleBrandToggle = (brand) => {
+    const searchParams = new URLSearchParams(location.search);
+    if (searchParams.getAll("filterBrands").includes(brand)) {
+      const updatedParams = searchParams
+        .getAll("filterBrands")
+        .filter((b) => b !== brand);
+      searchParams.delete("filterBrands");
+      updatedParams.forEach((b) => searchParams.append("filterBrands", b));
+    } else {
+      searchParams.append("filterBrands", brand);
+    }
+
+    navigate(`?${searchParams.toString()}`);
+  };
+
+  const showMoreBrands = () => {
+    setVisibleBrands((prevVisibleBrands) => prevVisibleBrands + 10);
+  };
+
+  const showLessBrands = () => {
+    setVisibleBrands((prevVisibleBrands) => prevVisibleBrands - 10 || 10);
   };
 
   const handleSortRatingChange = (e) => {
@@ -335,7 +343,7 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
 
           <h1 className="text-2xl text-black">Brands</h1>
           <div className="flex flex-col">
-            {brands.map((brand, index) => (
+            {brands.slice(0, visibleBrands).map((brand, index) => (
               <p
                 key={index}
                 className={`text-black cursor-pointer hover:bg-gray-100 ${
@@ -350,6 +358,24 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
                 {brand}
               </p>
             ))}
+            {visibleBrands < brands.length && (
+              <div className="flex justify-between w-full">
+                <button
+                  className="bg-gray-100 text-black"
+                  onClick={showMoreBrands}
+                >
+                  Show more
+                </button>
+              </div>
+            )}
+            {visibleBrands >= 10 && (
+              <button
+                className="bg-gray-100 text-black"
+                onClick={showLessBrands}
+              >
+                Show less
+              </button>
+            )}
           </div>
         </div>
 
