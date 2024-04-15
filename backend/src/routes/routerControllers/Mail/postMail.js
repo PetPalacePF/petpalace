@@ -21,8 +21,9 @@ const postMail = async (req, res) => {
         subject: 'Confirmation of receipt of message',
         html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+        <img src="https://res.cloudinary.com/petpalacecloudinary/image/upload/v1713202994/mailC_gdtftr.png" alt="PetPalace" style="display: block; margin: auto; max-width: 200px;">
         <h1>Hello, ${userName}🙋‍♂️🐶😺</h1>
-        <p style="font-size: 16px; text-align: center;">We have received your message at PetPalace. We confirm that your email has been received correctly.</p>
+        <p style="font-size: 16px; text-align: center;">We confirm that your email has been received correctly.</p>
         <p style="font-size: 16px; background-color: #f2f2f2;"><strong>Your message:</strong> ${userMessage}</p>
         <p style="font-size: 16px; text-align: center;">We will review your message and respond to you as quickly as possible.</p>
         </div>
