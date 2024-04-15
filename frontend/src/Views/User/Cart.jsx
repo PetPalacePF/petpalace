@@ -37,7 +37,7 @@ const Cart = () => {
             })
     }
 
-    const { id } = JSON.parse(window.localStorage.getItem("userData"));
+    const id = JSON.parse(window.localStorage.getItem("userData"))?.id;
 
     const [userInfo, setUserInfo] = useState({
         user: {
@@ -75,7 +75,6 @@ const Cart = () => {
     const nameComplete = userInfo.user
 
     const name = nameComplete.name.split(" ")[0];
-    console.log("esto es name ", name);
 
     const location = useLocation()
 
@@ -86,8 +85,6 @@ const Cart = () => {
 
     const { user } = userInfo
 
-    console.log("esto es user ", user);
-
     const isComplete = () => {
         const requiredFields = ["name", "email", "ZIP_Code", "phone", "street_address", "city", "state", "country"];
         return requiredFields.every(field => user[field]);
@@ -95,7 +92,34 @@ const Cart = () => {
 
     const result = isComplete() ? true : false;
 
-    console.log("isComplete", result);
+    const handlePutQuantity = (id, quantity) => {
+
+        const newOrder = ordersData.orders[ordersData.orders.length - 1]?.products.map((product) => {
+            if(product.id === id) {
+                return [product.id, quantity]
+            }
+            return [product.id, product.cantidad]
+        })
+
+        axios.put('/orders', {
+            id:ordersData.orders[ordersData.orders.length - 1].id,
+            productsToAdd: newOrder
+        })
+        .then(res => res.data)
+        .then(data => {
+            const newOrders = ordersData.orders.map(orden => {
+                if(orden.id === data.order.id) {
+                    return data.order
+                }
+                return orden
+            })
+            setOrdersData({
+                ...ordersData,
+                orders: newOrders.reverse()
+            })
+        })
+        .catch(err => console.log(err))
+    }
 
     return (
         <div className="flex flex-col items-center justify-center w-full">
@@ -133,7 +157,7 @@ const Cart = () => {
                         </thead>
                         <tbody>
                             {
-                                ordersData.orders[0]?.products.map(product => (
+                                ordersData.orders[ordersData.orders.length - 1]?.products.map(product => (
                                     <tr key={product.id} className='border-t'>
                                         <td className='flex items-center gap-1 h-22'>
                                             <img
@@ -148,13 +172,13 @@ const Cart = () => {
                                         <td>${product.price}</td>
                                         <td>
                                             <div className="inline mr-3 w-4 h-4 text-xl">
-                                                <button className="">-</button>
+                                                <button onClick={() => handlePutQuantity(product.id, product.cantidad - 1)} className="">-</button>
                                             </div>
                                             <p className="text-[16px] inline">
                                                 {product.cantidad}
                                             </p>
                                             <div className="inline ml-3 w-4 h-4 text-xl">
-                                                <button className="">+</button>
+                                                <button onClick={() => handlePutQuantity(product.id, product.cantidad + 1)} className="">+</button>
                                             </div>
                                         </td>
                                     </tr>

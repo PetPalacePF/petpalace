@@ -12,6 +12,7 @@ import Orders from './Orders.jsx'
 // * Components
 import ProductForm from "../../components/Admin/ProductForm";
 import AdminNavbar from '../../components/Admin/AdminNavbar'
+import Users from "./Users.jsx"
 
 const AdminPanel = ({allCategories, setAllCategories}) => {
   return (
@@ -24,6 +25,7 @@ const AdminPanel = ({allCategories, setAllCategories}) => {
               <Route path='/products' element={<Products/>} />
               <Route path='/products/new' element={<ProductForm/>} />
               <Route path='/orders' element={<Orders/>} />
+              <Route path='/users' element={<Users/>} />
           </Routes>
         </div>
     </div>

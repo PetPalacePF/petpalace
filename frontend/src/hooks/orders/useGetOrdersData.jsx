@@ -15,7 +15,6 @@ const useGetOrdersData = () => {
         .then((data) => {
           setOrdersData(data)
         })
-        .catch((err) => console.log(err));
     }
   }, []);
 
