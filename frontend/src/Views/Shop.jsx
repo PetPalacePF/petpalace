@@ -64,13 +64,15 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
     );
     const filters = [];
 
-    if (!filterCategories.length > 0) {
-      filterCategories.forEach((id) => {
-        const category = allCategories.byId[id];
-        if (category) {
-          filters.push(category.name);
-        }
-      });
+    if (location.search.includes("filterCategories")) {
+      const selectedCategories = new URLSearchParams(location.search).getAll(
+        "filterCategories"
+      );
+      // console.log("selectedCategories", selectedCategories);
+      // console.log("allCategories.byId", allCategories.byId);
+      selectedCategories.forEach((category) =>
+        filters.push(`${allCategories?.byId[category]?.name}`)
+      );
     }
 
     if (priceRange[0] !== 0 || priceRange[1] !== 1000) {
@@ -83,10 +85,10 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
       );
       selectedBrands.forEach((brand) => filters.push(`${brand}`));
     }
-    console.log("activeFilters", activeFilters);
-    console.log("allCategories id name", allCategories);
-    console.log("filters", filters);
-    console.log("filterCategories", filterCategories);
+    // console.log("activeFilters", activeFilters);
+    // console.log("allCategories id name", allCategories);
+    // console.log("filters", filters);
+    // console.log("filterCategories", filterCategories);
 
     setActiveFilters(filters);
   }, [
@@ -97,6 +99,7 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
     priceRange,
     search,
     location,
+    allCategories,
   ]);
   const handleCategoryToggle = (id) => {
     if (location.search.includes(id)) {
@@ -128,13 +131,25 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
   };
 
   const handleFilterRemove = (filterToRemove, filterType) => {
+    console.log("filterToRemove--------", filterToRemove);
+    console.log("activeFilters", activeFilters);
     setActiveFilters((prevFilters) =>
       prevFilters.filter((filter) => filter !== filterToRemove)
     );
 
+    const idCategoryABorrar = allCategories.allIds.find(
+      (id) => allCategories.byId[id].name === filterToRemove
+    );
+
+    console.log(idCategoryABorrar);
+
     switch (filterType) {
       case "category":
-        handleCategoryToggle(filterToRemove);
+        handleCategoryToggle(
+          allCategories.allIds.find(
+            (id) => allCategories.byId[id].name === filterToRemove
+          )
+        );
         break;
       case "priceRange":
         handlePriceRangeChange([0, 1000]);
@@ -148,12 +163,9 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
   };
 
   const determineFilterType = (filterValue) => {
-    // Check if the filter matches any of the categories
     const isCategory = allCategories.allIds.some((id) => {
       return allCategories.byId[id].name === filterValue;
     });
-
-    // Check if the filter matches any of the brands
     const isBrand = brands.includes(filterValue);
 
     if (isCategory) {
