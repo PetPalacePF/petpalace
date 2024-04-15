@@ -36,7 +36,7 @@ export const NavBar = ({ allCategories }) => {
       <nav className="bg-white p-4 border shadow-lg rounded-lg flex gap-[56px] w-[1400px] h-[70px] items-center mx-auto justify-center">
         <NavLink
           to="/"
-          className="text-black hover:text-gray-300"
+          className="text-black hover:text-gray-300 hover:underline"
           activeclassname="font-bold"
         >
           HOME
@@ -61,7 +61,7 @@ export const NavBar = ({ allCategories }) => {
             </div>
           )}
         </div>
-        {/* <NavLink
+        {/*<NavLink
           to="/services"
           className="text-black hover:text-gray-300"
           activeclassname="font-bold"
@@ -81,38 +81,38 @@ export const NavBar = ({ allCategories }) => {
           activeclassname="font-bold"
         >
           DOGS
-        </NavLink> */}
+        </NavLink>*/}
         <NavLink
           to="/shop"
-          className="text-black hover:text-gray-300"
+          className="text-black hover:text-gray-300 hover:underline"
           activeclassname="font-bold"
         >
           SHOP
         </NavLink>
         <NavLink
           to="/about"
-          className="text-black hover:text-gray-300"
+          className="text-black hover:text-gray-300 hover:underline"
           activeclassname="font-bold"
         >
           ABOUT US
         </NavLink>
         <NavLink
           to="/contact"
-          className="text-black hover:text-gray-300"
+          className="text-black hover:text-gray-300 hover:underline"
           activeclassname="font-bold"
         >
           CONTACT
         </NavLink>
         {isAuthenticated ? (
           <button
-            className="text-black hover:text-gray-300"
+            className="text-black hover:text-gray-300 hover:underline"
             onClick={handleLogout}
           >
             LOGOUT
           </button>
         ) : (
           <button
-            className="text-black hover:text-gray-300"
+            className="text-black hover:text-gray-300 hover:underline"
             onClick={() => loginWithRedirect()}
           >
             LOGIN

@@ -8,6 +8,7 @@ const routerProducts = require("./products");
 const routerPurchases = require("./purchases");
 const routerUsers = require("./users");
 const routerPaymentSession = require("./paymentSession")
+const routerMail = require("./mail")
 
 //? RUTAS
 router.use("/admin", routerAdmin);
@@ -18,6 +19,6 @@ router.use("/products", routerProducts);
 router.use("/purchases", routerPurchases);
 router.use("/users", routerUsers);
 router.use("/payment-session", routerPaymentSession)
-
+router.use("/mail", routerMail)
 
 module.exports = router;
