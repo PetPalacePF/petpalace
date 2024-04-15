@@ -35,6 +35,15 @@ const putUser = async (req, res) => {
           message: updatedUser.message,
         });
   } catch (error) {
+    if (
+      error.message ===
+      "Cannot read properties of undefined (reading 'hasOwnProperty')"
+    ) {
+      return res.status(500).json({
+        updated: false,
+        error: `Ya existe un usuario registrado con el mail '${email}', por favor ingresá un email diferente para actualizar.`,
+      });
+    }
     res.status(500).json({ error: error.message });
   }
 };

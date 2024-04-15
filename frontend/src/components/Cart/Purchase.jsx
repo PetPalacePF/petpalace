@@ -19,7 +19,7 @@ const Purchase = ({ userInfo, result, ordersData }) => {
     
         const body = {
           products: orderToSend.products,
-        //   customer_email: user.email,
+          customerEmail: user.email,
         };
     
         console.log("ALL PRODUCTS BODY ", body);

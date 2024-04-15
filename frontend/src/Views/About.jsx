@@ -1,5 +1,6 @@
 import React from "react";
 import { Footer } from "../components/Footer/Footer";
+import { Link } from "react-router-dom";
 
 const About = () => {
   return (
@@ -26,24 +27,25 @@ const About = () => {
             lovers today and experience the ultimate destination for all your pet
             needs.
           </p>
-          <h2 className="text-xl font-semibold mb-2 ml-2">🐾Expert Care at Your Fingertips</h2>
+          <h2 className="text-xl font-semibold mb-2 ml-2">🐾Our values:</h2>
           <p className="mb-6 ml-2 max-w-full text-left">
-            At Pet Palace, we go beyond just providing products. We're committed
-            to ensuring your pet receives comprehensive care and attention. That's
-            why we offer a unique feature that allows you to connect with
-            experienced veterinarians right from the comfort of your home. Have
-            questions about your pet's health or behavior? Our team of
-            professionals is here to provide expert advice and guidance whenever
-            you need it. Whether it's a dietary concern, grooming tips, or general
-            wellness advice, our veterinarians are available to assist you every
-            step of the way. With Pet Palace, you can rest assured that your pet's
-            happiness and well-being are our top priorities. Join us today and
-            experience the convenience of expert care at your fingertips. After
-            all, at Pet Palace, every pet reigns supreme!
+          At Pet Palace we comply with a series of values ​​so that our clients have 
+          the best possible service. These values ​​are: Free Shipping, Easy Payment, 
+          Quick Return and Quality assurance. Free shipping on all orders over $89. 
+          Throughout the United States, Canada, Europe and South America. We deliver 
+          24 hours a day, 7 days a week. Contactless delivery is also possible. 
+          Stay safe and save with Casual Style. An easy and intuitive payment method. 
+          You just have to give us your information along with your card when completing 
+          the purchase process and that's it!. Enjoy your purchase. A quick return where 
+          the return costs are on us. Please return any item you are not satisfied with 
+          within 14 days of receiving the product. We will refund your money when you 
+          request it. Simply contact us within the estimated time frame. Last but not least 
+          we have quality insurance, where we care about our reputation and most importantly 
+          the comfort of our customers. With us, it's always "What you see is what you get."
           </p>
           <h2 className="text-xl font-semibold mb-2 ml-2">🐾Let's Connect:</h2>
           <p className="ml-2 max-w-full text-left">
-            To contact us you can go to the contact section or through one of the 
+            To contact us you can go to the <Link to='/contact' className="text-purple-500 mb-2 hover:text-purple-700">contact section</Link> or through one of the 
             contacts that appear in the footer of the page.
           </p>
         </div>

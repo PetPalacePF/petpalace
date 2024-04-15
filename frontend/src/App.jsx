@@ -21,8 +21,8 @@ import { Shop } from "./Views/Shop.jsx";
 import Cart from "./Views/User/Cart.jsx";
 import useFilters from "./hooks/useFilter.jsx";
 import { Profile } from "./Views/Users/Profile.jsx";
-import Dogs from "./Views/Dogs.jsx";
-import Cats from "./Views/Cats.jsx";
+// import Dogs from "./Views/Dogs.jsx";
+// import Cats from "./Views/Cats.jsx";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -95,28 +95,6 @@ function App() {
                 <Route path="/profile/*" element={<Profile />}></Route>
                 <Route path="/cart/*" element={<Cart />} />
                 <Route path="/contact" element={<Contact />}></Route>
-                <Route
-                  path="/dogs"
-                  element={
-                    <Dogs
-                      allCategories={allCategories}
-                      products={products}
-                      setProducts={setProducts}
-                      filters={filters}
-                    />
-                  }
-                ></Route>
-                <Route
-                  path="/cats"
-                  element={
-                    <Cats
-                      allCategories={allCategories}
-                      products={products}
-                      setProducts={setProducts}
-                      filters={filters}
-                    />
-                  }
-                ></Route>
               </Routes>
             </>
           }
@@ -125,10 +103,33 @@ function App() {
         <Route
           path="/admin/*"
           element={<AdminPanel allCategories={allCategories} setAllCategories={setAllCategories} />}
-        />
+          />
       </Routes>
     </div>
   );
 }
 
 export default App;
+
+{/* <Route
+  path="/dogs"
+  element={
+    <Dogs
+      allCategories={allCategories}
+      products={products}
+      setProducts={setProducts}
+      filters={filters}
+    />
+  }
+></Route> */}
+{/* <Route
+  path="/cats"
+  element={
+    <Cats
+      allCategories={allCategories}
+      products={products}
+      setProducts={setProducts}
+      filters={filters}
+    />
+  }
+></Route> */}
