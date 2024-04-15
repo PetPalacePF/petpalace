@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { BACKEND_URL } from "../config/config";
 
 import { getFilteredProducts } from "../utils/getAllProducts";
 import { Card } from "../components/Cards/Card";
+import Paginated from "../components/Paginated/Paginated";
 import getPaymentSessions from "../utils/getPaymentSessions";
 
 export const Shop = ({ setProducts, products, allCategories, filters }) => {
@@ -22,12 +22,13 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
   } = filters;
   const [priceRange, setPriceRange] = useState([0, 1000]);
   const [stripe, setStripe] = useState();
-
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const [brands, setBrands] = useState([]);
 
   useEffect(() => {
     axios
-      .get(`${BACKEND_URL}/brands`)
+      .get(`http://localhost:5000/brands`)
       .then((response) => {
         const brands = response.data.brands;
         setBrands(brands);
@@ -58,12 +59,14 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
 
     getFilteredProducts(
       setProducts,
+      setTotalPages,
       filterCategories,
       sortRating,
       sortPrice,
       priceRange,
       search,
-      location
+      location,
+      currentPage
     );
   }, [
     setProducts,
@@ -73,6 +76,7 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
     priceRange,
     search,
     location,
+    currentPage
   ]);
 
   const handleSortRatingChange = (e) => {
@@ -104,9 +108,18 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
     }
   };
 
+  const onPageChange = (page) => {
+    setCurrentPage(page);
+  };
+
   return (
     <div>
       <div className="w-full text-black mt-14 flex justify-end items-center pr-[200px]">
+      <Paginated
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={onPageChange}
+            />
         <label htmlFor="sortRating" className="mx-2">
           Sort by Rating:
         </label>
