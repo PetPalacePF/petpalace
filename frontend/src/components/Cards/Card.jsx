@@ -27,7 +27,7 @@ export const Card = ({ product }) => {
             {product.Categories[0].name}
           </span>
           <button
-            className="absolute top-3 right-4 border border-blue-200 rounded-xl px-4 py-2 bg-blue-100"
+            className="absolute top-3 right-4 border border-blue-200 rounded-xl px-4 py-2 bg-blue-100 hover:bg-blue-300"
             onClick={(event) => handleAddToCart(event)}
           >
             <img src={CartIcon} alt="" className="w-4 h-4" />

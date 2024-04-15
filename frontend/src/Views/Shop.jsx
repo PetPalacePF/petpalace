@@ -8,6 +8,12 @@ import { getFilteredProducts } from "../utils/getAllProducts";
 import { Card } from "../components/Cards/Card";
 import getPaymentSessions from "../utils/getPaymentSessions";
 
+import { FaChevronDown } from "react-icons/fa";
+import { FaChevronUp } from "react-icons/fa";
+import { IoIosClose } from "react-icons/io";
+import { PiCurrencyDollar } from "react-icons/pi";
+
+
 export const Shop = ({ setProducts, products, allCategories, filters }) => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -23,6 +29,8 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
   const [stripe, setStripe] = useState();
   const [activeFilters, setActiveFilters] = useState([]);
   const [brands, setBrands] = useState([]);
+  const [isRatingOpen, setIsRatingOpen] = useState(false);
+  const [isPriceOpen, setIsPriceOpen] = useState(false);
 
   useEffect(() => {
     axios
@@ -179,44 +187,15 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
 
   return (
     <div>
-      <div className="w-full text-black mt-14 flex justify-end items-center pr-[200px]">
-        <label htmlFor="sortRating" className="mx-2">
-          Sort by Rating:
-        </label>
-        <select
-          id="sortRating"
-          className="mr-2 px-2 py-1 border border-gray-300 rounded-md text-black"
-          value={sortRating}
-          onChange={handleSortRatingChange}
-        >
-          <option value="">None</option>
-          <option value="DESC">Highest Rating</option>
-          <option value="ASC">Lowest Rating</option>
-        </select>
-        <label htmlFor="sortPrice" className="mx-2">
-          Sort by Price:
-        </label>
-        <select
-          id="sortPrice"
-          className="mr-2 px-2 py-1 border border-gray-300 rounded-md text-black"
-          value={sortPrice}
-          onChange={handleSortPriceChange}
-        >
-          <option value="">None</option>
-          <option value="DESC">Highest Price</option>
-          <option value="ASC">Lowest Price</option>
-        </select>
-      </div>
-      <div className="flex flex-row">
-        <div className="bg-violetahome text-white flex flex-col gap-4 h-fixed p-6 w-[200px]">
-          <div className="w-full text-black mt-14 ml-[200px] flex justify-end items-center pr-[200px]">
-            {activeFilters.length > 0 && (
-              <div className="flex gap-2">
-                <span className="">Active Filters:</span>
+      <div className="flex items-center justify-between px-[200px] mt-14">
+        <div>
+          {activeFilters.length > 0 && (
+            <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2">
                 {activeFilters.map((filter, index) => (
                   <span
                     key={index}
-                    className="bg-violetamain px-2 py-1 rounded-xl text-white"
+                    className="bg-violetahome px-2 py-1 rounded-xl flex items-center"
                   >
                     {filter}
                     <button
@@ -225,16 +204,68 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
                       }
                       className="ml-1"
                     >
-                      x
+                      <IoIosClose />
                     </button>
                   </span>
                 ))}
               </div>
-            )}
+            </div>
+          )}
+        </div>
+
+        <div className="flex items-center">
+          <div className="mx-2">
+            <label htmlFor="sortRating">Sort by Rating:</label>
+            <div className="relative">
+              <select
+                id="sortRating"
+                className="border border-gray-300 rounded-full h-10 pl-5 pr-10 pr-8 hover:border-gray-400 focus:outline-none appearance-none"
+                value={sortRating}
+                onChange={handleSortRatingChange}
+                onClick={() => setIsRatingOpen(!isRatingOpen)}
+                onBlur={() => setIsRatingOpen(false)}
+              >
+                <option value="">None</option>
+                <option value="DESC">Highest Rating</option>
+                <option value="ASC">Lowest Rating</option>
+              </select>
+              {isRatingOpen ? (
+                <FaChevronUp className="w-4 h-4 absolute top-0 right-0 mt-3 mr-3 pointer-events-none" />
+              ) : (
+                <FaChevronDown className="w-4 h-4 absolute top-0 right-0 mt-3 mr-3 pointer-events-none" />
+              )}
+            </div>
           </div>
 
+          <div className="mx-2">
+            <label htmlFor="sortPrice">Sort by Price:</label>
+            <div className="relative">
+              <select
+                id="sortPrice"
+                className="border border-gray-300 rounded-full h-10 pl-5 pr-10 hover:border-gray-400 focus:outline-none appearance-none"
+                value={sortPrice}
+                onChange={handleSortPriceChange}
+                onClick={() => setIsPriceOpen(!isPriceOpen)}
+                onBlur={() => setIsPriceOpen(false)}
+              >
+                <option value="">None</option>
+                <option value="DESC">Highest Price</option>
+                <option value="ASC">Lowest Price</option>
+              </select>
+              {isPriceOpen ? (
+                <FaChevronUp className="w-4 h-4 absolute top-0 right-0 mt-3 mr-3 pointer-events-none" />
+              ) : (
+                <FaChevronDown className="w-4 h-4 absolute top-0 right-0 mt-3 mr-3 pointer-events-none" />
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="flex flex-row">
+        <div className="bg-violetahome text-white flex flex-col gap-4 h-fixed p-6 w-[200px]">
           <div className="w-full mb-4 flex flex-col items-center">
-            <h1 className="text-2xl text-black">Price Range:</h1>
+            <h1 className="text-2xl text-black mb-2">Price Range:</h1>
             <div className="flex">
               <div className="flex flex-col items-center">
                 <input
