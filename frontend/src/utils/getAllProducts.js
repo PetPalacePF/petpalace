@@ -4,11 +4,13 @@
 import axios from "axios";
 import { BACKEND_URL } from "../config/config";
 
-export const getAllProducts = async (setProducts) => {
+export const getAllProducts = async (setProducts, page = 1) => {
   try {
     if (setProducts) {
-      const response = await axios(`${BACKEND_URL}/products`);
-      setProducts(response.data.products);
+      const response = await axios(`${BACKEND_URL}/products?page=${page}`);
+      const { products } = response.data;
+     
+      setProducts(products);
     }
   } catch (error) {
     console.error("Error fetching products:", error);
@@ -17,12 +19,14 @@ export const getAllProducts = async (setProducts) => {
 
 export const getFilteredProducts = async (
   setProducts,
+  setTotalPages,
   filterCategories = [],
   sortRating = "",
   sortPrice = "",
   priceRange = [],
   search = "",
-  location
+  location,
+  page = 1
 ) => {
   const querys = location.search.split("?")[1];
 
@@ -68,9 +72,10 @@ export const getFilteredProducts = async (
 
   try {
     const response = await axios(
-      `${BACKEND_URL}/products?${URLWordSearch}&${querys}&${URLWordSortRating}&${URLWordSortPrice}&${URLWordFilterPrice}`
+      `${BACKEND_URL}/products?${URLWordSearch}&${querys}&${URLWordSortRating}&${URLWordSortPrice}&${URLWordFilterPrice}&page=${page}`
     );
     setProducts(response.data.products);
+    setTotalPages(response.data.totalPages);
   } catch (error) {
     console.error("Error fetching products:", error);
   }

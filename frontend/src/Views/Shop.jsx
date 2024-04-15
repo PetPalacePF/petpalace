@@ -6,6 +6,7 @@ import { BACKEND_URL } from "../config/config";
 
 import { getFilteredProducts } from "../utils/getAllProducts";
 import { Card } from "../components/Cards/Card";
+import Paginated from "../components/Paginated/Paginated";
 import getPaymentSessions from "../utils/getPaymentSessions";
 
 import { FaChevronDown } from "react-icons/fa";
@@ -30,6 +31,8 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
   const [isRatingOpen, setIsRatingOpen] = useState(false);
   const [isPriceOpen, setIsPriceOpen] = useState(false);
   const [visibleBrands, setVisibleBrands] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
     axios
@@ -48,12 +51,14 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
 
     getFilteredProducts(
       setProducts,
+      setTotalPages,
       filterCategories,
       sortRating,
       sortPrice,
       priceRange,
       search,
-      location
+      location,
+      currentPage
     );
     const filters = [];
 
@@ -93,6 +98,7 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
     search,
     location,
     allCategories,
+    currentPage,
   ]);
   const handleCategoryToggle = (id) => {
     if (location.search.includes(id)) {
@@ -110,6 +116,11 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
       );
     }
   };
+
+  const onPageChange = (page) => {
+    setCurrentPage(page);
+  };
+
 
   const handleBrandToggle = (brand) => {
     const searchParams = new URLSearchParams(location.search);
@@ -196,6 +207,11 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
   return (
     <div>
       <div className="flex items-center justify-between px-[200px] mt-14">
+      <Paginated
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={onPageChange}
+            />
         <div>
           {activeFilters.length > 0 && (
             <div className="flex flex-wrap gap-2">
