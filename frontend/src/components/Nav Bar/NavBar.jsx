@@ -93,14 +93,14 @@ export const NavBar = ({ allCategories }) => {
           to="/about"
           className="text-black hover:text-gray-300 hover:underline"
           activeclassname="font-bold"
-        >
+          >
           ABOUT US
         </NavLink>
         <NavLink
           to="/contact"
           className="text-black hover:text-gray-300 hover:underline"
           activeclassname="font-bold"
-        >
+          >
           CONTACT
         </NavLink>
         {isAuthenticated ? (
@@ -129,3 +129,25 @@ export const NavBar = ({ allCategories }) => {
     </div>
   );
 };
+
+{/* <NavLink
+  to="/services"
+  className="text-black hover:text-gray-300"
+  activeclassname="font-bold"
+>
+  SERVICES
+</NavLink> */}
+{/* <NavLink
+  to="/cats"
+  className="text-black hover:text-gray-300"
+  activeclassname="font-bold"
+>
+  CATS
+</NavLink> */}
+{/* <NavLink
+  to="/dogs"
+  className="text-black hover:text-gray-300"
+  activeclassname="font-bold"
+>
+  DOGS
+</NavLink> */}
