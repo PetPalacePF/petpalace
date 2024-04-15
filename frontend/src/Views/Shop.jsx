@@ -62,22 +62,31 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
       search,
       location
     );
-
     const filters = [];
-    if (filterCategories.length > 0) {
-      filters.push(
-        ...filterCategories.map((catId) => allCategories.byId[catId].name)
-      );
+
+    if (!filterCategories.length > 0) {
+      filterCategories.forEach((id) => {
+        const category = allCategories.byId[id];
+        if (category) {
+          filters.push(category.name);
+        }
+      });
     }
+
     if (priceRange[0] !== 0 || priceRange[1] !== 1000) {
       filters.push(`$${priceRange[0]} - $${priceRange[1]}`);
     }
+
     if (location.search.includes("filterBrands")) {
       const selectedBrands = new URLSearchParams(location.search).getAll(
         "filterBrands"
       );
       selectedBrands.forEach((brand) => filters.push(`${brand}`));
     }
+    console.log("activeFilters", activeFilters);
+    console.log("allCategories id name", allCategories);
+    console.log("filters", filters);
+    console.log("filterCategories", filterCategories);
 
     setActiveFilters(filters);
   }, [
@@ -118,6 +127,44 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
     setPriceRange(newRange);
   };
 
+  const handleFilterRemove = (filterToRemove, filterType) => {
+    setActiveFilters((prevFilters) =>
+      prevFilters.filter((filter) => filter !== filterToRemove)
+    );
+
+    switch (filterType) {
+      case "category":
+        handleCategoryToggle(filterToRemove);
+        break;
+      case "priceRange":
+        handlePriceRangeChange([0, 1000]);
+        break;
+      case "brand":
+        handleBrandToggle(filterToRemove);
+        break;
+      default:
+        break;
+    }
+  };
+
+  const determineFilterType = (filterValue) => {
+    // Check if the filter matches any of the categories
+    const isCategory = allCategories.allIds.some((id) => {
+      return allCategories.byId[id].name === filterValue;
+    });
+
+    // Check if the filter matches any of the brands
+    const isBrand = brands.includes(filterValue);
+
+    if (isCategory) {
+      return "category";
+    } else if (isBrand) {
+      return "brand";
+    } else {
+      return "priceRange";
+    }
+  };
+
   return (
     <div>
       <div className="w-full text-black mt-14 flex justify-end items-center pr-[200px]">
@@ -151,7 +198,6 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
       <div className="flex flex-row">
         <div className="bg-violetahome text-white flex flex-col gap-4 h-fixed p-6 w-[200px]">
           <div className="w-full text-black mt-14 ml-[200px] flex justify-end items-center pr-[200px]">
-            {/* Display active filters */}
             {activeFilters.length > 0 && (
               <div className="flex gap-2">
                 <span className="">Active Filters:</span>
@@ -161,11 +207,20 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
                     className="bg-violetamain px-2 py-1 rounded-xl text-white"
                   >
                     {filter}
+                    <button
+                      onClick={() =>
+                        handleFilterRemove(filter, determineFilterType(filter))
+                      }
+                      className="ml-1"
+                    >
+                      x
+                    </button>
                   </span>
                 ))}
               </div>
             )}
           </div>
+
           <div className="w-full mb-4 flex flex-col items-center">
             <h1 className="text-2xl text-black">Price Range:</h1>
             <div className="flex">
@@ -180,12 +235,14 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
                       ? ""
                       : priceRange[0]
                   }
-                  onChange={(e) =>
-                    handlePriceRangeChange([
-                      parseInt(e.target.value),
-                      priceRange[1],
-                    ])
-                  }
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    if (value === "" || isNaN(parseInt(value))) {
+                      handlePriceRangeChange([0, priceRange[1]]);
+                    } else {
+                      handlePriceRangeChange([parseInt(value), priceRange[1]]);
+                    }
+                  }}
                   className="text-black border rounded-md px-1 py-1 w-16 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="Min"
                   style={{ fontWeight: "normal" }}
@@ -202,12 +259,14 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
                       ? ""
                       : priceRange[1]
                   }
-                  onChange={(e) =>
-                    handlePriceRangeChange([
-                      priceRange[0],
-                      parseInt(e.target.value),
-                    ])
-                  }
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    if (value === "" || isNaN(parseInt(value))) {
+                      handlePriceRangeChange([priceRange[0], 1000]);
+                    } else {
+                      handlePriceRangeChange([priceRange[0], parseInt(value)]);
+                    }
+                  }}
                   className="text-black border rounded-md px-1 py-1 w-16 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="Max"
                   style={{ fontWeight: "normal" }}
