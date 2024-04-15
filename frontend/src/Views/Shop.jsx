@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 
 import { useLocation, useNavigate } from "react-router-dom";
@@ -22,7 +21,7 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
   } = filters;
   const [priceRange, setPriceRange] = useState([0, 1000]);
   const [stripe, setStripe] = useState();
-
+  const [activeFilters, setActiveFilters] = useState([]);
   const [brands, setBrands] = useState([]);
 
   useEffect(() => {
@@ -45,7 +44,6 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
       searchParams.delete("filterBrands");
       updatedParams.forEach((b) => searchParams.append("filterBrands", b));
     } else {
-      console.log(location.search);
       searchParams.append("filterBrands", brand);
     }
 
@@ -53,8 +51,7 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
   };
 
   useEffect(() => {
-
-    getPaymentSessions(setStripe)
+    getPaymentSessions(setStripe);
 
     getFilteredProducts(
       setProducts,
@@ -65,6 +62,24 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
       search,
       location
     );
+
+    const filters = [];
+    if (filterCategories.length > 0) {
+      filters.push(
+        ...filterCategories.map((catId) => allCategories.byId[catId].name)
+      );
+    }
+    if (priceRange[0] !== 0 || priceRange[1] !== 1000) {
+      filters.push(`$${priceRange[0]} - $${priceRange[1]}`);
+    }
+    if (location.search.includes("filterBrands")) {
+      const selectedBrands = new URLSearchParams(location.search).getAll(
+        "filterBrands"
+      );
+      selectedBrands.forEach((brand) => filters.push(`${brand}`));
+    }
+
+    setActiveFilters(filters);
   }, [
     setProducts,
     filterCategories,
@@ -74,19 +89,6 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
     search,
     location,
   ]);
-
-  const handleSortRatingChange = (e) => {
-    setSortRating(e.target.value);
-  };
-
-  const handleSortPriceChange = (e) => {
-    setSortPrice(e.target.value);
-  };
-
-  const handlePriceRangeChange = (newRange) => {
-    setPriceRange(newRange);
-  };
-
   const handleCategoryToggle = (id) => {
     if (location.search.includes(id)) {
       const searchParams = new URLSearchParams(location.search);
@@ -102,6 +104,18 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
         }${id}`
       );
     }
+  };
+
+  const handleSortRatingChange = (e) => {
+    setSortRating(e.target.value);
+  };
+
+  const handleSortPriceChange = (e) => {
+    setSortPrice(e.target.value);
+  };
+
+  const handlePriceRangeChange = (newRange) => {
+    setPriceRange(newRange);
   };
 
   return (
@@ -136,6 +150,22 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
       </div>
       <div className="flex flex-row">
         <div className="bg-violetahome text-white flex flex-col gap-4 h-fixed p-6 w-[200px]">
+          <div className="w-full text-black mt-14 ml-[200px] flex justify-end items-center pr-[200px]">
+            {/* Display active filters */}
+            {activeFilters.length > 0 && (
+              <div className="flex gap-2">
+                <span className="">Active Filters:</span>
+                {activeFilters.map((filter, index) => (
+                  <span
+                    key={index}
+                    className="bg-violetamain px-2 py-1 rounded-xl text-white"
+                  >
+                    {filter}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
           <div className="w-full mb-4 flex flex-col items-center">
             <h1 className="text-2xl text-black">Price Range:</h1>
             <div className="flex">
