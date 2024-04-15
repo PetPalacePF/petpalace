@@ -8,7 +8,7 @@ export const Footer = () => {
             <div className="container mx-auto">
                 <div className="flex justify-between items-center">
                     <div className="pb-4">
-                        <Link to='/' className="text-white">🐾PET PALACE</Link>
+                        <Link to='/' className="text-white hover:text-gray-300">🐾PET PALACE</Link>
                     </div>
                     <div>
                         <p className="m-0 pb-4">¡Keep your furry friend's tail wagging non-stop!</p>
