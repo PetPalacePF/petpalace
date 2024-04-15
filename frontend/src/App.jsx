@@ -96,28 +96,6 @@ function App() {
                 <Route path="/profile/*" element={<Profile />}></Route>
                 <Route path="/cart/*" element={<Cart />} />
                 <Route path="/contact" element={<Contact />}></Route>
-                {/* <Route
-                  path="/dogs"
-                  element={
-                    <Dogs
-                      allCategories={allCategories}
-                      products={products}
-                      setProducts={setProducts}
-                      filters={filters}
-                    />
-                  }
-                ></Route> */}
-                {/* <Route
-                  path="/cats"
-                  element={
-                    <Cats
-                      allCategories={allCategories}
-                      products={products}
-                      setProducts={setProducts}
-                      filters={filters}
-                    />
-                  }
-                ></Route> */}
               </Routes>
             </>
           }
@@ -126,10 +104,33 @@ function App() {
         <Route
           path="/admin/*"
           element={<AdminPanel allCategories={allCategories} setAllCategories={setAllCategories} />}
-        />
+          />
       </Routes>
     </div>
   );
 }
 
 export default App;
+
+{/* <Route
+  path="/dogs"
+  element={
+    <Dogs
+      allCategories={allCategories}
+      products={products}
+      setProducts={setProducts}
+      filters={filters}
+    />
+  }
+></Route> */}
+{/* <Route
+  path="/cats"
+  element={
+    <Cats
+      allCategories={allCategories}
+      products={products}
+      setProducts={setProducts}
+      filters={filters}
+    />
+  }
+></Route> */}

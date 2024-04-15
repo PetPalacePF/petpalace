@@ -3,6 +3,7 @@ const formattedUsers = (users) => {
     const {
       id,
       admin,
+      enabled,
       name,
       email,
       Orders,
@@ -11,6 +12,7 @@ const formattedUsers = (users) => {
       state,
       city,
       street_address,
+      street_number,
       ZIP_Code,
       phone,
     } = user;
@@ -21,6 +23,7 @@ const formattedUsers = (users) => {
     return {
       id,
       admin,
+      enabled,
       name,
       email,
       orders,
@@ -29,6 +32,7 @@ const formattedUsers = (users) => {
       state,
       city,
       street_address,
+      street_number,
       ZIP_Code,
       phone,
     };

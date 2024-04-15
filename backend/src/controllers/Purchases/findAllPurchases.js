@@ -1,10 +1,11 @@
-const { Op } = require("sequelize");
 const { Purchase, Order, User } = require("../../db");
 const filterByOrders = require("./purchases_utils/filterByOrders");
 const filterByUsers = require("./purchases_utils/filterByUsers");
 const SortByQuery = require("./purchases_utils/SortByQuery");
+const findOrderbyId = require("../Orders/findOrderbyId");
+const formattedOrder = require("../../utils/formatted/formattedOrder");
+const formattedPurchase = require("../../utils/formatted/formattedPurchase");
 const findAll_returnValidator = require("../../utils/validators/purchases/findAll_returnValidator");
-
 
 const findAllPurchases = async (paginated, queryInputs) => {
   let includeOrdersClause = {};
@@ -19,16 +20,6 @@ const findAllPurchases = async (paginated, queryInputs) => {
     orderClause = SortByQuery(queryInputs);
     orderClause.length === 0 && (orderClause = [["id", "ASC"]]);
   }
-
-     // Consulta para obtener el recuento total de órdenes
-     const totalCount = await Purchase.count({
-      where: {
-        [Op.and]: [
-          includeOrdersClause, 
-          includeUsersClause 
-        ]
-      }
-    });
 
   const purchases = await Purchase.findAndCountAll({
     include: [
@@ -48,17 +39,43 @@ const findAllPurchases = async (paginated, queryInputs) => {
     offset: offset,
   });
 
+  const { count, rows } = purchases;
+  const totalPages = Math.ceil(count / pageSize);
+  const { message, status } = findAll_returnValidator(
+    purchases,
+    page,
+    totalPages
+  );
 
-  const { rows } = purchases;
-  const totalPages = Math.ceil(totalCount / pageSize);
-  const { message, status } = findAll_returnValidator(rows, page, totalPages);
+  let purchase_CompletedData;
+  let purchasesCompletedData = [];
+  if (rows) {
+    for (const purchase of rows) {
+      const { Orders } = purchase;
+      purchase_CompletedData = purchase;
+      purchase_CompletedData.Orders = [];
+
+      for (const order of Orders) {
+        const orderData = formattedOrder(await findOrderbyId(order.id));
+        const { products } = orderData;
+        purchase_CompletedData.Orders = [
+          ...purchase_CompletedData.Orders,
+          { id: order.id, products },
+        ];
+      }
+      purchasesCompletedData = [
+        ...purchasesCompletedData,
+        purchase_CompletedData
+      ];
+    }
+  }
 
   return {
-    totalResults: totalCount,
+    totalResults: count,
     totalPages: totalPages,
     currentPage: page,
     pageSize: pageSize,
-    purchasesDB: rows,
+    purchasesDB: purchasesCompletedData,
     message: message,
     status: status,
   };
