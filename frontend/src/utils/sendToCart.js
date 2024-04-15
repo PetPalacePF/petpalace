@@ -13,6 +13,7 @@ const addToCart = async (productId, orderedProductQuantity = 1, ordersData) => {
         userId: userData.id,
         products: [[productId, orderedProductQuantity]],
       });
+      window.localStorage.setItem("orderData", JSON.stringify(response.data.order));    
       console.log("Product added to cart:", response.data);
     } catch (error) {
       console.error("Error adding product to cart:", error);
