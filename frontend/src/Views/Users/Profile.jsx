@@ -2,8 +2,8 @@
 import { useState } from 'react';
 import { UserForm } from '../../components/Users/UserForm';
 import { UserSideBar } from '../../components/Users/UserSideBar';
-import { Mypurchases } from '../../components/Users/Mypurchases';
 import { Routes, Route } from "react-router-dom"
+import { MyPurchases } from '../../components/Users/Mypurchases';
 
 export const Profile = () => {
     const [selectedLink, setSelectedLink] = useState('/profile/personalInfo');
@@ -20,7 +20,7 @@ export const Profile = () => {
 
                 <Routes>
                     <Route path="/personalInfo" element={<UserForm />}></Route>
-                    <Route path="/purchases" element={<Mypurchases />}></Route>
+                    <Route path="/purchases" element={<MyPurchases />}></Route>
                 </Routes>
             </div>
         </div>
