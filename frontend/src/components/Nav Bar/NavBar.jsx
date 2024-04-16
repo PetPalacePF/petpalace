@@ -16,13 +16,16 @@ export const NavBar = ({ allCategories }) => {
           name: user.name,
         })
         .then((response) => {
-          window.localStorage.setItem("userData", JSON.stringify(response.data.user));
+          window.localStorage.setItem(
+            "userData",
+            JSON.stringify(response.data.user)
+          );
         })
         .catch((error) => {
           console.error("Error storing user data:", error);
         });
     } else {
-      window.localStorage.removeItem('userData')
+      window.localStorage.removeItem("userData");
     }
   }, [isAuthenticated, user]);
 
@@ -94,14 +97,14 @@ export const NavBar = ({ allCategories }) => {
           to="/about"
           className="text-black hover:text-gray-300"
           activeclassname="font-bold"
-          >
+        >
           ABOUT US
         </NavLink>
         <NavLink
           to="/contact"
           className="text-black hover:text-gray-300"
           activeclassname="font-bold"
-          >
+        >
           CONTACT
         </NavLink>
         {isAuthenticated ? (
@@ -119,36 +122,40 @@ export const NavBar = ({ allCategories }) => {
             LOGIN
           </button>
         )}
-        {
-          isAuthenticated &&
-          <Link
-            to="/admin"
-            className="uppercase"
-          >Admin</Link>
-        }
+        {isAuthenticated && (
+          <Link to="/admin" className="uppercase">
+            Admin
+          </Link>
+        )}
       </nav>
     </div>
   );
 };
 
-{/* <NavLink
+{
+  /* <NavLink
   to="/services"
   className="text-black hover:text-gray-300"
   activeclassname="font-bold"
 >
   SERVICES
-</NavLink> */}
-{/* <NavLink
+</NavLink> */
+}
+{
+  /* <NavLink
   to="/cats"
   className="text-black hover:text-gray-300"
   activeclassname="font-bold"
 >
   CATS
-</NavLink> */}
-{/* <NavLink
+</NavLink> */
+}
+{
+  /* <NavLink
   to="/dogs"
   className="text-black hover:text-gray-300"
   activeclassname="font-bold"
 >
   DOGS
-</NavLink> */}
+</NavLink> */
+}
