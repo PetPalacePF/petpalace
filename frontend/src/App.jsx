@@ -25,6 +25,7 @@ import { Profile } from "./Views/Users/Profile.jsx";
 // import Cats from "./Views/Cats.jsx";
 
 function App() {
+
   const [products, setProducts] = useState([]);
   // const [users, setUsers] = useState();
   const filters = useFilters();

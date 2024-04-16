@@ -11,8 +11,29 @@ import useGetOrdersData from "../../hooks/orders/useGetOrdersData";
 
 const Cart = () => {
   const [loading, setLoading] = useState(false);
+  const [productQuantities, setProductQuantities] = useState({});
 
   const { ordersData, setOrdersData } = useGetOrdersData();
+
+  const handleDecrement = (productId) => {
+    const currentQuantity = productQuantities[productId] || 1; // Si no hay cantidad definida, asumimos 1 como mínimo
+    const newQuantities = {
+      ...productQuantities,
+      [productId]: Math.max(currentQuantity - 1, 1), // Restar 1 a la cantidad actual, asegurando que no sea menor que 1
+    };
+    setProductQuantities(newQuantities); // Actualizar el estado de las cantidades
+    localStorage.setItem("productQuantities", JSON.stringify(newQuantities)); // Guardar en el localStorage
+  };
+
+  const handleIncrement = (productId) => {
+    const currentQuantity = productQuantities[productId] || 0; // Si no hay cantidad definida, asumimos 0
+    const newQuantities = {
+      ...productQuantities,
+      [productId]: currentQuantity + 1, // Sumar 1 a la cantidad actual
+    };
+    setProductQuantities(newQuantities); // Actualizar el estado de las cantidades
+    localStorage.setItem("productQuantities", JSON.stringify(newQuantities)); // Guardar en el localStorage
+  };
 
   const handleDeleteProductCart = (id) => {
     setLoading(true);
@@ -35,7 +56,7 @@ const Cart = () => {
       });
   };
 
-  const { id } = JSON.parse(window.localStorage.getItem("userData"));
+  const id = JSON.parse(window.localStorage.getItem("userData"))?.id;
 
   const [userInfo, setUserInfo] = useState({
     user: {
@@ -55,16 +76,20 @@ const Cart = () => {
   });
 
   useEffect(() => {
+    const storedQuantities = localStorage.getItem("productQuantities");
+    if (storedQuantities) {
+      setProductQuantities(JSON.parse(storedQuantities));
+    }
     if (id) {
       const getUserInformation = async () => {
         try {
           const response = await axios.get(`${BACKEND_URL}/users/${id}`);
+          console.log("esto es response ", response.data);
           setUserInfo(response.data);
         } catch (error) {
           console.error("Error al obtener información del usuario:", error);
         }
       };
-
       getUserInformation();
     }
   }, [id]);
@@ -72,7 +97,7 @@ const Cart = () => {
   const nameComplete = userInfo.user;
 
   const name = nameComplete.name.split(" ")[0];
-  const location = useLocation();
+  console.log("esto es name ", name);
 
   const [selectedLink, setSelectedLink] = useState("/cart");
   const handleLinkClick = (link) => {
@@ -80,6 +105,8 @@ const Cart = () => {
   };
 
   const { user } = userInfo;
+
+  console.log("esto es user ", user);
 
   const isComplete = () => {
     const requiredFields = [
@@ -96,6 +123,8 @@ const Cart = () => {
   };
 
   const result = isComplete() ? true : false;
+
+  console.log("isComplete", result);
 
   return (
     <div className="flex flex-col items-center justify-center w-full">
@@ -155,11 +184,17 @@ const Cart = () => {
                     <td>${product.price}</td>
                     <td>
                       <div className="inline mr-3 w-4 h-4 text-xl">
-                        <button className="">-</button>
+                        <button onClick={() => handleDecrement(product.id)}>
+                          -
+                        </button>
                       </div>
-                      <p className="text-[16px] inline">{product.cantidad}</p>
+                      <p className="text-[16px] inline">
+                        {productQuantities[product.id] || 1}
+                      </p>
                       <div className="inline ml-3 w-4 h-4 text-xl">
-                        <button className="">+</button>
+                        <button onClick={() => handleIncrement(product.id)}>
+                          +
+                        </button>
                       </div>
                     </td>
                   </tr>
@@ -171,7 +206,8 @@ const Cart = () => {
                 <p>Total</p>
                 <p>
                   {ordersData.orders[0]?.products.reduce((acc, product) => {
-                    acc += product.price;
+                    const quantity = productQuantities[product.id] || 1;
+                    acc += product.price * quantity;
                     return acc;
                   }, 0)}
                 </p>

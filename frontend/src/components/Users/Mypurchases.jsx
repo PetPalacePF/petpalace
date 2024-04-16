@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import getPurchasefilterUsers from '../../utils/getPurchases.js';
+import axios from '../../config/axios.js';
 
 export const MyPurchases = () => {
     const [purchases, setPurchases] = useState([]);
@@ -29,11 +30,37 @@ export const MyPurchases = () => {
     };
 
     const handleSubmitReview = (purchaseId) => {
-        // Aquí puedes enviar el comentario y la valoración a tu backend
+        // Aquí puedes enviar la revisión y el rating a tu backend
         console.log("Purchase ID:", purchaseId);
         console.log("Comment:", comment);
         console.log("Rating:", rating);
-        // Aquí puedes limpiar el input de comentario y reiniciar la valoración
+    
+        const productImages = purchases.flatMap(purchase =>
+            purchase.Orders.flatMap(order =>
+                order.products.map(product => product.img)
+            )
+        );
+
+        console.log("Product Images:", productImages);
+
+        // Aquí puedes enviar los datos al backend a través de Axios
+        axios.post("/mail/review", {
+            userEmail: userInfo.email,
+            userName: userInfo.name,
+            userReview: comment,
+            userRating: rating,
+            productId: productImages
+        })
+        .then(response => {
+            console.log(response.data);
+            // Maneja la respuesta del backend si es necesario
+        })
+        .catch(error => {
+            console.error('Error submitting review:', error);
+            // Maneja el error si es necesario
+        });
+    
+        // Limpia el input de comentario y reinicia el rating
         setComment('');
         setRating(0);
     };
