@@ -39,9 +39,9 @@ export const MyPurchases = () => {
     };
 
     return (
-        <div className="mt-10">
+        <div>
             {purchases.length === 0 ? (
-                <div className="flex items-center h-64">
+                <div className="flex items-center justify-center h-screen">
                     <p className="text-gray-500 text-lg">No purchases found</p>
                 </div>
             ) : (
@@ -57,14 +57,10 @@ export const MyPurchases = () => {
                                 </div>
                             </div>
 
-                            <ul className="flex">
-                                {purchase.Orders[0].products.map((product, index) => (
+                            <ul className="flex overflow-hidden">
+                                {purchase.Orders[0].products.slice(0, 4).map((product, index) => (
                                     <div className="relative" key={index}>
-                                        <div>
-                                            {/* <p className="mr-4">{product.name}</p> */}
-                                        </div>
                                         <div className='truncate'>
-
                                             <div key={index} className="relative mr-4 ml-4">
                                                 <img className="h-16 object-cover rounded w-30 h-30 mr-4 " src={product.img} alt={product.name} />
                                                 <span className="absolute top-0 right-0 bg-black bg-opacity-50 text-white text-xs px-1 rounded">
@@ -74,8 +70,13 @@ export const MyPurchases = () => {
                                         </div>
                                     </div>
                                 ))}
-                                <p className="text-gray-600 text-lg font-semibold ml-30 mr-10">Total: ${calculateTotalPrice(purchase.Orders[0].products).toFixed(2)}</p>
+                                {purchase.Orders[0].products.length > 4 && (
+                                    <div className="relative mt-8  mr-5">
+                                        <span className="text-gray-600 text-lg font-semibold">...</span>
+                                    </div>
+                                )}
                             </ul>
+                            <p className="text-gray-600 text-lg font-semibold ml-30 mr-10">Total: ${calculateTotalPrice(purchase.Orders[0].products).toFixed(2)}</p>
                             <div className="mt-4 w-1/4">
                                 <input
                                     type="text"
