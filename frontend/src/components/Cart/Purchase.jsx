@@ -1,10 +1,14 @@
 /* eslint-disable react/prop-types */
 import { NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
 import { BACKEND_URL } from "../../config/config";
 
 const Purchase = ({ userInfo, result, ordersData }) => {
+  const [flag, setFlag] = useState();
+
   const order = JSON.parse(window.localStorage.getItem("orderData"));
   const buyNow = JSON.parse(window.localStorage.getItem("buyNow"));
   const alternativeCart = JSON.parse(
@@ -14,6 +18,8 @@ const Purchase = ({ userInfo, result, ordersData }) => {
   let orderToSend;
   if (buyNow) {
     orderToSend = alternativeCart;
+  } else if (flag) {
+    orderToSend = alternativeCart;
   } else {
     orderToSend = order;
   }
@@ -21,6 +27,14 @@ const Purchase = ({ userInfo, result, ordersData }) => {
   console.log("orderToSend :", orderToSend);
 
   const { user } = userInfo;
+
+  useEffect(() => {
+    if (buyNow) {
+      setFlag(true);
+    } else {
+      setFlag(false);
+    }
+  }, []);
 
   const makePayment = async () => {
     const stripe = await loadStripe(
@@ -32,8 +46,6 @@ const Purchase = ({ userInfo, result, ordersData }) => {
       customerEmail: user.email,
     };
 
-    console.log("ALL PRODUCTS BODY ", body);
-
     const response = await axios.post(`${BACKEND_URL}/payment-session`, body);
 
     const session = await response.data;
@@ -41,7 +53,6 @@ const Purchase = ({ userInfo, result, ordersData }) => {
     const result = stripe.redirectToCheckout({
       sessionId: session.sessionId,
     });
-    console.log("RESULT ", result);
   };
 
   return (
@@ -249,7 +260,7 @@ const Purchase = ({ userInfo, result, ordersData }) => {
                   Total
                 </td>
                 <td className="font-medium text-lg">
-                  ${ordersData.orders[0]?.products.reduce((acc, product) => {
+                  {orderToSend?.products.reduce((acc, product) => {
                     acc += product.price * product.cantidad;
                     return acc;
                   }, 0)}

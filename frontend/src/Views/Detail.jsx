@@ -36,8 +36,10 @@ const Detail = () => {
   const makePayment = async () => {
     window.localStorage.removeItem("alternativeCart");
     const order = JSON.parse(window.localStorage.getItem("orderData"));
+    let product_aux = product;
+    product_aux.cantidad = quantity;
     order.products = [];
-    order.products = [product];
+    order.products = [product_aux];
     window.localStorage.setItem("alternativeCart", JSON.stringify(order));
     window.localStorage.setItem("buyNow", JSON.stringify(true));
 
