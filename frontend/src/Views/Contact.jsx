@@ -1,6 +1,7 @@
 import axios from '../config/axios';
 import emailjs from '@emailjs/browser';
 import Swal from 'sweetalert2';
+import { useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 
 
@@ -13,6 +14,8 @@ const Contact = () => {
     const name = formData.get('user_name');
     const email = formData.get('user_email');
     const message = formData.get('user_message');
+
+   
 
     if (!name || !email || !message) {
       Swal.fire({
@@ -42,6 +45,10 @@ const Contact = () => {
         });
       });
   }
+
+  useEffect(() => {
+    window.localStorage.setItem("buyNow", JSON.stringify(false));
+  }, []);
 
   return (
     <div className='flex flex-col items-center justify-center h-screen'>

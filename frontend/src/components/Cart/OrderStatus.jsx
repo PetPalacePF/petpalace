@@ -19,10 +19,6 @@ export const OrderStatus = () => {
 
   const order = JSON.parse(window.localStorage.getItem("orderData"))
 
-  console.log("esto es userInfo ", userInfo);
-
-  console.log("esto es order ", order);
-
   const stripeSession = stripe[0];
   const { stripe_payment_id, stripe_payment_status } = stripeSession;
   const orders = [order.id];

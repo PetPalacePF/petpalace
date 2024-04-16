@@ -41,6 +41,7 @@ function App() {
 
   useEffect(() => {
     const get = async () => {
+      window.localStorage.setItem("buyNow", JSON.stringify(false));
       setAllCategories({ ...allCategories, loading: true });
       const data = await getCategories();
       setAllCategories({ ...allCategories, loading: false });
@@ -103,8 +104,13 @@ function App() {
 
         <Route
           path="/admin/*"
-          element={<AdminPanel allCategories={allCategories} setAllCategories={setAllCategories} />}
-          />
+          element={
+            <AdminPanel
+              allCategories={allCategories}
+              setAllCategories={setAllCategories}
+            />
+          }
+        />
       </Routes>
     </div>
   );
@@ -112,7 +118,8 @@ function App() {
 
 export default App;
 
-{/* <Route
+{
+  /* <Route
   path="/dogs"
   element={
     <Dogs
@@ -122,8 +129,10 @@ export default App;
       filters={filters}
     />
   }
-></Route> */}
-{/* <Route
+></Route> */
+}
+{
+  /* <Route
   path="/cats"
   element={
     <Cats
@@ -133,4 +142,5 @@ export default App;
       filters={filters}
     />
   }
-></Route> */}
+></Route> */
+}

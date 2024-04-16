@@ -4,27 +4,28 @@ import axios from "../../config/axios";
 const AllOrders = ({ ordersData, setOrdersData, handleClickBuy }) => {
   const [loading, setLoading] = useState(false);
 
-    const handleDeleteProductCart = (id) => {
+  const handleDeleteProductCart = (id) => {
+    setLoading(true);
 
-        setLoading(true)
-
-        axios.put('/orders', {
-          id: ordersData[0].id,
-          productsToRemove: [[id]]
-        })
-        .then(res => res.data)
-        .then(data => {
-            setOrdersData({ 
-                ...ordersData,
-                orders: [data.order]
-            })
-            setLoading(false)
-        })
-        .catch(err => {
-            console.log(err)
-            setLoading(false)
-        })
-    } 
+    axios
+      .put("/orders", {
+        id: ordersData[0].id,
+        productsToRemove: [[id]],
+      })
+      .then((res) => res.data)
+      .then((data) => {
+        window.localStorage.setItem("orderData", JSON.stringify(data.order));
+        setOrdersData({
+          ...ordersData,
+          orders: [data.order],
+        });
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
+  };
 
   return (
     <div className="h-full flex flex-col justify-between">
@@ -85,7 +86,7 @@ const AllOrders = ({ ordersData, setOrdersData, handleClickBuy }) => {
       <div className=" border-t-2">
         <div className="flex justify-between py-2">
           <p className="uppercase">Subtotal:</p>
-          {ordersData[0]?.products &&
+          ${ordersData[0]?.products &&
             ordersData[0].products.reduce((acc, product) => {
               acc += product.price;
               return acc;

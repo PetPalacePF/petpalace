@@ -1,125 +1,105 @@
 /* eslint-disable no-unused-vars */
-import { Routes, Route, useLocation, NavLink } from "react-router-dom"
-import axios from '../../config/axios'
+import { Routes, Route, useLocation, NavLink } from "react-router-dom";
+import axios from "../../config/axios";
 
-import AllProducts from "../../components/Cart/AllProducts"
-import Purchase from "../../components/Cart/Purchase"
-import { OrderStatus } from "../../components/Cart/OrderStatus"
-import { useEffect, useState } from "react"
+import AllProducts from "../../components/Cart/AllProducts";
+import Purchase from "../../components/Cart/Purchase";
+import { OrderStatus } from "../../components/Cart/OrderStatus";
+import { useEffect, useState } from "react";
 import { BACKEND_URL } from "../../config/config";
 import useGetOrdersData from "../../hooks/orders/useGetOrdersData";
 
-
 const Cart = () => {
-    const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
-    const {
-        ordersData,
-        setOrdersData
-    } = useGetOrdersData()
+  const { ordersData, setOrdersData } = useGetOrdersData();
 
-    const handleDeleteProductCart = (id) => {
-        setLoading(true)
+  const handleDeleteProductCart = (id) => {
+    setLoading(true);
 
-        axios.put('/orders', {
-            id: ordersData.orders[0].id,
-            productsToRemove: [[id]]
-        })
-            .then(res => res.data)
-            .then(data => {
-                console.log(data, ordersData)
-                setOrdersData({ ...ordersData, orders: [data.order] })
-                setLoading(false)
-            })
-            .catch(err => {
-                console.log(err)
-                setLoading(false)
-            })
+    axios
+      .put("/orders", {
+        id: ordersData.orders[0].id,
+        productsToRemove: [[id]],
+      })
+      .then((res) => res.data)
+      .then((data) => {
+        window.localStorage.setItem("orderData", JSON.stringify(data.order));
+        console.log(data, ordersData);
+        setOrdersData({ ...ordersData, orders: [data.order] });
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
+  };
+
+    const { id } = JSON.parse(window.localStorage.getItem("userData"));
+
+  const [userInfo, setUserInfo] = useState({
+    user: {
+      id: null,
+      name: "",
+      email: "",
+      orders: [],
+      purchases: [],
+      country: null,
+      state: null,
+      city: null,
+      street_address: null,
+      street_number: null,
+      ZIP_Code: null,
+      phone: null,
+    },
+  });
+
+  useEffect(() => {
+    if (id) {
+      const getUserInformation = async () => {
+        try {
+          const response = await axios.get(`${BACKEND_URL}/users/${id}`);
+          setUserInfo(response.data);
+        } catch (error) {
+          console.error("Error al obtener información del usuario:", error);
+        }
+      };
+
+      getUserInformation();
     }
+  }, [id]);
 
-    const id = JSON.parse(window.localStorage.getItem("userData"))?.id;
-
-    const [userInfo, setUserInfo] = useState({
-        user: {
-            id: null,
-            name: "",
-            email: "",
-            orders: [],
-            purchases: [],
-            country: null,
-            state: null,
-            city: null,
-            street_address: null,
-            street_number: null,
-            ZIP_Code: null,
-            phone: null
-        }
-    });
-
-    useEffect(() => {
-        if (id) {
-            const getUserInformation = async () => {
-                try {
-                    const response = await axios.get(`${BACKEND_URL}/users/${id}`);
-                    console.log("esto es response ", response.data);
-                    setUserInfo(response.data);
-                } catch (error) {
-                    console.error("Error al obtener información del usuario:", error);
-                }
-            };
-
-            getUserInformation();
-        }
-    }, [id]);
-
-    const nameComplete = userInfo.user
+  const nameComplete = userInfo.user;
 
     const name = nameComplete.name.split(" ")[0];
+    console.log("esto es name ", name);
 
-    const location = useLocation()
-
-    const [selectedLink, setSelectedLink] = useState('/cart');
-    const handleLinkClick = (link) => {
-        setSelectedLink(link);
-    }
+  const [selectedLink, setSelectedLink] = useState("/cart");
+  const handleLinkClick = (link) => {
+    setSelectedLink(link);
+  };
 
     const { user } = userInfo
 
-    const isComplete = () => {
-        const requiredFields = ["name", "email", "ZIP_Code", "phone", "street_address", "city", "state", "country"];
-        return requiredFields.every(field => user[field]);
-    };
+    console.log("esto es user ", user);
+
+  const isComplete = () => {
+    const requiredFields = [
+      "name",
+      "email",
+      "ZIP_Code",
+      "phone",
+      "street_address",
+      "city",
+      "state",
+      "country",
+    ];
+    return requiredFields.every((field) => user[field]);
+  };
 
     const result = isComplete() ? true : false;
 
-    const handlePutQuantity = (id, quantity) => {
-
-        const newOrder = ordersData.orders[ordersData.orders.length - 1]?.products.map((product) => {
-            if(product.id === id) {
-                return [product.id, quantity]
-            }
-            return [product.id, product.cantidad]
-        })
-
-        axios.put('/orders', {
-            id:ordersData.orders[ordersData.orders.length - 1].id,
-            productsToAdd: newOrder
-        })
-        .then(res => res.data)
-        .then(data => {
-            const newOrders = ordersData.orders.map(orden => {
-                if(orden.id === data.order.id) {
-                    return data.order
-                }
-                return orden
-            })
-            setOrdersData({
-                ...ordersData,
-                orders: newOrders.reverse()
-            })
-        })
-        .catch(err => console.log(err))
-    }
+    console.log("isComplete", result);
 
     return (
         <div className="flex flex-col items-center justify-center w-full">
@@ -157,7 +137,7 @@ const Cart = () => {
                         </thead>
                         <tbody>
                             {
-                                ordersData.orders[ordersData.orders.length - 1]?.products.map(product => (
+                                ordersData.orders[0]?.products.map(product => (
                                     <tr key={product.id} className='border-t'>
                                         <td className='flex items-center gap-1 h-22'>
                                             <img
@@ -172,13 +152,13 @@ const Cart = () => {
                                         <td>${product.price}</td>
                                         <td>
                                             <div className="inline mr-3 w-4 h-4 text-xl">
-                                                <button onClick={() => handlePutQuantity(product.id, product.cantidad - 1)} className="">-</button>
+                                                <button className="">-</button>
                                             </div>
                                             <p className="text-[16px] inline">
                                                 {product.cantidad}
                                             </p>
                                             <div className="inline ml-3 w-4 h-4 text-xl">
-                                                <button onClick={() => handlePutQuantity(product.id, product.cantidad + 1)} className="">+</button>
+                                                <button className="">+</button>
                                             </div>
                                         </td>
                                     </tr>
@@ -224,4 +204,4 @@ const Cart = () => {
     )
 }
 
-export default Cart
+export default Cart;

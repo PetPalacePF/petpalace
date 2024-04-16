@@ -16,7 +16,6 @@ export const NavBar = ({ allCategories }) => {
           name: user.name,
         })
         .then((response) => {
-          console.log("User data stored successfully:", response.data);
           window.localStorage.setItem("userData", JSON.stringify(response.data.user));
         })
         .catch((error) => {

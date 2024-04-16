@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -12,12 +13,14 @@ import useGetOrdersData from "../hooks/orders/useGetOrdersData";
 import { BACKEND_URL } from "../config/config";
 
 const Detail = () => {
-  const { ordersData } = useGetOrdersData();
+  const { ordersData, setOrdersData } = useGetOrdersData();
   const { id } = useParams();
   const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
   const { isAuthenticated, loginWithRedirect } = useAuth0();
+
   useEffect(() => {
+    window.localStorage.setItem("buyNow", JSON.stringify(false));
     axios
       .get(`${BACKEND_URL}/products/${id}`)
       .then(({ data }) => {
@@ -29,51 +32,90 @@ const Detail = () => {
       });
   }, [id]);
 
-  console.log("esto es product ", product);
-
   //* Stripe implementation
   const makePayment = async () => {
-    const stripe = await loadStripe(
-      "pk_test_51P0rxH2NIYOIQA82hkjbhAvzJzKGiKpivFNd8bVen5bbAUpBgz7IxiJCaEVXRxmAC2iOrDIcvwFFqi9Pqfgp4EiB00aboN6QK3"
-    );
+    window.localStorage.removeItem("alternativeCart");
+    const order = JSON.parse(window.localStorage.getItem("orderData"));
+    let product_aux = product;
+    product_aux.cantidad = quantity;
+    order.products = [];
+    order.products = [product_aux];
+    window.localStorage.setItem("alternativeCart", JSON.stringify(order));
+    window.localStorage.setItem("buyNow", JSON.stringify(true));
 
-    product.cantidad = quantity
-    
-    const body = {
-      products: [
-        {
-          id:product.id,
-          name: product.name,
-          description: product.description,
-          img: product.img,
-          price: product.price,
-          // quantity: 1 //modificar esta parte del código
-        },
-      ],
-      origin: "Detail"
-    };
+    // window.localStorage.removeItem("orderData");
+    // window.localStorage.setItem("orderData", JSON.stringify(order));
 
-    console.log("DETAIL body ", body);
+    // let alternativeCart = JSON.parse(window.localStorage.getItem("alternativeCart"))
 
-    const response = await axios.post(
-      `${BACKEND_URL}/payment-session`,
-      body
-    );
+    // console.log("alternativeCart ", alternativeCart.id);
+    // console.log("productSSSSS ", alternativeCart.products);
 
-    const session = await response.data;
+    // const idProductsToRemove = alternativeCart.products.map(product => product.id)
 
-    const result = await stripe.redirectToCheckout({
-      sessionId: session.sessionId,
-    });
-    console.log("este es result",result)
+    // console.log("idProductsToRemove ", idProductsToRemove);
 
-    const paymentId = await axios.get(`${BACKEND_URL}/payment-session/payment`)
+    // let arrayProdsToRemove = []
 
-    console.log("este es el payment id", paymentId)
+    // idProductsToRemove.forEach(id => {
+    //   arrayProdsToRemove = [...arrayProdsToRemove, [id]]
+    // })
+
+    // console.log("arrayProdsToRemove ", arrayProdsToRemove);
+
+    // axios.put('/orders', {
+    //   id: ordersData[0].id,
+    //   productsToRemove: arrayProdsToRemove
+    // })
+    //   .then(res => res.data)
+    //   .then(data => {
+    //     setOrdersData({
+    //       ...ordersData,
+    //       orders: [data.order]
+    //     })
+    //     // setLoading(false)
+    //   })
+    //   .catch(err => {
+    //     console.log(err)
+    //     // setLoading(false)
+    //   })
+
+    // addToCart(product.id, quantity)
+
+    // product.cantidad = quantity
+
+    // const body = {
+    //   products: [
+    //     {
+    //       id: product.id,
+    //       name: product.name,
+    //       description: product.description,
+    //       img: product.img,
+    //       price: product.price,
+    //       // quantity: 1 //modificar esta parte del código
+    //     },
+    //   ],
+    //   origin: "Detail"
+    // };
+
+    // console.log("DETAIL body ", body);
+
+    // const response = await axios.post(
+    //   `${BACKEND_URL}/payment-session`,
+    //   body
+    // );
+
+    // const session = await response.data;
+
+    // const result = await stripe.redirectToCheckout({
+    //   sessionId: session.sessionId,
+    // });
+    // console.log("este es result", result)
+
+    // const paymentId = await axios.get(`${BACKEND_URL}/payment-session/payment`)
+
+    // console.log("este es el payment id", paymentId)
   };
-
-
-
 
   const ratingToStars = (rating) => {
     const stars = [];
@@ -157,12 +199,13 @@ const Detail = () => {
                     Add to cart
                   </button>
                   {isAuthenticated ? (
-                    <button
+                    <NavLink
+                      to="/cart/purchase"
                       onClick={makePayment}
                       className="flex ml-auto text-white bg-violetahome border-0 py-2 px-4 mx-2 focus:outline-none hover:bg-violetamain rounded"
                     >
                       Buy now
-                    </button>
+                    </NavLink>
                   ) : (
                     <button
                       onClick={loginWithRedirect}

@@ -64,6 +64,8 @@ const AllProducts = ({ selectedLink, handleLinkClick, location, ordersData }) =>
     })
       .then(res => res.data)
       .then(data => {
+        window.localStorage.setItem("orderData", JSON.stringify(data));
+
         setOrdersData({ ...ordersData, orders: [data] })
         setLoading(false)
       })
