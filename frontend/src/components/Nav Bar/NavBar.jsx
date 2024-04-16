@@ -21,6 +21,8 @@ export const NavBar = ({ allCategories }) => {
         .catch((error) => {
           console.error("Error storing user data:", error);
         });
+    } else {
+      window.localStorage.removeItem('userData')
     }
   }, [isAuthenticated, user]);
 

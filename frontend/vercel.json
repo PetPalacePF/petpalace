@@ -1,0 +1,20 @@
+{
+    "rewrites": [
+      { "source": "/dashboard/(.*)", "destination": "/dashboard" },
+      { "source": "/login/(.*)", "destination": "/login" },
+      { "source": "/register/(.*)", "destination": "/register" },
+      { "source": "/profile/(.*)", "destination": "/profile" },
+      { "source": "/cart/(.*)", "destination": "/cart" },
+      { "source": "/admin/(.*)", "destination": "/admin" },
+      { "source": "/admin/categories/(.*)", "destination": "/admin/categories" },
+      { "source": "/admin/products/(.*)", "destination": "/admin/products" },
+      { "source": "/admin/products/new/(.*)", "destination": "/admin/products/new" },
+      { "source": "/admin/orders/(.*)", "destination": "/admin/orders" },
+      { "source": "/admin/users/(.*)", "destination": "/admin/users" },
+      { "source": "/about", "destination": "/about" },
+      { "source": "/detail/:id", "destination": "/detail/:id" },
+      { "source": "/shop", "destination": "/shop" },
+      { "source": "/contact", "destination": "/contact" },
+      { "source": "/(.*)", "destination": "/index.html" }
+    ]
+}
