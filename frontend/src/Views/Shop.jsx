@@ -35,6 +35,7 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
   const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
+    window.localStorage.setItem("buyNow", JSON.stringify(false));
     axios
       .get(`${BACKEND_URL}/brands`)
       .then((response) => {

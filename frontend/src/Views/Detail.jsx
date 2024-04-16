@@ -20,6 +20,7 @@ const Detail = () => {
   const { isAuthenticated, loginWithRedirect } = useAuth0();
 
   useEffect(() => {
+    window.localStorage.setItem("buyNow", JSON.stringify(false));
     axios
       .get(`${BACKEND_URL}/products/${id}`)
       .then(({ data }) => {
@@ -33,53 +34,51 @@ const Detail = () => {
 
   //* Stripe implementation
   const makePayment = async () => {
-
-    let order = JSON.parse(window.localStorage.getItem("orderData"))
+    window.localStorage.removeItem("alternativeCart");
+    const order = JSON.parse(window.localStorage.getItem("orderData"));
+    order.products = [];
+    order.products = [product];
     window.localStorage.setItem("alternativeCart", JSON.stringify(order));
-    order.products = []
-    order.products = [product]
+    window.localStorage.setItem("buyNow", JSON.stringify(true));
 
-    window.localStorage.removeItem("orderData");
-    window.localStorage.setItem("orderData", JSON.stringify(order));
+    // window.localStorage.removeItem("orderData");
+    // window.localStorage.setItem("orderData", JSON.stringify(order));
 
-    console.log("orderproducts ", order.products);
+    // let alternativeCart = JSON.parse(window.localStorage.getItem("alternativeCart"))
 
-    let alternativeCart = JSON.parse(window.localStorage.getItem("alternativeCart"))
+    // console.log("alternativeCart ", alternativeCart.id);
+    // console.log("productSSSSS ", alternativeCart.products);
 
-    console.log("alternativeCart ", alternativeCart.id);
-    console.log("productSSSSS ", alternativeCart.products);
+    // const idProductsToRemove = alternativeCart.products.map(product => product.id)
 
-    const idProductsToRemove = alternativeCart.products.map(product => product.id)
+    // console.log("idProductsToRemove ", idProductsToRemove);
 
-    console.log("idProductsToRemove ", idProductsToRemove);
+    // let arrayProdsToRemove = []
 
-    let arrayProdsToRemove = []
+    // idProductsToRemove.forEach(id => {
+    //   arrayProdsToRemove = [...arrayProdsToRemove, [id]]
+    // })
 
-    idProductsToRemove.forEach(id => {
-      arrayProdsToRemove = [...arrayProdsToRemove, [id]]
-    })
+    // console.log("arrayProdsToRemove ", arrayProdsToRemove);
 
-    console.log("arrayProdsToRemove ", arrayProdsToRemove);
+    // axios.put('/orders', {
+    //   id: ordersData[0].id,
+    //   productsToRemove: arrayProdsToRemove
+    // })
+    //   .then(res => res.data)
+    //   .then(data => {
+    //     setOrdersData({
+    //       ...ordersData,
+    //       orders: [data.order]
+    //     })
+    //     // setLoading(false)
+    //   })
+    //   .catch(err => {
+    //     console.log(err)
+    //     // setLoading(false)
+    //   })
 
-    axios.put('/orders', {
-      id: ordersData[0].id,
-      productsToRemove: arrayProdsToRemove
-    })
-      .then(res => res.data)
-      .then(data => {
-        setOrdersData({
-          ...ordersData,
-          orders: [data.order]
-        })
-        // setLoading(false)
-      })
-      .catch(err => {
-        console.log(err)
-        // setLoading(false)
-      })
-
-
-    addToCart(product.id, quantity)
+    // addToCart(product.id, quantity)
 
     // product.cantidad = quantity
 
@@ -115,9 +114,6 @@ const Detail = () => {
 
     // console.log("este es el payment id", paymentId)
   };
-
-
-
 
   const ratingToStars = (rating) => {
     const stars = [];
