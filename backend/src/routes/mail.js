@@ -1,6 +1,7 @@
 const express = require("express");
 //const getMail = require("./routerControllers/Mail/getMail");
 const postMail = require("./routerControllers/Mail/postMail");
+const postMail2 = require("./routerControllers/Mail/postMail2");
 //const putUser_Admin = require("./routerControllers/Admin/putUser_Admin");
 
 const routerMail = express.Router();
@@ -11,6 +12,7 @@ const routerMail = express.Router();
 
 //? POST "/mail"
 routerMail.post("/", postMail);
+routerMail.post("/review", postMail2);
 // routerProducts.post("/", postProduct);
 
 //? PUT "/admin/users"
