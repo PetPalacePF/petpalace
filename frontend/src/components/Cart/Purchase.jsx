@@ -8,6 +8,7 @@ import { BACKEND_URL } from "../../config/config";
 
 const Purchase = ({ userInfo, result, ordersData }) => {
   const [flag, setFlag] = useState();
+  const [productQuantities, setProductQuantities] = useState({});
 
   const order = JSON.parse(window.localStorage.getItem("orderData"));
   const buyNow = JSON.parse(window.localStorage.getItem("buyNow"));
@@ -34,6 +35,10 @@ const Purchase = ({ userInfo, result, ordersData }) => {
     } else {
       setFlag(false);
     }
+    const storedQuantities = localStorage.getItem("productQuantities");
+        if (storedQuantities) {
+            setProductQuantities(JSON.parse(storedQuantities));
+        }
   }, []);
 
   const makePayment = async () => {
@@ -42,9 +47,12 @@ const Purchase = ({ userInfo, result, ordersData }) => {
     );
 
     const body = {
-      products: orderToSend.products,
-      customerEmail: user.email,
-    };
+      products: orderToSend.products.map(product => ({
+          ...product,
+          cantidad: productQuantities[product.id] || 1
+        })),
+        customerEmail: user.email,
+  };
 
     const response = await axios.post(`${BACKEND_URL}/payment-session`, body);
 
@@ -250,9 +258,9 @@ const Purchase = ({ userInfo, result, ordersData }) => {
                   </td>
                   <td>${product.price}</td>
                   <td>
-                    <p className="text-[16px] inline">{product.cantidad}</p>
+                    <p className="text-[16px] inline">{productQuantities[product.id] || 1}</p>
                   </td>
-                  <td>${product.price * product.cantidad}</td>
+                  <td>${(product.price * (productQuantities[product.id] || 1)).toFixed(2)}</td>
                 </tr>
               ))}
               <tr className="border-t">
@@ -260,10 +268,10 @@ const Purchase = ({ userInfo, result, ordersData }) => {
                   Total
                 </td>
                 <td className="font-medium text-lg">
-                  ${orderToSend?.products.reduce((acc, product) => {
-                    acc += product.price * product.cantidad;
+                  {orderToSend?.products.reduce((acc, product) => {
+                    acc += product.price * (productQuantities[product.id] || 1);
                     return acc;
-                  }, 0)}
+                  }, 0).toFixed(2)}
                 </td>
               </tr>
             </tbody>
