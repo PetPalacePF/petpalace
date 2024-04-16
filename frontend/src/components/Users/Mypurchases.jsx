@@ -80,7 +80,7 @@ export const MyPurchases = () => {
                                     <p>Payment Status: <span className="text-green-600 capitalize">{purchase.stripe_payment_status}</span></p>
                                 </div>
                                 <div className="text-gray-600 text-small font-semibold mr-4">
-                                    <p>Order ID: {purchase.stripe_payment_id}</p>
+                                    <p>Purchase ID: {purchase.stripe_payment_id}</p>
                                 </div>
                             </div>
 

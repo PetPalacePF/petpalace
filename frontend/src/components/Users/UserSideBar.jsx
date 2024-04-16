@@ -21,7 +21,7 @@ export const UserSideBar = ({ selectedLink, handleLinkClick }) => {
                             className={`block py-2 px-4 rounded hover:bg-blackprofileHover ${selectedLink === '/profile/purchases' ? 'bg-blackprofileHover' : ''}`}
                             onClick={() => handleLinkClick('/profile/purchases')}
                         >
-                            My Orders
+                            My Purchase
                         </Link>
                     </li>
                 </ul>
