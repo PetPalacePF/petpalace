@@ -86,7 +86,7 @@ const AllOrders = ({ ordersData, setOrdersData, handleClickBuy }) => {
       <div className=" border-t-2">
         <div className="flex justify-between py-2">
           <p className="uppercase">Subtotal:</p>
-          {ordersData[0]?.products &&
+          ${ordersData[0]?.products &&
             ordersData[0].products.reduce((acc, product) => {
               acc += product.price;
               return acc;
