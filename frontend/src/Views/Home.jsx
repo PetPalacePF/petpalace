@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import Cards from "../components/Cards/Cards";
 import TopRatedCards from "../components/Cards/TopRatedCards";
 import { Footer } from "../components/Footer/Footer";
@@ -5,6 +7,9 @@ import Carousel from "../components/Home/Carusel/Carousel";
 import { Epigraph } from "./Epigraph";
 
 const Home = () => {
+  useEffect(() => {
+    window.localStorage.setItem("buyNow", JSON.stringify(false));
+  }, []);
 
   return (
     <div>
@@ -28,8 +33,7 @@ const Home = () => {
         <Footer />
       </div>
     </div>
-  )
-
+  );
 };
 
 export default Home;

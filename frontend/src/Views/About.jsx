@@ -1,8 +1,15 @@
 import React from "react";
+import { useEffect } from "react";
+
 import { Footer } from "../components/Footer/Footer";
 import { Link } from "react-router-dom";
 
 const About = () => {
+
+  useEffect(() => {
+    window.localStorage.setItem("buyNow", JSON.stringify(false));
+  }, []);
+  
   return (
     <div className="mx-auto mt-20" style={{ backgroundImage:  "url('./public/AboutImg.png')"}}>
       <div className="max-w-5xl mx-auto">

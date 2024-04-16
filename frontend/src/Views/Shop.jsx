@@ -12,6 +12,8 @@ import getPaymentSessions from "../utils/getPaymentSessions";
 import { FaChevronDown } from "react-icons/fa";
 import { FaChevronUp } from "react-icons/fa";
 import { IoIosClose } from "react-icons/io";
+import { HiChevronDoubleDown } from "react-icons/hi";
+import { HiChevronDoubleUp } from "react-icons/hi";
 
 export const Shop = ({ setProducts, products, allCategories, filters }) => {
   const location = useLocation();
@@ -35,6 +37,7 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
   const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
+    window.localStorage.setItem("buyNow", JSON.stringify(false));
     axios
       .get(`${BACKEND_URL}/brands`)
       .then((response) => {
@@ -121,7 +124,6 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
     setCurrentPage(page);
   };
 
-
   const handleBrandToggle = (brand) => {
     const searchParams = new URLSearchParams(location.search);
     if (searchParams.getAll("filterBrands").includes(brand)) {
@@ -207,11 +209,6 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
   return (
     <div>
       <div className="flex items-center justify-between px-[200px] mt-14">
-      <Paginated
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={onPageChange}
-            />
         <div>
           {activeFilters.length > 0 && (
             <div className="flex flex-wrap gap-2">
@@ -237,9 +234,11 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
           )}
         </div>
 
-        <div className="flex items-center">
+        <div className="flex justify-center">
           <div className="mx-2">
-            <label htmlFor="sortRating">Sort by Rating:</label>
+            <label htmlFor="sortRating" className="block text-center">
+              Sort by Rating:
+            </label>
             <div className="relative">
               <select
                 id="sortRating"
@@ -262,7 +261,9 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
           </div>
 
           <div className="mx-2">
-            <label htmlFor="sortPrice">Sort by Price:</label>
+            <label htmlFor="sortPrice" className="block text-center">
+              Sort by Price:
+            </label>
             <div className="relative">
               <select
                 id="sortPrice"
@@ -374,27 +375,27 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
                 {brand}
               </p>
             ))}
-            {visibleBrands < brands.length && (
-              <div className="flex justify-between w-full">
+            <div className="flex justify-end w-full">
+              {visibleBrands > 10 && (
                 <button
-                  className="bg-gray-100 text-black"
+                  className="bg-gray-100 text-black mx-[4px] rounded "
+                  onClick={showLessBrands}
+                >
+                  <HiChevronDoubleUp />
+                </button>
+              )}
+
+              {visibleBrands < brands.length && (
+                <button
+                  className="bg-gray-100 text-black mx-[4px] rounded "
                   onClick={showMoreBrands}
                 >
-                  Show more
+                  <HiChevronDoubleDown />
                 </button>
-              </div>
-            )}
-            {visibleBrands >= 10 && (
-              <button
-                className="bg-gray-100 text-black"
-                onClick={showLessBrands}
-              >
-                Show less
-              </button>
-            )}
+              )}
+            </div>
           </div>
         </div>
-
         <div className="flex flex-col">
           <div className="flex flex-wrap justify-center">
             {products.map((product) => (
@@ -403,6 +404,12 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
               </div>
             ))}
           </div>
+          <Paginated
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={onPageChange}
+            className="flex justify-center"
+          />
         </div>
       </div>
     </div>
