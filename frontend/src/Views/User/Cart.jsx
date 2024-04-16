@@ -12,11 +12,34 @@ import useGetOrdersData from "../../hooks/orders/useGetOrdersData";
 
 const Cart = () => {
     const [loading, setLoading] = useState(false)
+    const [productQuantities, setProductQuantities] = useState({});
 
     const {
         ordersData,
         setOrdersData
     } = useGetOrdersData()
+
+
+    const handleDecrement = (productId) => {
+        const currentQuantity = productQuantities[productId] || 1; // Si no hay cantidad definida, asumimos 1 como mínimo
+        const newQuantities = {
+            ...productQuantities,
+            [productId]: Math.max(currentQuantity - 1, 1), // Restar 1 a la cantidad actual, asegurando que no sea menor que 1
+        };
+        setProductQuantities(newQuantities); // Actualizar el estado de las cantidades
+        localStorage.setItem("productQuantities", JSON.stringify(newQuantities)); // Guardar en el localStorage
+    };
+
+
+    const handleIncrement = (productId) => {
+        const currentQuantity = productQuantities[productId] || 0; // Si no hay cantidad definida, asumimos 0
+        const newQuantities = {
+            ...productQuantities,
+            [productId]: currentQuantity + 1, // Sumar 1 a la cantidad actual
+        };
+        setProductQuantities(newQuantities); // Actualizar el estado de las cantidades
+        localStorage.setItem("productQuantities", JSON.stringify(newQuantities)); // Guardar en el localStorage
+    };
 
     const handleDeleteProductCart = (id) => {
         setLoading(true)
@@ -55,6 +78,13 @@ const Cart = () => {
             phone: null
         }
     });
+
+    useEffect(() => {
+        const storedQuantities = localStorage.getItem("productQuantities");
+        if (storedQuantities) {
+          setProductQuantities(JSON.parse(storedQuantities));
+        }
+      }, []);
 
     useEffect(() => {
         if (id) {
@@ -148,13 +178,13 @@ const Cart = () => {
                                         <td>${product.price}</td>
                                         <td>
                                             <div className="inline mr-3 w-4 h-4 text-xl">
-                                                <button className="">-</button>
+                                                <button onClick={() => handleDecrement(product.id)}>-</button>
                                             </div>
                                             <p className="text-[16px] inline">
-                                                {product.cantidad}
+                                            {productQuantities[product.id] || 1}
                                             </p>
                                             <div className="inline ml-3 w-4 h-4 text-xl">
-                                                <button className="">+</button>
+                                                <button onClick={() => handleIncrement(product.id)}>+</button>
                                             </div>
                                         </td>
                                     </tr>
@@ -168,8 +198,9 @@ const Cart = () => {
                             <p>
                                 {
                                     ordersData.orders[0]?.products.reduce((acc, product) => {
-                                        acc += product.price
-                                        return acc
+                                        const quantity = productQuantities[product.id] || 1;
+                                        acc += product.price * quantity;
+                                        return acc;
                                     }, 0)
                                 }
                             </p>

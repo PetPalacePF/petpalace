@@ -4,11 +4,20 @@ import { NavLink } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
 import { BACKEND_URL } from "../../config/config";
+import { useEffect, useState } from "react";
 
 const Purchase = ({ userInfo, result, ordersData }) => {
     const { user } = userInfo
 
     const orderToSend = ordersData.orders[0]
+    const [productQuantities, setProductQuantities] = useState({});
+
+    useEffect(() => {
+        const storedQuantities = localStorage.getItem("productQuantities");
+        if (storedQuantities) {
+            setProductQuantities(JSON.parse(storedQuantities));
+        }
+    }, []);
 
     const makePayment = async () => {
         const stripe = await loadStripe(
@@ -18,8 +27,11 @@ const Purchase = ({ userInfo, result, ordersData }) => {
         // window.localStorage.setItem("orderData", JSON.stringify(orderToSend));
     
         const body = {
-          products: orderToSend.products,
-          customerEmail: user.email,
+            products: orderToSend.products.map(product => ({
+                ...product,
+                cantidad: productQuantities[product.id] || 1
+              })),
+              customerEmail: user.email,
         };
     
         console.log("ALL PRODUCTS BODY ", body);
@@ -153,22 +165,22 @@ const Purchase = ({ userInfo, result, ordersData }) => {
                                         <td>${product.price}</td>
                                         <td>
                                             <p className="text-[16px] inline">
-                                                {product.cantidad}
+                                            {productQuantities[product.id] || 1}
                                             </p>
                                         </td>
-                                        <td>${product.price * product.cantidad}</td>
+                                        <td>${(product.price * (productQuantities[product.id] || 1)).toFixed(2)}</td>
                                     </tr>
                                 ))
                             }
                             <tr className='border-t'>
                                 <td colSpan={3} className='font-medium text-lg'>Total</td>
                                 <td className='font-medium text-lg'>
-                                    {
-                                        ordersData.orders[0]?.products.reduce((acc, product) => {
-                                            acc += product.price * product.cantidad
-                                            return acc
-                                        }, 0)
-                                    }
+                                ${
+                            ordersData.orders[0]?.products.reduce((acc, product) => {
+                                acc += product.price * (productQuantities[product.id] || 1);
+                                return acc;
+                            }, 0).toFixed(2)
+                        }
                                 </td>
                             </tr>
                         </tbody>
