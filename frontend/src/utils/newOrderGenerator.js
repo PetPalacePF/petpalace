@@ -3,17 +3,19 @@ import { BACKEND_URL } from "../config/config";
 
 const newOrderGenerator = async (order) => {
   const userData = JSON.parse(window.localStorage.getItem("userData"));
-  let products = [];
+  const buyNow = JSON.parse(window.localStorage.getItem("buyNow"));
+
+  let productsToAdd = [];
   order.products.forEach((product) => {
-    products = [...products, [product.id, product.cantidad]];
+    productsToAdd = [...productsToAdd, [product.id, product.cantidad]];
   });
 
   if (userData) {
     try {
-      if (products.length > 0) {
+      if (buyNow) {
         const postResponse = await axios.post(`${BACKEND_URL}/orders`, {
           userId: userData.id,
-          products: products,
+          products: productsToAdd,
         });
         window.localStorage.setItem(
           "orderData",
