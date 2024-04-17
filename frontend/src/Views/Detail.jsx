@@ -11,6 +11,7 @@ import addToCart from "../utils/sendToCart";
 import { useAuth0 } from "@auth0/auth0-react";
 import useGetOrdersData from "../hooks/orders/useGetOrdersData";
 import { BACKEND_URL } from "../config/config";
+import { IoIosClose } from "react-icons/io";
 
 const Detail = () => {
   const { ordersData, setOrdersData } = useGetOrdersData();
@@ -18,6 +19,7 @@ const Detail = () => {
   const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
   const { isAuthenticated, loginWithRedirect } = useAuth0();
+  const [productAdded, setProductAdded] = useState(false);
 
   useEffect(() => {
     window.localStorage.setItem("buyNow", JSON.stringify(false));
@@ -136,6 +138,10 @@ const Detail = () => {
   const handleAddToCart = (event) => {
     event.preventDefault();
     addToCart(product.id, quantity, ordersData);
+    setProductAdded(true);
+  };
+  const closeAlert = () => {
+    setProductAdded(false);
   };
 
   return (
@@ -219,6 +225,28 @@ const Detail = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div>
+        {productAdded && (
+          <div className="fixed top-0 left-0 w-full flex justify-center items-center z-50 mt-4 animate-fadeIn">
+            <div className="relative bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded max-w-sm">
+              <strong className="font-bold">Success!</strong>
+              <span className="block sm:inline">
+                {" "}
+                {product.name} added to your cart!
+              </span>
+              <span className="absolute top-0 right-0 mt-1 mr-1">
+                <span
+                  onClick={closeAlert}
+                  className="fill-current h-6 w-6 text-black-bold cursor-pointer"
+                  role="button"
+                >
+                  <IoIosClose />
+                </span>
+              </span>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

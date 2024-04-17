@@ -69,10 +69,10 @@ const Category = ({ id, name, products, setAllCategories, allCategories }) => {
                 <div className='flex gap-4'>
                     <button
                         onClick={handleDelete}
-                    >Borrar</button>
+                    >Delete</button>
                     <button
                         onClick={() => setEditName(true)}
-                    >Editar</button>
+                    >Edit</button>
                 </div>
             </td>
         </tr>

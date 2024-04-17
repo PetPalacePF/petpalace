@@ -5,9 +5,11 @@ import TopRatedCards from "../components/Cards/TopRatedCards";
 import { Footer } from "../components/Footer/Footer";
 import Carousel from "../components/Home/Carusel/Carousel";
 import { Epigraph } from "./Epigraph";
+import newOrderGenerator from "../utils/newOrderGenerator";
 
 const Home = () => {
   useEffect(() => {
+    // newOrderGenerator();
     window.localStorage.setItem("buyNow", JSON.stringify(false));
   }, []);
 

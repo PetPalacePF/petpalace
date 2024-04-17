@@ -55,7 +55,7 @@ const createPaymentSession = async (products, origin, customerEmail) => {
         },
         unit_amount: Math.round(product.price * 100), // El precio debe estar en centavos
       },
-      quantity: 1, //product.quantity, // Utiliza la cantidad proporcionada por el front-end
+      quantity: product.cantidad, // Utiliza la cantidad proporcionada por el front-end
     }));
 
     const session = await stripe.checkout.sessions.create({
