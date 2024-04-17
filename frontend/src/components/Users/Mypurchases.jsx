@@ -4,8 +4,8 @@ import axios from '../../config/axios.js';
 
 export const MyPurchases = () => {
     const [purchases, setPurchases] = useState([]);
-    const [comment, setComment] = useState('');
-    const [rating, setRating] = useState(0); // Valoración inicial
+    const [comments, setComments] = useState({});
+    const [ratings, setRatings] = useState({});
     const userInfo = JSON.parse(window.localStorage.getItem("userData"));
     const userId = userInfo ? userInfo.id : null;
 
@@ -21,48 +21,47 @@ export const MyPurchases = () => {
         }, 0);
     };
 
-    const handleCommentChange = (event) => {
-        setComment(event.target.value);
+    const handleCommentChange = (purchaseId, event) => {
+        const { value } = event.target;
+        setComments({ ...comments, [purchaseId]: value });
     };
 
-    const handleRatingClick = (value) => {
-        setRating(value);
+    const handleRatingClick = (purchaseId, value) => {
+        setRatings({ ...ratings, [purchaseId]: value });
     };
 
     const handleSubmitReview = (purchaseId) => {
         // Aquí puedes enviar la revisión y el rating a tu backend
         console.log("Purchase ID:", purchaseId);
-        console.log("Comment:", comment);
-        console.log("Rating:", rating);
-    
-        const productImages = purchases.flatMap(purchase =>
-            purchase.Orders.flatMap(order =>
-                order.products.map(product => product.img)
-            )
-        );
+        console.log("Comment:", comments[purchaseId]);
+        console.log("Rating:", ratings[purchaseId]);
 
-        console.log("Product Images:", productImages);
+        const productImages = purchases
+            .find(purchase => purchase.id === purchaseId)
+            .Orders.flatMap(order =>
+                order.products.map(product => product.img)
+            );
 
         // Aquí puedes enviar los datos al backend a través de Axios
         axios.post("/mail/review", {
             userEmail: userInfo.email,
             userName: userInfo.name,
-            userReview: comment,
-            userRating: rating,
+            userReview: comments[purchaseId],
+            userRating: ratings[purchaseId],
             productId: productImages
         })
-        .then(response => {
-            console.log(response.data);
-            // Maneja la respuesta del backend si es necesario
-        })
-        .catch(error => {
-            console.error('Error submitting review:', error);
-            // Maneja el error si es necesario
-        });
-    
+            .then(response => {
+                console.log(response.data);
+                // Maneja la respuesta del backend si es necesario
+            })
+            .catch(error => {
+                console.error('Error submitting review:', error);
+                // Maneja el error si es necesario
+            });
+
         // Limpia el input de comentario y reinicia el rating
-        setComment('');
-        setRating(0);
+        setComments({ ...comments, [purchaseId]: '' });
+        setRatings({ ...ratings, [purchaseId]: 0 });
     };
 
     return (
@@ -80,7 +79,7 @@ export const MyPurchases = () => {
                                     <p>Payment Status: <span className="text-green-600 capitalize">{purchase.stripe_payment_status}</span></p>
                                 </div>
                                 <div className="text-gray-600 text-small font-semibold mr-4">
-                                    <p>Order ID: {purchase.stripe_payment_id}</p>
+                                    <p>Purchase ID: {purchase.stripe_payment_id}</p>
                                 </div>
                             </div>
 
@@ -108,16 +107,16 @@ export const MyPurchases = () => {
                                 <input
                                     type="text"
                                     placeholder="Leave your review!"
-                                    value={comment}
-                                    onChange={handleCommentChange}
+                                    value={comments[purchase.id] || ''}
+                                    onChange={(event) => handleCommentChange(purchase.id, event)}
                                     className="border border-gray-300 rounded-md p-2 mr-2"
                                 />
                                 <div>
                                     {[1, 2, 3, 4, 5].map((value) => (
                                         <label
                                             key={value}
-                                            className={`text-3xl cursor-pointer ${value <= rating ? 'text-yellow-500' : 'text-gray-300'} hover:text-yellow-500`}
-                                            onClick={() => handleRatingClick(value)}
+                                            className={`text-3xl cursor-pointer ${value <= ratings[purchase.id] ? 'text-yellow-500' : 'text-gray-300'} hover:text-yellow-500`}
+                                            onClick={() => handleRatingClick(purchase.id, value)}
                                         >
                                             ★
                                         </label>

@@ -5,6 +5,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import { BACKEND_URL } from "../../config/config";
 
+import { IoIosClose } from "react-icons/io";
+
 export const UserForm = () => {
   const { user, isAuthenticated } = useAuth0();
   const history = useNavigate();
@@ -240,7 +242,7 @@ export const UserForm = () => {
           </div>
           <div>
             {updateSuccess && (
-              <div className="fixed top-0 left-0 w-full flex justify-center items-center z-50 mt-4">
+              <div className="fixed top-0 left-0 w-full flex justify-center items-center z-50 mt-4 animate-fadeIn">
                 <div className="relative bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded max-w-sm">
                   <strong className="font-bold">Success!</strong>
                   <span className="block sm:inline">
@@ -253,7 +255,7 @@ export const UserForm = () => {
                       className="fill-current h-6 w-6 text-black-bold"
                       role="button"
                     >
-                      X
+                      <IoIosClose />
                       <path
                         fillRule="evenodd"
                         d="M14.354 5.646a.5.5 0 0 1 0 .708l-8 8a.5.5 0 0 1-.708-.708l8-8a.5.5 0 0 1 .708 0zM5.646 5.646a.5.5 0 0 1 0-.708l8 8a.5.5 0 0 1 .708.708l-8-8a.5.5 0 0 1-.708 0z"

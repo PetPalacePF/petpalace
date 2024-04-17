@@ -14,20 +14,20 @@ import ProductForm from "../../components/Admin/ProductForm";
 import AdminNavbar from '../../components/Admin/AdminNavbar'
 import Users from "./Users.jsx"
 
-const AdminPanel = ({allCategories, setAllCategories}) => {
+const AdminPanel = ({ allCategories, setAllCategories }) => {
   return (
     <div className="flex">
-        <AdminNavbar />
-        <div className="w-full ml-[200px] p-6">
-          <Routes>
-              <Route path='/' element={<Dashboard/>} />
-              <Route path='/categories' element={<Categories allCategories={allCategories} setAllCategories={setAllCategories} />} />
-              <Route path='/products' element={<Products/>} />
-              <Route path='/products/new' element={<ProductForm/>} />
-              <Route path='/orders' element={<Orders/>} />
-              <Route path='/users' element={<Users/>} />
-          </Routes>
-        </div>
+      <AdminNavbar />
+      <div className="w-full ml-[200px] p-6">
+        <Routes>
+          <Route path='/' element={<Dashboard />} />
+          <Route path='/categories' element={<Categories allCategories={allCategories} setAllCategories={setAllCategories} />} />
+          <Route path='/products' element={<Products />} />
+          <Route path='/products/new' element={<ProductForm />} />
+          <Route path='/Purchase' element={<Orders />} />
+          <Route path='/users' element={<Users/>} />
+        </Routes>
+      </div>
     </div>
   )
 }
