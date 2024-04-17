@@ -58,10 +58,6 @@ export const MyPurchases = () => {
                 console.error('Error submitting review:', error);
                 // Maneja el error si es necesario
             });
-
-        // Limpia el input de comentario y reinicia el rating
-        setComments({ ...comments, [purchaseId]: '' });
-        setRatings({ ...ratings, [purchaseId]: 0 });
     };
 
     return (
