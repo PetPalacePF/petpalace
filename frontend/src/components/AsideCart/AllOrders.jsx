@@ -30,7 +30,7 @@ const AllOrders = ({ ordersData, setOrdersData, handleClickBuy }) => {
 
     axios
       .put("/orders", {
-        id: ordersData[0].id,
+        id: ordersData[ordersData.length - 1].id,
         productsToRemove: [[id]],
       })
       .then((res) => res.data)
@@ -54,8 +54,8 @@ const AllOrders = ({ ordersData, setOrdersData, handleClickBuy }) => {
   return (
     <div className="h-full flex flex-col justify-between">
       <div>
-        {ordersData[0]?.products ? (
-          ordersData[0].products.map((product) => (
+        {ordersData[ordersData.length - 1]?.products ? (
+          ordersData[ordersData.length - 1].products.map((product) => (
             <div key={product.id} className="relative">
               <div className="flex justify-between gap-4 mb-6">
                 <div className="flex items-center gap-4">
@@ -110,8 +110,8 @@ const AllOrders = ({ ordersData, setOrdersData, handleClickBuy }) => {
       <div className=" border-t-2">
         <div className="flex justify-between py-2">
           <p className="uppercase">Subtotal:</p>
-          {ordersData[0]?.products &&
-            ordersData[0].products.reduce((acc, product) => {
+          {ordersData[ordersData.length - 1]?.products &&
+            ordersData[ordersData.length - 1].products.reduce((acc, product) => {
               const quantity = productQuantities[product.id] || 1;
               acc += product.price* quantity;
               return acc;

@@ -14,6 +14,8 @@ const Cart = () => {
   const [productQuantities, setProductQuantities] = useState({});
 
   const { ordersData, setOrdersData } = useGetOrdersData();
+  const order = JSON.parse(window.localStorage.getItem("orderData"));
+
 
   const handleDecrement = (productId) => {
     const currentQuantity = productQuantities[productId] || 1; // Si no hay cantidad definida, asumimos 1 como mínimo
@@ -84,7 +86,6 @@ const Cart = () => {
       const getUserInformation = async () => {
         try {
           const response = await axios.get(`${BACKEND_URL}/users/${id}`);
-          console.log("esto es response ", response.data);
           setUserInfo(response.data);
         } catch (error) {
           console.error("Error al obtener información del usuario:", error);
@@ -97,7 +98,6 @@ const Cart = () => {
   const nameComplete = userInfo.user;
 
   const name = nameComplete.name.split(" ")[0];
-  console.log("esto es name ", name);
 
   const [selectedLink, setSelectedLink] = useState("/cart");
   const handleLinkClick = (link) => {
@@ -105,8 +105,6 @@ const Cart = () => {
   };
 
   const { user } = userInfo;
-
-  console.log("esto es user ", user);
 
   const isComplete = () => {
     const requiredFields = [
@@ -123,8 +121,6 @@ const Cart = () => {
   };
 
   const result = isComplete() ? true : false;
-
-  console.log("isComplete", result);
 
   return (
     <div className="flex flex-col items-center justify-center w-full">
@@ -167,7 +163,7 @@ const Cart = () => {
                 </tr>
               </thead>
               <tbody>
-                {ordersData.orders[0]?.products.map((product) => (
+                {order?.products.map((product) => (
                   <tr key={product.id} className="border-t">
                     <td className="flex items-center gap-1 h-22">
                       <img src={product.img} className="w-14" />
@@ -205,7 +201,7 @@ const Cart = () => {
               <div className="flex justify-between">
                 <p>Total</p>
                 <p>
-                  {ordersData.orders[0]?.products.reduce((acc, product) => {
+                  {order?.products.reduce((acc, product) => {
                     const quantity = productQuantities[product.id] || 1;
                     acc += product.price * quantity;
                     return acc;

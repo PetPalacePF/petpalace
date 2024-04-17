@@ -1,4 +1,5 @@
 const TableProducts = ({ordersData, handleDeleteProductCart}) => {
+    const order = JSON.parse(window.localStorage.getItem("orderData"));
 
   return (
     <table className='w-[800px] text-left'>
