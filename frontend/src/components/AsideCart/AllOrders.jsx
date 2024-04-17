@@ -8,11 +8,15 @@ const AllOrders = ({ ordersData, setOrdersData, handleClickBuy }) => {
 
   useEffect(() => {
     const storedQuantities = localStorage.getItem("productQuantities");
-    localStorage.setItem("productQuantities", JSON.stringify(productQuantities));
     if (storedQuantities) {
       setProductQuantities(JSON.parse(storedQuantities));
     }
   }, []);
+  
+  
+  useEffect(() => {
+    localStorage.setItem("productQuantities", JSON.stringify(productQuantities));
+  }, [productQuantities]);
 
   const handleQuantityChange = (e, productId) => {
     const newQuantity = parseInt(e.target.value);
@@ -44,6 +48,9 @@ const AllOrders = ({ ordersData, setOrdersData, handleClickBuy }) => {
         delete newQuantities[id];
         setProductQuantities(newQuantities);
         setLoading(false);
+        const storedQuantities = { ...productQuantities };
+        delete storedQuantities[id];
+        localStorage.setItem("productQuantities", JSON.stringify(storedQuantities))
       })
       .catch((err) => {
         console.log(err);
