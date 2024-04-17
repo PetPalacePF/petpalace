@@ -9,6 +9,8 @@ import { Card } from "../components/Cards/Card";
 import Paginated from "../components/Paginated/Paginated";
 import getPaymentSessions from "../utils/getPaymentSessions";
 
+import { Footer } from "../components/Footer/Footer";
+
 import { FaChevronDown } from "react-icons/fa";
 import { FaChevronUp } from "react-icons/fa";
 import { IoIosClose } from "react-icons/io";
@@ -35,6 +37,7 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
   const [visibleBrands, setVisibleBrands] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [productAdded, setProductAdded] = useState(null);
 
   useEffect(() => {
     window.localStorage.setItem("buyNow", JSON.stringify(false));
@@ -204,6 +207,13 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
     } else {
       return "priceRange";
     }
+  };
+
+  const handleAddToCart = (productName) => {
+    setProductAdded(productName);
+    setTimeout(() => {
+      setProductAdded(null); // Remove the notification after some time (e.g., 5 seconds)
+    }, 5000);
   };
 
   return (
@@ -396,11 +406,11 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col">
-          <div className="flex flex-wrap justify-center">
+        <div className="flex flex-col mb-6">
+          <div className="flex flex-wrap justify-center mb-6">
             {products.map((product) => (
               <div key={product.id} className="mt-5 p-2">
-                <Card product={product} />
+                <Card product={product} onAddToCart={handleAddToCart} />
               </div>
             ))}
           </div>
@@ -412,6 +422,7 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
           />
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
