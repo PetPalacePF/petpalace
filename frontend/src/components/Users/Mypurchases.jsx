@@ -6,6 +6,8 @@ export const MyPurchases = () => {
     const [purchases, setPurchases] = useState([]);
     const [comments, setComments] = useState({});
     const [ratings, setRatings] = useState({});
+    const [showAlert, setShowAlert] = useState(false); // State para mostrar el alerta
+    const [alertMessage, setAlertMessage] = useState(''); // Mensaje del alerta
     const userInfo = JSON.parse(window.localStorage.getItem("userData"));
     const userId = userInfo ? userInfo.id : null;
 
@@ -53,6 +55,11 @@ export const MyPurchases = () => {
             .then(response => {
                 console.log(response.data);
                 // Maneja la respuesta del backend si es necesario
+                setShowAlert(true); // Mostrar el alerta cuando la valoración se envía correctamente
+                setAlertMessage(`${comments[purchaseId]} added successfully!`); // Establecer el mensaje del alerta
+                setTimeout(() => {
+                    setShowAlert(false); // Ocultar el alerta después de unos segundos
+                }, 3000); // Ocultar después de 3 segundos (3000 milisegundos)
             })
             .catch(error => {
                 console.error('Error submitting review:', error);
@@ -124,6 +131,23 @@ export const MyPurchases = () => {
                     ))
                     }
                 </ul >
+            )}
+            {/* Alerta que se muestra cuando la valoración se envía correctamente */}
+            {showAlert && (
+                <div className="fixed top-0 left-0 w-full flex justify-center items-center z-50 mt-4 animate-fadeIn">
+                    <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded max-w-sm">
+                        <strong className="font-bold">  Review Success!</strong>
+                        <span className="absolute top-0 right-0 mt-1 mr-1">
+                            <span
+                                onClick={() => setShowAlert(false)}
+                                className="fill-current h-6 w-6 text-black-bold cursor-pointer"
+                                role="button"
+                            >
+                                X
+                            </span>
+                        </span>
+                    </div>
+                </div>
             )}
         </div >
     );
