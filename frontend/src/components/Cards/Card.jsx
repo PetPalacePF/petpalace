@@ -6,9 +6,11 @@ import useGetOrdersData from "../../hooks/orders/useGetOrdersData";
 import { useState } from "react";
 import starFilled from "../../assets/starIcon-yellowFilled.png";
 import { IoIosClose } from "react-icons/io";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export const Card = ({ product, onAddToCart }) => {
   const { ordersData } = useGetOrdersData();
+  const { isAuthenticated, loginWithRedirect } = useAuth0()
   const [quantity, setQuantity] = useState(1);
   const [productAdded, setProductAdded] = useState(false);
 
@@ -37,12 +39,23 @@ export const Card = ({ product, onAddToCart }) => {
             <span className="absolute top-3 left-4 border border-blue-200 text-xs rounded-xl px-4 py-2 font-semibold capitalize bg-blue-100">
               {product.Categories[0].name}
             </span>
-            <button
-              className="absolute top-3 right-4 border border-blue-200 rounded-xl px-4 py-2 bg-blue-100 hover:bg-blue-300"
-              onClick={(event) => handleAddToCart(event)}
-            >
-              <img src={CartIcon} alt="" className="w-4 h-4" />
-            </button>
+            {isAuthenticated ? (
+              <button
+                className="absolute top-3 right-4 border border-blue-200 rounded-xl px-4 py-2 bg-blue-100 hover:bg-blue-300"
+                onClick={(event) => handleAddToCart(event)}
+              >
+                <img src={CartIcon} alt="" className="w-4 h-4" />
+              </button>
+            ) : (
+              <button
+                className="absolute top-3 right-4 border border-blue-200 rounded-xl px-4 py-2 bg-blue-100 hover:bg-blue-300"
+                onClick={() => loginWithRedirect()}
+              >
+                <img src={CartIcon} alt="" className="w-4 h-4" />
+              </button>
+            )
+            }
+
             <p className="absolute bottom-3 right-4 flex items-center border border-blue-200 bg-blue-100 rounded-md px-2 space-x-1 text-md">
               {`${product.rating}`}
               <img src={starFilled} alt="Full Star" className="h-4 w-4" />
