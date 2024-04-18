@@ -141,12 +141,24 @@ const Detail = () => {
                   +
                 </button>
                 <div className="flex">
-                  <button
-                    onClick={(event) => handleAddToCart(event)}
-                    className="flex ml-auto text-white bg-violetahome border-0 py-2 px-4 mx-2 focus:outline-none hover:bg-violetamain rounded"
-                  >
-                    Add to cart
-                  </button>
+                  {isAuthenticated ? (
+                    <button
+                      onClick={(event) => handleAddToCart(event)}
+                      className="flex ml-auto text-white bg-violetahome border-0 py-2 px-4 mx-2 focus:outline-none hover:bg-violetamain rounded"
+                    >
+                      Add to cart
+                    </button>
+                  ) : (
+                    <button
+                      onClick={loginWithRedirect}
+                      className="flex ml-auto text-white bg-violetahome border-0 py-2 px-4 mx-2 focus:outline-none hover:bg-violetamain rounded"
+                    >
+                      Add to cart
+                    </button>
+                  )
+
+                  }
+
                   {isAuthenticated ? (
                     <NavLink
                       to="/cart/purchase"
@@ -173,9 +185,8 @@ const Detail = () => {
         {productAdded && (
           <div className="fixed top-0 left-0 w-full flex justify-center items-center z-50 mt-4 animate-fadeIn">
             <div
-              className={`relative bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded max-w-sm ${
-                closing ? "animate-fadeOut" : ""
-              }`}
+              className={`relative bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded max-w-sm ${closing ? "animate-fadeOut" : ""
+                }`}
             >
               <strong className="font-bold">Success!</strong>
               <span className="block sm:inline">
