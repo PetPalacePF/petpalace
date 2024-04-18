@@ -2,7 +2,7 @@ import { GrNext } from "react-icons/gr";
 import { GrPrevious } from "react-icons/gr";
 
 const Paginated = ({ currentPage, totalPages, onPageChange }) => {
-  console.log("esto es total pages: ", totalPages);
+  // console.log("esto es total pages: ", totalPages);
   const goToFirstPage = () => {
     onPageChange(1);
   };

@@ -201,7 +201,7 @@ const Cart = () => {
               <div className="flex justify-between">
                 <p>Total</p>
                 <p>
-                  {order?.products.reduce((acc, product) => {
+                  ${order?.products.reduce((acc, product) => {
                     const quantity = productQuantities[product.id] || 1;
                     acc += product.price * quantity;
                     return acc;
