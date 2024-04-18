@@ -241,7 +241,7 @@ const Cart = () => {
               </div>
               <NavLink
                 to="/cart/purchase"
-                className="h-8 uppercase font-medium border flex justify-center items-center bg-black text-white"
+                className="h-8 uppercase font-medium border flex justify-center items-center bg-violetahome focus:outline-none hover:bg-violetamain text-white"
                 onClick={() => handleLinkClick("/cart/purchase")}
               >
                 Purchase
