@@ -6,6 +6,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 import bgContact from "../assets/bg-Contact.jpg";
 
+import { Footer } from "../components/Footer/Footer";
+
 const Contact = () => {
   const { isAuthenticated, user } = useAuth0();
 
@@ -167,6 +169,7 @@ const Contact = () => {
           </div>
         </form>
       </div>
+      <Footer />
     </div>
   );
 };
