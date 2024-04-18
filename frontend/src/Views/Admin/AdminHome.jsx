@@ -108,39 +108,3 @@ const AdminHome = () => {
 };
 
 export default AdminHome;
-
-// <div className="max-w-3xl mx-auto p-8">
-// <h2 className="text-3xl font-bold mb-6">Welcome to your Dashboard</h2>
-// <p className="mb-6">
-//   This is the control center for managing your online store. From here,
-//   you can perform various tasks to ensure smooth operation and
-//   administration of your store.
-// </p>
-// <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-//   <div className="p-4 bg-violetahome rounded-lg">
-//     <h3 className="text-xl font-bold mb-4">Product Management</h3>
-//     <p className="mb-2">- Check stock levels and update inventory.</p>
-//     <p className="mb-2">
-//       - Add, edit, or delete products from your catalog.
-//     </p>
-//     <p className="mb-2">- Categorize products for better organization.</p>
-//   </div>
-//   <div className="p-4 bg-violetahome rounded-lg">
-//     <h3 className="text-xl font-bold mb-4">User Management</h3>
-//     <p className="mb-2">- Manage user accounts and permissions.</p>
-//     <p className="mb-2">- View and edit user details.</p>
-//     <p className="mb-2">- Suspend or delete user accounts.</p>
-//   </div>
-//   <div className="p-4 bg-violetahome rounded-lg">
-//     <h3 className="text-xl font-bold mb-4">Order Management</h3>
-//     <p className="mb-2">- View and process incoming orders.</p>
-//     <p className="mb-2">- Track order status and history.</p>
-//     <p className="mb-2">- Generate reports on sales and revenue.</p>
-//   </div>
-//   <div className="p-4 bg-violetahome rounded-lg">
-//     <h3 className="text-xl font-bold mb-4">Category Management</h3>
-//     <p className="mb-2">- Add, edit, or delete product categories.</p>
-//     <p className="mb-2">- Assign categories to products.</p>
-//   </div>
-// </div>
-// </div>
