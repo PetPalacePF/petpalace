@@ -351,15 +351,15 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
           <div className="flex flex-col">
             {allCategories.allIds.map((id) => (
               <p
-                key={id}
-                value={id}
-                className={`text-black cursor-pointer hover:bg-gray-100 ${
-                  location.search.includes(id) ? "bg-gray-100" : ""
-                }`}
-                onClick={() => handleCategoryToggle(id)}
-              >
-                {allCategories.byId[id].name}
-              </p>
+              key={id}
+              value={id}
+              className={`text-black cursor-pointer transition-colors ${
+                location.search.includes(id) ? "bg-gray-100" : ""
+              } hover:text-blue-500`}
+              onClick={() => handleCategoryToggle(id)}
+            >
+              {allCategories.byId[id].name}
+          </p>
             ))}
           </div>
 
@@ -367,18 +367,17 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
           <div className="flex flex-col">
             {brands.slice(0, visibleBrands).map((brand, index) => (
               <p
-                key={index}
-                className={`text-black cursor-pointer hover:bg-gray-100 ${
-                  location.search.includes(
-                    `filterBrands=${brand.replace(/ /g, "+")}`
-                  )
-                    ? "bg-gray-100"
-                    : ""
-                }`}
-                onClick={() => handleBrandToggle(brand)}
-              >
-                {brand}
-              </p>
+              key={index}
+              value={brand}
+              className={`text-black cursor-pointer transition-colors hover:text-blue-500 ${
+                location.search.includes(`filterBrands=${brand.replace(/ /g, "+")}`)
+                  ? "bg-gray-100"
+                  : ""
+              }`}
+              onClick={() => handleBrandToggle(brand)}
+            >
+              {brand}
+            </p>
             ))}
             <div className="flex justify-end w-full">
               {visibleBrands > 10 && (

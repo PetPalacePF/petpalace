@@ -6,9 +6,9 @@ import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
 import { BACKEND_URL } from "../../config/config";
 
-const Purchase = ({ userInfo, result, ordersData }) => {
+const Purchase = ({ userInfo, result, ordersData, productQuantities }) => {
   const [flag, setFlag] = useState();
-  const [productQuantities, setProductQuantities] = useState({});
+  
 
   const order = JSON.parse(window.localStorage.getItem("orderData"));
   const buyNow = JSON.parse(window.localStorage.getItem("buyNow"));
@@ -35,10 +35,8 @@ const Purchase = ({ userInfo, result, ordersData }) => {
     } else {
       setFlag(false);
     }
-    const storedQuantities = localStorage.getItem("productQuantities");
-        if (storedQuantities) {
-            setProductQuantities(JSON.parse(storedQuantities));
-        }
+    
+        
   }, []);
 
   const makePayment = async () => {

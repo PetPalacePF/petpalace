@@ -20,13 +20,25 @@ const AllOrders = ({ ordersData, setOrdersData, handleClickBuy }) => {
 
   const handleQuantityChange = (e, productId) => {
     const newQuantity = parseInt(e.target.value);
-
+  
+    // Actualizar el estado local con la nueva cantidad
     const newQuantities = {
       ...productQuantities,
       [productId]: newQuantity,
     };
     setProductQuantities(newQuantities);
-    localStorage.setItem("productQuantities", JSON.stringify(newQuantities));
+  
+    // Enviar la información actualizada al servidor
+    axios.put("/orders", {
+      id: ordersData[ordersData.length - 1].id,
+      productsToAdd: [[productId, newQuantity]],
+    })
+    .then((res) => {
+      // Manejar la respuesta si es necesario
+    })
+    .catch((err) => {
+      console.error("Error updating product quantity:", err);
+    });
   };
 
   const handleDeleteProductCart = (id) => {
