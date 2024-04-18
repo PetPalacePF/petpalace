@@ -12,7 +12,7 @@ const AdminHome = () => {
         <div class="flex flex-wrap items-center">
           <div class="w-10/12 md:w-6/12 lg:w-4/12 px-12 md:px-4 mr-auto ml-auto -mt-78">
             <div
-              class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg overflow-hidden bg-[#534B62]"
+              class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg overflow-hidden bg-violetamain"
             >
               <img
                 alt="Background"
