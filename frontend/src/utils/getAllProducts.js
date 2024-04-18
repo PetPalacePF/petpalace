@@ -70,7 +70,7 @@ export const getFilteredProducts = async (
     URLWordFilterPrice = "";
   }
 
-  setTimeout(() => {
+  setTimeout(async () => {
     try {
       const response = await axios(
         `${BACKEND_URL}/products?${URLWordSearch}&${querys}&${URLWordSortRating}&${URLWordSortPrice}&${URLWordFilterPrice}&page=${page}`
@@ -85,5 +85,4 @@ export const getFilteredProducts = async (
       setProducts([]);
     }
   }, 1000)
-
 };
