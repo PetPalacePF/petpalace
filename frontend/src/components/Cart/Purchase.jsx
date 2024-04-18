@@ -276,18 +276,15 @@ const Purchase = ({ userInfo, result, ordersData, productQuantities }) => {
           </table>
           <div className="mt-4">
             {!result ? (
-              <button
-                to=""
-                className="h-8 uppercase font-medium border flex justify-center items-center bg-black text-white w-full"
-                type="button"
-                disabled
+              <span
+                className="h-8 uppercase font-medium flex justify-center items-center text-black w-full"
               >
                 Add shipping address
-              </button>
+              </span>
             ) : (
               <button
                 to="/cart/purchase"
-                className="h-8 uppercase font-medium border flex justify-center items-center bg-black text-white w-full"
+                className="h-8 uppercase font-medium border flex justify-center items-center bg-violetahome focus:outline-none hover:bg-violetamain text-white w-full"
                 onClick={makePayment}
               >
                 buy now!

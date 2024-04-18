@@ -37,6 +37,7 @@ function Carousel() {
           key={img}
           src={images[img]}
           className="w-full h-full object-cover object-center block mx-auto fade"
+          style={{ aspectRatio: "1920/680" }}
         />
         <a
           className="absolute top-1/2 left-0 transform -translate-y-1/2 px-4 py-2 text-white font-bold text-xl cursor-pointer prev transition-colors duration-300 hover:text-gray-300"
