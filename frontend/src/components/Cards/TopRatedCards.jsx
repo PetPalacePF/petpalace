@@ -32,9 +32,10 @@ const TopRatedCards = () => {
         await getAllProducts();
         const response = await fetch(`${BACKEND_URL}/products?sortRating=DESC`);
         const data = await response.json();
+        const filteredData = data.products.filter(product => product.enabled)
 
         // Select the top 4 rated products
-        const topRatedProducts = data.products.slice(0, 4);
+        const topRatedProducts = filteredData.slice(0, 4);
 
         setTopRatedProducts(topRatedProducts);
       } catch (error) {

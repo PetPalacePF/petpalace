@@ -10,12 +10,17 @@ const createUser = async (email, name) => {
     defaults: { email, name },
   });
 
-  let products = [[1]]
-  const newOrder = await createOrder(products, user.id);
-  let productsToAdd;
-  let productsToRemove = [[1]];
-  const updatedOrder = await modifyOrder(newOrder.id, productsToAdd, productsToRemove);
-  console.log(updatedOrder);
+  if (created) {
+    let products = [[1]];
+    const newOrder = await createOrder(products, user.id);
+    let productsToAdd;
+    let productsToRemove = [[1]];
+    const updatedOrder = await modifyOrder(
+      newOrder.id,
+      productsToAdd,
+      productsToRemove
+    );
+  }
   const userWithOrder = formattedUser(await findUserbyId(user.id));
 
   return { userWithOrder, created };
