@@ -266,8 +266,8 @@ const Purchase = ({ userInfo, result, ordersData, productQuantities }) => {
                   Total
                 </td>
                 <td className="font-medium text-lg">
-                  {orderToSend?.products.reduce((acc, product) => {
-                    acc += product.price * (product.cantidad || 1);
+                  ${orderToSend?.products.reduce((acc, product) => {
+                    acc += product.price * (productQuantities[product.id] || 1);
                     return acc;
                   }, 0).toFixed(2)}
                 </td>

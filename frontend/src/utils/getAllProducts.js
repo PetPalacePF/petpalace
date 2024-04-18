@@ -1,4 +1,3 @@
-
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-refresh/only-export-components */
 import axios from "axios";
@@ -9,7 +8,7 @@ export const getAllProducts = async (setProducts, page = 1) => {
     if (setProducts) {
       const response = await axios(`${BACKEND_URL}/products?page=${page}`);
       const { products } = response.data;
-     
+
       setProducts(products);
     }
   } catch (error) {
@@ -70,13 +69,20 @@ export const getFilteredProducts = async (
     URLWordFilterPrice = "";
   }
 
-  try {
-    const response = await axios(
-      `${BACKEND_URL}/products?${URLWordSearch}&${querys}&${URLWordSortRating}&${URLWordSortPrice}&${URLWordFilterPrice}&page=${page}`
-    );
-    setProducts(response.data.products);
-    setTotalPages(response.data.totalPages);
-  } catch (error) {
-    console.error("Error fetching products:", error);
-  }
+  // Función de retraso para getFilteredProducts
+  const delay = 1000; // Retraso de 1 segundo
+
+  // Llamar a getFilteredProducts después de un retraso
+  setTimeout(async () => {
+    try {
+      const response = await axios(
+        `${BACKEND_URL}/products?${URLWordSearch}&${querys}&${URLWordSortRating}&${URLWordSortPrice}&${URLWordFilterPrice}&page=${page}`
+      );
+      setProducts(response.data.products);
+      setTotalPages(response.data.totalPages);
+    } catch (error) {
+      console.error("There are no products that match the filter parameters:", error);
+    setProducts([]);
+    }
+  }, delay);
 };

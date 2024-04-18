@@ -64,7 +64,7 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
       priceRange,
       search,
       location,
-      currentPage
+      currentPage,
     );
     const filters = [];
 
@@ -72,8 +72,6 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
       const selectedCategories = new URLSearchParams(location.search).getAll(
         "filterCategories"
       );
-      // console.log("selectedCategories", selectedCategories);
-      // console.log("allCategories.byId", allCategories.byId);
       selectedCategories.forEach((category) =>
         filters.push(`${allCategories?.byId[category]?.name}`)
       );
@@ -89,10 +87,6 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
       );
       selectedBrands.forEach((brand) => filters.push(`${brand}`));
     }
-    // console.log("activeFilters", activeFilters);
-    // console.log("allCategories id name", allCategories);
-    // console.log("filters", filters);
-    // console.log("filterCategories", filterCategories);
 
     setActiveFilters(filters);
   }, [
@@ -105,6 +99,7 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
     location,
     allCategories,
     currentPage,
+    brands,
   ]);
   const handleCategoryToggle = (id) => {
     if (location.search.includes(id)) {
@@ -163,8 +158,8 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
   };
 
   const handleFilterRemove = (filterToRemove, filterType) => {
-    console.log("filterToRemove--------", filterToRemove);
-    console.log("activeFilters", activeFilters);
+    // console.log("filterToRemove--------", filterToRemove);
+    // console.log("activeFilters", activeFilters);
     setActiveFilters((prevFilters) =>
       prevFilters.filter((filter) => filter !== filterToRemove)
     );
@@ -173,7 +168,7 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
       (id) => allCategories.byId[id].name === filterToRemove
     );
 
-    console.log(idCategoryABorrar);
+    // console.log(idCategoryABorrar);
 
     switch (filterType) {
       case "category":
@@ -211,10 +206,11 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
 
   const handleAddToCart = (productName) => {
     setProductAdded(productName);
-    setTimeout(() => {
-      setProductAdded(null); // Remove the notification after some time (e.g., 5 seconds)
-    }, 5000);
   };
+
+  {
+    console.log("Products length:", products.length);
+  }
 
   return (
     <div>
@@ -356,15 +352,15 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
           <div className="flex flex-col">
             {allCategories.allIds.map((id) => (
               <p
-              key={id}
-              value={id}
-              className={`text-black cursor-pointer transition-colors ${
-                location.search.includes(id) ? "bg-gray-100" : ""
-              } hover:text-blue-500`}
-              onClick={() => handleCategoryToggle(id)}
-            >
-              {allCategories.byId[id].name}
-          </p>
+                key={id}
+                value={id}
+                className={`text-black cursor-pointer transition-colors ${
+                  location.search.includes(id) ? "bg-gray-100" : ""
+                } hover:text-blue-500`}
+                onClick={() => handleCategoryToggle(id)}
+              >
+                {allCategories.byId[id].name}
+              </p>
             ))}
           </div>
 
@@ -372,17 +368,19 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
           <div className="flex flex-col">
             {brands.slice(0, visibleBrands).map((brand, index) => (
               <p
-              key={index}
-              value={brand}
-              className={`text-black cursor-pointer transition-colors hover:text-blue-500 ${
-                location.search.includes(`filterBrands=${brand.replace(/ /g, "+")}`)
-                  ? "bg-gray-100"
-                  : ""
-              }`}
-              onClick={() => handleBrandToggle(brand)}
-            >
-              {brand}
-            </p>
+                key={index}
+                value={brand}
+                className={`text-black cursor-pointer transition-colors hover:text-blue-500 ${
+                  location.search.includes(
+                    `filterBrands=${brand.replace(/ /g, "+")}`
+                  )
+                    ? "bg-gray-100"
+                    : ""
+                }`}
+                onClick={() => handleBrandToggle(brand)}
+              >
+                {brand}
+              </p>
             ))}
             <div className="flex justify-end w-full">
               {visibleBrands > 10 && (
@@ -405,20 +403,35 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col mb-6">
-          <div className="flex flex-wrap justify-center mb-6">
-            {products.map((product) => (
-              <div key={product.id} className="mt-5 p-2">
-                <Card product={product} onAddToCart={handleAddToCart} />
+
+        <div className="flex flex-col mb-6 flex-grow">
+          {products.length === 0 ? (
+            <div className="text-center mt-20 mb-14">
+              <p className="text-[70px] font-bold text-gray-800">Oops!</p>
+              <p className="text-lg text-gray-800">
+                There are no products that match your filter parameters.
+              </p>
+            </div>
+          ) : (
+            <>
+              <div className="flex flex-wrap justify-center mb-6">
+                {products.map((product) => (
+                  <div key={product.id} className="mt-5 p-2">
+                    <Card product={product} onAddToCart={handleAddToCart} />
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-          <Paginated
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={onPageChange}
-            className="flex justify-center"
-          />
+              <button onClick={anfn => console.log(products)}>sarasa</button>
+              <div className="flex justify-center">
+                <Paginated
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  onPageChange={onPageChange}
+                  className="my-6"
+                />
+              </div>
+            </>
+          )}
         </div>
       </div>
       <Footer />

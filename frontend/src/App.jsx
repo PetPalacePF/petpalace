@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
-
 import { Route, Routes } from "react-router-dom";
 import newOrderGenerator from "./utils/newOrderGenerator.js";
 // * Routes
@@ -115,30 +114,3 @@ function App() {
 }
 
 export default App;
-
-{
-  /* <Route
-  path="/dogs"
-  element={
-    <Dogs
-      allCategories={allCategories}
-      products={products}
-      setProducts={setProducts}
-      filters={filters}
-    />
-  }
-></Route> */
-}
-{
-  /* <Route
-  path="/cats"
-  element={
-    <Cats
-      allCategories={allCategories}
-      products={products}
-      setProducts={setProducts}
-      filters={filters}
-    />
-  }
-></Route> */
-}
