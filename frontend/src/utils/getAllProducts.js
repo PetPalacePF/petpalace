@@ -69,14 +69,20 @@ export const getFilteredProducts = async (
     URLWordFilterPrice = "";
   }
 
-  try {
-    const response = await axios(
-      `${BACKEND_URL}/products?${URLWordSearch}&${querys}&${URLWordSortRating}&${URLWordSortPrice}&${URLWordFilterPrice}&page=${page}`
-    );
-    setProducts(response.data.products);
-    setTotalPages(response.data.totalPages);
-  } catch (error) {
-    console.error("There are no products that match the filter parameters:", error);
+  // Función de retraso para getFilteredProducts
+  const delay = 1000; // Retraso de 1 segundo
+
+  // Llamar a getFilteredProducts después de un retraso
+  setTimeout(async () => {
+    try {
+      const response = await axios(
+        `${BACKEND_URL}/products?${URLWordSearch}&${querys}&${URLWordSortRating}&${URLWordSortPrice}&${URLWordFilterPrice}&page=${page}`
+      );
+      setProducts(response.data.products);
+      setTotalPages(response.data.totalPages);
+    } catch (error) {
+      console.error("There are no products that match the filter parameters:", error);
     setProducts([]);
-  }
+    }
+  }, delay);
 };
