@@ -17,13 +17,6 @@ export const UserForm = () => {
     id: userInfo.id,
     email: user?.email || userInfo?.email || "",
     name: user?.name || userInfo?.name || "",
-    // street_address: userInfo?.street_address || '',
-    // country: userInfo?.country || '',
-    // state: userInfo?.state || '',
-    // city: userInfo?.city || '',
-    // ZIP_Code: userInfo?.ZIP_Code || '',
-    // phone: userInfo?.phone || '',
-    // street_number: userInfo?.street_number || ''
   });
 
   const [editable, setEditable] = useState(false);
@@ -45,6 +38,13 @@ export const UserForm = () => {
       ...prevState,
       [name]: value,
     }));
+  };
+
+  const handleKeyPress = (event) => {
+    const regex = /^[0-9\b]+$/;
+    if (!regex.test(event.key)) {
+      event.preventDefault();
+    }
   };
 
   const handleModify = () => {
@@ -118,6 +118,7 @@ export const UserForm = () => {
                 value={userData.phone}
                 onChange={handleInputChange}
                 name="phone"
+                onKeyPress={handleKeyPress}
                 className={`shadow appearance-none border rounded w-1/4 py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
                   editable ? "" : "bg-gray-200"
                 }`}
@@ -190,6 +191,7 @@ export const UserForm = () => {
                 <input
                   value={userData.street_number}
                   onChange={handleInputChange}
+                  onKeyPress={handleKeyPress}
                   name="street_number"
                   className={`shadow appearance-none border rounded w-4/4 py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
                     editable ? "" : "bg-gray-200"
@@ -204,6 +206,7 @@ export const UserForm = () => {
                 <input
                   value={userData.ZIP_Code}
                   onChange={handleInputChange}
+                  onKeyPress={handleKeyPress}
                   name="ZIP_Code"
                   className={`shadow appearance-none border rounded w-4/4 py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
                     editable ? "" : "bg-gray-200"
