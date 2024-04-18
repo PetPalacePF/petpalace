@@ -32,6 +32,7 @@ const AllProducts = ({ productsData, setProductsData }) => {
                 img={product.img}
                 setProductsData={setProductsData}
                 productsData={productsData}
+                productInfo={product}
               />
             ))
           }

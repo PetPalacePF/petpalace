@@ -5,7 +5,6 @@ const User = ({ id, name, country, phone, purchases, admin, enabled, usersData, 
     const adminId = JSON.parse(window.localStorage.getItem("userData"))?.id;
 
     const handleDisabledChange = () => {
-
         axios.put('/admin/users', {
             ...user,
             userAdmin_id: adminId,
@@ -19,7 +18,26 @@ const User = ({ id, name, country, phone, purchases, admin, enabled, usersData, 
                 }
                 return order
             })
-            console.log(newOrdersUsers)
+            setUsersData({...usersData, orders:newOrdersUsers})
+            
+        })
+        .catch(err => console.log(err))
+    }
+
+    const handleAdminChange = () => {
+        axios.put('/admin/users', {
+            ...user,
+            userAdmin_id: adminId,
+            admin: !admin 
+        })
+        .then(res => res.data)
+        .then(data => {
+            const newOrdersUsers = usersData.orders.map(order => {
+                if(data.user.id === order.id) {
+                    return data.user
+                }
+                return order
+            })
             setUsersData({...usersData, orders:newOrdersUsers})
             
         })
@@ -40,14 +58,15 @@ const User = ({ id, name, country, phone, purchases, admin, enabled, usersData, 
                 {phone ? phone : 'Incompleted'}
             </td>
             <td>
-                {purchases.length > 0 ? purchases : 0}
+                {purchases?.length > 0 ? purchases : 0}
             </td>
             <td>
-                {
-                    admin 
-                    ? <p>Administrador</p>
-                    : <p>Usuario</p>
-                }
+                <input 
+                    type="checkbox"
+                    checked={admin}
+                    value={admin}
+                    onChange={handleAdminChange}
+                />
             </td>
             <td>
                 <input 

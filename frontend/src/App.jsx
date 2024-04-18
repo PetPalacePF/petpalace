@@ -21,6 +21,7 @@ import { Shop } from "./Views/Shop.jsx";
 import Cart from "./Views/User/Cart.jsx";
 import useFilters from "./hooks/useFilter.jsx";
 import { Profile } from "./Views/Users/Profile.jsx";
+import AdminRoute from "./middleware/AdminRoute.jsx";
 // import Dogs from "./Views/Dogs.jsx";
 // import Cats from "./Views/Cats.jsx";
 
@@ -103,10 +104,12 @@ function App() {
         <Route
           path="/admin/*"
           element={
-            <AdminPanel
-              allCategories={allCategories}
-              setAllCategories={setAllCategories}
-            />
+            <AdminRoute>
+              <AdminPanel
+                allCategories={allCategories}
+                setAllCategories={setAllCategories}
+              />
+            </AdminRoute>
           }
         />
       </Routes>

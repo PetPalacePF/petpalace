@@ -11,7 +11,8 @@ const Product = ({
     enabled,
     img,
     productsData,
-    setProductsData
+    setProductsData,
+    productInfo
 }) => {
 
     const handleChangeProduct = (e) => {
@@ -40,17 +41,39 @@ const Product = ({
             .catch(err => console.log(err))
     }
 
-    const handleDeleteProduct = () => {
-        axios.delete(`/products/${id}`)
-            .then(res => res.data)
-            .then(data => {
-                const newProducts = productsData.products.filter(product => product.id !== id)
-                setProductsData({
-                    ...productsData,
-                    products: newProducts
+    const handleDeleteProduct = (name) => {
+        const deleted = window.confirm(`Are you sure you want to delete the ${name} product?`)
+        if(deleted) {
+            axios.delete(`/products/${id}`)
+                .then(res => res.data)
+                .then(data => {
+                    const newProducts = productsData.products.filter(product => product.id !== id)
+                    setProductsData({
+                        ...productsData,
+                        products: newProducts
+                    })
                 })
+                .catch(err => console.log(err))
+        }
+    }
+
+    const handleEnabledChange = () => {
+        axios.put('/products', {
+            ...productInfo,
+            enabled: !enabled,
+            categories: productInfo.Categories.map(category => category.id)
+        })
+        .then(res => res.data)
+        .then(data => {
+            const newProducts = productsData.products.map(product => {
+                if(data.updatedProduct.id === product.id) {
+                    return data.updatedProduct
+                }
+                return product
             })
-            .catch(err => console.log(err))
+            setProductsData({...productsData, products:newProducts})
+        })
+        .catch(err => console.log(err))
     }
 
     return (
@@ -88,21 +111,19 @@ const Product = ({
                 />
             </td>
             <td>
-                <input
-                    className='border max-w-[80px] rounded-lg text-sm font-medium px-2 py-1 outline-none focus:shadow-sm focus:shadow-blue-400'
-                    type='number'
-                    value={rating}
-                    onChange={handleChangeProduct}
-                    onBlur={handlePutProduct}
-                    name='rating'
+                {rating}
+            </td>
+            <td>
+                <input 
+                    type="checkbox"
+                    checked={enabled}
+                    value={enabled}
+                    onChange={handleEnabledChange}
                 />
             </td>
             <td>
-                {enabled ? <p>True</p> : <p>False</p>}
-            </td>
-            <td>
                 <button
-                    onClick={handleDeleteProduct}
+                    onClick={() => handleDeleteProduct(name)}
                     className='w-7 h-7 border border-[#ccc] bg-[#eee] hover:bg-[#ccc] rounded-full flex items-center justify-center transition-all'
                 >
                     <img

@@ -8,8 +8,9 @@ export const getAllProducts = async (setProducts, page = 1) => {
     if (setProducts) {
       const response = await axios(`${BACKEND_URL}/products?page=${page}`);
       const { products } = response.data;
+      const filteredData = products.filter(product => product.enabled)
 
-      setProducts(products);
+      setProducts(filteredData);
     }
   } catch (error) {
     console.error("Error fetching products:", error);
@@ -73,7 +74,10 @@ export const getFilteredProducts = async (
     const response = await axios(
       `${BACKEND_URL}/products?${URLWordSearch}&${querys}&${URLWordSortRating}&${URLWordSortPrice}&${URLWordFilterPrice}&page=${page}`
     );
-    setProducts(response.data.products);
+
+    const filteredData = response.data.products.filter(product => product.enabled)
+
+    setProducts(filteredData);
     setTotalPages(response.data.totalPages);
   } catch (error) {
     console.error("There are no products that match the filter parameters:", error);

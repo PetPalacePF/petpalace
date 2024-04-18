@@ -1,18 +1,21 @@
 // En el componente Products
 import { useState } from "react";
 import searchIcon from "../../assets/searchIcon-24x24.png";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import ResetFilter from '../../assets/resetfilter.png';
 import PlusIcon from '../../assets/plusicon.png'
 import AllProducts from '../../components/Admin/products/Products';
 import useGetProducts from "../../hooks/products/useGetProducts";
 
+import ProductsPaginated from "../../components/Admin/products/ProductsPaginated";
+
 const Products = () => {
+  const location = useLocation()
   const [sortRating, setSortRating] = useState("");
   const [sortPrice, setSortPrice] = useState("");
   const [search, setSearch] = useState("");
   const navigate = useNavigate()
-  const { productsData } = useGetProducts(sortRating, sortPrice, search); // Pasar los estados como parámetros
+  const { productsData, setProductsData } = useGetProducts(sortRating, sortPrice, search, location.search.split('')[location.search.length - 1]); // Pasar los estados como parámetros
 
   const navigateToCreate = () => {
     return navigate("/admin/products/new")
@@ -91,7 +94,8 @@ const Products = () => {
           <img src={PlusIcon} />
         </button>
       </div>
-      <AllProducts productsData={productsData} />
+      <AllProducts productsData={productsData} setProductsData={setProductsData} />
+      <ProductsPaginated productsData={productsData} page={location.search.split('')[location.search.length - 1]} />
     </>
   );
 };
