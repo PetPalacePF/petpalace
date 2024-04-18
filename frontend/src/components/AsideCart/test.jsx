@@ -1,4 +1,85 @@
-import { useState, useEffect } from "react";
+//components/AsideCart/AllOrders.jsx
+
+useEffect(() => {
+  const storedQuantities = localStorage.getItem("productQuantities");
+  if (storedQuantities) {
+    setProductQuantities(JSON.parse(storedQuantities));
+  }
+}, []);
+
+
+useEffect(() => {
+  localStorage.setItem("productQuantities", JSON.stringify(productQuantities));
+}, [productQuantities]);
+
+
+axios
+      .put("/orders", {
+        id: ordersData[0].id,
+        productsToRemove: [[id]],
+      })
+      .then((res) => res.data)
+      .then((data) => {
+        window.localStorage.setItem("orderData", JSON.stringify(data.order));
+        setOrdersData({
+          ...ordersData,
+          orders: [data.order],
+        });
+        const newQuantities = { ...productQuantities };
+        delete newQuantities[id];
+        setProductQuantities(newQuantities);
+        setLoading(false);
+       // const storedQuantities = { ...productQuantities };
+      //delete storedQuantities[id];
+      //localStorage.setItem("productQuantities", JSON.stringify(storedQuantities))
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
+  };
+
+// -------------------------------------------------------------------------------------
+
+//Views/User/Cart.jsx
+
+const handleIncrement = (productId, stock) => {
+  const currentQuantity = productQuantities[productId] || 0;
+  const newQuantity = Math.min(currentQuantity + 1, stock); // Sumar 1 a la cantidad actual, asegurando que no exceda el stock disponible
+  setProductQuantities({
+    ...productQuantities,
+    [productId]: newQuantity,
+  }); // Actualizar el estado de las cantidades
+  localStorage.setItem("productQuantities", JSON.stringify(productQuantities)); // Guardar en el localStorage
+};
+
+
+En la linea 191:
+
+ onClick={() => handleIncrement(product.id, product.stock)}
+
+
+//--------------------------------------------------------------------------------------------
+
+//Views/Shop
+
+En la linea 358
+
+            <p
+                key={id}
+                value={id}
+                className={`text-black cursor-pointer transition-colors ${
+                  location.search.includes(id) ? "bg-gray-100" : ""
+                } hover:text-blue-500`}
+                onClick={() => handleCategoryToggle(id)}
+              >
+                {allCategories.byId[id].name}
+            </p>
+
+
+
+
+{/* import { useState, useEffect } from "react";
 import axios from "../../config/axios";
 
 const AllOrders = ({ ordersData, setOrdersData, handleClickBuy }) => {
@@ -134,4 +215,4 @@ const AllOrders = ({ ordersData, setOrdersData, handleClickBuy }) => {
     );
 };
 
-export default AllOrders;
+export default AllOrders; */}
