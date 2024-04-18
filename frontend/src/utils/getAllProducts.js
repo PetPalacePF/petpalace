@@ -1,4 +1,3 @@
-
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-refresh/only-export-components */
 import axios from "axios";
@@ -9,7 +8,7 @@ export const getAllProducts = async (setProducts, page = 1) => {
     if (setProducts) {
       const response = await axios(`${BACKEND_URL}/products?page=${page}`);
       const { products } = response.data;
-     
+
       setProducts(products);
     }
   } catch (error) {
@@ -77,6 +76,7 @@ export const getFilteredProducts = async (
     setProducts(response.data.products);
     setTotalPages(response.data.totalPages);
   } catch (error) {
-    console.error("Error fetching products:", error);
+    console.error("There are no products that match the filter parameters:", error);
+    setProducts([]);
   }
 };
