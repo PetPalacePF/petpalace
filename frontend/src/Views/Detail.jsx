@@ -20,6 +20,7 @@ const Detail = () => {
   const [quantity, setQuantity] = useState(1);
   const { isAuthenticated, loginWithRedirect } = useAuth0();
   const [productAdded, setProductAdded] = useState(false);
+  const [closing, setClosing] = useState(false);
 
   useEffect(() => {
     window.localStorage.setItem("buyNow", JSON.stringify(false));
@@ -44,8 +45,6 @@ const Detail = () => {
     order.products = [product_aux];
     window.localStorage.setItem("alternativeCart", JSON.stringify(order));
     window.localStorage.setItem("buyNow", JSON.stringify(true));
-
-    
   };
 
   const ratingToStars = (rating) => {
@@ -68,9 +67,19 @@ const Detail = () => {
     event.preventDefault();
     addToCart(product.id, quantity, ordersData.orders);
     setProductAdded(true);
+    setTimeout(() => {
+      setClosing(true);
+      setTimeout(() => {
+        setProductAdded(false);
+        setClosing(false);
+      }, 300);
+    }, 1500);
   };
-  const closeAlert = () => {
+
+  const closeAlert = (event) => {
+    event.stopPropagation();
     setProductAdded(false);
+    setClosing(false);
   };
 
   return (
@@ -158,7 +167,11 @@ const Detail = () => {
       <div>
         {productAdded && (
           <div className="fixed top-0 left-0 w-full flex justify-center items-center z-50 mt-4 animate-fadeIn">
-            <div className="relative bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded max-w-sm">
+            <div
+              className={`relative bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded max-w-sm ${
+                closing ? "animate-fadeOut" : ""
+              }`}
+            >
               <strong className="font-bold">Success!</strong>
               <span className="block sm:inline">
                 {" "}
@@ -166,7 +179,7 @@ const Detail = () => {
               </span>
               <span className="absolute top-0 right-0 mt-1 mr-1">
                 <span
-                  onClick={closeAlert}
+                  onClick={(event) => closeAlert(event)}
                   className="fill-current h-6 w-6 text-black-bold cursor-pointer"
                   role="button"
                 >

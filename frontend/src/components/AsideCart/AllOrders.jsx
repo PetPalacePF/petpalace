@@ -139,15 +139,12 @@ const AllOrders = ({ ordersData, setOrdersData, handleClickBuy }) => {
       <div className=" border-t-2">
         <div className="flex justify-between py-2">
           <p className="uppercase">Subtotal:</p>
-          {ordersData[ordersData.length - 1]?.products &&
-            ordersData[ordersData.length - 1].products.reduce(
-              (acc, product) => {
-                const quantity = productQuantities[product.id] || 1;
-                acc += product.price * quantity;
-                return acc;
-              },
-              0
-            )}
+          ${ordersData[ordersData.length - 1]?.products &&
+            ordersData[ordersData.length - 1].products.reduce((acc, product) => {
+              const quantity = productQuantities[product.id] || 1;
+              acc += product.price* quantity;
+              return acc;
+            }, 0)}
         </div>
         <button
           onClick={handleClickBuy}
