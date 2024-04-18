@@ -109,10 +109,9 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
       navigate(`?${nuevaUrl}`);
     } else {
       navigate(
-        `${location.search}${
-          location.search.includes("?")
-            ? "&filterCategories="
-            : "?filterCategories="
+        `${location.search}${location.search.includes("?")
+          ? "&filterCategories="
+          : "?filterCategories="
         }${id}`
       );
     }
@@ -354,9 +353,8 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
               <p
                 key={id}
                 value={id}
-                className={`text-black cursor-pointer transition-colors ${
-                  location.search.includes(id) ? "bg-gray-100" : ""
-                } hover:text-blue-500`}
+                className={`text-black cursor-pointer transition-colors ${location.search.includes(id) ? "bg-gray-100" : ""
+                  } hover:text-blue-500`}
                 onClick={() => handleCategoryToggle(id)}
               >
                 {allCategories.byId[id].name}
@@ -370,13 +368,12 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
               <p
                 key={index}
                 value={brand}
-                className={`text-black cursor-pointer transition-colors hover:text-blue-500 ${
-                  location.search.includes(
-                    `filterBrands=${brand.replace(/ /g, "+")}`
-                  )
-                    ? "bg-gray-100"
-                    : ""
-                }`}
+                className={`text-black cursor-pointer transition-colors hover:text-blue-500 ${location.search.includes(
+                  `filterBrands=${brand.replace(/ /g, "+")}`
+                )
+                  ? "bg-gray-100"
+                  : ""
+                  }`}
                 onClick={() => handleBrandToggle(brand)}
               >
                 {brand}
@@ -421,7 +418,6 @@ export const Shop = ({ setProducts, products, allCategories, filters }) => {
                   </div>
                 ))}
               </div>
-              <button onClick={anfn => console.log(products)}>sarasa</button>
               <div className="flex justify-center">
                 <Paginated
                   currentPage={currentPage}
