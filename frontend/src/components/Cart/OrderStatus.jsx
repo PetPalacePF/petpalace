@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import getPaymentSessions from "../../utils/getPaymentSessions";
 import { NavLink } from "react-router-dom";
 import postPurchases from "../../utils/postPurchases";
-import { HiCheckCircle, HiXCircle } from "react-icons/hi";
+import { HiCheckCircle, HiXCircle, HiOutlineClock } from "react-icons/hi";
 import putOrders from "../../utils/putOrders";
 import newOrderGenerator from "../../utils/newOrderGenerator";
 
@@ -46,6 +46,7 @@ export const OrderStatus = () => {
       newOrderGenerator(order);
       setStripe(initialStateStripe);
       window.localStorage.removeItem("orderData");
+      window.localStorage.removeItem("productQuantities");
     };
   }, []);
 
@@ -190,6 +191,15 @@ export const OrderStatus = () => {
                 </div>
               </div>
             </div>
+          ) : stripe_payment_status === "" ? (
+            <div className="fixed top-0 left-0 right-0 bottom-0 flex justify-center items-center">
+              <div className="text-center">
+                <HiOutlineClock className="text-8xl text-purple-500 align-middle" />
+                <p className="text-purple-500 font-bold text-4xl mt-4 align-middle">
+                  Please wait...
+                </p>
+              </div>
+            </div>
           ) : (
             <div className="bg-green-200 border border-green-400 p-4 mb-4">
               <div className="flex items-center">
@@ -213,12 +223,16 @@ export const OrderStatus = () => {
             </div>
           )}
         </div>
-        <NavLink
-          to="/shop"
-          className="h-16 uppercase font-medium border flex justify-center items-center bg-black text-white w-full mt-8 hover:bg-green-800 transition-colors"
-        >
-          Continue shopping
-        </NavLink>
+        <div>
+          {stripe_payment_status !== "" ? (
+            <NavLink
+              to="/shop"
+              className="h-16 uppercase font-medium border flex justify-center items-center bg-black text-white w-full mt-8 hover:bg-green-800 transition-colors"
+            >
+              Continue shopping
+            </NavLink>
+          ) : null}
+        </div>
       </div>
     </div>
   );

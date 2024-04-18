@@ -15,7 +15,7 @@ const modifyUser = async (id, userBody) => {
     if (updatedUser[0] === 0) {
       return { message: `Usuario '${id}' no encontrado` };
     }
-    updatedUser = await User.findByPk(id);
+    updatedUser = await findUserbyId(id);
     return updatedUser.dataValues;
   } catch (error) {
     console.log(`Error al actualizar el usuario ${id}: `, error.message);

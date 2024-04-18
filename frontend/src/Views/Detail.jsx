@@ -45,78 +45,7 @@ const Detail = () => {
     window.localStorage.setItem("alternativeCart", JSON.stringify(order));
     window.localStorage.setItem("buyNow", JSON.stringify(true));
 
-    // window.localStorage.removeItem("orderData");
-    // window.localStorage.setItem("orderData", JSON.stringify(order));
-
-    // let alternativeCart = JSON.parse(window.localStorage.getItem("alternativeCart"))
-
-    // console.log("alternativeCart ", alternativeCart.id);
-    // console.log("productSSSSS ", alternativeCart.products);
-
-    // const idProductsToRemove = alternativeCart.products.map(product => product.id)
-
-    // console.log("idProductsToRemove ", idProductsToRemove);
-
-    // let arrayProdsToRemove = []
-
-    // idProductsToRemove.forEach(id => {
-    //   arrayProdsToRemove = [...arrayProdsToRemove, [id]]
-    // })
-
-    // console.log("arrayProdsToRemove ", arrayProdsToRemove);
-
-    // axios.put('/orders', {
-    //   id: ordersData[0].id,
-    //   productsToRemove: arrayProdsToRemove
-    // })
-    //   .then(res => res.data)
-    //   .then(data => {
-    //     setOrdersData({
-    //       ...ordersData,
-    //       orders: [data.order]
-    //     })
-    //     // setLoading(false)
-    //   })
-    //   .catch(err => {
-    //     console.log(err)
-    //     // setLoading(false)
-    //   })
-
-    // addToCart(product.id, quantity)
-
-    // product.cantidad = quantity
-
-    // const body = {
-    //   products: [
-    //     {
-    //       id: product.id,
-    //       name: product.name,
-    //       description: product.description,
-    //       img: product.img,
-    //       price: product.price,
-    //       // quantity: 1 //modificar esta parte del código
-    //     },
-    //   ],
-    //   origin: "Detail"
-    // };
-
-    // console.log("DETAIL body ", body);
-
-    // const response = await axios.post(
-    //   `${BACKEND_URL}/payment-session`,
-    //   body
-    // );
-
-    // const session = await response.data;
-
-    // const result = await stripe.redirectToCheckout({
-    //   sessionId: session.sessionId,
-    // });
-    // console.log("este es result", result)
-
-    // const paymentId = await axios.get(`${BACKEND_URL}/payment-session/payment`)
-
-    // console.log("este es el payment id", paymentId)
+    
   };
 
   const ratingToStars = (rating) => {
@@ -137,7 +66,7 @@ const Detail = () => {
 
   const handleAddToCart = (event) => {
     event.preventDefault();
-    addToCart(product.id, quantity, ordersData);
+    addToCart(product.id, quantity, ordersData.orders);
     setProductAdded(true);
   };
   const closeAlert = () => {

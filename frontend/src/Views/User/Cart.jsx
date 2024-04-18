@@ -18,25 +18,56 @@ const Cart = () => {
 
 
   const handleDecrement = (productId) => {
-    const currentQuantity = productQuantities[productId] || 1; // Si no hay cantidad definida, asumimos 1 como mínimo
+    const currentQuantity = productQuantities[productId] || 1;
     const newQuantities = {
       ...productQuantities,
-      [productId]: Math.max(currentQuantity - 1, 1), // Restar 1 a la cantidad actual, asegurando que no sea menor que 1
+      [productId]: Math.max(currentQuantity - 1, 1),
     };
-    setProductQuantities(newQuantities); // Actualizar el estado de las cantidades
-    localStorage.setItem("productQuantities", JSON.stringify(newQuantities)); // Guardar en el localStorage
+    setProductQuantities(newQuantities);
+
+    // Enviar solicitud PUT al backend para actualizar la cantidad
+    axios.put("/orders", {
+      id: order.id,
+      productsToAdd: [[productId, Math.max(currentQuantity - 1, 1)]],
+    })
+    .then((res) => res.data)
+      .then((data) => {
+        window.localStorage.setItem("orderData", JSON.stringify(data.order));
+        setOrdersData({
+          ...ordersData,
+          orders: [data.order],
+        });
+      })
+    .catch((err) => {
+      console.error("Error updating product quantity:", err);
+    });
   };
 
-  const handleIncrement = (productId) => {
-    const currentQuantity = productQuantities[productId] || 0; // Si no hay cantidad definida, asumimos 0
-    const newQuantities = {
+  const handleIncrement = (productId, stock) => {
+    const currentQuantity = productQuantities[productId] || 0;
+    const newQuantity = Math.min(currentQuantity + 1, stock);
+    setProductQuantities({
       ...productQuantities,
-      [productId]: currentQuantity + 1, // Sumar 1 a la cantidad actual
-    };
-    setProductQuantities(newQuantities); // Actualizar el estado de las cantidades
-    localStorage.setItem("productQuantities", JSON.stringify(newQuantities)); // Guardar en el localStorage
-  };
+      [productId]: newQuantity,
+    });
 
+    // Enviar solicitud PUT al backend para actualizar la cantidad
+    axios.put("/orders", {
+      id: order.id,
+      productsToAdd: [[productId, newQuantity]],
+    })
+    .then((res) => res.data)
+    .then((data) => {
+      window.localStorage.setItem("orderData", JSON.stringify(data.order));
+      setOrdersData({
+        ...ordersData,
+        orders: [data.order],
+      });
+    })
+    .catch((err) => {
+      console.error("Error updating product quantity:", err);
+    });
+  };
   const handleDeleteProductCart = (id) => {
     setLoading(true);
 
@@ -188,7 +219,7 @@ const Cart = () => {
                         {productQuantities[product.id] || 1}
                       </p>
                       <div className="inline ml-3 w-4 h-4 text-xl">
-                        <button onClick={() => handleIncrement(product.id)}>
+                        <button onClick={() => handleIncrement(product.id, product.stock)}>
                           +
                         </button>
                       </div>
@@ -232,6 +263,7 @@ const Cart = () => {
               userInfo={userInfo}
               result={result}
               ordersData={ordersData}
+              productQuantities={productQuantities}
             />
           </div>
         </div>
