@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import axios from '../../config/axios.js'
 
-const useGetProducts = (sortRating, sortPrice, search) => {
+const useGetProducts = (sortRating, sortPrice, search, page = 1) => {
     const [productsData, setProductsData] = useState({});
 
     useEffect(() => {
@@ -25,13 +25,16 @@ const useGetProducts = (sortRating, sortPrice, search) => {
         }
 
         axios
-            .get(url)
+            .get(`${url}${ (sortRating || sortPrice || search) ? '&&' : '?'}page=${page}`)
             .then((res) => res.data)
             .then((data) => {
                 setProductsData(data)
             })
-            .catch((err) => console.log(err));
-    }, [sortRating, sortPrice, search]);
+            .catch((err) => {
+                setProductsData([])
+                console.log(err)
+            });
+    }, [sortRating, sortPrice, search, page]);
 
     return {
         productsData,

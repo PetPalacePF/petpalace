@@ -9,6 +9,7 @@ export const NavBar = ({ allCategories }) => {
   const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
   const categoryRef = useRef(null);
 
+  const userData = JSON.parse(window.localStorage.getItem("userData"))
   useEffect(() => {
     if (isAuthenticated && user) {
       axios
@@ -120,7 +121,7 @@ export const NavBar = ({ allCategories }) => {
             LOGIN
           </button>
         )}
-        {isAuthenticated && (
+        {isAuthenticated && userData?.admin && (
           <Link to="/admin" className="uppercase">
             Admin
           </Link>
