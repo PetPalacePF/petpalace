@@ -35,7 +35,7 @@ const AsideCart = ({
           <div className="absolute top-0 right-0 w-4 h-4 bg-violetahome rounded-full flex items-center justify-center">
             <p>
               {ordersData.orders.length > 0
-                ? ordersData.orders[0].products?.length
+                ? ordersData.orders[ordersData.orders.length - 1].products?.length
                 : "0"}
             </p>
           </div>

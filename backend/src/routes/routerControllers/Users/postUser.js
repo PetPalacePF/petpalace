@@ -34,11 +34,11 @@ const postUser = async (req, res) => {
   });
 
   try {
-    const { user, created } = await createUser(email, name);
+    const { userWithOrder, created } = await createUser(email, name);
     if (created) {
       await transporter.sendMail(message);
     }
-    res.status(201).json({ created: created, user: user });
+    res.status(201).json({ created: created, user: userWithOrder });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

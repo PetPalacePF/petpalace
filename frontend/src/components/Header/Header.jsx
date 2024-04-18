@@ -12,7 +12,8 @@ import logo from "../../assets/logo.png";
 
 import { useNavigate } from "react-router-dom";
 
-const Header = ({ allCategories, setProducts, filters, setUsers }) => {
+const Header = ({ allCategories, setProducts, filters, setUsers, ordersData, setOrdersData, productQuantities }) => {
+  
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const [openCart, setOpenCart] = useState(false);

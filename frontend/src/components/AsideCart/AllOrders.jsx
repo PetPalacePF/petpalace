@@ -1,15 +1,59 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "../../config/axios";
 
 const AllOrders = ({ ordersData, setOrdersData, handleClickBuy }) => {
   const [loading, setLoading] = useState(false);
+  const [productQuantities, setProductQuantities] = useState({});
+
+  useEffect(() => {
+    const storedQuantities = localStorage.getItem("productQuantities");
+    if (storedQuantities) {
+      setProductQuantities(JSON.parse(storedQuantities));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem(
+      "productQuantities",
+      JSON.stringify(productQuantities)
+    );
+  }, [productQuantities]);
+
+  const handleQuantityChange = (e, productId) => {
+    const newQuantity = parseInt(e.target.value);
+
+    // Actualizar el estado local con la nueva cantidad
+    const newQuantities = {
+      ...productQuantities,
+      [productId]: newQuantity,
+    };
+    setProductQuantities(newQuantities);
+
+    // Enviar la información actualizada al servidor
+    axios
+      .put("/orders", {
+        id: ordersData[ordersData.length - 1].id,
+        productsToAdd: [[productId, newQuantity]],
+      })
+      .then((res) => res.data)
+      .then((data) => {
+        window.localStorage.setItem("orderData", JSON.stringify(data.order));
+        setOrdersData({
+          ...ordersData,
+          orders: [data.order],
+        });
+      })
+      .catch((err) => {
+        console.error("Error updating product quantity:", err);
+      });
+  };
 
   const handleDeleteProductCart = (id) => {
     setLoading(true);
 
     axios
       .put("/orders", {
-        id: ordersData[0].id,
+        id: ordersData[ordersData.length - 1].id,
         productsToRemove: [[id]],
       })
       .then((res) => res.data)
@@ -19,7 +63,16 @@ const AllOrders = ({ ordersData, setOrdersData, handleClickBuy }) => {
           ...ordersData,
           orders: [data.order],
         });
+        const newQuantities = { ...productQuantities };
+        delete newQuantities[id];
+        setProductQuantities(newQuantities);
         setLoading(false);
+        const storedQuantities = { ...productQuantities };
+        delete storedQuantities[id];
+        localStorage.setItem(
+          "productQuantities",
+          JSON.stringify(storedQuantities)
+        );
       })
       .catch((err) => {
         console.log(err);
@@ -30,8 +83,8 @@ const AllOrders = ({ ordersData, setOrdersData, handleClickBuy }) => {
   return (
     <div className="h-full flex flex-col justify-between">
       <div>
-        {ordersData[0]?.products ? (
-          ordersData[0].products.map((product) => (
+        {ordersData[ordersData.length - 1]?.products ? (
+          ordersData[ordersData.length - 1].products.map((product) => (
             <div key={product.id} className="relative">
               <div className="flex justify-between gap-4 mb-6">
                 <div className="flex items-center gap-4">
@@ -53,7 +106,7 @@ const AllOrders = ({ ordersData, setOrdersData, handleClickBuy }) => {
                       <span className="ml-16 bg-violetahome px-2 py-1 rounded-full text-sm">
                         Qty:
                         <select
-                          value={product.cantidad}
+                          value={product.cantidad || 1}
                           onChange={(e) => handleQuantityChange(e, product.id)}
                           className="ml-1 w-12 text-center bg-violetahome rounded-md"
                         >
@@ -86,9 +139,10 @@ const AllOrders = ({ ordersData, setOrdersData, handleClickBuy }) => {
       <div className=" border-t-2">
         <div className="flex justify-between py-2">
           <p className="uppercase">Subtotal:</p>
-          ${ordersData[0]?.products &&
-            ordersData[0].products.reduce((acc, product) => {
-              acc += product.price;
+          ${ordersData[ordersData.length - 1]?.products &&
+            ordersData[ordersData.length - 1].products.reduce((acc, product) => {
+              const quantity = productQuantities[product.id] || 1;
+              acc += product.price* quantity;
               return acc;
             }, 0)}
         </div>

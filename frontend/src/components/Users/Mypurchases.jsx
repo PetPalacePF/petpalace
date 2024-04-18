@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
 import getPurchasefilterUsers from '../../utils/getPurchases.js';
+import axios from '../../config/axios.js';
 
 export const MyPurchases = () => {
     const [purchases, setPurchases] = useState([]);
-    const [comment, setComment] = useState('');
-    const [rating, setRating] = useState(0); // Valoración inicial
+    const [comments, setComments] = useState({});
+    const [ratings, setRatings] = useState({});
+    const [showAlert, setShowAlert] = useState(false); // State para mostrar el alerta
+    const [alertMessage, setAlertMessage] = useState(''); // Mensaje del alerta
     const userInfo = JSON.parse(window.localStorage.getItem("userData"));
     const userId = userInfo ? userInfo.id : null;
 
@@ -20,22 +23,48 @@ export const MyPurchases = () => {
         }, 0);
     };
 
-    const handleCommentChange = (event) => {
-        setComment(event.target.value);
+    const handleCommentChange = (purchaseId, event) => {
+        const { value } = event.target;
+        setComments({ ...comments, [purchaseId]: value });
     };
 
-    const handleRatingClick = (value) => {
-        setRating(value);
+    const handleRatingClick = (purchaseId, value) => {
+        setRatings({ ...ratings, [purchaseId]: value });
     };
 
     const handleSubmitReview = (purchaseId) => {
-        // Aquí puedes enviar el comentario y la valoración a tu backend
+        // Aquí puedes enviar la revisión y el rating a tu backend
         console.log("Purchase ID:", purchaseId);
-        console.log("Comment:", comment);
-        console.log("Rating:", rating);
-        // Aquí puedes limpiar el input de comentario y reiniciar la valoración
-        setComment('');
-        setRating(0);
+        console.log("Comment:", comments[purchaseId]);
+        console.log("Rating:", ratings[purchaseId]);
+
+        const productImages = purchases
+            .find(purchase => purchase.id === purchaseId)
+            .Orders.flatMap(order =>
+                order.products.map(product => product.img)
+            );
+
+        // Aquí puedes enviar los datos al backend a través de Axios
+        axios.post("/mail/review", {
+            userEmail: userInfo.email,
+            userName: userInfo.name,
+            userReview: comments[purchaseId],
+            userRating: ratings[purchaseId],
+            productId: productImages
+        })
+            .then(response => {
+                console.log(response.data);
+                // Maneja la respuesta del backend si es necesario
+                setShowAlert(true); // Mostrar el alerta cuando la valoración se envía correctamente
+                setAlertMessage(`${comments[purchaseId]} added successfully!`); // Establecer el mensaje del alerta
+                setTimeout(() => {
+                    setShowAlert(false); // Ocultar el alerta después de unos segundos
+                }, 3000); // Ocultar después de 3 segundos (3000 milisegundos)
+            })
+            .catch(error => {
+                console.error('Error submitting review:', error);
+                // Maneja el error si es necesario
+            });
     };
 
     return (
@@ -53,7 +82,7 @@ export const MyPurchases = () => {
                                     <p>Payment Status: <span className="text-green-600 capitalize">{purchase.stripe_payment_status}</span></p>
                                 </div>
                                 <div className="text-gray-600 text-small font-semibold mr-4">
-                                    <p>Order ID: {purchase.stripe_payment_id}</p>
+                                    <p>Purchase ID: {purchase.stripe_payment_id}</p>
                                 </div>
                             </div>
 
@@ -81,16 +110,16 @@ export const MyPurchases = () => {
                                 <input
                                     type="text"
                                     placeholder="Leave your review!"
-                                    value={comment}
-                                    onChange={handleCommentChange}
+                                    value={comments[purchase.id] || ''}
+                                    onChange={(event) => handleCommentChange(purchase.id, event)}
                                     className="border border-gray-300 rounded-md p-2 mr-2"
                                 />
                                 <div>
                                     {[1, 2, 3, 4, 5].map((value) => (
                                         <label
                                             key={value}
-                                            className={`text-3xl cursor-pointer ${value <= rating ? 'text-yellow-500' : 'text-gray-300'} hover:text-yellow-500`}
-                                            onClick={() => handleRatingClick(value)}
+                                            className={`text-3xl cursor-pointer ${value <= ratings[purchase.id] ? 'text-yellow-500' : 'text-gray-300'} hover:text-yellow-500`}
+                                            onClick={() => handleRatingClick(purchase.id, value)}
                                         >
                                             ★
                                         </label>
@@ -102,6 +131,23 @@ export const MyPurchases = () => {
                     ))
                     }
                 </ul >
+            )}
+            {/* Alerta que se muestra cuando la valoración se envía correctamente */}
+            {showAlert && (
+                <div className="fixed top-0 left-0 w-full flex justify-center items-center z-50 mt-4 animate-fadeIn">
+                    <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded max-w-sm">
+                        <strong className="font-bold">  Review Success!</strong>
+                        <span className="absolute top-0 right-0 mt-1 mr-1">
+                            <span
+                                onClick={() => setShowAlert(false)}
+                                className="fill-current h-6 w-6 text-black-bold cursor-pointer"
+                                role="button"
+                            >
+                                X
+                            </span>
+                        </span>
+                    </div>
+                </div>
             )}
         </div >
     );

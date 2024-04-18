@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 
 import { Route, Routes } from "react-router-dom";
-
+import newOrderGenerator from "./utils/newOrderGenerator.js";
 // * Routes
 import Home from "./Views/Home";
 import About from "./Views/About";
@@ -25,7 +25,6 @@ import { Profile } from "./Views/Users/Profile.jsx";
 // import Cats from "./Views/Cats.jsx";
 
 function App() {
-
   const [products, setProducts] = useState([]);
   // const [users, setUsers] = useState();
   const filters = useFilters();
@@ -41,7 +40,6 @@ function App() {
 
   useEffect(() => {
     const get = async () => {
-      window.localStorage.setItem("buyNow", JSON.stringify(false));
       setAllCategories({ ...allCategories, loading: true });
       const data = await getCategories();
       setAllCategories({ ...allCategories, loading: false });
@@ -117,30 +115,3 @@ function App() {
 }
 
 export default App;
-
-{
-  /* <Route
-  path="/dogs"
-  element={
-    <Dogs
-      allCategories={allCategories}
-      products={products}
-      setProducts={setProducts}
-      filters={filters}
-    />
-  }
-></Route> */
-}
-{
-  /* <Route
-  path="/cats"
-  element={
-    <Cats
-      allCategories={allCategories}
-      products={products}
-      setProducts={setProducts}
-      filters={filters}
-    />
-  }
-></Route> */
-}

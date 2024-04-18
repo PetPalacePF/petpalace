@@ -1,5 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { NavLink, Link } from "react-router-dom";
 import axios from "axios";
 import { BACKEND_URL } from "../../config/config";
@@ -7,6 +7,7 @@ import { BACKEND_URL } from "../../config/config";
 export const NavBar = ({ allCategories }) => {
   const [selectingCategory, setSelectingCategory] = useState(false);
   const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
+  const categoryRef = useRef(null);
 
   useEffect(() => {
     if (isAuthenticated && user) {
@@ -16,15 +17,36 @@ export const NavBar = ({ allCategories }) => {
           name: user.name,
         })
         .then((response) => {
-          window.localStorage.setItem("userData", JSON.stringify(response.data.user));
+          window.localStorage.setItem(
+            "userData",
+            JSON.stringify(response.data.user)
+          );
         })
         .catch((error) => {
           console.error("Error storing user data:", error);
         });
-    } else {
-      window.localStorage.removeItem('userData')
-    }
+    } 
+    // else {
+    //   window.localStorage.removeItem("userData");
+    // }
+
+    // Add event listener to handle clicks outside of category dropdown
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
   }, [isAuthenticated, user]);
+
+  const handleClickOutside = (event) => {
+    if (categoryRef.current && !categoryRef.current.contains(event.target)) {
+      setSelectingCategory(false);
+    }
+  };
+
+  const handleCategoryClick = () => {
+    setSelectingCategory(!selectingCategory);
+  };
 
   const handleLogout = () => {
     // Limpiar localStorage cuando el usuario se desloguee
@@ -42,8 +64,8 @@ export const NavBar = ({ allCategories }) => {
         >
           HOME
         </NavLink>
-        <div className="relative">
-          <div onClick={() => setSelectingCategory(!selectingCategory)}>
+        <div className="relative" ref={categoryRef}>
+          <div onClick={handleCategoryClick}>
             <p className="uppercase cursor-pointer">Categories</p>
           </div>
           {selectingCategory && (
@@ -54,7 +76,7 @@ export const NavBar = ({ allCategories }) => {
                   value={categoryId}
                   className="text-black hover:bg-gray-100 cursor-pointer"
                   to={`/shop?filterCategories=${categoryId}`}
-                  onClick={() => setSelectingCategory(!selectingCategory)}
+                  onClick={handleCategoryClick}
                 >
                   {allCategories.byId[categoryId].name}
                 </Link>
@@ -62,27 +84,6 @@ export const NavBar = ({ allCategories }) => {
             </div>
           )}
         </div>
-        {/*<NavLink
-          to="/services"
-          className="text-black hover:text-gray-300"
-          activeclassname="font-bold"
-        >
-          SERVICES
-        </NavLink> */}
-        {/* <NavLink
-          to="/cats"
-          className="text-black hover:text-gray-300"
-          activeclassname="font-bold"
-        >
-          CATS
-        </NavLink> */}
-        {/* <NavLink
-          to="/dogs"
-          className="text-black hover:text-gray-300"
-          activeclassname="font-bold"
-        >
-          DOGS
-        </NavLink>*/}
         <NavLink
           to="/shop"
           className="text-black hover:text-gray-300"
@@ -94,14 +95,14 @@ export const NavBar = ({ allCategories }) => {
           to="/about"
           className="text-black hover:text-gray-300"
           activeclassname="font-bold"
-          >
+        >
           ABOUT US
         </NavLink>
         <NavLink
           to="/contact"
           className="text-black hover:text-gray-300"
           activeclassname="font-bold"
-          >
+        >
           CONTACT
         </NavLink>
         {isAuthenticated ? (
@@ -119,36 +120,40 @@ export const NavBar = ({ allCategories }) => {
             LOGIN
           </button>
         )}
-        {
-          isAuthenticated &&
-          <Link
-            to="/admin"
-            className="uppercase"
-          >Admin</Link>
-        }
+        {isAuthenticated && (
+          <Link to="/admin" className="uppercase">
+            Admin
+          </Link>
+        )}
       </nav>
     </div>
   );
 };
 
-{/* <NavLink
+{
+  /* <NavLink
   to="/services"
   className="text-black hover:text-gray-300"
   activeclassname="font-bold"
 >
   SERVICES
-</NavLink> */}
-{/* <NavLink
+</NavLink> */
+}
+{
+  /* <NavLink
   to="/cats"
   className="text-black hover:text-gray-300"
   activeclassname="font-bold"
 >
   CATS
-</NavLink> */}
-{/* <NavLink
+</NavLink> */
+}
+{
+  /* <NavLink
   to="/dogs"
   className="text-black hover:text-gray-300"
   activeclassname="font-bold"
 >
   DOGS
-</NavLink> */}
+</NavLink> */
+}
