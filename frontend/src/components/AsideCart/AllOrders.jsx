@@ -5,40 +5,47 @@ const AllOrders = ({ ordersData, setOrdersData, handleClickBuy }) => {
   const [loading, setLoading] = useState(false);
   const [productQuantities, setProductQuantities] = useState({});
 
-
   useEffect(() => {
     const storedQuantities = localStorage.getItem("productQuantities");
     if (storedQuantities) {
       setProductQuantities(JSON.parse(storedQuantities));
     }
   }, []);
-  
-  
+
   useEffect(() => {
-    localStorage.setItem("productQuantities", JSON.stringify(productQuantities));
+    localStorage.setItem(
+      "productQuantities",
+      JSON.stringify(productQuantities)
+    );
   }, [productQuantities]);
 
   const handleQuantityChange = (e, productId) => {
     const newQuantity = parseInt(e.target.value);
-  
+
     // Actualizar el estado local con la nueva cantidad
     const newQuantities = {
       ...productQuantities,
       [productId]: newQuantity,
     };
     setProductQuantities(newQuantities);
-  
+
     // Enviar la información actualizada al servidor
-    axios.put("/orders", {
-      id: ordersData[ordersData.length - 1].id,
-      productsToAdd: [[productId, newQuantity]],
-    })
-    .then((res) => {
-      // Manejar la respuesta si es necesario
-    })
-    .catch((err) => {
-      console.error("Error updating product quantity:", err);
-    });
+    axios
+      .put("/orders", {
+        id: ordersData[ordersData.length - 1].id,
+        productsToAdd: [[productId, newQuantity]],
+      })
+      .then((res) => res.data)
+      .then((data) => {
+        window.localStorage.setItem("orderData", JSON.stringify(data.order));
+        setOrdersData({
+          ...ordersData,
+          orders: [data.order],
+        });
+      })
+      .catch((err) => {
+        console.error("Error updating product quantity:", err);
+      });
   };
 
   const handleDeleteProductCart = (id) => {
@@ -62,7 +69,10 @@ const AllOrders = ({ ordersData, setOrdersData, handleClickBuy }) => {
         setLoading(false);
         const storedQuantities = { ...productQuantities };
         delete storedQuantities[id];
-        localStorage.setItem("productQuantities", JSON.stringify(storedQuantities))
+        localStorage.setItem(
+          "productQuantities",
+          JSON.stringify(storedQuantities)
+        );
       })
       .catch((err) => {
         console.log(err);
@@ -96,7 +106,7 @@ const AllOrders = ({ ordersData, setOrdersData, handleClickBuy }) => {
                       <span className="ml-16 bg-violetahome px-2 py-1 rounded-full text-sm">
                         Qty:
                         <select
-                          value={productQuantities[product.id] || 1}
+                          value={product.cantidad || 1}
                           onChange={(e) => handleQuantityChange(e, product.id)}
                           className="ml-1 w-12 text-center bg-violetahome rounded-md"
                         >
@@ -130,11 +140,14 @@ const AllOrders = ({ ordersData, setOrdersData, handleClickBuy }) => {
         <div className="flex justify-between py-2">
           <p className="uppercase">Subtotal:</p>
           {ordersData[ordersData.length - 1]?.products &&
-            ordersData[ordersData.length - 1].products.reduce((acc, product) => {
-              const quantity = productQuantities[product.id] || 1;
-              acc += product.price* quantity;
-              return acc;
-            }, 0)}
+            ordersData[ordersData.length - 1].products.reduce(
+              (acc, product) => {
+                const quantity = productQuantities[product.id] || 1;
+                acc += product.price * quantity;
+                return acc;
+              },
+              0
+            )}
         </div>
         <button
           onClick={handleClickBuy}

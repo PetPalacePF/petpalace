@@ -47,7 +47,7 @@ const Purchase = ({ userInfo, result, ordersData, productQuantities }) => {
     const body = {
       products: orderToSend.products.map(product => ({
           ...product,
-          cantidad: productQuantities[product.id] || 1
+          cantidad: product.cantidad || 1
         })),
         customerEmail: user.email,
   };
@@ -256,9 +256,9 @@ const Purchase = ({ userInfo, result, ordersData, productQuantities }) => {
                   </td>
                   <td>${product.price}</td>
                   <td>
-                    <p className="text-[16px] inline">{productQuantities[product.id] || 1}</p>
+                    <p className="text-[16px] inline">{product.cantidad || 1}</p>
                   </td>
-                  <td>${(product.price * (productQuantities[product.id] || 1)).toFixed(2)}</td>
+                  <td>${(product.price * (product.cantidad || 1)).toFixed(2)}</td>
                 </tr>
               ))}
               <tr className="border-t">
@@ -267,7 +267,7 @@ const Purchase = ({ userInfo, result, ordersData, productQuantities }) => {
                 </td>
                 <td className="font-medium text-lg">
                   {orderToSend?.products.reduce((acc, product) => {
-                    acc += product.price * (productQuantities[product.id] || 1);
+                    acc += product.price * (product.cantidad || 1);
                     return acc;
                   }, 0).toFixed(2)}
                 </td>
