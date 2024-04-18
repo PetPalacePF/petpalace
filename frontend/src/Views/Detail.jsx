@@ -18,6 +18,7 @@ const Detail = () => {
   const { id } = useParams();
   const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
+  const [stock, setStock] = useState(0);
   const { isAuthenticated, loginWithRedirect } = useAuth0();
   const [productAdded, setProductAdded] = useState(false);
   const [closing, setClosing] = useState(false);
@@ -28,6 +29,7 @@ const Detail = () => {
       .get(`${BACKEND_URL}/products/${id}`)
       .then(({ data }) => {
         setProduct(data);
+        setStock(data.stock);
       })
       .catch((error) => {
         console.error("Error fetching product:", error);
@@ -62,6 +64,8 @@ const Detail = () => {
     }
     return <div className="flex">{stars}</div>;
   };
+
+
 
   const handleAddToCart = (event) => {
     event.preventDefault();
@@ -132,6 +136,7 @@ const Detail = () => {
                 <button
                   onClick={() => setQuantity(quantity + 1)}
                   className="text-gray-500 border border-gray-200 rounded-full p-2 mr-2"
+                  disabled={quantity === stock}
                 >
                   +
                 </button>

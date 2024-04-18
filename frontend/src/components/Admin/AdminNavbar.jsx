@@ -7,7 +7,7 @@ const AdminNavbar = () => {
       <Link to='/admin'>Dashboard</Link>
       <Link to='/admin/categories'>Categories</Link>
       <Link to='/admin/products'>Products</Link>
-      <Link to='/admin/Purchase'>Purchase</Link>
+      <Link to='/admin/Purchase'>Purchases</Link>
       <Link to='/admin/users'>Users</Link>
     </div>
   )

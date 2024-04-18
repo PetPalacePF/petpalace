@@ -12,8 +12,15 @@ import logo from "../../assets/logo.png";
 
 import { useNavigate } from "react-router-dom";
 
-const Header = ({ allCategories, setProducts, filters, setUsers, ordersData, setOrdersData, productQuantities }) => {
-  
+const Header = ({
+  allCategories,
+  setProducts,
+  filters,
+  setUsers,
+  ordersData,
+  setOrdersData,
+  productQuantities,
+}) => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const [openCart, setOpenCart] = useState(false);
@@ -33,11 +40,13 @@ const Header = ({ allCategories, setProducts, filters, setUsers, ordersData, set
   };
   return (
     <>
-      <div className="mx-auto flex max-w-[1400px] h-[110px] items-center justify-between p-6 lg:px-8">
-        <Link to="/" className="flex items-center">
-          <img src={logo} alt="Pet Palace Logo" className="w-8 h-8 mr-2" />
-          <span className="text-lg">PET PALACE</span>
-        </Link>
+      <div className="mx-auto flex flex-col md:flex-row items-center justify-between p-6 lg:px-8 max-w-[1400px]">
+        <div className="flex items-center mb-4 md:mb-0">
+          <Link to="/" className="flex items-center">
+            <img src={logo} alt="Pet Palace Logo" className="w-8 h-8 mr-2" />
+            <span className="text-lg">PET PALACE</span>
+          </Link>
+        </div>
         <div className="flex items-center">
           <SearchBar setProducts={setProducts} filters={filters} />
           <button

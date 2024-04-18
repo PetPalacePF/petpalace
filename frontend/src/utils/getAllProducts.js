@@ -70,17 +70,20 @@ export const getFilteredProducts = async (
     URLWordFilterPrice = "";
   }
 
-  try {
-    const response = await axios(
-      `${BACKEND_URL}/products?${URLWordSearch}&${querys}&${URLWordSortRating}&${URLWordSortPrice}&${URLWordFilterPrice}&page=${page}`
-    );
+  setTimeout(() => {
+    try {
+      const response = await axios(
+        `${BACKEND_URL}/products?${URLWordSearch}&${querys}&${URLWordSortRating}&${URLWordSortPrice}&${URLWordFilterPrice}&page=${page}`
+      );
+  
+      const filteredData = response.data.products.filter(product => product.enabled)
+  
+      setProducts(filteredData);
+      setTotalPages(response.data.totalPages);
+    } catch (error) {
+      console.error("There are no products that match the filter parameters:", error);
+      setProducts([]);
+    }
+  }, 1000)
 
-    const filteredData = response.data.products.filter(product => product.enabled)
-
-    setProducts(filteredData);
-    setTotalPages(response.data.totalPages);
-  } catch (error) {
-    console.error("There are no products that match the filter parameters:", error);
-    setProducts([]);
-  }
 };
