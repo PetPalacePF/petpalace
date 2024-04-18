@@ -6,16 +6,27 @@ const amountsValidator = require("../../utils/validators/orders/amountsValidator
 const modifyOrder = async (id, productsToAdd, productsToRemove) => {
   const id_products = [];
 
+  console.log("id: ", id);
+  console.log("productsToAdd: ", productsToAdd);
+  console.log("productsToRemove: ", productsToRemove);
+  
   if (productsToAdd) {
     productsToAdd.forEach((element) => {
       id_products.push(element[0]);
     });
   }
 
+  if (productsToRemove) {
+    productsToRemove.forEach((element) => {
+      id_products.push(element);
+    });
+  }
+
   const products_db = await Product.findAll({ where: { id: id_products } });
   const existing_products = productsValidator(products_db, id_products);
   const existing_amounts = productsToAdd && await amountsValidator(productsToAdd);
-
+  
+ 
   if (existing_products.error) {
     return { message: existing_products.message };
   } else if (productsToAdd && existing_amounts.error) {
@@ -24,6 +35,7 @@ const modifyOrder = async (id, productsToAdd, productsToRemove) => {
 
   try {
     let updatedOrder = await findOrderbyId(id);
+    console.log("updatedOrder: ", updatedOrder);
 
     if (updatedOrder) {
       if (updatedOrder.dataValues.PurchaseId === null) {

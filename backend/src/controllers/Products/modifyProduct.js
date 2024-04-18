@@ -1,19 +1,19 @@
 const { Product, Category } = require("../../db");
 const findProductbyId = require("../../controllers/Products/findProductbyId");
 
-
-const modifyProduct = async (
-  id,
-  brand,
-  name,
-  img,
-  description,
-  price,
-  stock,
-  rating,
-  enabled,
-  categories
-) => {
+const modifyProduct = async (putBody) => {
+  const {
+    id,
+    brand,
+    name,
+    img,
+    description,
+    price,
+    stock,
+    rating,
+    enabled,
+    categories,
+  } = putBody;
   try {
     let updatedProduct = await Product.update(
       {

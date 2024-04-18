@@ -4,7 +4,6 @@ import { BACKEND_URL } from "../config/config";
 const addToCart = async (productId, orderedProductQuantity = 1, ordersData) => {
   const userData = JSON.parse(window.localStorage.getItem("userData"));
 
-
   if (userData) {
     try {
       const response = await axios.post(`${BACKEND_URL}/orders`, {

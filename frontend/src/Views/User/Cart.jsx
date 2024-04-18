@@ -30,9 +30,14 @@ const Cart = () => {
       id: order.id,
       productsToAdd: [[productId, Math.max(currentQuantity - 1, 1)]],
     })
-    .then((res) => {
-      // Manejar la respuesta si es necesario
-    })
+    .then((res) => res.data)
+      .then((data) => {
+        window.localStorage.setItem("orderData", JSON.stringify(data.order));
+        setOrdersData({
+          ...ordersData,
+          orders: [data.order],
+        });
+      })
     .catch((err) => {
       console.error("Error updating product quantity:", err);
     });
@@ -51,8 +56,13 @@ const Cart = () => {
       id: order.id,
       productsToAdd: [[productId, newQuantity]],
     })
-    .then((res) => {
-      // Manejar la respuesta si es necesario
+    .then((res) => res.data)
+    .then((data) => {
+      window.localStorage.setItem("orderData", JSON.stringify(data.order));
+      setOrdersData({
+        ...ordersData,
+        orders: [data.order],
+      });
     })
     .catch((err) => {
       console.error("Error updating product quantity:", err);

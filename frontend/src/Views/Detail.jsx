@@ -65,7 +65,7 @@ const Detail = () => {
 
   const handleAddToCart = (event) => {
     event.preventDefault();
-    addToCart(product.id, quantity, ordersData);
+    addToCart(product.id, quantity, ordersData.orders);
     setProductAdded(true);
     setTimeout(() => {
       setClosing(true);

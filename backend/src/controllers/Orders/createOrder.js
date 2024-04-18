@@ -18,6 +18,7 @@ const createOrder = async (products, userId) => {
     const existing_products = productsValidator(products_db, id_products);
     const existing_amounts = await amountsValidator(products);
 
+
     if (!userFound) {
       return {
         message: `No se pudo crear la Orden. Usuario ${userId} no encontrado.`,

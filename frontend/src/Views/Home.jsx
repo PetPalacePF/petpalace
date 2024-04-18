@@ -9,7 +9,7 @@ import initialOrderGenerator from "../utils/initialOrderGenerator";
 
 const Home = () => {
   useEffect(() => {
-    initialOrderGenerator();
+    // initialOrderGenerator();
     window.localStorage.setItem("buyNow", JSON.stringify(false));
   }, []);
 
