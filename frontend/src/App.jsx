@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
-
 import { Route, Routes } from "react-router-dom";
 import newOrderGenerator from "./utils/newOrderGenerator.js";
 // * Routes
