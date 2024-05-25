@@ -15,7 +15,7 @@ const activeInputsValidator = (queryInputs) => {
 
   if (
     brand_or_name !== "" ||
-    filterBrands.length > 0 ||
+    filterBrands !== "" ||
     filterCategories.length > 0 ||
     filterPrice.length > 0 ||
     sortBrand !== "" ||

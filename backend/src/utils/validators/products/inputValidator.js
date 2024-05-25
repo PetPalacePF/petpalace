@@ -1,4 +1,4 @@
-const inputValidator = (queryInputs) => {
+const   inputValidator = (queryInputs) => {
   const {
     filterCategories,
     filterPrice,

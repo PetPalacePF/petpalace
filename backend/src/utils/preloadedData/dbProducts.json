@@ -1,15 +1,15 @@
-{
-  "products": [
-    {
-      "brand": "Pedigree",
-      "name": "Dog food (Adult)",
-      "description": "Pedigree 21kg bag of food for adult dogs",
-      "price": "70",
-      "stock": 25,
-      "rating": 4.8,
-      "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710971255/Producto1_g7atm9.webp",
-      "categories": [4]
-    },
+  {
+    "products": [
+      {
+        "brand": "Pedigree",
+        "name": "Dog food (Adult)",
+        "description": "Pedigree 21kg bag of food for adult dogs",
+        "price": "70",
+        "stock": 25,
+        "rating": 4.8,
+        "img": "https://res.cloudinary.com/petpalacecloudinary/image/upload/v1710971255/Producto1_g7atm9.webp",
+        "categories": [4]
+      },
     {
       "brand": "Pedigree",
       "name": "Dog food(Puppy)",
